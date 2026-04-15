@@ -7,6 +7,10 @@ on:
       - 'scripts/doc-validator/**'
   workflow_dispatch:
 
+env:
+  MO_TARGET_BRANCH: 3.0-dev
+  DOCS_BASE_BRANCH: main
+
 jobs:
   check-sql-syntax:
     name: SQL Syntax Check
@@ -61,6 +65,8 @@ jobs:
 
       - name: Run SQL Syntax Check
         run: |
+          BASE_BRANCH="${{ github.base_ref || env.DOCS_BASE_BRANCH }}"
           echo "🔍 Starting SQL Syntax Check"
           echo "============================================================"
-          pnpm run check:sql-syntax:changed
+          echo "🧾 Diff base branch: ${BASE_BRANCH}"
+          pnpm run check:sql-syntax:changed -- --base-branch "${BASE_BRANCH}"

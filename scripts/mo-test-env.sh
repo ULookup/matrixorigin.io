@@ -468,8 +468,26 @@ test_mo() {
 
 # Get sorted commit list for CI use
 # Output format: sha branch (one per line, sorted by time descending)
+# If target branch is provided, only fetch from that branch
 get_commits() {
+    local target_branch="$1"
     local all_commits=""
+
+    if [ -n "$target_branch" ]; then
+        local target_commits
+        target_commits=$(fetch_branch_commits "$target_branch" 2>/dev/null)
+
+        if [ -z "$target_commits" ]; then
+            echo "Failed to fetch commits from target branch: ${target_branch}" >&2
+            return 1
+        fi
+
+        echo "$target_commits" | sort -rk1 | sort -uk2,2 | sort -rk1 | \
+            while read -r date sha branch; do
+                echo "$sha $branch"
+            done
+        return 0
+    fi
 
     # Fetch from main branch (silently)
     local main_commits
@@ -580,7 +598,8 @@ case "${ACTION}" in
         ;;
     get-commits)
         # Get sorted commit list (used by CI)
-        get_commits
+        # Optional branch argument: ./mo-test-env.sh get-commits 3.0-dev
+        get_commits "$VERSION_ARG"
         ;;
     stop)
         stop_mo
@@ -594,14 +613,14 @@ case "${ACTION}" in
     *)
         echo "MatrixOne Test Environment"
         echo ""
-        echo "Usage: $0 {start|stop|status|test|get-commits|start-image} [version/image]"
+        echo "Usage: $0 {start|stop|status|test|get-commits|start-image} [version/image/branch]"
         echo ""
         echo "Commands:"
         echo "  start [version]  Start MatrixOne container"
         echo "                   - Without version: try latest commit from Tencent TCR, fallback to Docker Hub nightly"
         echo "                   - With version: try release, fallback to nightly"
         echo "  start-image IMG  Start with a specific Docker image (for CI use)"
-        echo "  get-commits      Get sorted commit list from main and dev branches"
+        echo "  get-commits [BR] Get sorted commit list for branch BR (or main+dev if omitted)"
         echo "  stop             Stop and remove container"
         echo "  status           Show container status"
         echo "  test             Test database connection"
@@ -610,7 +629,8 @@ case "${ACTION}" in
         echo "  $0 start              # Latest commit from Tencent TCR or Docker Hub nightly"
         echo "  $0 start 3.0.4        # Release 3.0.4 or fallback to nightly"
         echo "  $0 start-image ccr.ccs.tencentyun.com/matrixone-dev/matrixone:commit-abc1234"
-        echo "  $0 get-commits        # List available commits"
+        echo "  $0 get-commits        # List available commits from main+dev"
+        echo "  $0 get-commits 3.0-dev # List available commits from 3.0-dev only"
         echo "  $0 stop"
         echo "  $0 test"
         exit 1

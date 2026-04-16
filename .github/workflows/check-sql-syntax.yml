@@ -40,6 +40,21 @@ jobs:
         with:
           go-version: '1.22'
 
+      - name: Sync MatrixOne parser to target branch
+        working-directory: scripts/doc-validator/syntax-checker
+        run: |
+          TARGET_BRANCH="${{ env.MO_TARGET_BRANCH }}"
+          echo "🎯 Target MatrixOne branch: ${TARGET_BRANCH}"
+          if ! [[ "${TARGET_BRANCH}" =~ ^[0-9]+\.[0-9]+-dev$ ]]; then
+            echo "❌ Invalid target branch: ${TARGET_BRANCH}"
+            echo "Expected release branch format: x.y-dev (example: 3.0-dev)"
+            exit 1
+          fi
+          go get github.com/matrixorigin/matrixone@${TARGET_BRANCH}
+          go mod tidy
+          CURRENT=$(go list -m github.com/matrixorigin/matrixone | awk '{print $2}')
+          echo "✅ Resolved MatrixOne parser version: ${CURRENT}"
+
       - name: Get pnpm store directory
         shell: bash
         run: |
@@ -61,6 +76,18 @@ jobs:
           echo "📋 Checking syntax checker build status..."
           if [ -f "scripts/doc-validator/syntax-checker/.build-status.json" ]; then
             cat scripts/doc-validator/syntax-checker/.build-status.json
+            node -e '
+              const fs = require("node:fs")
+              const status = JSON.parse(fs.readFileSync("scripts/doc-validator/syntax-checker/.build-status.json", "utf8"))
+              if (status.mode !== "native") {
+                console.error("❌ syntax-checker is not running in native mode:", status)
+                process.exit(1)
+              }
+              console.log("✅ syntax-checker native mode confirmed")
+            '
+          else
+            echo "❌ Missing build status file"
+            exit 1
           fi
 
       - name: Run SQL Syntax Check

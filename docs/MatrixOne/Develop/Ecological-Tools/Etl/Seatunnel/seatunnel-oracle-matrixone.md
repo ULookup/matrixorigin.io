@@ -4,7 +4,7 @@ This document describes how to write Oracle data to MatrixOne using SeaTunnel.
 
 ## Prepare before you start
 
-- Finished [installing and starting](../../../Get-Started/install-standalone-matrixone.md) MatrixOne.
+- Finished [installing and starting](../../../../Get-Started/install-standalone-matrixone.md) MatrixOne.
 
 - Finished [installing Oracle 19c](https://www.oracle.com/database/technologies/oracle-database-software-downloads.html).
 

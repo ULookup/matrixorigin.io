@@ -17,7 +17,7 @@ The `LOAD_FILE()` function is used to read the contents of the file pointed to b
 
 | Parameters | Description |
 | ----| ----|
-| datalink_type_data | datalink type data can be converted using the [cast()](../../../Reference/Operators/operators/cast-functions-and-operators/cast/) function |
+| datalink_type_data | datalink type data can be converted using the [cast()](../../../Reference/Operators/operators/cast-functions-and-operators/cast.md) function |
 
 ## Example
 

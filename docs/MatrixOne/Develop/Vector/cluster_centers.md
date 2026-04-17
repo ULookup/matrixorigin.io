@@ -166,4 +166,4 @@ By determining the cluster centers, we can divide users into two groups: Cluster
 
 [L2_DISTANCE()](../../Reference/Functions-and-Operators/Vector/l2_distance.md)
 
-[NORMALIZE_L2()](MatrixOne/Reference/Functions-and-Operators/Vector/normalize_l2.md)
+[NORMALIZE_L2()](../../Reference/Functions-and-Operators/Vector/normalize_l2.md)

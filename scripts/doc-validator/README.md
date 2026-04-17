@@ -45,22 +45,22 @@ The validator automatically detects and skips common syntax template patterns:
 
 For code blocks that cannot be auto-detected, use the `validator-ignore` comment:
 
-```markdown
+````markdown
 <!-- validator-ignore -->
 ```sql
 CREATE FULLTEXT INDEX <index_name>
 ON <table_name> (col1, col2, ...)
 [WITH PARSER (default | ngram | json)];
-\```
 ```
+````
 
 Or inline:
 
-```markdown
+````markdown
 ```sql <!-- validator-ignore -->
 MATCH (col1, col2, ...) AGAINST (expr [search_modifier]);
-\```
 ```
+````
 
 #### Skipping Execution Only (Keep Syntax Check)
 
@@ -74,20 +74,20 @@ but cannot reliably run in the generic execution test environment. Typical cases
 
 With this directive the block is **still validated by the syntax checker** but skipped by the execution checker:
 
-```markdown
+````markdown
 <!-- validator-ignore-exec -->
 ```sql
 LOAD DATA INFILE '/tmp/demo.csv' INTO TABLE t1;
-\```
 ```
+````
 
 Inline form is also supported:
 
-```markdown
+````markdown
 ```sql <!-- validator-ignore-exec -->
 CREATE SNAPSHOT s1 FOR DATABASE db1;
-\```
 ```
+````
 
 > Prefer `validator-ignore-exec` over `validator-ignore` whenever the SQL itself is correct — this keeps syntax coverage as high as possible.
 

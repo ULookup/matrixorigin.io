@@ -259,6 +259,7 @@ You can now start migrating MySQL data to MatrixOne using Flink.
     ```
     mysql -h127.0.0.1 -P3306 -uroot -proot
     ```
+
     ```sql
     CREATE DATABASE motest;
     USE motest;
@@ -274,6 +275,7 @@ You can now start migrating MySQL data to MatrixOne using Flink.
     -- on node3, connect node1's MatrixOne 
     mysql -hxx.xx.xx.xx -P6001 -uroot -p111 
     ```
+
     ```sql
     TRUNCATE TABLE test.person;
     ```

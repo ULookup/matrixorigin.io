@@ -52,7 +52,7 @@ We create a real-time risk control and anti-fraud application example in the fin
 
 Prepare a user table and transaction table
 
-```sql
+```sql <!-- validator-ignore-exec -->
 drop table transactions;
 drop table users;
 

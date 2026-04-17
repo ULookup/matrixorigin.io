@@ -15,7 +15,7 @@ Deleting a sequence deletes all properties and values of the sequence. Therefore
 
 ## **Examples**
 
-```sql
+```sql <!-- validator-ignore-exec -->
 -- Delete the sequence named "seq_id"
 DROP SEQUENCE seq_id;
 ```

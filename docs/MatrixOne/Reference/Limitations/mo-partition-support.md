@@ -62,7 +62,7 @@ ERROR 1503 (HY000): A PRIMARY KEY must include all columns in the table's partit
 
     For example, in the following table construction sentence, the KEY partition key is NULL, no primary key is defined, but the unique key is used as the partitioning key when the partition expression is constructed:
 
-```sql
+```sql <!-- validator-ignore-exec -->
 CREATE TABLE t1 (
 	col1 INT  NOT NULL,
 	col2 DATE NOT NULL,

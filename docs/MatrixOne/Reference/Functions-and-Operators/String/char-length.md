@@ -21,7 +21,7 @@ The `CHAR_LENGTH` function returns the length of the string str, measured in cod
 
 ## **Examples**
 
-```sql
+```sql <!-- validator-ignore-exec -->
 > drop table if exists t1;
 > create table t1(a varchar(255),b varchar(255));
 > insert into t1 values('nihao','你好');

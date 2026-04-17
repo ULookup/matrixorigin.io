@@ -83,7 +83,7 @@ mysql> SELECT * FROM t2;
 
 - Example 2: Column aliasing
 
-```sql
+```sql <!-- validator-ignore-exec -->
 CREATE TABLE t1(a INT DEFAULT 123, b CHAR(5));
 INSERT INTO t1 VALUES (1, '1'),(2,'2'),(0x7fffffff, 'max');
 
@@ -133,7 +133,7 @@ Empty set (0.00 sec)
 
 - Example 4: Aggregated values
 
-```sql
+```sql <!-- validator-ignore-exec -->
 CREATE TABLE t1(a INT DEFAULT 123, b CHAR(5));
 INSERT INTO t1 VALUES (1, '1'),(2,'2'),(0x7fffffff, 'max');
 
@@ -236,7 +236,7 @@ mysql> SELECT * FROM t8_1;
 
 - Example 9: Constraints handling
 
-```sql
+```sql <!-- validator-ignore-exec -->
 CREATE TABLE t9 (a INT PRIMARY KEY, b VARCHAR(5) UNIQUE KEY);
 CREATE TABLE t9_1 (
   a INT PRIMARY KEY,

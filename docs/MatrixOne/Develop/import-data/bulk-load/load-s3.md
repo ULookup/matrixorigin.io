@@ -45,7 +45,7 @@ The other paramaters are identical to a ordinary LOAD DATA, see [LOAD DATA](../.
 
 **Statement Examples**:
 
-```sql
+```sql <!-- validator-ignore -->
 # LOAD a csv file from AWS S3 us-east-1 region, test-load-mo bucket, without compression
 LOAD DATA URL s3option{"endpoint"='s3.us-east-1.amazonaws.com', "access_key_id"='XXXXXX', "secret_access_key"='XXXXXX', "bucket"='test-load-mo', "filepath"='test.csv', "region"='us-east-1', "compression"='none'} INTO TABLE t1 FIELDS TERMINATED BY ',' ENCLOSED BY '\"' LINES TERMINATED BY '\n';
 
@@ -100,7 +100,7 @@ In this tutorial, we will walk you through the process of loading a **.csv** fil
 
 5. After the import is successful, you can run SQL statements to check the result of imported data:
 
-    ```sql
+    ```sql <!-- validator-ignore -->
     mysql> select * from t1;
     +-----------+-----------+-----------+-----------+
     | col1      | col2      | col3      | col4      |

@@ -429,6 +429,7 @@ Below we will use a few simple examples to describe how to use mo_br to back up 
 
 - Connect mo to create databases db1, db2.
 
+<!-- validator-ignore -->
 ```sql
 create database db1;
 create database db2;
@@ -469,6 +470,7 @@ Backup ID
 
 - Connect mo to drop database db1 and create database db3.
 
+<!-- validator-ignore -->
 ```sql
 drop database db1;
 create database db3;
@@ -520,6 +522,7 @@ Copy tae file 1
 mo_ctl start
 ```
 
+<!-- validator-ignore -->
 ```sql
 mysql> show databases;
 +--------------------+
@@ -544,6 +547,7 @@ As you can see, the recovery was successful.
 
 - Connect mo to create databases db1, db2
 
+<!-- validator-ignore -->
 ```sql
 create database db1;
 create database db2;
@@ -597,6 +601,7 @@ Comparing the duration of incremental backup and full backup, you can see that i
 
 - Connect mo to drop database db1 and create database db3.
 
+<!-- validator-ignore -->
 ```sql
 drop database db1;
 create database db3;
@@ -645,6 +650,7 @@ TaePath
 mo_ctl start
 ```
 
+<!-- validator-ignore -->
 ```sql
 mysql> show databases;
 +--------------------+

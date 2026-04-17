@@ -118,7 +118,7 @@ python /opt/module/datax/bin/datax.py /opt/module/datax/job/mysql2mo.json
 
 ### View data in a MatrixOne table
 
-```sql
+```sql <!-- validator-ignore-exec -->
 mysql> select * from mysql_datax;
 +------+-------+--------+------+------------+--------+
 | id   | name  | salary | age  | entrytime  | gender |

@@ -62,7 +62,7 @@ Formats the date value according to the format string. If either argument is NUL
 
 ## **Examples**
 
-```sql
+```sql <!-- validator-ignore-exec -->
 mysql> SELECT DATE_FORMAT('2009-10-04 22:23:00', '%W %M %Y');
 +--------------------------------------------+
 | date_format(2009-10-04 22:23:00, %W %M %Y) |
@@ -125,7 +125,7 @@ mysql> SELECT Date_format(f1, "%m") AS d1,
   2 rows in set (0.00 sec)
 ```
 
-```sql
+```sql <!-- validator-ignore-exec -->
 CREATE TABLE t5 (a int, b date);
 INSERT INTO t5
   VALUES    (1,

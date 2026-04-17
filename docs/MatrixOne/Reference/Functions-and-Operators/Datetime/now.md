@@ -20,7 +20,7 @@ The `NOW()` function returns a value in 'YYYY-MM-DD HH:MM:SS' format for the cur
 
 ## Examples
 
-```sql
+```sql <!-- validator-ignore-exec -->
 mysql> select now();
 +----------------------------+
 | now()                      |

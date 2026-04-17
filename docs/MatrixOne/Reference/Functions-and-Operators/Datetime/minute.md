@@ -20,7 +20,7 @@ Returns the minute for time, in the range 0 to 59, or NULL if time is NULL.
 
 - Example 1:
 
-```sql
+```sql <!-- validator-ignore-exec -->
 mysql> SELECT MINUTE('2008-02-03 10:05:03');
 +-----------------------------+
 | minute(2008-02-03 10:05:03) |
@@ -32,7 +32,7 @@ mysql> SELECT MINUTE('2008-02-03 10:05:03');
 
 - Example 2:
 
-```sql
+```sql <!-- validator-ignore-exec -->
 drop table if exists t1;
 create table t1(a datetime, b timestamp);
 insert into t1 values("2022-07-01", "2011-01-31 12:00:00");

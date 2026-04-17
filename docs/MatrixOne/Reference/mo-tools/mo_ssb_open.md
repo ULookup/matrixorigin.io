@@ -69,7 +69,7 @@ Then execute the following script to build the table.
 
 Connect to MatrixOne to view and build table successfully.
 
-```sql
+```sql <!-- validator-ignore-exec -->
 mysql> show tables;
 +----------------+
 | Tables_in_ssb  |

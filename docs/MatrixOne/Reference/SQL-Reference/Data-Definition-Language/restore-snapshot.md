@@ -6,6 +6,7 @@
 
 ## Syntax Structure
 
+<!-- validator-ignore -->
 ```sql
 RESTORE CLUSTER FROM SNAPSHOT <snapshot_name>;
 
@@ -25,6 +26,7 @@ RESTORE ACCOUNT <account_name> FROM SNAPSHOT <snapshot_name> TO ACCOUNT <target_
 
 ### Example 1: Restore Cluster
   
+<!-- validator-ignore -->
 ```sql
 -- Execute in tenants acc1, acc2
 CREATE DATABASE db1;
@@ -84,6 +86,7 @@ mysql> SHOW DATABASES;
 
 ### Example 2: Restore Tenant
 
+<!-- validator-ignore -->
 ```sql
 -- Execute in tenant acc1
 CREATE DATABASE db1;
@@ -142,6 +145,7 @@ mysql> SHOW DATABASES;
 
 ### Example 3: Restore Database
 
+<!-- validator-ignore -->
 ```sql
 -- Execute in tenant acc1
 CREATE DATABASE db1;
@@ -197,6 +201,7 @@ mysql> SHOW DATABASES;
 
 ### Example 4: Restore Table
 
+<!-- validator-ignore -->
 ```sql
 -- Execute in tenant acc1
 CREATE TABLE t1(n1 INT);
@@ -234,6 +239,7 @@ mysql> SELECT * FROM t1;
 
 ### Example 5: System Tenant Restores Regular Tenant to Itself
 
+<!-- validator-ignore -->
 ```sql
 -- Execute in tenant acc1
 CREATE DATABASE db1;
@@ -293,6 +299,7 @@ mysql> SHOW DATABASES;
 
 ### Example 6: System Tenant Restores Regular Tenant to New Tenant
 
+<!-- validator-ignore -->
 ```sql
 -- Execute in tenant acc1
 CREATE DATABASE db1;

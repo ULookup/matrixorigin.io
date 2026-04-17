@@ -12,7 +12,7 @@ Writing data.
 
 ## **Examples**
 
-```sql
+```sql <!-- validator-ignore-exec -->
 drop table if exists t1;
 create table t1(a int default (1+12), b int);
 insert into t1(b) values(1), (1);

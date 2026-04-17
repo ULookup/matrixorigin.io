@@ -151,7 +151,7 @@ WHL file is a standard built-in package format for python distribution that allo
 
     Copy the whl package to the planned function repository directory, such as the path: `/opt/udf/udf-1.0.0-py3-none-any.whl`, and use the whl package in the create statement to create the UDF function. An example of the create statement is as follows:
 
-    ```sql
+    ```sql <!-- validator-ignore-exec -->
     create or replace function py_add_3(a int, b int)
     returns int language python 
     import '/opt/udf/udf-1.0.0-py3-none-any.whl' -- wheel The directory in which the package resides 
@@ -203,7 +203,7 @@ In some scenarios, we would expect the python function to receive multiple tuple
 
 4. Create a UDF function by executing the following command We use `add.vector = True` to mark the python function add to receive two int lists (vectors) instead of int values:
 
-    ```sql
+    ```sql <!-- validator-ignore-exec -->
     create or replace function py_add_4(a int, b int) returns int language python as $$ def add(a, b): \# a, b are list return \[a\[i] + b\[i] for i in range(len(a))] add.vector = True $$ handler 'add'; 
     ```
 
@@ -332,7 +332,7 @@ source /your_download_path/ddl.sql
 
 1. To create a udf function:
 
-    ```sql
+    ```sql <!-- validator-ignore -->
     create or replace function py_detect(features json, amount decimal) 
     returns bool 
     language python 

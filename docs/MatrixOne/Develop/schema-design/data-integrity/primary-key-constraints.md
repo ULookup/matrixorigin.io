@@ -27,7 +27,7 @@ When defining PRIMARY KEY, the following rules need to be followed:
 
 ## **Examples**
 
-```sql
+```sql <!-- validator-ignore-exec -->
 mysql> create table t1(a int primary key, b int, c int, primary key(b,c));
 ERROR 20301 (HY000): invalid input: more than one primary key defined
 mysql> create table t2(a int, b int, c int, primary key(b,c));

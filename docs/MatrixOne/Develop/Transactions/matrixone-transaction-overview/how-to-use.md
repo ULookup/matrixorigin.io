@@ -52,14 +52,14 @@ SHOW VARIABLES LIKE 'AUTOCOMMIT';
 
 When this parameter is set to ON or 1, it means automatic submission. All single SQL statements not in `START TRANSACTION` or `BEGIN` will be automatically submitted when executed.
 
-```sql
+```sql <!-- validator-ignore-exec -->
 -- Autocommit
 insert into t1 values(1,2,3);   
 ```
 
 When this parameter is set to OFF or 0, it is not automatically committed. All SQL statements not in `START TRANSACTION` or `BEGIN` need to use `COMMIT` or `ROLLBACK` to perform commit or rollback.
 
-```sql
+```sql <!-- validator-ignore-exec -->
 insert into t1 values(1,2,3);
 -- Manual submission is required here
 COMMIT;  

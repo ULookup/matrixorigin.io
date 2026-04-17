@@ -14,7 +14,7 @@ The `INNER PRODUCT` function is used to calculate the inner/dot product between 
 
 ## **Examples**
 
-```sql
+```sql <!-- validator-ignore-exec -->
 drop table if exists vec_table;
 create table vec_table(a int, b vecf32(3), c vecf64(3));
 insert into vec_table values(1, "[1,2,3]", "[4,5,6]");

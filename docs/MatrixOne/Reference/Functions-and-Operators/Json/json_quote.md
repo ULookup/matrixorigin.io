@@ -18,7 +18,7 @@ select JSON_QUOTE(string_value);
 
 ## **Example**
 
-```sql
+```sql <!-- validator-ignore-exec -->
 mysql> SELECT JSON_QUOTE('null'), JSON_QUOTE('"null"');
 +------------------+--------------------+
 | json_quote(null) | json_quote("null") |

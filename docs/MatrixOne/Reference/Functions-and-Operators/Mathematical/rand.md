@@ -27,7 +27,7 @@ SELECT * FROM `table` ORDER BY RAND();
 
 - Example 1
 
-```sql
+```sql <!-- validator-ignore-exec -->
 mysql> SELECT RAND();
 +---------------------+
 | rand()              |
@@ -39,7 +39,7 @@ mysql> SELECT RAND();
 
 - Example 2
 
-```sql
+```sql <!-- validator-ignore-exec -->
 CREATE TABLE Users (
     ID INT PRIMARY KEY AUTO_INCREMENT,
     UserName VARCHAR(255) NOT NULL,

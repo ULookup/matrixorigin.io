@@ -68,7 +68,7 @@ The following is an explanation of each parameter:
 
 ## **Examples**
 
-```sql
+```sql <!-- validator-ignore-exec -->
 create table names(id int PRIMARY KEY,name VARCHAR(255),age int);
 
 -- Insert a row of data, id=1, name="Abby", age=24

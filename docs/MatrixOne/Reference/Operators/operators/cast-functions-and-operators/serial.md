@@ -20,7 +20,7 @@ Returns NULL if any of the parameters in `SERIAL()` is NULL. To handle NULL valu
 
 ## Examples
 
-```sql
+```sql <!-- validator-ignore-exec -->
 create table t1(a varchar(3), b int);
 insert into t1 values("ABC",1);
 insert into t1 values("DEF",NULL);

@@ -12,7 +12,7 @@ The USE statement tells MatrixOne to use the named database as the default (curr
 
 ## **Examples**
 
-```sql
+```sql <!-- validator-ignore-exec -->
 USE db1;
 SELECT COUNT(*) FROM mytable;
 ```

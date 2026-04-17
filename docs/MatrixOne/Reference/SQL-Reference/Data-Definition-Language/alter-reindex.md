@@ -22,7 +22,7 @@ The ideal values for LISTS are:
 
 ## Examples
 
-```sql
+```sql <!-- validator-ignore-exec -->
 
 drop table if exists t1;
 create table t1(n1 int,n2  vecf32(3));

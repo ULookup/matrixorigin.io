@@ -131,7 +131,7 @@ The default value of a is 1.
 
 You can also set the default value to the time when the value was inserted; see the simple example below:
 
-```sql
+```sql <!-- validator-ignore-exec -->
 -- Create the table and set the default value to the current time
 CREATE TABLE t2 (
     id INT PRIMARY KEY,
@@ -195,7 +195,7 @@ PRIMARY KEY (N_NATIONKEY)
 
 To view all tables under the *modatabase* database, use the `SHOW TABLES` statement.
 
-```sql
+```sql <!-- validator-ignore-exec -->
 SHOW TABLES IN `modatabase`;
 ```
 

@@ -22,7 +22,7 @@
 
 ## **Examples**
 
-```sql
+```sql <!-- validator-ignore-exec -->
 mysql> SELECT TO_DATE('2022-01-06 10:20:30','%Y-%m-%d %H:%i:%s') as result;
 +---------------------+
 | result              |

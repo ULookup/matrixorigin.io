@@ -175,7 +175,7 @@ In this tutorial, we will guide you through loading two jsonline files with obje
 
 5. Execute `LOAD DATA` with the corresponding file path in MySQL client, import the *jsonline_object.jl*  and the file *jsonline_array.jl* into MatrixOne:
 
-    ```sql
+    ```sql <!-- validator-ignore -->
     load data infile {'filepath'='$filepath/jsonline_object.jl','format'='jsonline','jsondata'='object'} into table t1;
     load data infile {'filepath'='$filepath/jsonline_array.jl','format'='jsonline','jsondata'='array'} into table t2;
     ```

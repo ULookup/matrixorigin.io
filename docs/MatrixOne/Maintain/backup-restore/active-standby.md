@@ -110,7 +110,7 @@ After executing the command, wait a moment and query the replica status through 
 
 - show logservice stores;
 
-   ```sql
+   ```sql <!-- validator-ignore-exec -->
     mysql> show logservice stores;
     +-----------------------------------------+------+-------------+---------------------------+-------------+-----------------+-----------------+-----------------+
     | store_id | tick | replica_num | replicas | locality | raft_address | service_address | gossip_address |
@@ -123,7 +123,7 @@ After executing the command, wait a moment and query the replica status through 
 
 - show logservice replicas;
 
-   ```sql
+   ```sql <!-- validator-ignore-exec -->
    mysql> show logservice replicas;
    +----------+------------+--------------+-----------------------+------+-------+---------------------------------------+
    | shard_id | replica_id | replica_role | replica_is_non_voting | term | epoch | store_info |

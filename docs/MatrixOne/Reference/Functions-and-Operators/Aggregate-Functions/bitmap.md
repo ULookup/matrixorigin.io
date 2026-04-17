@@ -137,7 +137,7 @@ BITMAP_CONSTRUCT_AGG( <bit_position> )
 
 #### Examples
 
-```sql
+```sql <!-- validator-ignore-exec -->
 CREATE TABLE t1 ( n1 int);
 INSERT INTO t1 VALUES(0),(1),(1),(32767);
 -- Inserted data in [0,32767].
@@ -165,7 +165,7 @@ mysql> SELECT BITMAP_CONSTRUCT_AGG(BITMAP_BIT_POSITION(n1)) AS bitmap FROM t1;
 !!! note
     bitmap column contains the physical representation of bitmap and is not readable. To determine which bits are set, we should use a combination of `BITMAP` functions (rather than checking binary values ourselves).
 
-```sql
+```sql <!-- validator-ignore-exec -->
 -- The number set to 1 in the bitmap
 mysql> SELECT bitmap_count(BITMAP_CONSTRUCT_AGG(BITMAP_BIT_POSITION(n1))) AS n1_discnt FROM t1;
 +-----------+
@@ -221,7 +221,7 @@ mysql> SELECT bitmap_bit_position(0),bitmap_bit_position(1),bitmap_bit_position(
 
 So you need to combine the `BITMAP_BUCKET_NUMBER()` function if you want to dedupe data larger than 32767.
 
-```sql
+```sql <!-- validator-ignore-exec -->
 -- Grouped in buckets, the first bucket contains three non-repeating numbers (0,1,32767) and the second bucket contains three non-repeating numbers (32768,32769,65535).
 mysql> SELECT bitmap_count(BITMAP_CONSTRUCT_AGG(BITMAP_BIT_POSITION(n1))) AS t1_bitmap FROM t1 GROUP BY BITMAP_BUCKET_NUMBER(n1);
 +-----------+
@@ -266,7 +266,7 @@ BITMAP_OR_AGG( bitmap )
 
 #### Examples
 
-```sql
+```sql <!-- validator-ignore-exec -->
 -- Create a table to store information about the author's published books, including the author's name, the year of publication, and the book id.
 CREATE TABLE book_table(
     id int auto_increment primary key,

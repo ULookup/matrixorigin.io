@@ -20,7 +20,7 @@ SET time_zone = timezone;
 
 You can use the following statement to view the current values of the global, client-specific and system time zones:
 
-```sql
+```sql <!-- validator-ignore-exec -->
 > SELECT @@global.time_zone, @@session.time_zone, @@global.system_time_zone;
 +-------------+-------------+--------------------+
 | @@time_zone | @@time_zone | @@system_time_zone |
@@ -45,7 +45,7 @@ The session time zone setting does not affect values displayed by functions such
 !!! note
     Only the values of the Timestamp data type is affected by time zone. This is because the Timestamp data type uses the literal value + time zone information. Other data types, such as Datetime/Date/Time, do not have time zone information, thus their values are not affected by the changes of time zone.
 
-```sql
+```sql <!-- validator-ignore-exec -->
 > SELECT @@global.time_zone, @@session.time_zone, @@global.system_time_zone;
 +-------------+-------------+--------------------+
 | @@time_zone | @@time_zone | @@system_time_zone |
@@ -84,7 +84,7 @@ In this example, no matter how you adjust the value of the time zone, the value 
 
 1. View the current time and time zone:
 
-```sql
+```sql <!-- validator-ignore-exec -->
 > select now();
 +----------------------------+
 | now()                      |

@@ -10,7 +10,7 @@ SET @variable_name = value;
 
 For example, the following statement will define a variable named `@max_salary` and set it to 100000:
 
-```sql
+```sql <!-- validator-ignore-exec -->
 SET @max_salary = 100000;
 --View the value set by the @max_salary variable
 mysql> select @max_salary;

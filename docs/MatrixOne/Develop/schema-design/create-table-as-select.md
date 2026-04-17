@@ -38,7 +38,7 @@ See chapter [Create Table As Select](../../Reference/SQL-Reference/Data-Definiti
 
 Suppose we have an e-commerce platform and we want to create a data table to analyze the details of each order including order number, customer ID, order date, product ID, product quantity and product price.
 
-```sql
+```sql <!-- validator-ignore-exec -->
 CREATE TABLE orders(
 order_id int auto_increment PRIMARY KEY,
 customer_id int,

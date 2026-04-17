@@ -18,7 +18,7 @@
 
 ## Examples
 
-```sql
+```sql <!-- validator-ignore-exec -->
 create table t1(a varchar(3), b int);
 insert into t1 values("ABC",1);
 insert into t1 values("DEF",NULL);

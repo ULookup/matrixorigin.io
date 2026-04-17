@@ -34,7 +34,7 @@ set session foreign_key_checks = 'xxx'
 
 ## Examples
 
-```sql
+```sql <!-- validator-ignore-exec -->
 mysql>  SELECT @@session.foreign_key_checks;
 +----------------------+
 | @@foreign_key_checks |

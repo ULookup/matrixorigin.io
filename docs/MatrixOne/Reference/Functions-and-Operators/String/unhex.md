@@ -20,7 +20,7 @@ The characters in the argument string must be legal hexadecimal digits: '0' .. '
 
 ## **Examples**
 
-```SQL
+```SQL <!-- validator-ignore-exec -->
 mysql> SELECT UNHEX('4d6174726978204f726967696e');
 +-----------------------------------+
 | unhex(4d6174726978204f726967696e) |

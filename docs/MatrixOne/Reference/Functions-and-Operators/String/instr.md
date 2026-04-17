@@ -33,7 +33,7 @@ The above query will return 0 because, in binary format, 'A' and 'a' are conside
 
 - Example 1
 
-```sql
+```sql <!-- validator-ignore-exec -->
 mysql> SELECT INSTR('foobarbar', 'bar');
 +-----------------------+
 | instr(foobarbar, bar) |
@@ -45,7 +45,7 @@ mysql> SELECT INSTR('foobarbar', 'bar');
 
 - Example 2
 
-```sql
+```sql <!-- validator-ignore-exec -->
 -- Using the INSTR function to find the first occurrence of 'o' in the string 'Hello World' will return 5, as 'o' first appears at the 5th position in 'Hello World'.
 mysql> SELECT INSTR('Hello World', 'o');
 +-----------------------+

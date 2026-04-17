@@ -101,7 +101,7 @@ MatrixOne supports integration with the data visualization tool FineBI. This art
     !!! note
         Please note that the path `/root/data/table_name.csv` is the path to the data files for each table. You can generate your data following a similar process.
 
-    ```sql
+    ```sql <!-- validator-ignore -->
     use orders;
     load data local infile '/root/data/category.csv' into table category FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"' LINES TERMINATED BY "\r\n";
     load data local infile '/root/data/review.csv' into table review FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"' LINES TERMINATED BY "\r\n";

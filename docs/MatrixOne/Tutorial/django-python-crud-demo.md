@@ -170,7 +170,7 @@ python3 manage.py migrate TestModel # Automatically generate the appropriate SQL
 
 Go into the *test* database and see that the *testmodel\_book table* has been generated. where a record of the operations performed is generated in the *django\_migrations table*.
 
-```sql
+```sql <!-- validator-ignore-exec -->
 mysql> show tables;
 +-------------------+
 | Tables_in_test    |

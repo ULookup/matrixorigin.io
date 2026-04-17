@@ -34,7 +34,7 @@ insert into t1 values(1, "[1,2,3]", "[4,5,6]");
 
 If you want to use a Python NumPy array, you can insert that NumPy array directly into MatrixOne by encoding the array in hexadecimal instead of converting it to comma-separated text format. This is faster when inserting vectors with higher dimensions.
 
-```sql
+```sql <!-- validator-ignore-exec -->
 insert into t1 (a, b) values (2, cast(unhex("7e98b23e9e10383b2f41133f") as blob));
  -- "7e98b23e9e10383b2f41133f" for small-endian hexadecimal encoding of []float32{0.34881967, 0.0028086076, 0.5752134}
  ```

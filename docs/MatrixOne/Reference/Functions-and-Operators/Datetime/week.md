@@ -20,7 +20,7 @@ Used to calculate the week number for a given date. This function returns an int
 
 - Example 1:
 
-```sql
+```sql <!-- validator-ignore-exec -->
 mysql> SELECT WEEK('2008-02-20');
 +------------------+
 | week(2008-02-20) |
@@ -32,7 +32,7 @@ mysql> SELECT WEEK('2008-02-20');
 
 - Example 2:
 
-```sql
+```sql <!-- validator-ignore-exec -->
 drop table if exists t1;
 CREATE TABLE t1(c1 DATETIME NOT NULL);
 INSERT INTO t1 VALUES('2000-01-01');

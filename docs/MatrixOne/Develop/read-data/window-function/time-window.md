@@ -56,7 +56,7 @@ Example of use:
 
 This example demonstrates how to slide every 5 minutes over a 10-minute time window, giving a maximum and minimum temperature every 5 minutes.
 
-```sql
+```sql <!-- validator-ignore-exec -->
 mysql> drop table if exists sensor_data;
 CREATE TABLE sensor_data (ts timestamp(3) primary key, temperature FLOAT);
 INSERT INTO sensor_data VALUES('2023-08-01 00:00:00', 25.0);
@@ -105,7 +105,7 @@ Example of use:
 
 This example adds interpolation logic to the previous table and populates it with NULL values.
 
-```sql
+```sql <!-- validator-ignore-exec -->
 select _wstart(ts), _wend(ts), max(temperature), min(temperature) from sensor_data where ts > "2023-08-01 00:00:00.000" and ts < "2023-08-01 00:50:00.000" interval(ts, 10, minute) sliding(5, minute) fill(prev);
 ```
 

@@ -54,6 +54,7 @@ We simulate a real-world scenario: a main orders table where the risk control te
 
 ### Step 1: Prepare the Main Table Data
 
+<!-- validator-ignore -->
 ```sql
 -- Create demo database
 DROP DATABASE IF EXISTS demo_branch;
@@ -99,6 +100,7 @@ Result:
 
 Before any modifications, take a snapshot of the main table first. This is your "safety net" — no matter what happens next, you can always return to this point.
 
+<!-- validator-ignore -->
 ```sql
 CREATE SNAPSHOT sp_orders_v1 FOR TABLE demo_branch orders;
 ```
@@ -107,6 +109,7 @@ CREATE SNAPSHOT sp_orders_v1 FOR TABLE demo_branch orders;
 
 Create two independent branch tables from the main table, one for each team:
 
+<!-- validator-ignore -->
 ```sql
 -- Risk control branch: for flagging high-risk orders
 DATA BRANCH CREATE TABLE orders_risk FROM orders;
@@ -117,6 +120,7 @@ DATA BRANCH CREATE TABLE orders_promo FROM orders;
 
 At this point, all three tables have identical data. Let's verify:
 
+<!-- validator-ignore -->
 ```sql
 SELECT * FROM orders_risk ORDER BY order_id;
 SELECT * FROM orders_promo ORDER BY order_id;
@@ -133,6 +137,7 @@ Now both teams work on their own branches independently, without interfering wit
 
 **Risk control team** operates on `orders_risk`:
 
+<!-- validator-ignore -->
 ```sql
 -- Flag Bob's order as high risk
 UPDATE orders_risk SET risk_flag = 1 WHERE order_id = 1002;
@@ -146,6 +151,7 @@ INSERT INTO orders_risk VALUES (1006, 'Frank', 500.00, 1, NULL);
 
 **Operations team** operates on `orders_promo`:
 
+<!-- validator-ignore -->
 ```sql
 -- Add campaign tags to Alice's and Bob's orders, and apply a 10% discount
 UPDATE orders_promo SET promo_tag = 'summer_sale', amount = amount * 0.9
@@ -157,6 +163,7 @@ INSERT INTO orders_promo VALUES (1007, 'Grace', 39.90, 0, 'summer_sale');
 
 At this point, the main table is completely unaffected:
 
+<!-- validator-ignore -->
 ```sql
 SELECT * FROM orders ORDER BY order_id;
 -- Still the original 5 rows, with no changes whatsoever
@@ -168,6 +175,7 @@ Before merging, let's see what each branch has changed relative to the main tabl
 
 **View differences between the risk control branch and the main table:**
 
+<!-- validator-ignore -->
 ```sql
 DATA BRANCH DIFF orders_risk AGAINST orders;
 ```
@@ -188,6 +196,7 @@ You can clearly see: 1 row updated, 1 row deleted, 1 row inserted.
 
 **View differences between the operations branch and the main table:**
 
+<!-- validator-ignore -->
 ```sql
 DATA BRANCH DIFF orders_promo AGAINST orders;
 ```
@@ -208,6 +217,7 @@ Result:
 
 **You can also directly compare the differences between two branches:**
 
+<!-- validator-ignore -->
 ```sql
 -- DATA BRANCH DIFF orders_risk AGAINST orders_promo;
 ```
@@ -228,6 +238,7 @@ This shows all differing rows between the two branches, helping you anticipate p
 
 If you need to bring changes to another environment (e.g., syncing from staging to production), you can export the DIFF results as a file before merging:
 
+<!-- validator-ignore -->
 ```sql
 -- Export to local directory (execute before merge to ensure the patch reflects the original branch changes)
 -- DATA BRANCH DIFF orders_risk AGAINST orders OUTPUT FILE '/tmp/diff_output/';
@@ -244,6 +255,7 @@ mysql -h <target_host> -P 6001 -u root -p111 demo_branch < /tmp/diff_output/diff
 
 You can also export to object storage (via Stage):
 
+<!-- validator-ignore -->
 ```sql
 -- Create a Stage pointing to S3
 -- CREATE STAGE my_stage URL = 's3://my-bucket/diffs/?region=us-east-1&access_key_id=<ak>&secret_access_key=<sk>';
@@ -256,12 +268,14 @@ You can also export to object storage (via Stage):
 
 First, merge the risk control branch (no conflict scenario):
 
+<!-- validator-ignore -->
 ```sql
 DATA BRANCH MERGE orders_risk INTO orders;
 ```
 
 Verify the main table:
 
+<!-- validator-ignore -->
 ```sql
 SELECT * FROM orders ORDER BY order_id;
 ```
@@ -288,6 +302,7 @@ Now merge the operations branch. Note that the operations branch also modified `
 
 **Default behavior — error on conflict:**
 
+<!-- validator-ignore -->
 ```sql
 -- DATA BRANCH MERGE orders_promo INTO orders;
 -- ERROR: conflict on pk(1002)
@@ -305,12 +320,14 @@ The system tells you which rows have conflicts and will not silently overwrite d
 
 In this scenario, the risk control flag is more important than the operations discount, so we choose SKIP (keep the risk control modifications in the main table):
 
+<!-- validator-ignore -->
 ```sql
 DATA BRANCH MERGE orders_promo INTO orders WHEN CONFLICT SKIP;
 ```
 
 Verify the final result:
 
+<!-- validator-ignore -->
 ```sql
 SELECT * FROM orders ORDER BY order_id;
 ```
@@ -338,6 +355,7 @@ Result:
 
 After branches are no longer needed, clean them up promptly:
 
+<!-- validator-ignore -->
 ```sql
 DATA BRANCH DELETE TABLE orders_risk;
 DATA BRANCH DELETE TABLE orders_promo;
@@ -349,6 +367,7 @@ Unlike a regular `DROP TABLE`, `DATA BRANCH DELETE` retains metadata records in 
 
 If issues are discovered after merging, you can use the snapshot to return to the initial state:
 
+<!-- validator-ignore -->
 ```sql
 RESTORE ACCOUNT sys DATABASE demo_branch TABLE orders FROM SNAPSHOT sp_orders_v1;
 ```
@@ -357,6 +376,7 @@ This is the value of snapshots — turning "rollback" from a high-risk operation
 
 ### Clean Up the Environment
 
+<!-- validator-ignore -->
 ```sql
 DROP SNAPSHOT sp_orders_v1;
 DROP DATABASE demo_branch;
@@ -368,6 +388,7 @@ DROP DATABASE demo_branch;
 
 In addition to table-level branches, you can also create branches for an entire database, copying all tables at once:
 
+<!-- validator-ignore -->
 ```sql
 -- DATA BRANCH CREATE DATABASE dev_db FROM prod_db;
 
@@ -379,6 +400,7 @@ In addition to table-level branches, you can also create branches for an entire 
 
 Create a branch from a specific historical point in time, suitable for "going back to yesterday's data for analysis":
 
+<!-- validator-ignore -->
 ```sql
 -- CREATE SNAPSHOT sp_yesterday FOR TABLE mydb mytable;
 -- ... time passes, data changes ...
@@ -389,6 +411,7 @@ Create a branch from a specific historical point in time, suitable for "going ba
 
 Branches can create further branches, forming a multi-level structure:
 
+<!-- validator-ignore -->
 ```sql
 -- DATA BRANCH CREATE TABLE branch_v1 FROM main_table;
 -- Modify on branch_v1...

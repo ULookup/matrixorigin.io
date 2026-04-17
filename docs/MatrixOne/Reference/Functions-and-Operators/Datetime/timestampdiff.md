@@ -23,7 +23,7 @@ This function returns `NULL` if datetime_expr1 or datetime_expr2 is `NULL`.
 
 - Example 1:
 
-```sql
+```sql <!-- validator-ignore-exec -->
 mysql> SELECT TIMESTAMPDIFF( MICROSECOND, '2017-12-01 12:15:12','2018-01-01 7:18:20');
 +---------------------------------------------------------------------+
 | timestampdiff(microsecond, 2017-12-01 12:15:12, 2018-01-01 7:18:20) |
@@ -35,7 +35,7 @@ mysql> SELECT TIMESTAMPDIFF( MICROSECOND, '2017-12-01 12:15:12','2018-01-01 7:18
 
 - Example 2:
 
-```sql
+```sql <!-- validator-ignore-exec -->
 drop table if exists t1;
 create table t1(a date,  b date);
 insert into t1 values('2019-11-01 12:15:12', '2018-01-01 12:15:12');

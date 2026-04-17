@@ -27,7 +27,7 @@ UUID is both a data type and a function. For more information on UUID data types
 
 ## **Examples**
 
-```sql
+```sql <!-- validator-ignore-exec -->
 drop table if exists t1;
 create table t1(a INT,  b float);
 insert into t1 values(12124, -4213.413), (12124, -42413.409);

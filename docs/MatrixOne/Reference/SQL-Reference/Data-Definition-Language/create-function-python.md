@@ -10,6 +10,7 @@ MatrixOne Python UDF does not currently support overloading, and function names 
 
 ## **Grammar structure**
 
+<!-- validator-ignore -->
 ```sql
 > CREATE [ OR REPLACE ] FUNCTION <name> (
 [ <arg_name> <arg_data_type> ] [ , ... ] )
@@ -56,6 +57,7 @@ To ensure that the data types used in writing Python UDF are consistent with tho
 
 **Example 1**
 
+<!-- validator-ignore -->
 ```sql
 --Sum of Two Numbers with python UDF
 create or replace function py_add(a int, b int) returns int language python as 
@@ -77,6 +79,7 @@ mysql> select py_add(1,2);
 
 **Example 2**
 
+<!-- validator-ignore -->
 ```sql
 create or replace function py_helloworld() returns varchar(255) language python as 
 $$

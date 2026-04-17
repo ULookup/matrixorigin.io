@@ -23,7 +23,7 @@ See the [`DATE_FORMAT()`](date-format.md) function description for format specif
 
 ## **Examples**
 
-```sql
+```sql <!-- validator-ignore-exec -->
 mysql> SELECT STR_TO_DATE('2022-01-06 10:20:30','%Y-%m-%d %H:%i:%s') as result;
 +---------------------+
 | result              |

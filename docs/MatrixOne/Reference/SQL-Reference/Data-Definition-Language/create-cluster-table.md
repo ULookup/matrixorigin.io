@@ -27,7 +27,7 @@ This document describes how to set up cluster tables in a MatrixOne database.
 
 ## Examples
 
-```sql
+```sql <!-- validator-ignore-exec -->
 -- Create two tenants, test1 and test2
 mysql> create account test1 admin_name = 'root' identified by '111' open comment 'tenant_test';
 Query OK, 0 rows affected (0.44 sec)

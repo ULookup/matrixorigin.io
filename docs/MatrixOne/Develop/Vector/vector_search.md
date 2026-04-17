@@ -36,7 +36,7 @@ The Iris dataset is a well-known multi-class taxonomic dataset that can be searc
 
     Prepare a table named `iris_table` and the corresponding Iris dataset data. The dataset has 150 rows of data, each row consisting of a four-dimensional eigenvector and species.
 
-    ```sql
+    ```sql <!-- validator-ignore -->
     CREATE TABLE iris_table(
         species varchar(100), -- category
         attributes vecf64(4) -- feature
@@ -46,7 +46,7 @@ The Iris dataset is a well-known multi-class taxonomic dataset that can be searc
 
 2. Use KNN to predict the category of this input feature
 
-    ```sql
+    ```sql <!-- validator-ignore -->
     mysql>  select * from iris_table order by l2_distance(attributes,"[4,3.3,3,0.9]") asc limit 1;
     +------------------+--------------------+
     | species          | attributes         |

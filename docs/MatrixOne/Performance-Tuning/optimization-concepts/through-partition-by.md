@@ -166,7 +166,7 @@ The types that can be used in composite partitioning include:
 
 Range composite partitioning allows multiple types of columns to be combined, such as:
 
-```sql
+```sql <!-- validator-ignore-exec -->
 CREATE TABLE rcx (
          a INT,
          b INT,
@@ -183,7 +183,7 @@ CREATE TABLE rcx (
 
 List composite partitions allow users to define partitions in the same way that multiple columns can be combined, such as:
 
-```sql
+```sql <!-- validator-ignore-exec -->
 CREATE TABLE t1 (
     a INT,
     b int,

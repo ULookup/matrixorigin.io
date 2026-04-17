@@ -48,7 +48,7 @@ You can use the same table name for temporary and regular tables without conflic
 
 ## Example
 
-```sql
+```sql <!-- validator-ignore-exec -->
 -- Create a temporary table 'temp_employees'
 CREATE TEMPORARY TABLE temp_employees (
     employee_id INT AUTO_INCREMENT, -- auto-increment employee ID

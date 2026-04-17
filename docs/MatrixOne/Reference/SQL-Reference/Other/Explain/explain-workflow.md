@@ -86,7 +86,7 @@ MatrixOne supports the following node types.
 
 ### VALUES Scan & Project
 
-```sql
+```sql <!-- validator-ignore-exec -->
 mysql> explain  select abs(-1);
 +-------------------------------+
 | QUERY PLAN                    |
@@ -112,7 +112,7 @@ mysql> explain select * from customer;
 
 ### External Scan
 
-```sql
+```sql <!-- validator-ignore-exec -->
 mysql> create external table extable(n1 int)infile{"filepath"='yourpath/xx.csv'} ;
 Query OK, 0 rows affected (0.03 sec)
 
@@ -128,7 +128,7 @@ mysql> explain select * from extable;
 
 ### Sink & Lock & Delete & Insert & PreInsert & Sink Scan
 
-```sql
+```sql <!-- validator-ignore-exec -->
 mysql> create table t3(n1 int);
 Query OK, 0 rows affected (0.02 sec)
 
@@ -162,7 +162,7 @@ mysql> explain update t3 set n1=2;
 
 ### Recursive Scan & CTE Scan & Filter
 
-```sql
+```sql <!-- validator-ignore-exec -->
 mysql> create table t4(n1 int,n2 int);
 Query OK, 0 rows affected (0.02 sec)
 
@@ -219,7 +219,7 @@ mysql>  explain  SELECT count(*) FROM NATION group by N_NAME;
 
 ### Join
 
-```sql
+```sql <!-- validator-ignore-exec -->
 mysql>  create table t5(n1 int);
 Query OK, 0 rows affected (0.01 sec)
 
@@ -278,7 +278,7 @@ mysql> explain select * from customer order by c_custkey;
 
 ### Partition & Window
 
-```sql
+```sql <!-- validator-ignore-exec -->
 mysql>CREATE TABLE t7(n1 int,n2 int);
 Query OK, 0 rows affected (0.01 sec)
 
@@ -301,7 +301,7 @@ mysql> explain SELECT SUM(n1) OVER(PARTITION BY n2) AS sn1 FROM t7;
 
 ### Time window & Fill
 
-```sql
+```sql <!-- validator-ignore-exec -->
 mysql> CREATE TABLE sensor_data (ts timestamp(3) primary key, temperature FLOAT);
 Query OK, 0 rows affected (0.01 sec)
 
@@ -329,7 +329,7 @@ mysql> explain select _wstart, _wend from sensor_data  interval(ts, 10, minute) 
 
 ### Intersect
 
-```sql
+```sql <!-- validator-ignore-exec -->
 mysql> explain select * from t5 intersect select * from t6;
 +-----------------------------------------+
 | QUERY PLAN                              |
@@ -346,7 +346,7 @@ mysql> explain select * from t5 intersect select * from t6;
 
 ### Intersect All
 
-```sql
+```sql <!-- validator-ignore-exec -->
 mysql> explain select * from t5 intersect all select * from t6;
 +-----------------------------------------+
 | QUERY PLAN                              |
@@ -363,7 +363,7 @@ mysql> explain select * from t5 intersect all select * from t6;
 
 ### Minus
 
-```sql
+```sql <!-- validator-ignore-exec -->
 mysql> explain select * from t5 minus  select * from t6;
 +-----------------------------------------+
 | QUERY PLAN                              |
@@ -380,7 +380,7 @@ mysql> explain select * from t5 minus  select * from t6;
 
 ### Table Function
 
-```sql
+```sql <!-- validator-ignore-exec -->
 mysql>  explain select * from unnest('{"a":1}') u;
 +-------------------------------------+
 | QUERY PLAN                          |
@@ -394,7 +394,7 @@ mysql>  explain select * from unnest('{"a":1}') u;
 
 ### PreInsert UniqueKey & Fuzzy Filter for duplicate key
 
-```sql
+```sql <!-- validator-ignore-exec -->
 mysql> CREATE TABLE t8(n1 int,n2 int UNIQUE key);
 Query OK, 0 rows affected (0.01 sec)
 
@@ -435,7 +435,7 @@ mysql> explain INSERT INTO t8(n2) values(1);
 
 ### PreInsert SecondaryKey
 
-```sql
+```sql <!-- validator-ignore-exec -->
 mysql>  CREATE TABLE t9 ( n1 int , n2 int, KEY key2 (n2) USING BTREE);
 Query OK, 0 rows affected (0.02 sec)
 

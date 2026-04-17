@@ -422,7 +422,7 @@ public class Mysql2Mo {
 
 Execute the following SQL query results in MatrixOne:
 
-```sql
+```sql <!-- validator-ignore-exec -->
 mysql> select * from test.person;
 +------+---------+------------+
 | id   | name    | birthday   |

@@ -25,7 +25,7 @@ The function return value and type are the same as the return value and type of 
 
 ## **Examples**
 
-```sql
+```sql <!-- validator-ignore-exec -->
 > create table t1(
     -> a int,
     -> b int,

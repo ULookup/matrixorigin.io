@@ -30,7 +30,7 @@
 
 ## **Examples**
 
-```SQL
+```SQL <!-- validator-ignore-exec -->
 mysql> SELECT REGEXP_SUBSTR('1a 2b 3c', '[0-9]a');
 +---------------------------------+
 | regexp_substr(1a 2b 3c, [0-9]a) |

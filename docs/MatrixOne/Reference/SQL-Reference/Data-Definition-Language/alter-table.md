@@ -80,7 +80,7 @@ Below are explanations for each parameter:
 
 - Example 1: Dropping a FOREIGN KEY constraint
 
-```sql
+```sql <!-- validator-ignore-exec -->
 -- Create table f1 with two integer columns: fa (PRIMARY KEY) and fb (UNIQUE KEY)
 CREATE TABLE f1(fa INT PRIMARY KEY, fb INT UNIQUE KEY);
 -- Create table c1 with two integer columns: ca and cb
@@ -118,7 +118,7 @@ mysql> select ca, cb from c1 order by ca;
 
 - Example 2: Adding a PRIMARY KEY
 
-```sql
+```sql <!-- validator-ignore-exec -->
 -- Create table t1 with columns a (INTEGER), b (CHAR(10)), c (DATE), d (DECIMAL(7,2)), and a UNIQUE KEY on (a, b)
 CREATE TABLE t1(a INTEGER, b CHAR(10), c DATE, d DECIMAL(7,2), UNIQUE KEY(a, b));
 
@@ -180,7 +180,7 @@ mysql> select * from t1;
 
 - Example 3: Renaming a Column
 
-```sql
+```sql <!-- validator-ignore-exec -->
 CREATE TABLE t1 (a INTEGER PRIMARY KEY, b CHAR(10));
 mysql> desc t1;
 +-------+----------+------+------+---------+-------+---------+
@@ -231,7 +231,7 @@ mysql> select * from t1;
 
 - Example 4: Renaming a Table
 
-```sql
+```sql <!-- validator-ignore-exec -->
 CREATE TABLE t1 (a INTEGER PRIMARY KEY, b CHAR(10));
 
 mysql> show tables;

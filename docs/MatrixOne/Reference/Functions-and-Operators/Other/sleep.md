@@ -27,7 +27,7 @@ SLEEP(duration)
 
     1. In session 1, execute the following command to query the current connection_id and execute the `SLEEP()` function:
 
-        ```sql
+        ```sql <!-- validator-ignore -->
         mysql> select connection_id();
         +-----------------+
         | connection_id() |
@@ -40,7 +40,7 @@ SLEEP(duration)
 
     2. At this point, open a new session, interrupt session 1, and run the following command.
 
-        ```sql
+        ```sql <!-- validator-ignore -->
         mysql> kill 1463;
         Query OK, 0 rows affected (0.00 sec)
         ```
@@ -66,7 +66,7 @@ SLEEP(duration)
 
 ## **Examples**
 
-```sql
+```sql <!-- validator-ignore -->
 -- without interruption
 mysql> SELECT SLEEP(1);
 +----------+

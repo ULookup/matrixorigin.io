@@ -234,7 +234,7 @@ Start IDEA and create a new Maven project, add the project dependencies, and the
 
     Execute the following SQL query results in MatrixOne:
 
-    ```sql
+    ```sql <!-- validator-ignore-exec -->
     mysql> select * from sparkdemo.example_tbl;
     +---------+------------+--------+------+------+
     | user_id | date       | city   | age  | sex  |

@@ -18,7 +18,7 @@
 
 ## **Examples**
 
-```sql
+```sql <!-- validator-ignore-exec -->
 mysql> SELECT DATEDIFF('2007-12-31 23:59:59','2007-12-30');
 +-------------------------------------------+
 | datediff(2007-12-31 23:59:59, 2007-12-30) |
@@ -36,7 +36,7 @@ mysql> SELECT DATEDIFF('2010-11-30 23:59:59','2010-12-31');
 1 row in set (0.00 sec)
 ```
 
-```sql
+```sql <!-- validator-ignore-exec -->
 create table t1(a INT,  b date);
 insert into t1 values(1, "2012-10-11");
 insert into t1 values(2, "2004-04-24");

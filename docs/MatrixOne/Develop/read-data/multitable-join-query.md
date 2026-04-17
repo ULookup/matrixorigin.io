@@ -99,7 +99,7 @@ Make sure you have already [Deployed standalone MatrixOne](../../Get-Started/ins
 
 3. Load data into the created tables:
 
-    ```sql
+    ```sql <!-- validator-ignore -->
     load data infile '/YOUR_TPCH_DATA_PATH/nation.tbl' into table NATION FIELDS TERMINATED BY '|' OPTIONALLY ENCLOSED BY '"' LINES TERMINATED BY '\n';
 
     load data infile '/YOUR_TPCH_DATA_PATH/region.tbl' into table REGION FIELDS TERMINATED BY '|' OPTIONALLY ENCLOSED BY '"' LINES TERMINATED BY '\n';
@@ -131,7 +131,7 @@ The join result of an inner join returns only rows that match the join condition
 
 There are two ways of writing an `inner join` that are completely equivalent in results:
 
-```sql
+```sql <!-- validator-ignore -->
 mysql> SELECT   
     l_orderkey,
     SUM(l_extendedprice * (1 - l_discount)) AS revenue,
@@ -169,7 +169,7 @@ LIMIT 10;
 
 Write as `Join`, the syntax is as follows:
 
-```sql
+```sql <!-- validator-ignore -->
 mysql> SELECT   
     l_orderkey,
     SUM(l_extendedprice * (1 - l_discount)) AS revenue,

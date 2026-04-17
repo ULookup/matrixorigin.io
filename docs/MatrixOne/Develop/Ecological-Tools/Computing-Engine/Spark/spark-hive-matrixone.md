@@ -193,7 +193,7 @@ public class Hive2Mo {
 
 Execute the following SQL in MatrixOne to view the execution results:
 
-```sql
+```sql <!-- validator-ignore-exec -->
 mysql> select * from test.users;
 +------+----------+------+
 | id   | name     | age  |

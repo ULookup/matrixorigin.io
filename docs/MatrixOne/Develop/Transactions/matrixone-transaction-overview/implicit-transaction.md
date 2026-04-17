@@ -31,7 +31,7 @@ In MatrixOne, if the implicit transaction is enabled (`SET AUTOCOMMIT=0`), all o
 
 **MySQL Implicit Transaction Behavior Example**
 
-```sql
+```sql <!-- validator-ignore-exec -->
 mysql> select @@SQL_SELECT_LIMIT;
 +----------------------+
 | @@SQL_SELECT_LIMIT   |
@@ -93,7 +93,7 @@ mysql> select @@SQL_SELECT_LIMIT;
 
 **MatrixOne Implicit Transaction Behavior Example**
 
-```sql
+```sql <!-- validator-ignore-exec -->
 mysql> select @@SQL_SELECT_LIMIT;
 +----------------------+
 | @@SQL_SELECT_LIMIT   |
@@ -135,7 +135,7 @@ ERROR 20101 (HY000): internal error: Uncommitted transaction exists. Please comm
 
 For example, insert data (4,5,6) to *t1*, which becomes an implicit transaction. Whether the implicit transaction is committed immediately depends on the value of the `AUTOCOMMIT` parameter:
 
-```sql
+```sql <!-- validator-ignore-exec -->
 CREATE TABLE t1(a bigint, b varchar(10), c varchar(10));
 START TRANSACTION;
 INSERT INTO t1 values(1,2,3);

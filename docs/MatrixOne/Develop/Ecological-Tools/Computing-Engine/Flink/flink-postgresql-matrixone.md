@@ -152,7 +152,7 @@ insert into test_pg select * from pgsql_bog;
 
 Query the corresponding table data in MatrixOne;
 
-```sql
+```sql <!-- validator-ignore-exec -->
 mysql> select * from student;
 +--------+----------+---------+------------+
 | stu_id | stu_name | stu_age | stu_bth    |
@@ -176,7 +176,7 @@ insert into public.student values (51, '58', 39, '2020-01-03');
 
 Query the corresponding table data in MatrixOne;
 
-```sql
+```sql <!-- validator-ignore-exec -->
 mysql>  select * from student;
 +--------+----------+---------+------------+
 | stu_id | stu_name | stu_age | stu_bth    |
@@ -214,7 +214,7 @@ alter table public.student replica identity full;
 
 Query the corresponding table data in MatrixOne;
 
-```sql
+```sql <!-- validator-ignore-exec -->
 mysql> select * from student;
 +--------+----------+---------+------------+
 | stu_id | stu_name | stu_age | stu_bth    |

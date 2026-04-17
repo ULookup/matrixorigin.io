@@ -40,7 +40,7 @@ The hash join operator is multi-threaded in MatrixOne and executes in parallel.
 
 An example of hash join is as below:
 
-```sql
+```sql <!-- validator-ignore-exec -->
 > SELECT /*+ HASH_JOIN(t1, t2) */ * FROM t1, t2 WHERE t1.id = t2.id;
 +------+------+------+------+----------+---------+------+--------------+----------------+------------+---------------------+------+------+------+------+----------+---------+------+--------------+----------------+------------+---------------------+
 | id   | ti   | si   | bi   | fl       | dl      | de   | ch           | vch            | dd         | dt                  | id   | ti   | si   | bi   | fl       | dl      | de   | ch           | vch            | dd         | dt                  |

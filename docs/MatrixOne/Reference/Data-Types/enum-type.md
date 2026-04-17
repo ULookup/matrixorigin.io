@@ -51,7 +51,7 @@ The above statement will create a table named `enumtable`, which contains an enu
 
 When inserting data into a field of an enumeration type, only predefined enumeration values ​​or `NULL` can be inserted. An error is raised if the inserted value is not in the predefined list. For example:
 
-```sql
+```sql <!-- validator-ignore-exec -->
 INSERT INTO enumtable (id, color) VALUES ('01', 'red');
 -- 'red' is in the predefined list; the insertion was successful
 INSERT INTO enumtable (id, color) VALUES ('02', 'yellow');
@@ -92,7 +92,7 @@ Unlike MySQL, MatrixOne's ENUM type can only be compared with the string type in
 
 You can see this example:
 
-```sql
+```sql <!-- validator-ignore-exec -->
 update orders set status= 2 where status='Processing';
 ```
 

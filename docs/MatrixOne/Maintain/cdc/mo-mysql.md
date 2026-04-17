@@ -12,12 +12,14 @@ An online retail company uses MatrixOne as the production database for its order
 
 ### Create PITR
 
+<!-- validator-ignore -->
 ```sql
 create pitr pitr1 for account range 2 "h";
 ```
 
 ### Create Table and Insert Data on Source
 
+<!-- validator-ignore -->
 ```sql
 create database source_db;
 CREATE TABLE source_db.orders (
@@ -37,6 +39,7 @@ INSERT INTO source_db.orders (order_id, customer_id, order_date, amount, status)
 
 ### Create Downstream Database
 
+<!-- validator-ignore -->
 ```sql
 create database analytics_db;
 ```
@@ -77,6 +80,7 @@ Check task status.
 
 Connect to the downstream MySQL to verify full data synchronization.
 
+<!-- validator-ignore -->
 ```sql
 mysql> select * from analytics_db.orders_backup;
 +----------+-------------+---------------------+--------+------------+
@@ -95,6 +99,7 @@ mysql> select * from analytics_db.orders_backup;
 
 After the task is established, perform data changes in the upstream MatrixOne.
 
+<!-- validator-ignore -->
 ```sql
 INSERT INTO source_db.orders (order_id, customer_id, order_date, amount, status) VALUES
 (6, 106, '2024-10-29 12:00:00', 150.00, 'New');
@@ -116,6 +121,7 @@ mysql> select * from source_db.orders;
 
 Connect to the downstream MySQL to verify incremental data synchronization.
 
+<!-- validator-ignore -->
 ```sql
 mysql> select * from analytics_db.orders_backup;
 +----------+-------------+---------------------+--------+------------+
@@ -142,6 +148,7 @@ Now, the task is interrupted due to an unexpected event.
 
 During the task interruption, continue inserting data into the upstream MatrixOne.
 
+<!-- validator-ignore -->
 ```sql
 INSERT INTO source_db.orders (order_id, customer_id, order_date, amount, status) VALUES
 (11, 111, '2024-06-15 08:30:00', 250.75, 'Processing');
@@ -176,6 +183,7 @@ Manually resume the task.
 
 Connect to the downstream MySQL to verify checkpoint recovery.
 
+<!-- validator-ignore -->
 ```sql
 mysql> select * from analytics_db.orders_backup;
 +----------+-------------+---------------------+--------+------------+

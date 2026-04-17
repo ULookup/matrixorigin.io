@@ -56,7 +56,7 @@ insert into t2 values(9,8,4,9,9849.312,9849312,9849.312,'see you','subquery','20
 
 ### Self-contained Subquery
 
-```sql
+```sql <!-- validator-ignore-exec -->
 > select * from t1 where t1.id in (select t2.id from t2 where t2.id>=3);
 +------+------+------+------+----------+---------+------+--------------+----------------+------------+---------------------+
 | id   | ti   | si   | bi   | fl       | dl      | de   | ch           | vch            | dd         | dt                  |
@@ -95,7 +95,7 @@ The execution sequence is as follows:
 
 ### Correlated subquery
 
-```sql
+```sql <!-- validator-ignore-exec -->
 > SELECT * FROM t1 WHERE id in (SELECT id FROM t2 WHERE t1.ti = t2.ti and t2.id>=4);
 +------+------+------+------+----------+---------+------+--------------+----------------+------------+---------------------+
 | id   | ti   | si   | bi   | fl       | dl      | de   | ch           | vch            | dd         | dt                  |

@@ -32,7 +32,7 @@ According to the above scenario one design case,the behavior patterns of differe
 
 Prepare a table named `user_behavior_table` and the corresponding csv data, which has 39270760 rows of data.
 
-```sql
+```sql <!-- validator-ignore -->
 CREATE TABLE user_behavior_table(
 user_id int, -- user id
 behavior varchar(100), -- behavior, including browser,purchase,returns
@@ -46,7 +46,7 @@ LOAD DATA INFILE '/your_path/user_behavior_table.csv' INTO TABLE user_behavior_t
 
 The coarse-grained calculation results are saved in the pre-computed table.Subsequent aggregation of various different dimensions can use the results in the pre-computed table.After simple calculation,the results can be obtained and the query can be accelerated.
 
-```sql
+```sql <!-- validator-ignore -->
 CREATE TABLE precompute AS
 SELECT
   behavior,
@@ -61,7 +61,7 @@ GROUP BY  behavior,occur_year,bucket;
 
 Calculates the number of deduplications for user\_id in case of user behavior and year aggregation, reflecting the number of users who browsed, purchased, and returned items in different years.
 
-```sql
+```sql <!-- validator-ignore -->
 mysql> SELECT
     ->     behavior,
     ->     occur_year,
@@ -96,7 +96,7 @@ mysql> select behavior,occur_year,count(distinct user_id) from user_behavior_tab
 
 Calculate the number of users viewing, purchasing, and returning items from 2022-2023.
 
-```sql
+```sql <!-- validator-ignore -->
 mysql> SELECT behavior, SUM(cnt) FROM (
     -> SELECT
     -> behavior,

@@ -29,7 +29,7 @@ Set `lower_case_table_names` to 0. Identifiers are stored as raw strings with na
 
 **Examples**
 
-```sql
+```sql <!-- validator-ignore-exec -->
 mysql> show variables like "lower_case_table_names";
 -- Check the default parameter, the default value is 1
 +------------------------+-------+
@@ -70,7 +70,7 @@ mysql> select Aa from Tt; -- Name comparison is case sensitive
 
 **Example**
 
-```sql
+```sql <!-- validator-ignore-exec -->
 set global lower_case_table_names = 1;
 -- Reconnecting to the database takes effect
 

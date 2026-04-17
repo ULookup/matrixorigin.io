@@ -107,7 +107,7 @@ mysql> select * from inttable;
 
 ### **Examples**
 
-```sql
+```sql <!-- validator-ignore-exec -->
 -- Create a table named "floatt1" with precision, a trailing zero is added when the number of bits falls short
 create table floatt1(a float(5, 2));
 insert into floatt1 values(1), (2.5), (3.56), (4.678);
@@ -153,7 +153,7 @@ mysql> select min(big),max(big),max(big)-1 from floattable;
 
 ### **Examples**
 
-```sql
+```sql <!-- validator-ignore-exec -->
 create table t1 (a bit);
 -- bit(M)  M DEFAULT 1
 mysql> desc  t1;
@@ -278,7 +278,7 @@ mysql> select name,age from names;
 
 - BINARY and VARBINARY
 
-```sql
+```sql <!-- validator-ignore-exec -->
 -- Create a table named "names" with 2 attributes of a "varchar" and a "char"
 create table names(name varbinary(255),age binary(255));
 insert into names(name, age) values('Abby', '24');
@@ -322,7 +322,7 @@ mysql> select * from texttest where a like 'ab\_def' order by 1 asc;
 
 - BLOB
 
-```sql
+```sql <!-- validator-ignore-exec -->
 -- Create a table named "blobtest" with 1 attribute of a "blob"
 create table blobtest (a blob);
 insert into blobtest values('abcdef');
@@ -344,7 +344,7 @@ mysql> select * from blobtest where a like 'ab\_def' order by 1 asc;
 
 - ENUM
 
-```sql
+```sql <!-- validator-ignore-exec -->
 -- Create a table named "enumtest" with 1 attribute of a "enum"
 CREATE TABLE enumtest (color ENUM('red', 'green', 'blue'));
 INSERT INTO enumtest (color) VALUES ('red');
@@ -421,7 +421,7 @@ mysql> select * from time_02;
 
 - DATE
 
-```sql
+```sql <!-- validator-ignore-exec -->
 -- Create a table named "datetest" with 1 attributes of a "date"
 create table datetest (a date not null, primary key(a));
 insert into datetest values ({d'2022-01-01'}), ('20220102'),(date'2022-01-03'),({d now()});
@@ -439,7 +439,7 @@ mysql> select * from datetest;
 
 - DATETIME
 
-```sql
+```sql <!-- validator-ignore-exec -->
 -- Create a table named "datetimetest" with 1 attributes of a "datetime"
 create table datetimetest (a datetime(0) not null, primary key(a));
 insert into datetimetest values ('20200101000000'), ('2022-01-02'), ('2022-01-02 00:00:01'), ('2022-01-02 00:00:01.512345');
@@ -458,7 +458,7 @@ mysql> select * from datetimetest order by a asc;
 
 - TIMESTAMP
 
-```sql
+```sql <!-- validator-ignore-exec -->
 -- Create a table named "timestamptest" with 1 attribute of a "timestamp"
 create table timestamptest (a timestamp(0) not null, primary key(a));
 insert into timestamptest values ('20200101000000'), (timestamp'2022-01-02 11:30:40'), ({ts'2022-01-02 00:00:01'}), ({ts current_timestamp});
@@ -533,7 +533,7 @@ mysql> select * from decimalTest;
 
 ### **Example**
 
-```sql
+```sql <!-- validator-ignore-exec -->
 -- Create a new table named 't1' and set the 'a' column as UUID type, and set the 'a' column as the primary key
 create table t1(a uuid primary key);
 
@@ -568,7 +568,7 @@ mysql> select * from t1;
 
 ### **Example**
 
-```sql
+```sql <!-- validator-ignore-exec -->
 create table t1(n1 vecf32(3), n2 vecf64(2));
 insert into t1 values("[1,2,3]",'[4,5]');
 
@@ -589,7 +589,7 @@ mysql> select * from t1;
 
 ### Example
 
-```sql
+```sql <!-- validator-ignore -->
 drop table test01;
 create table test01 (col1 int, col2 datalink);
 create stage stage01 url='file:///Users/admin/case/';

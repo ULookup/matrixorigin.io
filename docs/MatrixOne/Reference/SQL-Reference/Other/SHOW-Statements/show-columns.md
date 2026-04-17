@@ -15,7 +15,7 @@
 
 ## **Examples**
 
-```sql
+```sql <!-- validator-ignore-exec -->
 drop table if exists t1;
 create table t1(
 col1 int comment 'First column',

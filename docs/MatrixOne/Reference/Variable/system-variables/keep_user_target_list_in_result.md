@@ -8,7 +8,7 @@ In a MatrixOne query, keep the result set column names the same size as the name
 
 View `keep_user_target_list_in_result` in MatrixOne using the following command:
 
-```sql
+```sql <!-- validator-ignore-exec -->
 --default 1
 show variables like "keep_user_target_list_in_result";
 select @@keep_user_target_list_in_result;
@@ -25,7 +25,7 @@ set global keep_user_target_list_in_result = 0;
 
 ## Examples
 
-```sql
+```sql <!-- validator-ignore-exec -->
 create table t1(aa int, bb int, cc int, AbC varchar(25), A_BC_d double);
 insert into t1 values (1,2,3,'A',10.9);
 

@@ -30,7 +30,7 @@ Currently, `cast` can support following conversion:
 
 ## **Examples**
 
-```sql
+```sql <!-- validator-ignore-exec -->
 drop table if exists t1;
 CREATE TABLE t1 (a int,b float,c char(1),d varchar(15));
 INSERT INTO t1 VALUES (1,1.5,'1','-2');

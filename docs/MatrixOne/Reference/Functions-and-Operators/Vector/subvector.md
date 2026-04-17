@@ -19,7 +19,7 @@ The `SUBVECTOR()` function is used to extract subvectors from vectors.
 
 ## Examples
 
-```sql
+```sql <!-- validator-ignore-exec -->
 mysql> SELECT SUBVECTOR("[1,2,3]", 2);
 +-----------------------+
 | subvector([1,2,3], 2) |

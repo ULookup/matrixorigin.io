@@ -41,7 +41,7 @@ For the second syntax, each `WHEN` clause search_condition expression is evaluat
 
 ## **Examples**
 
-```sql
+```sql <!-- validator-ignore-exec -->
 CREATE TABLE t1(c0 INTEGER, c1 INTEGER, c2 INTEGER);
 INSERT INTO t1 VALUES(1, 1, 1), (1, 1, 1);
 

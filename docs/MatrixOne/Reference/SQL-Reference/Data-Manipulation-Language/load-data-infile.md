@@ -36,6 +36,7 @@ The LOAD DATA statement reads rows from a text file into a table at a very high 
 
 If the file content uses a different character set than the default, you can use `CHARACTER SET` to specify the character set. For example, you can use `CHARACTER SET utf8` to specify the character set of the imported content as utf8:
 
+<!-- validator-ignore -->
 ```sql
 LOAD DATA INFILE '/tmp/test.txt' INTO TABLE table1 IGNORE 1 LINES;
 ```
@@ -123,6 +124,7 @@ The contents of data.txt are as follows:
 
 Connect mo than execute the following statement to import the data.txt contents to t1:
 
+<!-- validator-ignore -->
 ```sql
 create table t1(n1 int,n2 varchar(255));
 load data infile 'Users/admin/test/case/data.txt' into table t1;
@@ -149,6 +151,7 @@ The contents of data.txt are as follows:
 
 Connect mo than execute the following statement to import the data.txt contents to t2:
 
+<!-- validator-ignore -->
 ```sql
 create table t2(n1 int,n2 varchar(255));
 load data infile 'Users/admin/test/case/data.txt' into table t2 fields escaped by 'a';
@@ -175,6 +178,7 @@ The contents of data.txt are as follows:
 
 Connect mo than execute the following statement to import the data.txt contents to t3:
 
+<!-- validator-ignore -->
 ```sql
 create table t3(n1 int,n2 varchar(255));
 load data infile 'Users/admin/test/case/data.txt' into table t3 fields escaped by '';
@@ -206,6 +210,7 @@ The contents of data.txt are as follows:
 
 Connect mo than execute the following statement to import the data.txt contents to t4:
 
+<!-- validator-ignore -->
 ```sql
 create table t4(n1 int,n2 varchar(255));
 load data infile 'Users/admin/test/case/data.txt' into table t4;
@@ -297,7 +302,7 @@ By setting the parameter, you can use `SET column_name=nullif(column_name,"null"
 
 3. Load `test.txt` into the table `user`:
 
-    ```sql
+    ```sql <!-- validator-ignore-exec -->
     LOAD DATA INFILE '/tmp/test.txt' INTO TABLE user SET id=nullif(id,"null");
     ```
 
@@ -322,6 +327,7 @@ For example, for a large file of 2 G, use two threads to load; the second thread
 
 **Enable/Disable Parallel Loading Command Line Example**:
 
+<!-- validator-ignore -->
 ```sql
 --  Enable Parallel Loading
 load data infile 'file_name' into table tbl_name FIELDS TERMINATED BY '|' ENCLOSED BY '\"' LINES TERMINATED BY '\n' IGNORE 1 LINES PARALLEL 'TRUE';
@@ -344,6 +350,7 @@ MatrixOne supports the use of the STRICT parameter to specify the way to cut the
 
 **Example**:
 
+<!-- validator-ignore -->
 ```sql
 -- Enable pre-reading mode
 load data infile 'file_name' into table tbl_name PARALLEL 'TRUE' STRICT 'TRUE';
@@ -554,6 +561,7 @@ aa"aa|bb"bb|cc"cc|dd"dd
 
 Create a table named t1 in MatrixOne:
 
+<!-- validator-ignore -->
 ```sql
 mysql> drop table if exists t1;
 Query OK, 0 rows affected (0.01 sec)
@@ -569,6 +577,7 @@ Query OK, 0 rows affected (0.02 sec)
 
 Load the data file into table t1:
 
+<!-- validator-ignore -->
 ```sql
 load data infile '<your-local-file-path>/char_varchar.csv' into table t1 fields terminated by'|';
 ```
@@ -608,6 +617,7 @@ mysql> select * from t1;
 
 Following the example above, you can modify the `LOAD DATA` statement and add `LINES STARTING BY 'aa' ignore 10 lines;` at the end of the statement to experience the difference:
 
+<!-- validator-ignore -->
 ```sql
 delete from t1;
 load data infile '<your-local-file-path>/char_varchar.csv' into table t1 fields terminated by'|' LINES STARTING BY 'aa' ignore 10 lines;
@@ -615,6 +625,7 @@ load data infile '<your-local-file-path>/char_varchar.csv' into table t1 fields 
 
 The query result is as follows:
 
+<!-- validator-ignore -->
 ```sql
 mysql> select * from t1;
 +---------+---------+---------+---------+
@@ -652,6 +663,7 @@ The data in the file locally named *jsonline_array.jl* is as follows:
 
 Create a table named t1 in MatrixOne:
 
+<!-- validator-ignore -->
 ```sql
 mysql> drop table if exists t1;
 Query OK, 0 rows affected (0.01 sec)
@@ -668,6 +680,7 @@ load data infile {'filepath'='<your-local-file-path>/jsonline_array.jl','format'
 
 The query result is as follows:
 
+<!-- validator-ignore -->
 ```sql
 mysql> select * from t1;
 +------+------+------+------------+---------------------+---------------------+------+--------+---------------------------------------+-------+-------+-------+
@@ -690,6 +703,7 @@ load data infile {'filepath'='<your-local-file-path>/jsonline_array.jl','format'
 
 The query result is as follows:
 
+<!-- validator-ignore -->
 ```sql
 mysql> select * from t1;
 +------+------+------+------------+---------------------+---------------------+------+--------+-------------------------------------+-------+-------+-------+
@@ -717,6 +731,7 @@ There is a file `t1.csv` in the `/Users/admin/test` directory:
 3	c
 ```
 
+<!-- validator-ignore -->
 ```sql
 create table t1(n1 int,n2 varchar(10));
 create stage stage_fs url = 'file:///Users/admin/test';
@@ -746,6 +761,7 @@ There is a file `t1.csv` in the `/Users/admin/test` directory:
 3	c
 ```
 
+<!-- validator-ignore -->
 ```sql
 create table t2(n1 int,n2 varchar(10));
 create stage stage_fs1 url = 'file:///Users/admin/test';
@@ -774,6 +790,7 @@ There is a file `t1.csv` under `/User/` in HDFS:
 3	c
 ```
 
+<!-- validator-ignore -->
 ```sql
 mysql> create table t1(n1 int,n2 text);
 Query OK, 0 rows affected (0.03 sec)
@@ -805,6 +822,7 @@ There is a file `t1.csv` under `/User/` in HDFS:
 3	c
 ```
 
+<!-- validator-ignore -->
 ```sql
 mysql> create table t2(n1 int,n2 varchar(10));
 Query OK, 0 rows affected (0.02 sec)

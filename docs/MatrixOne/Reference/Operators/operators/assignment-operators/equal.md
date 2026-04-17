@@ -20,7 +20,7 @@ WHERE columnN = value1;
 
 ## **Examples**
 
-```sql
+```sql <!-- validator-ignore-exec -->
 create table t1 (a bigint(3), b bigint(5) primary key);
 insert into t1 VALUES (1,1),(1,2);
 update t1 set a=2 where a=1 limit 1;

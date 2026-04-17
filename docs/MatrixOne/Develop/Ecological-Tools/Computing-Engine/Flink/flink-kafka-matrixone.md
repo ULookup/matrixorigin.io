@@ -344,7 +344,7 @@ After executing the above command, you will wait on the console to enter the mes
 
 Execute the following SQL query results in MatrixOne:
 
-```sql
+```sql <!-- validator-ignore-exec -->
 mysql> select * from test.users;
 +------+-----------+------+
 | id   | name      | age  |

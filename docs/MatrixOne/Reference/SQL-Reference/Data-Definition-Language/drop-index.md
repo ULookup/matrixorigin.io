@@ -12,7 +12,7 @@ This statement deletes the index from the currently selected table and will repo
 
 ## **Examples**
 
-```sql
+```sql <!-- validator-ignore-exec -->
 create table t5(a int, b int, unique key(a));
 mysql> show create table t5;
 +-------+----------------------------------------------------------------------------------------+

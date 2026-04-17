@@ -42,7 +42,7 @@ set global password_reuse_interval=xx; -- unit is days
 
 ### connection_control_failed_connections_threshold & connection_control_max_connection_delay
 
-```sql
+```sql <!-- validator-ignore-exec -->
 mysql> SELECT @@global.connection_control_failed_connections_threshold;
 +---------------------------------------------------+
 | @@connection_control_failed_connections_threshold |
@@ -126,7 +126,7 @@ mysql>
 
 ### default_password_lifetime
 
-```sql
+```sql <!-- validator-ignore-exec -->
 mysql> SELECT @@global.default_password_lifetime;
 +-----------------------------+
 | @@default_password_lifetime |
@@ -192,7 +192,7 @@ Query OK, 1 row affected (0.03 sec)
 
 ### password_history
 
-```sql
+```sql <!-- validator-ignore-exec -->
 mysql> SELECT @@global.password_history;
 +--------------------+
 | @@password_history |
@@ -232,7 +232,7 @@ Query OK, 0 rows affected (0.01 sec)
 
 ### password_reuse_interval
 
-```sql
+```sql <!-- validator-ignore-exec -->
 mysql> select @@global.password_reuse_interval;
 +---------------------------+
 | @@password_reuse_interval |

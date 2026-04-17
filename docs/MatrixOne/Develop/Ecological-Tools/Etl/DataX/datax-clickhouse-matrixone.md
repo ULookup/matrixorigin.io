@@ -39,7 +39,7 @@ order by id;
 
 Note: Datax cannot synchronize table structures, so you need to create the table MatrixOne build statement in MatrixOne in advance:
 
-```sql
+```sql <!-- validator-ignore-exec -->
 CREATE TABLE  datax_db.`datax_ckreader_ck_student` (
   `id` bigint(20) NULL COMMENT "",
   `name` varchar(100) NULL COMMENT "",

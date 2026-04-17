@@ -6,7 +6,7 @@
 
 We have prepared a simple example to help you understand the execution plan for interpreting the `VIEW` using `EXPLAIN`.
 
-```sql
+```sql <!-- validator-ignore-exec -->
 > drop table if exists t1;
 > create table t1 (id int,ti tinyint unsigned,si smallint,bi bigint unsigned,fl float,dl double,de decimal,ch char(20),vch varchar(20),dd date,dt datetime);
 > insert into t1 values(1,1,4,3,1113.32,111332,1113.32,'hello','subquery','2022-04-28','2022-04-28 22:40:11');
@@ -47,7 +47,7 @@ We have prepared a simple example to help you understand the execution plan for 
 
 As shown in the above example, a new VIEW named *v1* is created, then query the result of *v1*. So let's learn the query plan in this `VIEW`:
 
-```sql
+```sql <!-- validator-ignore-exec -->
 > explain select * from v1;
 +--------------------------------------------------------------+
 | QUERY PLAN                                                   |
@@ -73,7 +73,7 @@ To execute secondly:
 
 The following query is executed similarly to the above:
 
-```sql
+```sql <!-- validator-ignore-exec -->
 > explain select * from (select * from t1) sub where id > 4;
 +--------------------------------------------------------+
 | QUERY PLAN                                             |

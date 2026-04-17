@@ -14,6 +14,7 @@
 
 ### Example 1: Restoring the cluster
 
+<!-- validator-ignore -->
 ```sql
 
 -- Execute under sys tenant
@@ -85,6 +86,7 @@ mysql> show databases;
 
 ### Example 2: Restoring a tenant
 
+<!-- validator-ignore -->
 ```sql
 CREATE database db1;
 CREATE database db2;
@@ -152,6 +154,7 @@ mysql> show databases;
 
 ### Example 3: Restoring the database
 
+<!-- validator-ignore -->
 ```sql
 CREATE database db1;
 
@@ -216,6 +219,7 @@ mysql> show databases;
 
 ### Example 4: Restore table
 
+<!-- validator-ignore -->
 ```sql
 -- Executed under tenant acc1
 CREATE TABLE t1(n1 int);

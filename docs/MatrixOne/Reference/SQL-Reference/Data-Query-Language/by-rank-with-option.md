@@ -58,7 +58,7 @@ BY RANK WITH OPTION 'mode = post';
 
 ### Complete Example
 
-```sql
+```sql <!-- validator-ignore-exec -->
 -- Enable IVF index feature
 SET GLOBAL experimental_ivf_index = 1;
 

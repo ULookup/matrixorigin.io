@@ -135,7 +135,7 @@ python /opt/module/datax/bin/datax.py /opt/module/datax/job/oracle2mo.json
 
 ### Viewing Data in MatrixOne Tables
 
-```sql
+```sql <!-- validator-ignore-exec -->
 mysql> select * from oracle_datax;
 +------+----------+
 | id   | name     |

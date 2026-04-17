@@ -280,6 +280,7 @@ function parseMysqlInlineFormat(sqlText) {
     let inOutput = false
     let inMultiLineSQL = false
     let isQueryWithOutput = false
+    let skipUntilPrompt = false
 
     for (const line of lines) {
         const trimmed = line.trim()
@@ -302,6 +303,7 @@ function parseMysqlInlineFormat(sqlText) {
 
         // Identify new SQL statement starting with mysql> or >
         if (/^(mysql>|>)\s*/.test(trimmed)) {
+            skipUntilPrompt = false
             // Save previous statement
             if (currentStatement !== null) {
                 if (isQueryWithOutput) {
@@ -325,6 +327,10 @@ function parseMysqlInlineFormat(sqlText) {
 
             // Start new statement with prompt
             const sqlPart = trimmed.replace(/^(mysql>|>)\s*/, '')
+            if (shouldSkipLine(sqlPart.trim())) {
+                currentStatement = null
+                continue
+            }
             currentStatement = sqlPart
             currentOutput = []
             inOutput = false
@@ -377,6 +383,20 @@ function parseMysqlInlineFormat(sqlText) {
 
             // Skip empty lines between SQL and output
             if (!trimmed) {
+                continue
+            }
+
+            // Skip ERROR output and client messages (not SQL)
+            if (shouldSkipLine(trimmed)) {
+                if (/^ERROR\s+\d+/i.test(trimmed)) {
+                    skipUntilPrompt = true
+                }
+                inMultiLineSQL = false
+                continue
+            }
+
+            // Skip continuation lines after ERROR until next prompt
+            if (skipUntilPrompt) {
                 continue
             }
 
@@ -548,7 +568,7 @@ export function splitSqlStatements(sql) {
         if (trimmedLine.startsWith('mysql>') || trimmedLine.startsWith('>')) {
             // Extract SQL statement after the prompt
             const sqlPart = trimmedLine.replace(/^(mysql>|>)\s*/, '')
-            if (sqlPart) {
+            if (sqlPart && !shouldSkipLine(sqlPart.trim())) {
                 currentStatement += sqlPart + '\n'
             }
             continue
@@ -610,7 +630,7 @@ export function splitSqlStatementsWithAnnotations(sql) {
         // Skip lines starting with MySQL command line prompt
         if (trimmedLine.startsWith('mysql>') || trimmedLine.startsWith('>')) {
             const sqlPart = trimmedLine.replace(/^(mysql>|>)\s*/, '')
-            if (sqlPart) {
+            if (sqlPart && !shouldSkipLine(sqlPart.trim())) {
                 currentStatement += sqlPart + '\n'
             }
             continue
@@ -731,8 +751,11 @@ function shouldSkipLine(line) {
         return true
     }
 
-    // Skip query result statistics (e.g., "1 row in set")
+    // Skip query result statistics (e.g., "1 row in set", "Empty set")
     if (/^\d+\s+(row|rows)\s+in\s+set/i.test(line)) {
+        return true
+    }
+    if (/^Empty\s+set/i.test(line)) {
         return true
     }
 
@@ -748,6 +771,21 @@ function shouldSkipLine(line) {
 
     // Skip warning messages
     if (/^\[Warning\]/i.test(line) || /^Warning:/i.test(line)) {
+        return true
+    }
+
+    // Skip MySQL error output (e.g., "ERROR 1105 (HY000): ...")
+    if (/^ERROR\s+\d+/i.test(line)) {
+        return true
+    }
+
+    // Skip MySQL client informational messages
+    if (/^(Reading table information|You can turn off this feature|Database changed|No connection|Trying to reconnect|Connection id:)/i.test(line)) {
+        return true
+    }
+
+    // Skip MySQL client exit command
+    if (/^exit\s*;?\s*$/i.test(line)) {
         return true
     }
 

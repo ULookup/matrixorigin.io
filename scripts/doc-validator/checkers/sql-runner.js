@@ -82,6 +82,11 @@ export class SqlRunner {
             this.userCreatedDatabases = new Set()
 
             for (const block of sqlBlocks) {
+                // Skip execution when <!-- validator-ignore-exec --> is set on the block.
+                // The block is still extracted so the syntax checker can validate it;
+                // here we simply do not run it against MatrixOne.
+                if (block.executionIgnored) continue
+
                 const blockResults = await this.checkSqlBlock(block)
 
                 for (const result of blockResults) {

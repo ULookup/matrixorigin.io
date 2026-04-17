@@ -350,15 +350,8 @@ Unlike a regular `DROP TABLE`, `DATA BRANCH DELETE` retains metadata records in 
 If issues are discovered after merging, you can use the snapshot to return to the initial state:
 
 ```sql
-RESTORE TABLE sys.demo_branch.orders{SNAPSHOT='sp_orders_v1'};
+RESTORE ACCOUNT sys DATABASE demo_branch TABLE orders FROM SNAPSHOT sp_orders_v1;
 ```
-
-> **Note**: The syntax above is for MatrixOne versions after v3.0. For v3.0, use the following syntax:
->
-> ```sql
-> -- v3.0 syntax
-> -- RESTORE ACCOUNT sys DATABASE demo_branch TABLE orders FROM SNAPSHOT sp_orders_v1;
-> ```
 
 This is the value of snapshots — turning "rollback" from a high-risk operation into a routine action.
 

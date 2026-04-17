@@ -82,13 +82,6 @@ PARTITION BY RANGE COLUMNS(joined) (
     PARTITION p0 VALUES LESS THAN ('1960-01-01'),
     PARTITION p1 VALUES LESS THAN ('1970-01-01'),
     PARTITION p2 VALUES LESS THAN ('1980-01-01'),
-    PARTITION p3 VALUES LESS THAN ('1990-01-01'),
-    PARTITION MySQL :: MySQL 8.0 Reference Manual :: 13.1.20 CREATE TABLE Statement
-)
-PARTITION BY RANGE COLUMNS(joined) (
-    PARTITION p0 VALUES LESS THAN ('1960-01-01'),
-    PARTITION p1 VALUES LESS THAN ('1970-01-01'),
-    PARTITION p2 VALUES LESS THAN ('1980-01-01'),
     PARTITION p3 VALUES LESS THAN ('1990-01-01')
 );
 ```
@@ -173,7 +166,7 @@ The types that can be used in composite partitioning include:
 
 Range composite partitioning allows multiple types of columns to be combined, such as:
 
-```sql
+```sql <!-- validator-ignore-exec -->
 CREATE TABLE rcx (
          a INT,
          b INT,
@@ -190,13 +183,13 @@ CREATE TABLE rcx (
 
 List composite partitions allow users to define partitions in the same way that multiple columns can be combined, such as:
 
-```sql
+```sql <!-- validator-ignore-exec -->
 CREATE TABLE t1 (
     a INT,
     b int,
     c date
 )
-PARTITION BY LIST COLUMNS(a,floor(b),c) (
+PARTITION BY LIST COLUMNS(a,b,c) (
     PARTITION p0 VALUES IN( (0,0,NULL), (NULL,NULL,NULL) ),
     PARTITION p1 VALUES IN( (0,1,'2000-01-01'), (0,2,'2000-01-01'), (0,3,'2000-01-01'), (1,1,'2000-01-01'), (1,2,'2000-01-01') ),
     PARTITION p2 VALUES IN( (1,0,'2000-01-01'), (2,0,'2000-01-01'), (2,1,'2000-01-01'), (3,0,'2000-01-01'), (3,1,'2000-01-01') ),

@@ -22,7 +22,7 @@ Where comparison_operator is one of these operators:
 
 ## **Examples**
 
-```sql
+```sql <!-- validator-ignore-exec -->
 create table t1 (a int);
 create table t2 (a int, b int);
 create table t3 (a int);

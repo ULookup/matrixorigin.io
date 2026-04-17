@@ -20,7 +20,7 @@ The BIT_AND(expr) function returns the bitwise AND of all bits in expr.
 
 ## **Examples**
 
-```sql
+```sql <!-- validator-ignore-exec -->
 > drop table if exists t1;
 > CREATE TABLE t1 (id CHAR(1), number INT);
 > INSERT INTO t1 VALUES

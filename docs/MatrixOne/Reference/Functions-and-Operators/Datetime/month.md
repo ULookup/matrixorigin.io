@@ -20,7 +20,7 @@ Returns the month for date, in the range 1 to 12 for January to December, or 0 f
 
 - Example 1:
 
-```sql
+```sql <!-- validator-ignore-exec -->
 mysql> SELECT MONTH('2008-02-03');
 +-------------------+
 | month(2008-02-03) |

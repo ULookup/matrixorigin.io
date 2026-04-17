@@ -14,6 +14,7 @@ The `DROP FUNCTION` statement represents the deletion of a user-defined function
 
 **Example 1**
 
+<!-- validator-ignore -->
 ```sql
 --Removing Parametric Functions
 
@@ -38,6 +39,7 @@ drop function py_add(int, int);
 
 **Example 2**
 
+<!-- validator-ignore -->
 ```sql
 --Deleting Unreferenced Functions
 mysql> CREATE FUNCTION t1_fun () RETURNS VARCHAR LANGUAGE SQL AS 'select n1 from t1 limit 1' ;

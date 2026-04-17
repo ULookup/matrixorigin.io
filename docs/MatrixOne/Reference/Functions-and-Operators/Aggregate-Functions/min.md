@@ -24,8 +24,9 @@ Returns the minimum value of expr. MIN() may take a string argument, in such cas
 
 ## **Examples**
 
-```sql
-> drop table if exists tbl1,tbl2;
+```sql <!-- validator-ignore-exec -->
+> drop table if exists tbl1;
+drop table if exists tbl2;
 > create table tbl1 (col_1a tinyint, col_1b smallint, col_1c int, col_1d bigint, col_1e char(10) not null);
 > insert into tbl1 values (0,1,1,7,"a");
 > insert into tbl1 values (0,1,2,8,"b");

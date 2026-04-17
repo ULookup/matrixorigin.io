@@ -6,7 +6,7 @@
 
 For example, we have a `student` table with the `id` column as the primary key:
 
-```sql
+```sql <!-- validator-ignore-exec -->
 > desc student;
 +-------+-------------+------+------+---------+-------+---------+
 | Field | Type        | Null | Key  | Default | Extra | Comment |

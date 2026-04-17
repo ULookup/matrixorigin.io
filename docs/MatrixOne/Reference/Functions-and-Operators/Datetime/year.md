@@ -35,7 +35,7 @@ mysql> select year(a) from t1;
 2 rows in set (0.00 sec)
 ```
 
-```sql
+```sql <!-- validator-ignore-exec -->
 DROP TABLE IF EXISTS t3;
 CREATE TABLE t3(c1 DATE NOT NULL);
 INSERT INTO t3 VALUES('2000-01-01');

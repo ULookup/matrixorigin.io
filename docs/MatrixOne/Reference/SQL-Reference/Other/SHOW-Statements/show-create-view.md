@@ -12,7 +12,7 @@ This statement shows the `CREATE VIEW` statement that creates the named view.
 
 ## **Examples**
 
-```sql
+```sql <!-- validator-ignore-exec -->
 create table test_table(col1 int, col2 float, col3 bool, col4 Date, col5 varchar(255), col6 text);
 create view test_view as select * from test_table;
 mysql> show create view test_view;

@@ -40,7 +40,7 @@ mysql> SELECT CASE WHEN 1>0 THEN 'true' ELSE 'false' END;
 1 row in set (0.00 sec)
 ```
 
-```sql
+```sql <!-- validator-ignore-exec -->
 CREATE TABLE t1 (a INT, b INT);
 Query OK, 0 rows affected (0.01 sec)
 

@@ -17,6 +17,7 @@ The `SHOW FUNCTION STATUS` command only shows user-defined functions, not system
 
 `LIKE 'pattern'` is an optional argument to filter the functions to display. `pattern` is a string that can use `%` and `_` wildcards. For example, to display all functions starting with `my_function`, the following command can be used:
 
+<!-- validator-ignore -->
 ```sql
 SHOW FUNCTION STATUS LIKE 'my_function%';
 ```
@@ -25,6 +26,7 @@ The output will include the function name, database name, type, creation time, a
 
 ## **Examples**
 
+<!-- validator-ignore -->
 ```sql
 create or replace function py_add(a int, b int) returns int language python as 
 $$

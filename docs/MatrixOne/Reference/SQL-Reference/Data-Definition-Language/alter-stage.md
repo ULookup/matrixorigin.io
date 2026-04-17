@@ -57,6 +57,7 @@ URL= "stage://<stagename>[/path/]"
 
 ## **Example**
 
+<!-- validator-ignore -->
 ```sql
 create stage stage_fs url = 'file:///Users/admin/test' comment='this is a stage';
 

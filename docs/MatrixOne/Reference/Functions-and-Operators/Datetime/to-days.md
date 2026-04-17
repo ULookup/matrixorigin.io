@@ -7,7 +7,7 @@
 !!! note
     The dates '0000-00-00' and '0000-01-01' are considered invalid. When querying `0000-00-00` and `0000-01-01`, `TO_DAYS()` will return an error message:
 
-     ```sql
+     ```
      mysql> SELECT TO_DAYS('0000-00-00');
      ERROR 20301 (HY000): invalid input: invalid datetime value 0000-00-00
      mysql> SELECT TO_DAYS('0000-01-01');
@@ -24,7 +24,7 @@ For dates with two-digit years, for example, when querying `SELECT TO_DAYS('08-1
 
 ## **Examples**
 
-```sql
+```sql <!-- validator-ignore-exec -->
 -- The query will return an integer representing the number of days between the date '2023-07-12' and the start date of the Gregorian calendar.
 mysql> SELECT TO_DAYS('2023-07-12');
 +---------------------+

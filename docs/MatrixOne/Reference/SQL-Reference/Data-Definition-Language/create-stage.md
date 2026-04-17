@@ -60,13 +60,14 @@ URL= "stage://<stagename>[/path/]"
   
 ## **Example**
 
+<!-- validator-ignore -->
 ```sql
-#file system
-mysql> create stage stage_fs url = 'file:///Users/admin/test';
+-- file system
+create stage stage_fs url = 'file:///Users/admin/test';
 
-#substage
-mysql> create stage sub_stage url = 'stage://fs_stage/test1/';
+-- substage
+create stage sub_stage url = 'stage://fs_stage/test1/';
 
-#s3
-mysql>create stage stage01 url = 's3://bucket1/test' credentials = {"aws_key_id"='AKIAYOFAMAB7FM7Axxxx',"aws_secret_key"='UjuSDmekK6uXK6CrUs9YhZzY27VOk9W3qMwYxxxx',"AWS_REGION"='us-west-2','PROVIDER'='Amazon', 'ENDPOINT'='s3.us-west-2.amazonaws.com'};
+-- s3
+create stage stage01 url = 's3://bucket1/test' credentials = {"aws_key_id"='AKIAYOFAMAB7FM7Axxxx',"aws_secret_key"='UjuSDmekK6uXK6CrUs9YhZzY27VOk9W3qMwYxxxx',"AWS_REGION"='us-west-2','PROVIDER'='Amazon', 'ENDPOINT'='s3.us-west-2.amazonaws.com'};
 ```

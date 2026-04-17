@@ -32,6 +32,9 @@ Here we take the TPCH dataset as an example and migrate the 8 tables of the TPCH
     ```sql
     create database tpch;
     use tpch;
+    ```
+
+    ```
     source '/YOUR_PATH/tpch_ddl.sql'
     ```
 
@@ -88,6 +91,9 @@ Here we take the TPCH dataset as an example and migrate the 8 tables of the TPCH
     ```sql
     create database tpch;
     use tpch;
+    ```
+
+    ```
     source '/YOUR_PATH/tpch_ddl.sql'
     ```
 

@@ -18,7 +18,7 @@ Before you can start writing data to MatrixOne using DataX, you need to complete
 
 ### Creating test data in postgresql
 
-```sql
+```sql <!-- validator-ignore-exec -->
 create table  public.student
 (
     stu_id      integer not null unique,

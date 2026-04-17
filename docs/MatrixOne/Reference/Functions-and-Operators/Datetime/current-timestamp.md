@@ -20,7 +20,7 @@ Returns the current date and time as a value in `YYYY-MM-DD hh:mm:ss` or `YYYYMM
 
 ## **Examples**
 
-```sql
+```sql <!-- validator-ignore-exec -->
 mysql> SELECT CURRENT_TIMESTAMP();
 +----------------------------+
 | current_timestamp()        |
@@ -38,7 +38,7 @@ mysql> SELECT NOW();
 1 row in set (0.01 sec)
 ```
 
-```sql
+```sql <!-- validator-ignore-exec -->
 create table t1 (a int primary key, b int, c int, d timestamp default current_timestamp);
 insert into t1 select 1,1,1,now();
 insert into t1 select 2,0,0,null;

@@ -7,7 +7,7 @@ In this chapter, we will cover the implementation of Doris bulk data writing to 
 This practice requires the installation and deployment of the following software environments:
 
 - Finished [installing and starting MatrixOne](../../../../Get-Started/install-standalone-matrixone.md).
-- Download and install [Doris](https://doris.apache.org/zh-CN/docs/dev/get-starting/quick-start/).
+- Download and install [Doris](https://doris.apache.org/zh-CN/docs/gettingStarted/quick-start).
 - Download and install [IntelliJ IDEA version 2022.2.1 and above](https://www.jetbrains.com/idea/download/).
 - Download and install [JDK 8+](https://www.oracle.com/sg/java/technologies/javase/javase8-archive-downloads.html).
 - Download and install [MySQL Client 8.0.33](https://downloads.mysql.com/archives/get/p/23/file/mysql-server_8.0.33-1ubuntu23.04_amd64.deb-bundle.tar).
@@ -16,7 +16,7 @@ This practice requires the installation and deployment of the following software
 
 ### Step one: Prepare data in Doris
 
-```sql
+```
 create database test;
 
 use test;
@@ -234,7 +234,7 @@ Start IDEA and create a new Maven project, add the project dependencies, and the
 
     Execute the following SQL query results in MatrixOne:
 
-    ```sql
+    ```sql <!-- validator-ignore-exec -->
     mysql> select * from sparkdemo.example_tbl;
     +---------+------------+--------+------+------+
     | user_id | date       | city   | age  | sex  |

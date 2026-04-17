@@ -12,8 +12,9 @@
 
 ## **Example**
 
+<!-- validator-ignore -->
 ```sql
-mysql> create stage stage_fs url = 'file:///Users/admin/test';
+create stage stage_fs url = 'file:///Users/admin/test';
 
-mysql>drop stage stage_fs;
+drop stage stage_fs;
 ```

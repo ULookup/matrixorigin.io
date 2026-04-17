@@ -15,7 +15,7 @@ The `CURDATE()` function returns the current date as a value in `YYYY-MM-DD` for
 
 ## **Examples**
 
-```sql
+```sql <!-- validator-ignore-exec -->
 mysql> SELECT CURDATE();
 +------------+
 | curdate()  |

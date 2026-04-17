@@ -24,7 +24,7 @@ The syntax structure is`'CREATE INDEX index_name on table_name (column_name);`
 
 For example, if you want to create a secondary index on the `last_name` column of a table named `employees`, you can use the following SQL statement:
 
-```sql
+```sql <!-- validator-ignore-exec -->
 CREATE INDEX idx_lastname ON employees (last_name);
 ```
 

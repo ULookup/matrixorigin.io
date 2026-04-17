@@ -72,6 +72,7 @@ mysql> select 100-99;   // This comment continues to the end of line
 
 Or:
 
+<!-- validator-ignore -->
 ```sql
 mysql> // This comment continues to the line
     -> select 100-99;

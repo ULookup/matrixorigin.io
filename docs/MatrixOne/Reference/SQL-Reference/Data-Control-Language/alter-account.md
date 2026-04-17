@@ -45,7 +45,7 @@ Account notes are stored as VARCHAR in the table *mo_account* in the system data
 
 `COMMENT` can be arbitrary quoted text, and the new `COMMENT` replaces any existing user comments. As follows:
 
-```sql
+```sql <!-- validator-ignore-exec -->
 mysql> desc mo_catalog.mo_account;
 +----------------+--------------+------+------+---------+-------+---------+
 | Field          | Type         | Null | Key  | Default | Extra | Comment |
@@ -64,7 +64,7 @@ mysql> desc mo_catalog.mo_account;
 
 - Example 1: Modify the information on the account
 
-```sql
+```sql <!-- validator-ignore-exec -->
 -- Create a account named "root1" with password "111"
 mysql> create account acc1 admin_name "root1" identified by "111";
 Query OK, 0 rows affected (0.42 sec)
@@ -87,7 +87,7 @@ mysql> show accounts;
 
 - Example 2: Modify the status of the account
 
-```sql
+```sql <!-- validator-ignore-exec -->
 -- Create a account named "root1" with password "111"
 mysql> create account accx admin_name "root1" identified by "111";
 Query OK, 0 rows affected (0.27 sec)

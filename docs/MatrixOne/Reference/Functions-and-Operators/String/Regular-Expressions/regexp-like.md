@@ -28,7 +28,7 @@ Returns `TRUE` if the string expr matches the regular expression specified by th
 
 ## **Examples**
 
-```SQL
+```SQL <!-- validator-ignore-exec -->
 mysql> SELECT REGEXP_INSTR('Hello, my number is 12345.', '[0-9]+');
 +--------------------------------------------------+
 | regexp_instr(Hello, my number is 12345., [0-9]+) |

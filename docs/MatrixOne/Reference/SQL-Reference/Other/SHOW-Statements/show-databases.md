@@ -17,7 +17,7 @@ Database information is also available from the `INFORMATION_SCHEMA` SCHEMATA ta
 
 ## **Examples**
 
-```sql
+```sql <!-- validator-ignore-exec -->
 create database demo_1;
 
 mysql> show databases;

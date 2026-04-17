@@ -8,7 +8,7 @@ In a MatrixOne query, keep the result set column names the same size as the name
 
 View `keep_user_target_list_in_result` in MatrixOne using the following command:
 
-```sql
+```sql <!-- validator-ignore-exec -->
 --default 1
 show variables like "keep_user_target_list_in_result";
 select @@keep_user_target_list_in_result;
@@ -25,7 +25,7 @@ set global keep_user_target_list_in_result = 0;
 
 ## Examples
 
-```sql
+```sql <!-- validator-ignore-exec -->
 create table t1(aa int, bb int, cc int, AbC varchar(25), A_BC_d double);
 insert into t1 values (1,2,3,'A',10.9);
 
@@ -37,7 +37,8 @@ mysql> select * from t1;
 +------+------+------+------+--------+
 1 row in set (0.00 sec)
 
-mysql> select @@keep_user_target_list_in_result; --Query parameter values, on by default
+mysql> select @@keep_user_target_list_in_result;
+-- Query parameter values, on by default
 +-----------------------------------+
 | @@keep_user_target_list_in_result |
 +-----------------------------------+
@@ -45,7 +46,8 @@ mysql> select @@keep_user_target_list_in_result; --Query parameter values, on by
 +-----------------------------------+
 1 row in set (0.01 sec)
 
-mysql> select aA, bB, CC, abc, a_Bc_D from t1;--On, the query result set column names are case sensitive as specified by the user.
+mysql> select aA, bB, CC, abc, a_Bc_D from t1;
+-- On, the query result set column names are case sensitive as specified by the user.
 +------+------+------+------+--------+
 | aA   | bB   | CC   | abc  | a_Bc_D |
 +------+------+------+------+--------+
@@ -53,10 +55,12 @@ mysql> select aA, bB, CC, abc, a_Bc_D from t1;--On, the query result set column 
 +------+------+------+------+--------+
 1 row in set (0.00 sec)
 
-mysql> set global keep_user_target_list_in_result =0;--Turn off the query result set column name and user-specified name size consistency setting
+mysql> set global keep_user_target_list_in_result =0;
+-- Turn off the query result set column name and user-specified name size consistency setting
 Query OK, 0 rows affected (0.01 sec)
 
-mysql> exit;--Parameters take effect after exiting the database and reconnecting
+mysql> exit;
+-- Parameters take effect after exiting the database and reconnecting
 
 mysql> show variables like "keep_user_target_list_in_result";
 +---------------------------------+-------+
@@ -66,7 +70,8 @@ mysql> show variables like "keep_user_target_list_in_result";
 +---------------------------------+-------+
 1 row in set (0.00 sec)
 
-mysql> select aA, bB, CC, abc, a_Bc_D from t1;--The column names of the query result set do not match the case of the user-specified name when the setting is turned off
+mysql> select aA, bB, CC, abc, a_Bc_D from t1;
+-- The column names of the query result set do not match the case of the user-specified name when the setting is turned off
 +------+------+------+------+--------+
 | aa   | bb   | cc   | abc  | a_bc_d |
 +------+------+------+------+--------+

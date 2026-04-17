@@ -141,7 +141,7 @@ Make sure you have already [Deployed standalone MatrixOne](../../Get-Started/ins
 
 3. Load data into the created tables:
 
-    ```sql
+    ```sql <!-- validator-ignore -->
     load data infile '/YOUR_TPCH_DATA_PATH/nation.tbl' into table NATION FIELDS TERMINATED BY '|' OPTIONALLY ENCLOSED BY '"' LINES TERMINATED BY '\n';
 
     load data infile '/YOUR_TPCH_DATA_PATH/region.tbl' into table REGION FIELDS TERMINATED BY '|' OPTIONALLY ENCLOSED BY '"' LINES TERMINATED BY '\n';

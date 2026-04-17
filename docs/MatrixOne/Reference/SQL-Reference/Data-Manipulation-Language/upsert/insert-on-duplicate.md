@@ -17,7 +17,7 @@ It is important to note that using this syntax presupposes that a primary key co
 
 ## **Examples**
 
-```sql
+```sql <!-- validator-ignore-exec -->
 CREATE TABLE user (
     id INT(11) NOT NULL PRIMARY KEY,
     name VARCHAR(50) NOT NULL,

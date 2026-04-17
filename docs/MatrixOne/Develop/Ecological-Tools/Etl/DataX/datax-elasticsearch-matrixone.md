@@ -6,7 +6,7 @@ This article describes how to write ElasticSearch data offline to a MatrixOne da
 
 Before you can start writing data to MatrixOne using DataX, you need to complete the installation of the following software:
 
-- Finished [installing and starting](../../../Get-Started/install-standalone-matrixone.md) MatrixOne.
+- Finished [installing and starting](../../../../Get-Started/install-standalone-matrixone.md) MatrixOne.
 - Install [JDK 8+ version](https://www.oracle.com/sg/java/technologies/javase/javase8-archive-downloads.html).
 - Install [Python 3.8 (or plus)](https://www.python.org/downloads/).
 - Download the [DataX](https://datax-opensource.oss-cn-hangzhou.aliyuncs.com/202210/datax.tar.gz) installation package and unzip it.
@@ -181,7 +181,7 @@ After the job is executed, the output is as follows:
 
 View the results in the target table in the MatrixOne database to confirm that the migration is complete:
 
-```sql
+```sql <!-- validator-ignore-exec -->
 mysql> select * from mo.person;
 +------+-----------+------------+
 | id   | name      | birthday   |

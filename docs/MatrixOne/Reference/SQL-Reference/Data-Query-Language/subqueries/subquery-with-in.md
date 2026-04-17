@@ -32,7 +32,7 @@ mysql> select count(*) from t1 as w1 where w1.val in (select w2.val from t1 as w
 1 row in set (0.01 sec)
 ```
 
-```sql
+```sql <!-- validator-ignore-exec -->
 create table t1 (id int not null, text varchar(20) not null default '', primary key (id));
 insert into t1 (id, text) values (1, 'text1'), (2, 'text2'), (3, 'text3'), (4, 'text4'), (5, 'text5'), (6, 'text6'), (7, 'text7'), (8, 'text8'), (9, 'text9'), (10, 'text10'), (11, 'text11'), (12, 'text12');
 

@@ -6,7 +6,7 @@ This article describes how to write ClickHouse data offline to a MatrixOne datab
 
 Before you can start writing data to MatrixOne using DataX, you need to complete the installation of the following software:
 
-- Finished [installing and starting](../../../Get-Started/install-standalone-matrixone.md) MatrixOne.
+- Finished [installing and starting](../../../../Get-Started/install-standalone-matrixone.md) MatrixOne.
 - Install [JDK 8+ version](https://www.oracle.com/sg/java/technologies/javase/javase8-archive-downloads.html).
 - Install [Python 3.8 (or plus)](https://www.python.org/downloads/).
 - Download the [DataX](https://datax-opensource.oss-cn-hangzhou.aliyuncs.com/202210/datax.tar.gz) installation package and unzip it.
@@ -18,7 +18,7 @@ Before you can start writing data to MatrixOne using DataX, you need to complete
 
 ### Log in to the clickhouse database to create test data
 
-```sql
+```
 create database source_ck_database;
 use source_ck_database; 
 
@@ -39,7 +39,7 @@ order by id;
 
 Note: Datax cannot synchronize table structures, so you need to create the table MatrixOne build statement in MatrixOne in advance:
 
-```sql
+```sql <!-- validator-ignore-exec -->
 CREATE TABLE  datax_db.`datax_ckreader_ck_student` (
   `id` bigint(20) NULL COMMENT "",
   `name` varchar(100) NULL COMMENT "",

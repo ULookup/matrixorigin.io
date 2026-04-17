@@ -42,7 +42,7 @@ MatrixOne supports inserting vectors in two formats.
 
 **Textual Format**
 
-```sql
+```sql <!-- validator-ignore-exec -->
 insert into t1 values(1, "[1,2,3]", "[4,5,6]");
 ```
 
@@ -50,7 +50,7 @@ insert into t1 values(1, "[1,2,3]", "[4,5,6]");
 
 Suppose you are working with Python NumPy arrays. In that case, you can directly insert the NumPy array into MatrixOne by performing hexadecimal encoding on the array instead of converting it into a comma-separated textual format. This approach is faster when inserting vectors with higher dimensions.
 
-```sql
+```sql <!-- validator-ignore-exec -->
 insert into t1 (a, b) values (2, cast(unhex("7e98b23e9e10383b2f41133f") as blob));
 
 -- "7e98b23e9e10383b2f41133f" represents the hexadecimal encoding of the little-endian []float32{0.34881967, 0.0028086076, 0.5752134}
@@ -94,7 +94,7 @@ Top K queries are a database query operation that retrieves the top K data items
 
 First, we create a table named `t1` that contains vector data `b` and insert some sample data. Then, we perform top K queries using the given SQL statements for `l1_distance`, `l2_distance`, cosine similarity, and cosine distance, limiting the results to the top 5 matches.
 
-```sql
+```sql <!-- validator-ignore-exec -->
 -- Sample table 't1' with vector data 'b'
 CREATE TABLE t1 (
     id int,

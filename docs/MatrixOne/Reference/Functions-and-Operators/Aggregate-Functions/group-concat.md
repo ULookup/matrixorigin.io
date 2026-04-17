@@ -36,7 +36,7 @@ It returns NULL if there are no non-NULL values.
 
 ## **Examples**
 
-```sql
+```sql <!-- validator-ignore-exec -->
 create table t1(a int,b text,c text);
 insert into t1 values(1,"a","bc"),(2,"ab","c"),(3,"aa","bb"),(3,"aa","bb");
 

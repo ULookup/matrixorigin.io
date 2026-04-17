@@ -34,6 +34,7 @@
 
 ## **Examples**
 
+<!-- validator-ignore -->
 ```sql
 -- Create a sequence called alter_seq_01, set the increment of the sequence to 2, set the minimum value of the sequence to 30 and the maximum value to 100, and enable the loop
 create sequence alter_seq_01 as smallint increment by 2 minvalue 30 maxvalue 100 cycle;

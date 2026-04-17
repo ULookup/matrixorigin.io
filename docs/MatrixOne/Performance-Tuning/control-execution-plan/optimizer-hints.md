@@ -68,14 +68,14 @@ Among them, ORDERED specifies that the query should be connected in the order of
 
 ```sql
 -- Create a new table called orders
-CREATE TABLE order (
+CREATE TABLE `order` (
   order_id INT PRIMARY KEY,
   customer_id INT,
   order_date DATE,
   order_total DECIMAL(10, 2)
 );
 -- insert datas
-INSERT INTO order (order_id, customer_id, order_date, order_total)
+INSERT INTO `order` (order_id, customer_id, order_date, order_total)
 VALUES
   (1, 101, '2022-05-10', 100.00),
   (2, 102, '2022-05-09', 150.00),
@@ -83,7 +83,7 @@ VALUES
   (4, 104, '2022-05-07', 50.00);
 -- Query all orders of a customer and sort them in descending order by order date
 SELECT order_id, order_date, order_total
-FROM orders
+FROM `order`
 WHERE customer_id = 123
 ORDER BY order_date DESC;
 ```

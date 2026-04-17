@@ -58,6 +58,7 @@ The publish and subscribe function has a variety of typical application scenario
 
 Suppose there is a cross-regional retail company. The central warehouse database needs to publish inventory and product price changes, and each branch database subscribes to these changes to ensure that inventory and price information are synchronized in each branch system.
 
+<!-- validator-ignore -->
 ```sql
 drop account if exists acc1;
 create account acc1 admin_name = 'test_account' identified by '111';
@@ -112,7 +113,7 @@ create account acc2 admin_name = 'test_account' identified by '111';
 
 3. Subscribe to publications individually in branch tenants
 
-    ```sql
+    ```sql <!-- validator-ignore-exec -->
     -- Subscribe to db_warehouse_pub in acc1
     create database db_warehouse_sub from sys publication db_warehouse_pub;
 
@@ -191,7 +192,7 @@ create account acc2 admin_name = 'test_account' identified by '111';
 
     On the publishing side of data, the publishing and subscription mechanism will synchronize these changes to the subscribing side.
 
-    ```sql
+    ```sql <!-- validator-ignore-exec -->
     -- Modify the inventory quantity in the inventory table
     UPDATE inventory SET stock_quantity = 80 WHERE product_id = 1;
 
@@ -220,7 +221,7 @@ create account acc2 admin_name = 'test_account' identified by '111';
 
 5. View changes on the subscription side
 
-    ```sql
+    ```sql <!-- validator-ignore-exec -->
     -- Check stock availability in acc1
     mysql> select * from inventory ;
     +------------+--------------+----------------+

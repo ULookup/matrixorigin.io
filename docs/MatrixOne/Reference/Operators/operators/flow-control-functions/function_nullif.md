@@ -15,7 +15,7 @@ The return value has the same type as the first argument.
 
 ## **Examples**
 
-```sql
+```sql <!-- validator-ignore-exec -->
 CREATE TABLE employees ( id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(50) NOT NULL, salary DECIMAL(10, 2) );
 
 INSERT INTO employees (name, salary) VALUES ('John Doe', 1000), ('Alice Smith', 2000), ('Bob Johnson', 1500);

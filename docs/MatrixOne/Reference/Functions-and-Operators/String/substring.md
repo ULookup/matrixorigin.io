@@ -22,7 +22,7 @@ The forms without a len argument return a substring from string str starting at 
 
 ## **Examples**
 
-```SQL
+```SQL <!-- validator-ignore-exec -->
 > CREATE TABLE IF NOT EXISTS t1 (
 pub_id varchar(8) COLLATE latin1_general_ci NOT NULL DEFAULT '',
 pub_name varchar(50) COLLATE latin1_general_ci NOT NULL DEFAULT '',

@@ -18,8 +18,8 @@ AS SELECT ... from stream_name ;
 
 ## **Examples**
 
-```sql
-create dynamic table dt_test as select * from stream_test; Query OK, 0 rows affected (0.01 sec) 
+```sql <!-- validator-ignore-exec -->
+create dynamic table dt_test as select * from stream_test;
 ```
 
 ## Limitations

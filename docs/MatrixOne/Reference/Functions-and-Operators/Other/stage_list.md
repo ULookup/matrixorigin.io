@@ -27,6 +27,7 @@ There are the following files and directories under the directory `/Users/admin/
 customer	student.csv	t1.csv		t2.txt		t3		user.txt
 ```
 
+<!-- validator-ignore -->
 ```sql
 create stage stage_test url = 'file:///Users/admin/case';
 

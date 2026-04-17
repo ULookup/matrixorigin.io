@@ -9,7 +9,7 @@ This practice requires the installation and deployment of the following software
 - Finished [installing and starting MatrixOne](../../../../Get-Started/install-standalone-matrixone.md).
 - Download and install [IntelliJ IDEA version 2022.2.1 and above](https://www.jetbrains.com/idea/download/).
 - Download and install [JDK 8+](https://www.oracle.com/sg/java/technologies/javase/javase8-archive-downloads.html).
-- Importing data from Hive requires installing [Hadoop](http://archive.apache.org/dist/hadoop/core/hadoop-3.1.4/) and [Hive](https://dlcdn.apache.org/hive/hive-3.1.3/).
+- Importing data from Hive requires installing [Hadoop](http://archive.apache.org/dist/hadoop/core/hadoop-3.1.4/) and [Hive](https://archive.apache.org/dist/hive/hive-3.1.3/).
 - Download and install [MySQL Client 8.0.33](https://downloads.mysql.com/archives/get/p/23/file/mysql-server_8.0.33-1ubuntu23.04_amd64.deb-bundle.tar).
 
 ## Operational steps
@@ -100,7 +100,7 @@ This practice requires the installation and deployment of the following software
 
 Create a Hive database, data table, and insert data by executing the following command in a terminal window:
 
-```sql
+```
 hive
 hive> create database motest;
 hive> CREATE TABLE `users`(
@@ -193,7 +193,7 @@ public class Hive2Mo {
 
 Execute the following SQL in MatrixOne to view the execution results:
 
-```sql
+```sql <!-- validator-ignore-exec -->
 mysql> select * from test.users;
 +------+----------+------+
 | id   | name     | age  |

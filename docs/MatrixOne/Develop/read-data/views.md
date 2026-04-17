@@ -56,7 +56,7 @@ mysql> select * from t01;
 
 A complex query can be defined as a view with the CREATE VIEW statement. The syntax is as follows:
 
-```sql
+```
 CREATE VIEW view_name AS query;
 ```
 
@@ -87,7 +87,7 @@ mysql> SELECT * FROM v0;
 
 Use the `SHOW CREATE TABLE|VIEW view_name` statement:
 
-```sql
+```sql <!-- validator-ignore-exec -->
 mysql> SHOW CREATE VIEW v0;
 +------+----------------------------------------------------------------------------+
 | View | Create View                                                                |

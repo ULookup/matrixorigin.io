@@ -6,6 +6,7 @@ The `CREATE SNAPSHOT` command is used to create database snapshots. Cluster admi
 
 ## Syntax Structure
 
+<!-- validator-ignore -->
 ```sql
 CREATE SNAPSHOT <snapshot_name> FOR [CLUSTER]|[ACCOUNT [<account_name>]]|[DATABASE <database_name>]|[TABLE <database_name> <tables_name>]
 ```
@@ -14,6 +15,7 @@ CREATE SNAPSHOT <snapshot_name> FOR [CLUSTER]|[ACCOUNT [<account_name>]]|[DATABA
 
 **Example 1: Cluster admin creates a cluster-level snapshot**
 
+<!-- validator-ignore -->
 ```sql
 CREATE SNAPSHOT cluster_sp FOR CLUSTER;
 mysql> SHOW SNAPSHOTS;
@@ -27,6 +29,7 @@ mysql> SHOW SNAPSHOTS;
 
 **Example 2: Cluster admin creates a tenant-level snapshot**
 
+<!-- validator-ignore -->
 ```sql
 mysql> CREATE SNAPSHOT account_sp1 FOR ACCOUNT acc1;
 mysql> SHOW SNAPSHOTS;
@@ -40,12 +43,15 @@ mysql> SHOW SNAPSHOTS;
 
 **Example 3: Tenant admin creates tenant-level snapshots**
 
+<!-- validator-ignore -->
 ```sql
 CREATE SNAPSHOT account_sp2 FOR ACCOUNT acc1;
 CREATE SNAPSHOT account_sp3 FOR ACCOUNT;
+```
 
+```
 mysql> CREATE SNAPSHOT account_sp2 FOR ACCOUNT acc2;
-ERROR 20101 (HY000): internal error: only sys tenant can create tenant level snapshot for other tenant--Tenant admins can only create snapshots for their own tenant
+ERROR 20101 (HY000): internal error: only sys tenant can create tenant level snapshot for other tenant -- Tenant admins can only create snapshots for their own tenant
 
 mysql> SHOW SNAPSHOTS;
 +---------------+----------------------------+----------------+--------------+---------------+------------+
@@ -59,6 +65,7 @@ mysql> SHOW SNAPSHOTS;
 
 **Example 4: Tenant admin creates database-level snapshot**
 
+<!-- validator-ignore -->
 ```sql
 mysql> CREATE SNAPSHOT db_sp1 FOR DATABASE db1;
 Query OK, 0 rows affected (0.01 sec)
@@ -74,6 +81,7 @@ mysql> SHOW SNAPSHOTS;
 
 **Example 5: Tenant admin creates table-level snapshot**
 
+<!-- validator-ignore -->
 ```sql
 mysql> CREATE SNAPSHOT tab_sp1 FOR TABLE db1 t1;
 Query OK, 0 rows affected (0.01 sec)

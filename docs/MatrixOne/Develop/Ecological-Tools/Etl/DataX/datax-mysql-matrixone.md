@@ -29,7 +29,7 @@ CREATE TABLE `mysql_datax` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --Insert sample data
-insert into mysql_datax valus
+insert into mysql_datax values
 (1,"lisa",15660,30,'2022-10-12',0),
 (2,"tom",15060,24,'2021-11-10',1),
 (3,"jenny",15000,28,'2024-02-19',0),
@@ -118,7 +118,7 @@ python /opt/module/datax/bin/datax.py /opt/module/datax/job/mysql2mo.json
 
 ### View data in a MatrixOne table
 
-```sql
+```sql <!-- validator-ignore-exec -->
 mysql> select * from mysql_datax;
 +------+-------+--------+------+------------+--------+
 | id   | name  | salary | age  | entrytime  | gender |

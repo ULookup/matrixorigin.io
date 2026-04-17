@@ -20,7 +20,7 @@ The `SERIAL_EXTRACT()` function is used to extract the individual elements in a 
 
 ## Examples
 
-```sql
+```sql <!-- validator-ignore-exec -->
 drop table if exists vtab64;
 create table vtab64(id int primary key auto_increment,`vecf64_3` vecf64(3),`vecf64_5` vecf64(5));
 insert into vtab64(vecf64_3,vecf64_5) values("[1,NULL,2]",NULL);

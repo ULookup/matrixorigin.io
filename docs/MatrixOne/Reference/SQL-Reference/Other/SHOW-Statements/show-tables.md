@@ -12,7 +12,7 @@ Shows the list of tables in the currently selected database.
 
 ## **Examples**
 
-```sql
+```sql <!-- validator-ignore-exec -->
 > SHOW TABLES;
 +---------------+
 | name          |

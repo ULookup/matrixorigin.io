@@ -28,7 +28,9 @@ Completed [standalone deployment of](../../Get-Started/install-standalone-matrix
 
 `CTAS` statements typically take the following form:
 
-```sql CREATE [TEMPORARY] TABLE table_name as select```
+```
+CREATE [TEMPORARY] TABLE table_name AS SELECT ...
+```
 
 See chapter [Create Table As Select](../../Reference/SQL-Reference/Data-Definition-Language/create-table-as-select.md) for more syntax descriptions
 
@@ -36,7 +38,7 @@ See chapter [Create Table As Select](../../Reference/SQL-Reference/Data-Definiti
 
 Suppose we have an e-commerce platform and we want to create a data table to analyze the details of each order including order number, customer ID, order date, product ID, product quantity and product price.
 
-```sql
+```sql <!-- validator-ignore-exec -->
 CREATE TABLE orders(
 order_id int auto_increment PRIMARY KEY,
 customer_id int,

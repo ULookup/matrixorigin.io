@@ -24,7 +24,7 @@ The environment introduced in this chapter will be based on the environment of [
 
 1. Prepare a table named `pe` and the corresponding CSV data. This CSV data table is 35.8MB, with 1,048,575 rows of data. We will use the following SQL statement to create two databases and load the same data table into the `pe` table in both databases.
 
-    ```sql
+    ```sql <!-- validator-ignore -->
     create database stock;
     drop table if exists stock.pe;
     create table stock.pe (
@@ -82,7 +82,7 @@ spec:
 
 After completing the above settings and starting the MatrixOne cluster, you can experience the effect of cache acceleration through the results of multiple queries. Here, you can run a full table scan of `stock.pe` multiple times in a row.
 
-```sql
+```sql <!-- validator-ignore -->
 mysql> select * from stock.pe into outfile "test01.txt";
 Empty set (6.53 sec)
 
@@ -102,7 +102,7 @@ The above results show that the first query is noticeably slower because it need
 
 Next, you can alternate and run a full table scan of `stock.pe` and `stock2.pe` multiple times.
 
-```sql
+```sql <!-- validator-ignore -->
 mysql> select * from stock2.pe into outfile "test05.txt";
 Empty set (5.84 sec)
 
@@ -130,7 +130,7 @@ In many business scenarios, we often need to accelerate the queries due to a lar
 
 For example, the following SQL query:
 
-```sql
+```sql <!-- validator-ignore -->
 SELECT pe1.ts_code, pe1.pe, pe1.pb
 FROM stock2.pe as pe1
 WHERE pe1.pe = (SELECT min(pe2.pe)
@@ -142,7 +142,7 @@ DESC LIMIT 1;
 
 If not optimized, the execution speed is as follows:
 
-```sql
+```sql <!-- validator-ignore -->
 SELECT pe1.ts_code, pe1.pe, pe1.pb
 FROM stock2.pe as pe1
 WHERE pe1.pe = (SELECT min(pe2.pe)
@@ -162,7 +162,7 @@ DESC LIMIT
 
 This SQL query only involves the query of the `stock2.pe` table. We can preheat the table data to the cache by pre-scanning the complete table data, so the query can significantly improve the speed of this SQL query.
 
-```sql
+```sql <!-- validator-ignore -->
 mysql> select * from stock2.pe into outfile "test11.txt";
 Empty set (6.48 sec)
 

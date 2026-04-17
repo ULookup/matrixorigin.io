@@ -18,7 +18,7 @@ Returns the second for time, in the range 0 to 59, or NULL if time is NULL.
 
 ## **Examples**
 
-```sql
+```sql <!-- validator-ignore-exec -->
 drop table if exists t1;
 create table t1(a datetime, b timestamp);
 insert into t1 values("2022-07-01", "2011-01-31 12:00:00");

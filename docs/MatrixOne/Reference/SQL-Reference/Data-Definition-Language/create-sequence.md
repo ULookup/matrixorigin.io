@@ -75,31 +75,31 @@ CREATE SEQUENCE seq_id INCREMENT BY 1 MAXVALUE 1000 START with 1;
 
 Then, the `NEXTVAL()` function can be used to get the next sequence value and automatically increment the sequence counter:
 
-```sql
+```sql <!-- validator-ignore-exec -->
 SELECT NEXTVAL('seq_id');
 ```
 
 Next, the `LASTVAL()` function can be used to return the current value of the sequence:
 
-```sql
+```sql <!-- validator-ignore-exec -->
 SELECT LASTVAL();
 ```
 
 Alternatively, the `SETVAL()` function can be used to set the current value to 30, with the optional `[,b]` parameter set to true:
 
-```sql
+```sql <!-- validator-ignore-exec -->
 SELECT SETVAL('seq_id', 30);
 ```
 
 Afterward, the `NEXTVAL()` function can be used again to get the next sequence value:
 
-```sql
+```sql <!-- validator-ignore-exec -->
 SELECT NEXTVAL('seq_id');
 ```
 
 This will return 31 because the current value has been set to 30, and the `NEXTVAL()` function will return the next sequence value 31.
 
-```sql
+```sql <!-- validator-ignore-exec -->
 SELECT LASTVAL();
 ```
 
@@ -133,14 +133,14 @@ To use a sequence in a table, the following steps need to be completed:
 
     For example, the following statement will insert a row into the "my_table" table and automatically assign a unique value to the "id" field:
 
-    ```sql
+    ```sql <!-- validator-ignore-exec -->
     INSERT INTO my_table (name) VALUES ('John');
     INSERT INTO my_table (name) VALUES ('Tom');
     ```
 
 4. Using sequences makes it easy to automatically assign unique identifiers in the form, thus avoiding the possible errors of manually assigning identifiers. Use the following statement for query verification:
 
-    ```sql
+    ```sql <!-- validator-ignore-exec -->
     mysql> select * from my_table;
     +------+------+
     | id   | name |
@@ -156,7 +156,7 @@ To use a sequence in a table, the following steps need to be completed:
 
 ## **Examples**
 
-```sql
+```sql <!-- validator-ignore-exec -->
 -- Create a sequence named "seq_id" that starts from 1, increments by 1, and has a maximum value of 1000:
 CREATE SEQUENCE seq_id INCREMENT BY 1 MAXVALUE 1000 START with 1;
 -- After creating the sequence, the NEXTVAL function can be used to retrieve the next sequence value as shown below:

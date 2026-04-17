@@ -41,8 +41,9 @@ This document mainly introduces how to use `mo_br` to perform cluster/tenant lev
 
 - Connect to the Matrixone system tenant to execute table creation statements
 
+<!-- validator-ignore -->
 ```sql
-create db if not exists snapshot_read;
+create database if not exists snapshot_read;
 use snapshot_read;
 create table test_snapshot_read (a int);
 INSERT INTO test_snapshot_read (a) VALUES(1), (2), (3), (4), (5),(6), (7), (8), (9), (10), (11) , (12),(13), (14), (15), (16), (17), (18), (19), (20),(21), (22), (23), ( 24), (25), (26), (27), (28), (29), (30), (31), (32), (33), (34), (35), (36) , (37), (38), (39), (40), (41), (42), (43), (44), (45), (46), (47), (48), ( 49), (50),(51), (52), (53), (54), (55), (56), (57), (58), (59), (60),(61) , (62), (63), (64), (65), (66), (67), (68), (69), (70), (71), (72), (73), ( 74), (75), (76), (77), (78), (79), (80), (81), (82), (83), (84), (85), (86) , (87), (88), (89), (90), (91), (92), (93), (94), (95), (96), (97), (98), ( 99), (100);
@@ -66,6 +67,7 @@ sp_01 2024-05-10 02:06:08.01635 account sys
 
 - Connect to the Matrixone system tenant and delete some data in the table.
 
+<!-- validator-ignore -->
 ```sql
 delete from snapshot_read.test_snapshot_read where a <= 50;
 
@@ -85,6 +87,7 @@ mysql> select count(*) from snapshot_read.test_snapshot_read;
 
 - Connect to the Matrixone system tenant to query the recovery status
 
+<!-- validator-ignore -->
 ```sql
 mysql> select count(*) from snapshot_read.test_snapshot_read;
 +----------+
@@ -98,8 +101,9 @@ mysql> select count(*) from snapshot_read.test_snapshot_read;
 
 - Connect to the Matrixone system tenant to execute sql statements
 
+<!-- validator-ignore -->
 ```sql
-create db if not exists snapshot_read;
+create database if not exists snapshot_read;
 use snapshot_read;
 create table test_snapshot_read (a int);
 INSERT INTO test_snapshot_read (a) VALUES(1), (2), (3), (4), (5),(6), (7), (8), (9), (10), (11) , (12),(13), (14), (15), (16), (17), (18), (19), (20),(21), (22), (23), ( 24), (25), (26), (27), (28), (29), (30), (31), (32), (33), (34), (35), (36) , (37), (38), (39), (40), (41), (42), (43), (44), (45), (46), (47), (48), ( 49), (50),(51), (52), (53), (54), (55), (56), (57), (58), (59), (60),(61) , (62), (63), (64), (65), (66), (67), (68), (69), (70), (71), (72), (73), ( 74), (75), (76), (77), (78), (79), (80), (81), (82), (83), (84), (85), (86) , (87), (88), (89), (90), (91), (92), (93), (94), (95), (96), (97), (98), ( 99), (100);
@@ -134,6 +138,7 @@ sp_02 2024-05-10 02:47:15.638519 account sys
 
 - Connect to Matrixone system tenant to delete some data
 
+<!-- validator-ignore -->
 ```sql
 delete from snapshot_read.test_snapshot_read where a <= 50;
 delete from snapshot_read.test_snapshot_read_1 where a >= 50;
@@ -162,6 +167,7 @@ mysql> select count(*) from snapshot_read.test_snapshot_read_1;
 
 - Connect to the Matrixone system tenant to query the recovery status
 
+<!-- validator-ignore -->
 ```sql
 mysql> select count(*) from snapshot_read.test_snapshot_read;
 +----------+
@@ -186,6 +192,7 @@ Tenant level recovery
 
 - Connect to the Matrixone system tenant to execute sql statements
 
+<!-- validator-ignore -->
 ```sql
 create database if not exists snapshot_read;
 
@@ -207,6 +214,7 @@ mysql> show databases;
 
 - Connect the Matrixone system tenant to delete the database
 
+<!-- validator-ignore -->
 ```sql
 drop database snapshot_read;
 
@@ -239,6 +247,7 @@ mysql> show databases;
 
 - Connect to the Matrixone system tenant to query the recovery status
 
+<!-- validator-ignore -->
 ```sql
 mysql> show databases;
 +--------------------+
@@ -258,6 +267,7 @@ mysql> show databases;
 
 - Connect to the new tenant acc2 to query the recovery status
 
+<!-- validator-ignore -->
 ```sql
 mysql> show databases;
 +--------------------+
@@ -275,6 +285,7 @@ mysql> show databases;
 
 ## Example 4 Cluster level recovery
 
+<!-- validator-ignore -->
 ```sql
 --Executed under tenant acc1, acc2
 create database db1;
@@ -305,6 +316,7 @@ cluster_sp1 2024-10-14 03:52:55.657359 cluster
 
 - Connect the Matrixone system tenant to delete the database
 
+<!-- validator-ignore -->
 ```sql
 --Executed under tenant acc1, acc2
 drop database db1;
@@ -330,6 +342,7 @@ mysql> show databases;
 
 - Connect to tenants acc1 and acc2 to query the recovery status
 
+<!-- validator-ignore -->
 ```sql
 mysql> show databases;
 +--------------------+

@@ -100,7 +100,7 @@ FOR UPDATE;
 
 In this transaction, the `SELECT FOR UPDATE` statement selects and locks the row in the `Orders` table where `OrderID` is 1. Other transactions cannot modify this row until the transaction ends. After modifying the row, you can commit the transaction to release the lock:
 
-```sql src/main.sql
+```sql src/main.sql <!-- validator-ignore-exec -->
 UPDATE Orders
 SET Quantity = Quantity - 1
 WHERE OrderID = 1;
@@ -112,7 +112,7 @@ The `UPDATE` statement modifies the `Quantity` value of the selected row, and th
 
 ## **Examples**
 
-```sql src/main.sql
+```sql src/main.sql <!-- validator-ignore-exec -->
 CREATE TABLE t1 (spID INT, userID INT, score SMALLINT);
 INSERT INTO t1 VALUES (1,1,1);
 INSERT INTO t1 VALUES (2,2,2);

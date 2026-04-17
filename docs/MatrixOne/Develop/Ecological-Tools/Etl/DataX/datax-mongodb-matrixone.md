@@ -6,7 +6,7 @@ This article describes how to write MongoDB data offline to a MatrixOne database
 
 Before you can start writing data to MatrixOne using DataX, you need to complete the installation of the following software:
 
-- Finished [installing and starting](../../../Get-Started/install-standalone-matrixone.md) MatrixOne.
+- Finished [installing and starting](../../../../Get-Started/install-standalone-matrixone.md) MatrixOne.
 - Install [JDK 8+ version](https://www.oracle.com/sg/java/technologies/javase/javase8-archive-downloads.html).
 - Install [Python 3.8 (or plus)](https://www.python.org/downloads/).
 - Download the [DataX](https://datax-opensource.oss-cn-hangzhou.aliyuncs.com/202210/datax.tar.gz) installation package and unzip it.
@@ -20,7 +20,7 @@ Before you can start writing data to MatrixOne using DataX, you need to complete
 
 Create database test or test if test does not exist
 
-```sql
+```
 >create database test;
 >use test
 #Viewing the current database
@@ -42,9 +42,9 @@ test
 ### Creating a Target Table in MatrixOne
 
 ```sql
-mysql> create database test;
-mysql> use test;
-mysql> CREATE TABLE `mongodbtest` (
+create database test;
+use test;
+CREATE TABLE `mongodbtest` (
   `name` varchar(30) NOT NULL COMMENT "",
   `age` int(11) NOT NULL COMMENT ""
 );

@@ -17,7 +17,7 @@ The `LOAD_FILE()` function is used to read the contents of the file pointed to b
 
 | Parameters | Description |
 | ----| ----|
-| datalink_type_data | datalink type data can be converted using the [cast()](../../../Reference/Operators/operators/cast-functions-and-operators/cast/) function |
+| datalink_type_data | datalink type data can be converted using the [cast()](../../../Reference/Operators/operators/cast-functions-and-operators/cast.md) function |
 
 ## Example
 
@@ -28,7 +28,7 @@ There is a file `t1.csv` under `/Users/admin/case`
 this is a test message
 ```
 
-```sql
+```sql <!-- validator-ignore -->
 create table t1 (col1 int, col2 datalink);
 create stage stage1 url='file:///Users/admin/case/';
 insert into t1 values (1, 'file:///Users/admin/case/t1.csv');

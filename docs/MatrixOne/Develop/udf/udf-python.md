@@ -62,9 +62,8 @@ MatrixOne supports creating UDFs in SQL by writing function bodies directly in P
     Before you can create a UDF function, you need to create a test library:
 
     ```sql
-    mysql> create database udf_test; Query 0k, 1 row affected (0.02 sec) 
-    mysql> use udf_test; 
-    Database changed 
+    create database udf_test;
+    use udf_test;
     ```
 
 2. Creating a UDF Function

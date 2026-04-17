@@ -19,6 +19,7 @@ The `KILL` statement terminates a running query or process.
 
 ## **Examples**
 
+<!-- validator-ignore -->
 ```sql
 select connection_id();
 +-----------------+

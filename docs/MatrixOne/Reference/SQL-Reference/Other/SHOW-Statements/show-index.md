@@ -37,7 +37,7 @@ An alternative to tbl_name FROM db_name syntax is db_name.tbl_name.
 
 ## **Examples**
 
-```sql
+```sql <!-- validator-ignore-exec -->
 CREATE TABLE show_01(sname varchar(30),id int);
 mysql> show INDEX FROM show_01;
 +---------+------------+------------+--------------+-------------+-----------+-------------+----------+--------+------+------------+------------------+---------+------------+

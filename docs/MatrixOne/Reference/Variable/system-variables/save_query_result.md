@@ -77,7 +77,7 @@ You can query metadata information using the following SQL statement:
 
 ```sql
 select * from meta_scan(query_id) as u;
-current account_id
+-- current account_id (example metadata field in the result set; see table below)
 select query_id from meta_scan(query_id) as u;
 ```
 
@@ -103,7 +103,7 @@ You can save the query results on your local disk or S3.
 
 ### Syntax structure
 
-```sql
+```
 MODUMP QUERY_RESULT query_id INTO s3_path
      [FIELDS TERMINATED BY 'char']
      [ENCLOSED BY 'char']
@@ -138,7 +138,7 @@ MODUMP QUERY_RESULT query_id INTO s3_path
 
 - Example 1
 
-```sql
+```sql <!-- validator-ignore-exec -->
 mysql> set global save_query_result = on;
 mysql> set global query_result_timeout = 24;
 mysql> set global query_result_maxsize = 200;
@@ -182,7 +182,7 @@ MODUMP QUERY_RESULT 'f005ebc6-a3dc-11ee-bb76-26dd28356ef3' INTO 'etl:your_local_
 
 - Example 2
 
-```sql
+```sql <!-- validator-ignore-exec -->
 mysql> set global save_query_result = on;
 mysql> set global query_result_timeout = 24;
 mysql> set global query_result_maxsize = 200;
@@ -223,7 +223,7 @@ mysql> select * from meta_scan('afc82394-a45e-11ee-bb9a-26dd28356ef3') as t;
 
 - Example 3
 
-```sql
+```sql <!-- validator-ignore-exec -->
 mysql> set global save_query_result = on;
 mysql> set global query_result_timeout = 24;
 mysql> set global query_result_maxsize = 200;
@@ -250,7 +250,7 @@ mysql> select * from meta_scan(last_query_id()) as t;
 
 - Example 4
 
-```sql
+```sql <!-- validator-ignore-exec -->
 mysql> set global save_query_result = on;
 mysql> set global query_result_timeout = 24;
 mysql> set global query_result_maxsize = 200;
@@ -275,7 +275,7 @@ mysql> select * from meta_scan(last_query_id()) as t;
 
 - Example 5
 
-```sql
+```sql <!-- validator-ignore-exec -->
 mysql> CREATE TABLE numbers(pk INTEGER PRIMARY KEY, ui BIGINT UNSIGNED, si BIGINT);
 Query OK, 0 rows affected (0.02 sec)
 
@@ -307,7 +307,7 @@ mysql> select * from meta_scan(last_query_id()) as t;
 
 - Example 6
 
-```sql
+```sql <!-- validator-ignore-exec -->
 mysql> set global save_query_result = on;
 mysql> set global query_result_timeout = 24;
 mysql> set global query_result_maxsize = 200;

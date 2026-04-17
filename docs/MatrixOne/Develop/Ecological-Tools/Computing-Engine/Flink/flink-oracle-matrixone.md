@@ -17,6 +17,7 @@ This practice requires the installation and deployment of the following software
 
 ### Create a table in Oracle and insert data
 
+<!-- validator-ignore -->
 ```sql
 create table flinkcdc_empt
 (
@@ -29,9 +30,9 @@ create table flinkcdc_empt
     COMM     NUMBER(7, 2),
     DEPTNO   NUMBER(2)
 )
---Modify the FLINKCDC_EMPT table to support incremental logging
+-- Modify the FLINKCDC_EMPT table to support incremental logging
 ALTER TABLE scott.FLINKCDC_EMPT ADD SUPPLEMENTAL LOG DATA (ALL) COLUMNS;
---Insert test data:
+-- Insert test data:
 INSERT INTO SCOTT.FLINKCDC_EMPT (EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO) VALUES(1, 'TURNER', 'SALESMAN', 7698, TIMESTAMP '2022-10-31 16:21:11.000000', 1500, 0, 30);
 INSERT INTO SCOTT.FLINKCDC_EMPT (EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO) VALUES(2, 'TURNER', 'SALESMAN', 7698, TIMESTAMP '2022-10-31 16:21:11.000000', 1500, 0, 30);
 INSERT INTO SCOTT.FLINKCDC_EMPT (EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO) VALUES(3, 'TURNER', 'SALESMAN', 7698, TIMESTAMP '2022-10-31 16:21:11.000000', 1500, 0, 30);
@@ -84,6 +85,7 @@ SET execution.checkpointing.interval = 3s;
 
 ### Create source/sink table with flink ddl
 
+<!-- validator-ignore -->
 ```sql
 -- Create source table (oracle)
 CREATE TABLE `oracle_source` (

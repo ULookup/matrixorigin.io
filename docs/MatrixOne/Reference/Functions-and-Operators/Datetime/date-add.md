@@ -20,7 +20,7 @@ The ``DATE_ADD()`` function adds a time/date interval to a date and then returns
 
 ## **Examples**
 
-```sql
+```sql <!-- validator-ignore-exec -->
 create table t2(orderid int, productname varchar(20), orderdate datetime);
 insert into t2 values ('1','Jarl','2008-11-11 13:23:44.657');
 

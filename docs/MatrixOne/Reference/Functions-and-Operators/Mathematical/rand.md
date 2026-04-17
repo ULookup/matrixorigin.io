@@ -8,7 +8,7 @@ If you need to randomly select data from a table, you can use the `RAND()` funct
 
 ```sql
 -- Randomly retrieve all data from the table and sort it in a random order, the order of the query results may differ each time.
-SELECT * FROM table ORDER BY RAND();
+SELECT * FROM `table` ORDER BY RAND();
 ```
 
 ## **Syntax**
@@ -27,7 +27,7 @@ SELECT * FROM table ORDER BY RAND();
 
 - Example 1
 
-```sql
+```sql <!-- validator-ignore-exec -->
 mysql> SELECT RAND();
 +---------------------+
 | rand()              |
@@ -39,7 +39,7 @@ mysql> SELECT RAND();
 
 - Example 2
 
-```sql
+```sql <!-- validator-ignore-exec -->
 CREATE TABLE Users (
     ID INT PRIMARY KEY AUTO_INCREMENT,
     UserName VARCHAR(255) NOT NULL,

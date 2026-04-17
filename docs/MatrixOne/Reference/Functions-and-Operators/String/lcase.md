@@ -18,7 +18,7 @@
 
 ## **Examples**
 
-```sql
+```sql <!-- validator-ignore-exec -->
 mysql> select lcase('HELLO');
 +--------------+
 | lcase(HELLO) |

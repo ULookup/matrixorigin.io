@@ -51,7 +51,7 @@ CREATE TABLE t3 (
 
 **Table output results**:
 
-```sql
+```
 > mysql> EXPLAIN ANALYZE SELECT * FROM t1 JOIN t2 ON (t1.c1 = t2.c2)\G
 *************************** 1. row ***************************
 QUERY PLAN: Project

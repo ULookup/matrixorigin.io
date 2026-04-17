@@ -21,7 +21,7 @@ CONCAT(str1,str2,...)
 
 ## **Examples**
 
-```SQL
+```SQL <!-- validator-ignore-exec -->
 mysql> SELECT CONCAT('My', 'S', 'QL');
 +-------------------+
 | concat(My, S, QL) |

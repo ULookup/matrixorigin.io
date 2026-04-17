@@ -27,7 +27,7 @@ In strings, certain sequences have special meanings. These sequences start with 
 
 ## **Example**
 
-```sql
+```sql <!-- validator-ignore-exec -->
 mysql> SET @j = '"abc"';
 Query OK, 0 rows affected (0.00 sec)
 

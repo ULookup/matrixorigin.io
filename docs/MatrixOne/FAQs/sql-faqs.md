@@ -100,7 +100,7 @@ Exporting a backup of a single database is currently only supported. If you have
 
 **Does MatrixOne support importing data from Minio?**
 
-Yes, the load data command supports importing data from local files, S3 object storage services, and S3 compatible object storage services into matrixone, while Minio is also based on the S3 protocol, so it is also supported, see [Local Object Storage](../Deploy/import-data-from-minio-to-mo/) for details
+Yes, the load data command supports importing data from local files, S3 object storage services, and S3 compatible object storage services into matrixone, while Minio is also based on the S3 protocol, so it is also supported, see [Local Object Storage](../Deploy/import-data-from-minio-to-mo.md) for details
 
 **When MatrixOne imports and exports data, if there is an encoding problem that causes the data to be scrambled, how do we generally solve it**
 
@@ -138,7 +138,7 @@ EXPLAIN SELECT col1 FROM tbl1;
 
 To check the table compression ratio in MatrixOne, you can use the following SQL query:
 
-```sql
+```sql <!-- validator-ignore-exec -->
 mysql> select ( sum(compress_size) + 1) / ( sum(origin_size) +1 ) from metadata_scan('db1.students', '*') m;
 +---------------------------------------------------+
 | (sum(compress_size) + 1) / (sum(origin_size) + 1) |

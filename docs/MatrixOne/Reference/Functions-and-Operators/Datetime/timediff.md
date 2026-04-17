@@ -20,7 +20,7 @@ The result returned by `TIMEDIFF()` is limited to the range allowed for TIME val
 
 ## **Examples**
 
-```sql
+```sql <!-- validator-ignore-exec -->
 mysql> select timediff("22:22:22", "11:00:00");
 +------------------------------+
 | timediff(22:22:22, 11:00:00) |

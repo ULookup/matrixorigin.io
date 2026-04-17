@@ -18,7 +18,7 @@ Before you can start writing data to MatrixOne using DataX, you need to complete
 
 ### Create sql server test data
 
-```sql
+```
 CREATE TABLE test.dbo.test2 (
 	id int NULL,
 	age int NULL,
@@ -39,7 +39,7 @@ VALUES(1, 1, N'shdfhg '),
 
 Since DataX can only synchronize data, not table structure, we need to manually create the table in the target database (MatrixOne) before we can perform the task.
 
-```sql
+```sql <!-- validator-ignore-exec -->
 CREATE TABLE test.test_2 (
 	id int not NULL,
 	age int NULL,

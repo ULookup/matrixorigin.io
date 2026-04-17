@@ -23,8 +23,10 @@ select @@global.invited_nodes;
 ## set up
 
 ```sql
-set global validnode_checking=xx;--Default is 0
-set global invited_nodes=xx; --Default is *
+set global validnode_checking=xx; 
+-- Default is 0
+set global invited_nodes=xx; 
+-- Default is *
 ```
 
 ## Example

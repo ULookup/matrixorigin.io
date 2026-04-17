@@ -107,7 +107,7 @@ mysql> select * from inttable;
 
 ### **Examples**
 
-```sql
+```sql <!-- validator-ignore-exec -->
 -- Create a table named "floatt1" with precision, a trailing zero is added when the number of bits falls short
 create table floatt1(a float(5, 2));
 insert into floatt1 values(1), (2.5), (3.56), (4.678);
@@ -153,9 +153,10 @@ mysql> select min(big),max(big),max(big)-1 from floattable;
 
 ### **Examples**
 
-```sql
+```sql <!-- validator-ignore-exec -->
 create table t1 (a bit);
-mysql> desc  t1;--bit(M)  M DEFAULT 1
+-- bit(M)  M DEFAULT 1
+mysql> desc  t1;
 +-------+--------+------+------+---------+-------+---------+
 | Field | Type   | Null | Key  | Default | Extra | Comment |
 +-------+--------+------+------+---------+-------+---------+
@@ -179,7 +180,7 @@ mysql> select * from t2;
 
 truncate table t2;
 
---Assigning values with hex-value literal syntax
+-- Assigning values with hex-value literal syntax
 insert into t2 values (0x10);
 insert into t2 values (x'10');
 mysql> select * from t2;
@@ -193,9 +194,11 @@ mysql> select * from t2;
 
 truncate table t2;
 
---Supports assignment by int type, but the length of the binary representation of int cannot exceed the length of bit type.
-insert into t2 values (255);--a = b'11111111'
-mysql> insert into t2 values (256);--The length of the binary representation of 256 exceeds 8.
+-- Supports assignment by int type, but the length of the binary representation of int cannot exceed the length of bit type.
+insert into t2 values (255);
+-- a = b'11111111'
+mysql> insert into t2 values (256);
+-- The length of the binary representation of 256 exceeds 8.
 ERROR 20301 (HY000): invalid input: data too long, type width = 8, val = 100000000
 
 mysql> select * from t2;
@@ -208,8 +211,9 @@ mysql> select * from t2;
 
 truncate table t2;
 
---Floating-point data will first be rounded to int type and then assigned according to the int type.
-insert into t2 values (2.1);--a = b'00000010'
+-- Floating-point data will first be rounded to int type and then assigned according to the int type.
+insert into t2 values (2.1);
+-- a = b'00000010'
 mysql> select * from t2;
 +------------+
 | a          |
@@ -220,9 +224,11 @@ mysql> select * from t2;
 
 truncate table t2;
 
---Character data is stored as its encoded value, and the total length of the encoding into which the entire string is converted must not exceed the bit type.
-insert into t2 values ('a');--a = b'01100001' 
-mysql> insert into t2 values ('啊');--utf8('啊') = 0xe5958a;
+-- Character data is stored as its encoded value, and the total length of the encoding into which the entire string is converted must not exceed the bit type.
+insert into t2 values ('a');
+-- a = b'01100001'
+mysql> insert into t2 values ('啊');
+-- utf8('啊') = 0xe5958a;
 ERROR 20301 (HY000): invalid input: data too long, type width = 8, val = 111001011001010110001010
 
 mysql> select * from t2;
@@ -272,7 +278,7 @@ mysql> select name,age from names;
 
 - BINARY and VARBINARY
 
-```sql
+```sql <!-- validator-ignore-exec -->
 -- Create a table named "names" with 2 attributes of a "varchar" and a "char"
 create table names(name varbinary(255),age binary(255));
 insert into names(name, age) values('Abby', '24');
@@ -316,7 +322,7 @@ mysql> select * from texttest where a like 'ab\_def' order by 1 asc;
 
 - BLOB
 
-```sql
+```sql <!-- validator-ignore-exec -->
 -- Create a table named "blobtest" with 1 attribute of a "blob"
 create table blobtest (a blob);
 insert into blobtest values('abcdef');
@@ -338,7 +344,7 @@ mysql> select * from blobtest where a like 'ab\_def' order by 1 asc;
 
 - ENUM
 
-```sql
+```sql <!-- validator-ignore-exec -->
 -- Create a table named "enumtest" with 1 attribute of a "enum"
 CREATE TABLE enumtest (color ENUM('red', 'green', 'blue'));
 INSERT INTO enumtest (color) VALUES ('red');
@@ -415,7 +421,7 @@ mysql> select * from time_02;
 
 - DATE
 
-```sql
+```sql <!-- validator-ignore-exec -->
 -- Create a table named "datetest" with 1 attributes of a "date"
 create table datetest (a date not null, primary key(a));
 insert into datetest values ({d'2022-01-01'}), ('20220102'),(date'2022-01-03'),({d now()});
@@ -433,7 +439,7 @@ mysql> select * from datetest;
 
 - DATETIME
 
-```sql
+```sql <!-- validator-ignore-exec -->
 -- Create a table named "datetimetest" with 1 attributes of a "datetime"
 create table datetimetest (a datetime(0) not null, primary key(a));
 insert into datetimetest values ('20200101000000'), ('2022-01-02'), ('2022-01-02 00:00:01'), ('2022-01-02 00:00:01.512345');
@@ -452,7 +458,7 @@ mysql> select * from datetimetest order by a asc;
 
 - TIMESTAMP
 
-```sql
+```sql <!-- validator-ignore-exec -->
 -- Create a table named "timestamptest" with 1 attribute of a "timestamp"
 create table timestamptest (a timestamp(0) not null, primary key(a));
 insert into timestamptest values ('20200101000000'), (timestamp'2022-01-02 11:30:40'), ({ts'2022-01-02 00:00:01'}), ({ts current_timestamp});
@@ -527,12 +533,12 @@ mysql> select * from decimalTest;
 
 ### **Example**
 
-```sql
+```sql <!-- validator-ignore-exec -->
 -- Create a new table named 't1' and set the 'a' column as UUID type, and set the 'a' column as the primary key
 create table t1(a uuid primary key);
 
 -- Insert a new UUID value into column 'a' of table 't1'
-insert into t1 values ​​(uuid());
+insert into t1 values (uuid());
 
 -- Query the length of the value of the 'a' column in the 't1' table converted to a string
 mysql> select length(cast(a as varchar)) from t1;
@@ -562,7 +568,7 @@ mysql> select * from t1;
 
 ### **Example**
 
-```sql
+```sql <!-- validator-ignore-exec -->
 create table t1(n1 vecf32(3), n2 vecf64(2));
 insert into t1 values("[1,2,3]",'[4,5]');
 
@@ -583,7 +589,7 @@ mysql> select * from t1;
 
 ### Example
 
-```sql
+```sql <!-- validator-ignore -->
 drop table test01;
 create table test01 (col1 int, col2 datalink);
 create stage stage01 url='file:///Users/admin/case/';

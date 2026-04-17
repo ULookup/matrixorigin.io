@@ -96,6 +96,9 @@ Here we take the TPCH dataset as an example and migrate the 8 tables of the TPCH
     ```sql
     create database tpch;
     use tpch;
+    ```
+
+    ```
     source '/YOUR_PATH/mysql_ddl.sql'
     ```
 
@@ -192,6 +195,9 @@ Here we take the TPCH dataset as an example and migrate the 8 tables of the TPCH
     ```sql
     create database tpch;
     use tpch;
+    ```
+
+    ```
     source '/YOUR_PATH/mysql_ddl.sql'
     ```
 
@@ -203,7 +209,7 @@ MatrixOne has two data migration methods to choose from: `INSERT` and `LOAD DATA
 
 1. Export the PostgreSQL data table to CSV format in the PostgreSQL database command line environment:
 
-    ```sql
+    ```
     postgres=# \c tpch;
     postgres=# COPY tpch.nation TO '/{filepath}/nation.tbl' DELIMITER '|';
     postgres=# COPY tpch.region TO '/{filepath}/region.tbl' DELIMITER '|';
@@ -236,7 +242,7 @@ The `INSERT` statement needs to use `pgdump` to export the logical statement fir
 
 1. Use `pgdump` to export data. To ensure that MatrixOne directly writes to S3 when inserting, inserting as large a batch as possible is recommended. The `net_buffer_length` parameter should start at 10MB:
 
-    ```sql
+    ```bash
     $ pg_dump -U postgres --no-acl --no-owner --inserts --rows-per-insert 5000  --format p --data-only --schema=tpch tpch -f pg_data.sql
     ```
 

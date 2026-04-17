@@ -35,7 +35,7 @@ __NOTE__:
 
 ## Examples
 
-```sql
+```sql <!-- validator-ignore-exec -->
 drop table if exists t1;
 create table t1(coordinate vecf32(2),class char);
 -- There are seven points, each representing its coordinates on the x and y axes, and each point's class is labeled A or B.

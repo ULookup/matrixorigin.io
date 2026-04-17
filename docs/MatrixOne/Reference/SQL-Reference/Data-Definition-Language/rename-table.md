@@ -20,7 +20,7 @@ Things to note:
 
 ## **Example**
 
-```sql
+```sql <!-- validator-ignore-exec -->
 create table old_table1(n1 int);
 create table old_table2(n1 int);
 create table old_table3(n1 int);

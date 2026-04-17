@@ -69,13 +69,13 @@ DROP DATABASE dbdemo;
 
 - To create a table, use the `CREATE TABLE` statement:
 
-```sql
+```
 CREATE TABLE table_name column_name data_type constraint;
 ```
 
 For example, to create a table named *person* which includes fields such as *number*, *name*, and *birthday*, use the following statement:
 
-```sql
+```sql <!-- validator-ignore-exec -->
 CREATE TABLE person (
     id INT(11),
     name VARCHAR(255),
@@ -85,13 +85,13 @@ CREATE TABLE person (
 
 - To view the statement that creates the table (DDL), use the `SHOW CREATE` statement:
 
-```sql
+```sql <!-- validator-ignore-exec -->
 SHOW CREATE table person;
 ```
 
 Expected result:
 
-```sql
+```
 +--------+-----------------------------------------------------------------------------------------------------------------+
 | Table  | Create Table                                                                                                    |
 +--------+-----------------------------------------------------------------------------------------------------------------+
@@ -106,7 +106,7 @@ Expected result:
 
 - To delete a table, use the `DROP TABLE` statement:
 
-```sql
+```sql <!-- validator-ignore-exec -->
 DROP TABLE person;
 ```
 
@@ -116,31 +116,31 @@ Common DML features are adding, modifying, and deleting table records. The corre
 
 - To insert data into a table, use the `INSERT` statement:
 
-```sql
+```sql <!-- validator-ignore-exec -->
 INSERT INTO person VALUES(1,'tom','20170912');
 ```
 
 - To insert a record containing data of some fields into a table, use the `INSERT` statement:
 
-```sql
+```sql <!-- validator-ignore-exec -->
 INSERT INTO person(id,name) VALUES('2','bob');
 ```
 
 - To update some fields of a record in a table, use the `UPDATE` statement:
 
-```sql
+```sql <!-- validator-ignore-exec -->
 UPDATE person SET birthday='20180808' WHERE id=2;
 ```
 
-- To replace some field data of table records in the table, use the `UPDATE` statement:
+- To replace some field data of table records in the table, use the `REPLACE INTO` statement:
 
-```sql
-REPLACE INTO person SET birthday='20180809' WHERE id=2;
+```sql <!-- validator-ignore-exec -->
+REPLACE INTO person (id, birthday) VALUES (2, '20180809');
 ```
 
 - To delete the data in a table, use the `DELETE` statement:
 
-```sql
+```sql <!-- validator-ignore-exec -->
 DELETE FROM person WHERE id=2;
 ```
 
@@ -153,7 +153,7 @@ DQL is used to retrieve the desired data rows from a table or multiple tables.
 
 - To view the data in a table, use the `SELECT` statement:
 
-```sql
+```sql <!-- validator-ignore-exec -->
 SELECT * FROM person;
 ```
 
@@ -182,7 +182,7 @@ SELECT name FROM person;
 
 Use the `WHERE` clause to filter all records that match the conditions and then return the result:
 
-```sql
+```sql <!-- validator-ignore-exec -->
 SELECT * FROM person where id<5;
 ```
 

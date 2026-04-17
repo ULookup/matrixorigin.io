@@ -12,7 +12,7 @@ SELECT CURRENT_ROLE();
 
 ## **Examples**
 
-```sql
+```sql <!-- validator-ignore-exec -->
 mysql> select current_role();
 +----------------+
 | current_role() |

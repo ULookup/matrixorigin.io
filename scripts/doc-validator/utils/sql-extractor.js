@@ -44,7 +44,7 @@ export function extractSqlFromContent(content, filePath = '') {
 
         if (!block.isSql) continue
 
-        // Skip blocks marked with validator-ignore
+        // Skip blocks marked with <!-- validator-ignore --> (skips both syntax & exec)
         if (block.ignored) continue
 
         // Check if it's a genuine SQL code block (not mixed with Shell commands)
@@ -52,6 +52,14 @@ export function extractSqlFromContent(content, filePath = '') {
 
         // Detect format type
         const formatType = detectSqlFormat(block.content)
+
+        // Common per-block flags propagated to every emitted sqlBlock. `executionIgnored`
+        // comes from <!-- validator-ignore-exec --> and means: keep this block in the
+        // syntax checker, but skip it in the execution checker (useful for examples that
+        // depend on specific data/engine state but are syntactically valid).
+        const commonFlags = {
+            executionIgnored: !!block.executionIgnored
+        }
 
         if (formatType === 'mysql-inline') {
             // Format 1: MySQL inline format - parse SQL and output together
@@ -65,7 +73,8 @@ export function extractSqlFromContent(content, filePath = '') {
                     validationMode: block.validationMode,
                     expectedResults: item.expectedOutput ? { output: item.expectedOutput } : {},
                     filePath: block.filePath,
-                    format: 'mysql-inline'
+                    format: 'mysql-inline',
+                    ...commonFlags
                 })
             }
         } else if (formatType === 'separated-sql') {
@@ -85,7 +94,8 @@ export function extractSqlFromContent(content, filePath = '') {
                         output: nextBlock.content
                     },
                     filePath: block.filePath,
-                    format: 'separated'
+                    format: 'separated',
+                    ...commonFlags
                 })
                 i++ // Skip next block as it's been processed
             } else {
@@ -99,7 +109,8 @@ export function extractSqlFromContent(content, filePath = '') {
                     validationMode: extracted.validationMode || block.validationMode,
                     expectedResults: extracted.expectedResults,
                     filePath: block.filePath,
-                    format: 'pure-sql'
+                    format: 'pure-sql',
+                    ...commonFlags
                 })
             }
         } else {
@@ -113,7 +124,8 @@ export function extractSqlFromContent(content, filePath = '') {
                 validationMode: extracted.validationMode || block.validationMode,
                 expectedResults: extracted.expectedResults,
                 filePath: block.filePath,
-                format: 'pure-sql'
+                format: 'pure-sql',
+                ...commonFlags
             })
         }
     }
@@ -142,8 +154,10 @@ function collectAllCodeBlocks(lines, filePath) {
             const language = codeBlockStart[2] || ''
             const mode = codeBlockStart[3] || null
 
-            // Check for validator-ignore comment on the same line or previous line
-            const shouldIgnore = checkValidatorIgnore(line, lines, i)
+            // Check for validator-ignore / validator-ignore-exec comments on the same
+            // line or previous line. `ignored` skips syntax + execution; `executionIgnored`
+            // skips execution only and keeps the block in the syntax checker.
+            const ignoreFlags = checkValidatorIgnore(line, lines, i)
 
             inCodeBlock = true
             currentBlock = {
@@ -157,7 +171,8 @@ function collectAllCodeBlocks(lines, filePath) {
                 version: extractVersionFromContext(lines, i),
                 validationMode: mode,
                 filePath,
-                ignored: shouldIgnore
+                ignored: ignoreFlags.ignored,
+                executionIgnored: ignoreFlags.executionIgnored
             }
             continue
         }
@@ -183,30 +198,48 @@ function collectAllCodeBlocks(lines, filePath) {
 }
 
 /**
- * Check if a code block should be ignored by the validator
- * Supports formats:
- * - <!-- validator-ignore --> on the line before the code block
- * - ```sql <!-- validator-ignore --> on the same line
+ * Check if a code block should be ignored by the validator.
+ *
+ * Supported directives (HTML comments):
+ *  - <!-- validator-ignore -->        Skip BOTH syntax and execution validation.
+ *  - <!-- validator-ignore-exec -->   Skip execution validation ONLY; keep the block
+ *                                     in syntax validation. Useful when the example is
+ *                                     syntactically valid MatrixOne SQL but cannot run
+ *                                     in the generic test environment (missing data,
+ *                                     external files, feature flags, transaction mode,
+ *                                     snapshot/stage/cluster state, etc.).
+ *
+ * The directive may appear on the line immediately before the ```sql fence, or inline
+ * on the fence itself: ```sql <!-- validator-ignore-exec -->
+ *
  * @param {string} currentLine - Current line (code block start)
  * @param {Array} lines - All lines
  * @param {number} currentIndex - Current line index
- * @returns {boolean} Whether to ignore this block
+ * @returns {{ignored: boolean, executionIgnored: boolean}}
  */
 function checkValidatorIgnore(currentLine, lines, currentIndex) {
-    // Check same line: ```sql <!-- validator-ignore -->
+    const result = { ignored: false, executionIgnored: false }
+
+    // Same line: ```sql <!-- validator-ignore(-exec)? -->
+    if (/<!--\s*validator-ignore-exec\s*-->/.test(currentLine)) {
+        result.executionIgnored = true
+    }
     if (/<!--\s*validator-ignore\s*-->/.test(currentLine)) {
-        return true
+        result.ignored = true
     }
 
-    // Check previous line: <!-- validator-ignore -->
+    // Previous line: <!-- validator-ignore(-exec)? -->
     if (currentIndex > 0) {
         const prevLine = lines[currentIndex - 1].trim()
+        if (/^<!--\s*validator-ignore-exec\s*-->$/.test(prevLine)) {
+            result.executionIgnored = true
+        }
         if (/^<!--\s*validator-ignore\s*-->$/.test(prevLine)) {
-            return true
+            result.ignored = true
         }
     }
 
-    return false
+    return result
 }
 
 /**
@@ -280,6 +313,7 @@ function parseMysqlInlineFormat(sqlText) {
     let inOutput = false
     let inMultiLineSQL = false
     let isQueryWithOutput = false
+    let skipUntilPrompt = false
 
     for (const line of lines) {
         const trimmed = line.trim()
@@ -302,6 +336,7 @@ function parseMysqlInlineFormat(sqlText) {
 
         // Identify new SQL statement starting with mysql> or >
         if (/^(mysql>|>)\s*/.test(trimmed)) {
+            skipUntilPrompt = false
             // Save previous statement
             if (currentStatement !== null) {
                 if (isQueryWithOutput) {
@@ -325,6 +360,10 @@ function parseMysqlInlineFormat(sqlText) {
 
             // Start new statement with prompt
             const sqlPart = trimmed.replace(/^(mysql>|>)\s*/, '')
+            if (shouldSkipLine(sqlPart.trim())) {
+                currentStatement = null
+                continue
+            }
             currentStatement = sqlPart
             currentOutput = []
             inOutput = false
@@ -377,6 +416,20 @@ function parseMysqlInlineFormat(sqlText) {
 
             // Skip empty lines between SQL and output
             if (!trimmed) {
+                continue
+            }
+
+            // Skip ERROR output and client messages (not SQL)
+            if (shouldSkipLine(trimmed)) {
+                if (/^ERROR\s+\d+/i.test(trimmed)) {
+                    skipUntilPrompt = true
+                }
+                inMultiLineSQL = false
+                continue
+            }
+
+            // Skip continuation lines after ERROR until next prompt
+            if (skipUntilPrompt) {
                 continue
             }
 
@@ -548,7 +601,7 @@ export function splitSqlStatements(sql) {
         if (trimmedLine.startsWith('mysql>') || trimmedLine.startsWith('>')) {
             // Extract SQL statement after the prompt
             const sqlPart = trimmedLine.replace(/^(mysql>|>)\s*/, '')
-            if (sqlPart) {
+            if (sqlPart && !shouldSkipLine(sqlPart.trim())) {
                 currentStatement += sqlPart + '\n'
             }
             continue
@@ -590,7 +643,13 @@ export function splitSqlStatementsWithAnnotations(sql) {
     let currentStatement = ''
     let currentAnnotations = []
 
-    for (const line of lines) {
+    for (const rawLine of lines) {
+        // Strip trailing inline comments (-- ..., # ..., // ...) outside string literals.
+        // MatrixOne's parser can hit "parse hints bug" when statements end with a trailing
+        // comment on the same line (e.g., `SELECT 1; -- foo`). Stripping them here keeps the
+        // documented SQL executable without dropping standalone annotation comments, which
+        // are already handled below before reaching this point.
+        const line = stripTrailingInlineComment(rawLine)
         const trimmedLine = line.trim()
 
         // Skip empty lines
@@ -610,7 +669,7 @@ export function splitSqlStatementsWithAnnotations(sql) {
         // Skip lines starting with MySQL command line prompt
         if (trimmedLine.startsWith('mysql>') || trimmedLine.startsWith('>')) {
             const sqlPart = trimmedLine.replace(/^(mysql>|>)\s*/, '')
-            if (sqlPart) {
+            if (sqlPart && !shouldSkipLine(sqlPart.trim())) {
                 currentStatement += sqlPart + '\n'
             }
             continue
@@ -717,6 +776,59 @@ export function parseAnnotationsToExpectedResults(annotations) {
 
 /**
  * Determine if a line should be skipped (non-SQL statement)
+ * Strip a trailing inline comment (`-- …`, `# …`, `// …`) from a single SQL line
+ * while preserving occurrences inside string literals. Used before appending a
+ * line to the current statement, to work around MatrixOne's "parse hints bug"
+ * when a statement ends with a trailing inline comment on the same line.
+ *
+ * If the entire line is a comment (only whitespace before the marker), the line
+ * is returned unchanged so the caller's annotation/comment handling still sees it.
+ * @param {string} line - Raw line content
+ * @returns {string} Line with trailing comment removed (trailing whitespace trimmed)
+ */
+function stripTrailingInlineComment(line) {
+    if (!line) return line
+
+    let inSingle = false
+    let inDouble = false
+    let inBacktick = false
+
+    for (let i = 0; i < line.length; i++) {
+        const ch = line[i]
+        const next = line[i + 1]
+        const prev = i > 0 ? line[i - 1] : ''
+
+        if (!inDouble && !inBacktick && ch === "'" && prev !== '\\') {
+            inSingle = !inSingle
+            continue
+        }
+        if (!inSingle && !inBacktick && ch === '"' && prev !== '\\') {
+            inDouble = !inDouble
+            continue
+        }
+        if (!inSingle && !inDouble && ch === '`') {
+            inBacktick = !inBacktick
+            continue
+        }
+        if (inSingle || inDouble || inBacktick) continue
+
+        const isLineCommentStart =
+            (ch === '-' && next === '-') ||
+            (ch === '#') ||
+            (ch === '/' && next === '/')
+
+        if (!isLineCommentStart) continue
+
+        const before = line.slice(0, i)
+        if (!before.trim()) return line
+
+        return before.replace(/\s+$/, '')
+    }
+
+    return line
+}
+
+/**
  * @param {string} line - Line content
  * @returns {boolean} Whether to skip the line
  */
@@ -731,8 +843,11 @@ function shouldSkipLine(line) {
         return true
     }
 
-    // Skip query result statistics (e.g., "1 row in set")
+    // Skip query result statistics (e.g., "1 row in set", "Empty set")
     if (/^\d+\s+(row|rows)\s+in\s+set/i.test(line)) {
+        return true
+    }
+    if (/^Empty\s+set/i.test(line)) {
         return true
     }
 
@@ -748,6 +863,21 @@ function shouldSkipLine(line) {
 
     // Skip warning messages
     if (/^\[Warning\]/i.test(line) || /^Warning:/i.test(line)) {
+        return true
+    }
+
+    // Skip MySQL error output (e.g., "ERROR 1105 (HY000): ...")
+    if (/^ERROR\s+\d+/i.test(line)) {
+        return true
+    }
+
+    // Skip MySQL client informational messages
+    if (/^(Reading table information|You can turn off this feature|Database changed|No connection|Trying to reconnect|Connection id:)/i.test(line)) {
+        return true
+    }
+
+    // Skip MySQL client exit command
+    if (/^exit\s*;?\s*$/i.test(line)) {
         return true
     }
 

@@ -23,7 +23,7 @@ Returns 1 for an empty string or 0 for a non-empty string.
 
 ## **Examples**
 
-```SQL
+```SQL <!-- validator-ignore-exec -->
 > drop table if exists t1;
 > create table t1(a varchar(255),b varchar(255));
 > insert into t1 values('', 'abcd');

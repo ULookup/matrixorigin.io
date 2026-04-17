@@ -88,11 +88,10 @@ SQLAlchemy is the Python SQL toolkit and Object Relational Mapper(ORM) that give
 2. Connect to MatrixOne by MySQL client. Create a new database named *test*, a new table named *student* and insert two records.
 
     ```sql
-    mysql> create database test;
-    mysql> use test;
-    mysql> create table student (name varchar(20), age int);
-    mysql> insert into student values ("tom", 11), ("alice", "10");
-
+    create database test;
+    use test;
+    create table student (name varchar(20), age int);
+    insert into student values ("tom", 11), ("alice", "10");
     ```
 
 3. Create a plain text file `sqlalchemy_connect_matrixone.py` and put the code below,

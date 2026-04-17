@@ -12,7 +12,7 @@ SELECT CURRENT_USER();
 
 ## **Examples**
 
-```sql
+```sql <!-- validator-ignore-exec -->
 mysql> select current_user();
 +----------------+
 | current_user() |

@@ -41,11 +41,11 @@ LOAD DATA
 |region| object storage service region|
 |compression| Compressed format of S3 files. If empty or "none", it indicates uncompressed files. Supported fields or Compressed format are "auto", "none", "gzip", "bz2", and "lz4".|
 
-The other paramaters are identical to a ordinary LOAD DATA, see [LOAD DATA](../../../Reference/SQL-Reference/Data-Manipulation-Language/load-data.md) for more details.
+The other paramaters are identical to a ordinary LOAD DATA, see [LOAD DATA](../../../Reference/SQL-Reference/Data-Manipulation-Language/load-data-infile.md) for more details.
 
 **Statement Examples**:
 
-```sql
+```sql <!-- validator-ignore -->
 # LOAD a csv file from AWS S3 us-east-1 region, test-load-mo bucket, without compression
 LOAD DATA URL s3option{"endpoint"='s3.us-east-1.amazonaws.com', "access_key_id"='XXXXXX', "secret_access_key"='XXXXXX', "bucket"='test-load-mo', "filepath"='test.csv', "region"='us-east-1', "compression"='none'} INTO TABLE t1 FIELDS TERMINATED BY ',' ENCLOSED BY '\"' LINES TERMINATED BY '\n';
 
@@ -100,7 +100,7 @@ In this tutorial, we will walk you through the process of loading a **.csv** fil
 
 5. After the import is successful, you can run SQL statements to check the result of imported data:
 
-    ```sql
+    ```sql <!-- validator-ignore -->
     mysql> select * from t1;
     +-----------+-----------+-----------+-----------+
     | col1      | col2      | col3      | col4      |
@@ -158,7 +158,7 @@ create external table t(...) URL s3option{"endpoint"='<string>', "access_key_id"
 |region| object storage service region|
 |compression| Compressed format of S3 files. If empty or "none", it indicates uncompressed files. Supported fields or Compressed format are "auto", "none", "gzip", "bz2", and "lz4".|
 
-The other paramaters are identical to a ordinary LOAD DATA, see [LOAD DATA](../../../Reference/SQL-Reference/Data-Manipulation-Language/load-data.md) for more details.
+The other paramaters are identical to a ordinary LOAD DATA, see [LOAD DATA](../../../Reference/SQL-Reference/Data-Manipulation-Language/load-data-infile.md) for more details.
 
 For more information about External Table, see [CREATE EXTERNAL TABLE](../../../Reference/SQL-Reference/Data-Definition-Language/create-external-table.md).
 

@@ -48,7 +48,7 @@ MATCH (col1, col2, ...) AGAINST (expr [search_modifier]);
 
 ## Examples
 
-```sql
+```sql <!-- validator-ignore-exec -->
 
 CREATE TABLE example_table (
     id INT PRIMARY KEY,

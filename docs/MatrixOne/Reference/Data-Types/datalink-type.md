@@ -41,7 +41,7 @@ There is a file `t1.csv` under `/Users/admin/case`
 this is a test message
 ```
 
-```sql
+```sql <!-- validator-ignore -->
 drop table test01;
 create table test01 (col1 int, col2 datalink);
 create stage stage01 url='file:///Users/admin/case/';

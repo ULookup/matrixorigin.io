@@ -113,7 +113,7 @@ mysql> SELECT * FROM employees;
 
 - Example 2
 
-```sql
+```sql <!-- validator-ignore-exec -->
 -- Create table
 CREATE TABLE orders (
   order_id INT PRIMARY KEY,

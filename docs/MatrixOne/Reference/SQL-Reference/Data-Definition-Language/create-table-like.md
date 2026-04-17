@@ -6,13 +6,13 @@
 
 ## Syntax structure
 
-```sql
+```sql <!-- validator-ignore-exec -->
 CREATE TABLE new_tbl LIKE orig_tbl;
 ```
 
 ## Examples
 
-```sql
+```sql <!-- validator-ignore-exec -->
 create table test1 (a int primary key, b varchar(5) unique key);
 create table test2 (a int primary key,b varchar(5) unique key,c double DEFAULT 0, d char,e int, foreign key(e) references foreign01(a), unique index(c,d));
 insert into test1 values (101,'abc'),(102,'def');

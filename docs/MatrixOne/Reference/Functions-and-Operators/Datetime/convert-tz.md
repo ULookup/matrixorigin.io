@@ -20,7 +20,7 @@ The `CONVERT_TZ()` function is used to convert a given datetime from one time zo
 
 ## **Examples**
 
-```sql
+```sql <!-- validator-ignore-exec -->
 mysql> SELECT CONVERT_TZ('2004-01-01 12:00:00','GMT','MET');
 +-------------------------------------------+
 | convert_tz(2004-01-01 12:00:00, GMT, MET) |

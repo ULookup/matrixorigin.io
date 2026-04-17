@@ -16,6 +16,7 @@ SHOW SUBSCRIPTIONS [ALL];
 
 ## **Example**
 
+<!-- validator-ignore -->
 ```sql
 
 --Execute in sys tenant

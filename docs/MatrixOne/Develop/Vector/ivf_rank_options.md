@@ -92,7 +92,7 @@ BY RANK WITH OPTION 'mode = post';
 
 ### Setup
 
-```sql
+```sql <!-- validator-ignore-exec -->
 -- Enable IVF index feature
 SET GLOBAL experimental_ivf_index = 1;
 

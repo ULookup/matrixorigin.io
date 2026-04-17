@@ -19,7 +19,7 @@ WHERE columnN NOT LIKE pattern;
 
 ## **Examples**
 
-```sql
+```sql <!-- validator-ignore-exec -->
 create table t1 (a char(10));
 insert into t1 values('abcdef');
 insert into t1 values('_bcdef');

@@ -39,6 +39,7 @@ WITH (property_name = expression [, ...]);
 
 For example, you can refer to the following examples:
 
+<!-- validator-ignore -->
 ```sql
 CREATE EXTERNAL STREAM STUDENTS (ID STRING KEY, SCORE INT)
 WITH (kafka_topic = 'students_topic', value_format = 'JSON', partitions = 4);
@@ -46,18 +47,20 @@ WITH (kafka_topic = 'students_topic', value_format = 'JSON', partitions = 4);
 
 Or:
 
+<!-- validator-ignore -->
 ```sql
 CREATE STREAM STUDENTS (ID STRING KEY, SCORE INT)
 ```
 
 You can also query streams and connect them with other tables and materialized views, as shown below:
 
+<!-- validator-ignore -->
 ```sql
-SELECT * FROM STUDENTS WHERE rank > 5;
+SELECT * FROM STUDENTS WHERE `rank` > 5;
 ```
 
 Additionally, you can insert new events, as demonstrated below:
 
-```sql
+```sql <!-- validator-ignore-exec -->
 INSERT INTO foo (ROWTIME, KEY_COL, COL_A) VALUES (1510923225000, 'key', 'A');
 ```

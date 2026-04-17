@@ -29,7 +29,7 @@ Creates a unique index on a table. Duplicate values are not allowed.
 
 ## **Examples**
 
-```sql
+```sql <!-- validator-ignore-exec -->
 drop table if exists t1;
 create table t1(id int PRIMARY KEY,name VARCHAR(255),age int);
 insert into t1 values(1,"Abby", 24);

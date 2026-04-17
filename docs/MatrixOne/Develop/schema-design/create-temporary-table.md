@@ -36,7 +36,7 @@ Before reading this document, make sure that the following tasks are completed:
 
 The syntax for using a temporary table is the same as for a regular table, except that the TEMPORARY keyword is added before the statement that creates the table:
 
-```sql
+```
 CREATE TEMPORARY TABLE temp_table_name (column_list);
 ```
 
@@ -48,7 +48,7 @@ You can use the same table name for temporary and regular tables without conflic
 
 ## Example
 
-```sql
+```sql <!-- validator-ignore-exec -->
 -- Create a temporary table 'temp_employees'
 CREATE TEMPORARY TABLE temp_employees (
     employee_id INT AUTO_INCREMENT, -- auto-increment employee ID

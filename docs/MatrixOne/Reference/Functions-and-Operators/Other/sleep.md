@@ -59,7 +59,7 @@ SLEEP(duration)
 
 - When SLEEP() returns an error (part of a query is uninterrupted). For example:
 
-    ```sql
+    ```
     mysql> SELECT 1 FROM t1 WHERE SLEEP(1000);
     ERROR 20101 (HY000): internal error: pipeline closed unexpectedly
     ```

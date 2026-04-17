@@ -43,7 +43,7 @@ Query OK, 0 rows affected (0.03 sec)
 > REVOKE role_r1 from mouser;
 Query OK, 0 rows affected (0.04 sec)
 
-> SHOW GRANT for mouser@localhost;
+> SHOW GRANTS for mouser@localhost;
 +------------------------------------------------+
 | Grants for mouser@localhost                    |
 +------------------------------------------------+

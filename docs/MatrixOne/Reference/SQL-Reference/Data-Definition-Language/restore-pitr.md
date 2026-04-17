@@ -16,11 +16,11 @@
 
 ```sql
 
---Execute under sys tenant
+-- Execute under sys tenant
 create account acc1 admin_name 'root' identified by '111';
 create account acc2 admin_name 'root' identified by '111';
 
---Executed under tenants acc1, acc2
+-- Executed under tenants acc1, acc2
 create database db1;
 
 mysql> show databases;
@@ -48,8 +48,9 @@ mysql> show pitr where pitr_name='clu_pitr1';
 +-----------+---------------------+---------------------+------------+--------------+---------------+------------+-------------+-----------+
 1 row in set (0.00 sec)
 
---Executed under tenants acc1, acc2
-drop database db1;--Delete database db1
+-- Executed under tenants acc1, acc2
+drop database db1;
+-- Delete database db1
 
 mysql> show databases;
 +--------------------+
@@ -216,7 +217,7 @@ mysql> show databases;
 ### Example 4: Restore table
 
 ```sql
---Executed under tenant acc1
+-- Executed under tenant acc1
 CREATE TABLE t1(n1 int);
 INSERT INTO t1 values(1);
 
@@ -228,7 +229,8 @@ mysql> SELECT * FROM t1;
 +------+
 1 row in set (0.00 sec)
 
-create pitr tab_pitr for database db1 table t1 range 1 'd';--create pitr
+create pitr tab_pitr for database db1 table t1 range 1 'd';
+-- create pitr
 
 mysql> show pitr where pitr_name='tab_pitr';
 +-----------+---------------------+---------------------+------------+--------------+---------------+------------+-------------+-----------+
@@ -238,14 +240,17 @@ mysql> show pitr where pitr_name='tab_pitr';
 +-----------+---------------------+---------------------+------------+--------------+---------------+------------+-------------+-----------+
 1 row in set (0.01 sec)
 
-truncate TABLE t1;--truncate t1
+truncate TABLE t1;
+-- truncate t1
 
 mysql> SELECT * FROM t1;
 Empty set (0.01 sec)
 
-restore database db1 table t1 from pitr tab_pitr "2024-10-23 14:32:18";--恢复 pitr
+restore database db1 table t1 from pitr tab_pitr "2024-10-23 14:32:18";
+-- 恢复 pitr
 
-mysql> SELECT * FROM t1;--Recovery successful
+mysql> SELECT * FROM t1;
+-- Recovery successful
 +------+
 | n1   |
 +------+

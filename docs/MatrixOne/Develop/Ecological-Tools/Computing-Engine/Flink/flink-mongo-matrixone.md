@@ -94,9 +94,11 @@ wget <https://repo1.maven.org/maven2/com/ververica/flink-sql-connector-mongodb-c
 
 Build a mapping table for the data source mongodb, the column names must also be identical
 
+<!-- validator-ignore -->
 ```sql
 CREATE TABLE products (
-  _id STRING,#There must be this column, and it must also be the primary key, because mongodb automatically generates an id for each row of data
+  _id STRING, 
+  -- There must be this column, and it must also be the primary key, because mongodb automatically generates an id for each row of data
   `name` STRING,
   age INT,
   PRIMARY KEY(_id) NOT ENFORCED
@@ -116,6 +118,7 @@ Once established you can execute `select * from` products; check if the connecti
 
 Create a mapping table for matrixone with the same structure and no columns with ids
 
+<!-- validator-ignore -->
 ```sql
 CREATE TABLE cdc_matrixone (
    `name` STRING,
@@ -135,10 +138,15 @@ CREATE TABLE cdc_matrixone (
 
 Once the sync task is turned on here, mongodb additions and deletions can be synchronized
 
+<!-- validator-ignore -->
 ```sql
 INSERT INTO cdc_matrixone SELECT `name`,age FROM products;
+```
 
-#insert
+Run the following in the **MongoDB shell** (not MatrixOne SQL):
+
+```text
+# insert
 rs0:PRIMARY> db.test.insert({"name" : "ddd", "age" : 90})
 WriteResult({ "nInserted" : 1 })
 rs0:PRIMARY> db.test.find()
@@ -146,10 +154,10 @@ rs0:PRIMARY> db.test.find()
 { "_id" : ObjectId("6347e64a229d6017c82bf03e"), "name" : "bbb", "age" : 18 }
 { "_id" : ObjectId("6347e652229d6017c82bf03f"), "name" : "ccc", "age" : 28 }
 { "_id" : ObjectId("634d248f10e21b45c73b1a36"), "name" : "ddd", "age" : 90 }
-#update
+# update
 rs0:PRIMARY> db.test.update({'name':'ddd'},{$set:{'age':'99'}})
 WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
-#delete
+# delete
 rs0:PRIMARY> db.test.remove({'name':'ddd'})
 WriteResult({ "nRemoved" : 1 })
 ```

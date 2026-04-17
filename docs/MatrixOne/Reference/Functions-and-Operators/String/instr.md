@@ -11,7 +11,7 @@ Regarding case sensitivity, `INSTR()` function is case-sensitive only if at leas
 For example:
 
 ```sql
-SELECT INSTR(BINARY 'abc', 'A') AS Match;
+SELECT INSTR(BINARY 'abc', 'A') AS `Match`;
 ```
 
 The above query will return 0 because, in binary format, 'A' and 'a' are considered different characters.

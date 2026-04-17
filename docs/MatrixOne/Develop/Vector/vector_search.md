@@ -38,8 +38,8 @@ The Iris dataset is a well-known multi-class taxonomic dataset that can be searc
 
     ```sql
     CREATE TABLE iris_table(
-        species varchar(100), --category 
-        attributes vecf64(4) --feature
+        species varchar(100), -- category
+        attributes vecf64(4) -- feature
     ); 
     LOAD DATA INFILE '/your_path/iris.csv' INTO TABLE iris_table;
     ```

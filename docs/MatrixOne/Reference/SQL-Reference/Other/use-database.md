@@ -13,6 +13,6 @@ The USE statement tells MatrixOne to use the named database as the default (curr
 ## **Examples**
 
 ```sql
-> USE db1;
-> SELECT COUNT(*) FROM mytable; 
+USE db1;
+SELECT COUNT(*) FROM mytable;
 ```

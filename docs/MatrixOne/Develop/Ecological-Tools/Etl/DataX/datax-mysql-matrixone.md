@@ -29,7 +29,7 @@ CREATE TABLE `mysql_datax` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --Insert sample data
-insert into mysql_datax valus
+insert into mysql_datax values
 (1,"lisa",15660,30,'2022-10-12',0),
 (2,"tom",15060,24,'2021-11-10',1),
 (3,"jenny",15000,28,'2024-02-19',0),

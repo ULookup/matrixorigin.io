@@ -80,17 +80,14 @@ MatrixOne supports integration with DolphinScheduler, a visual DAG workflow task
     The SQL statements for these three nodes are as follows:
 
     ```sql
-    #create_table
+    -- create_table
+    CREATE TABLE IF NOT EXISTS test_table (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255) NOT NULL);
 
-    CREATE TABLE IF NOT EXISTS test_table (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255) NOT NULL)
+    -- insert_data
+    INSERT INTO test_table (name) VALUES ('John Doe');
 
-    #insert_data
-
-    INSERT INTO test_table (name) VALUES ('John Doe')
-
-    #select_data
-
-    SELECT * FROM test_table
+    -- select_data
+    SELECT * FROM test_table;
     ```
 
     Connect these three nodes based on their dependency relationship, then click **Save**. Enter the **Workflow Name**, select the previously created **Tenant**, choose **Parallel** as the execution policy, and click **OK**.

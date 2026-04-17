@@ -20,7 +20,7 @@ Before you can start writing data to MatrixOne using DataX, you need to complete
 
 This time you are using the user scott in Oracle to create the table (or other users, of course), and in Oracle 19c the scott user needs to be created manually and can be unlocked by command using the sqlplus tool.
 
-```sql
+```
 sqlplus / as sysdba
 create user scott identified by tiger;
 grant dba to scott;
@@ -28,7 +28,7 @@ grant dba to scott;
 
 This can then be accessed via the scott user login:
 
-```sql
+```
 sqlplus scott/tiger
 ```
 
@@ -36,12 +36,12 @@ sqlplus scott/tiger
 
 To create the employees\_oracle table in Oracle:
 
-```sql
+```
 create table employees_oracle(
   id number(5),
   name varchar(20)
 );
---Insert sample data:
+-- Insert sample data:
 insert into employees_oracle values(1,'zhangsan');
 insert into employees_oracle values(2,'lisi');
 insert into employees_oracle values(3,'wangwu');

@@ -71,9 +71,12 @@ When you manually insert values into an AUTO_INCREMENT column, you may encounter
 ```sql
 CREATE TABLE t (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(50));
 
-INSERT INTO t (name) VALUES ('Alice');        -- Auto-generates id=1
-INSERT INTO t (id, name) VALUES (5, 'Bob');   -- Manually inserts id=5
-INSERT INTO t (name) VALUES ('Charlie');      -- May error: Duplicate entry '5'
+INSERT INTO t (name) VALUES ('Alice');
+-- Auto-generates id=1
+INSERT INTO t (id, name) VALUES (5, 'Bob');
+-- Manually inserts id=5
+INSERT INTO t (name) VALUES ('Charlie');
+-- May error: Duplicate entry '5'
 ```
 
 ### Solutions

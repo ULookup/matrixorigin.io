@@ -160,7 +160,7 @@ You can now start migrating MySQL data to MatrixOne using Spark.
 
 1. Prepare MySQL data: On node3, connect to your local Mysql using the Mysql client, create the required database, data table, and insert the data:
 
-    ```sql
+    ```
     mysql -h127.0.0.1 -P3306 -uroot -proot
     mysql> CREATE DATABASE motest;
     mysql> USE motest;
@@ -172,7 +172,7 @@ You can now start migrating MySQL data to MatrixOne using Spark.
 
     On node3, connect to the local MatrixOne using a MySQL client. Since this example continues to use the `test` database from the example that read the MatrixOne data earlier, we need to first empty the data from the `person` table.
 
-    ```sql
+    ```
     -- On node3, connect to MatrixOne on node1 using the Mysql client
     mysql -hxx.xx.xx.xx -P6001 -uroot -p111
     mysql> TRUNCATE TABLE test.person;

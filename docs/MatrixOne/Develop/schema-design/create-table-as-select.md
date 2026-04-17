@@ -28,7 +28,9 @@ Completed [standalone deployment of](../../Get-Started/install-standalone-matrix
 
 `CTAS` statements typically take the following form:
 
-```sql CREATE [TEMPORARY] TABLE table_name as select```
+```
+CREATE [TEMPORARY] TABLE table_name AS SELECT ...
+```
 
 See chapter [Create Table As Select](../../Reference/SQL-Reference/Data-Definition-Language/create-table-as-select.md) for more syntax descriptions
 

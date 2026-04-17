@@ -93,7 +93,7 @@ Unlike MySQL, MatrixOne's ENUM type can only be compared with the string type in
 You can see this example:
 
 ```sql
-update orders set status= 2 where status='Processing';`
+update orders set status= 2 where status='Processing';
 ```
 
 In this example, you must update the `status` to 2 for the row whose `status` is `Processing`. Due to the nature of the ENUM type, MatrixOne implicitly converts 2 to the string `2` in the WHERE condition, which is then compared with `Processing`.

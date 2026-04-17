@@ -83,7 +83,7 @@ PARTITIONS 4;
 
 In the plan build phase, the partition information data structure in the DDL statement is plan.PartitionInfo:
 
-```sql
+```go
 type PartitionInfo struct {
 	Type                 PartitionType
 	Expr                 *Expr

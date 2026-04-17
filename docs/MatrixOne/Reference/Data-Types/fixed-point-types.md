@@ -4,7 +4,7 @@ The DECIMAL type store exact numeric data values. These types are used when it i
 
 In a DECIMAL column declaration, the precision and scale can be (and usually is) specified. For example:
 
-```sql
+```
 salary DECIMAL(5,2)
 ```
 

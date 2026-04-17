@@ -10,15 +10,17 @@ sql_mode is a system parameter in MatrixOne that specifies the mode in which Mat
 View sql_mode in MatrixOne using the following command:
 
 ```sql
-SELECT @@global.sql_mode; --global mode 
-SELECT @@session.sql_mode; --session mode 
+SELECT @@global.sql_mode; 
+-- global mode
+SELECT @@session.sql_mode; 
+-- session mode
 ```
 
 ## Set sql_mode
 
 Set sql_mode in MatrixOne using the following command:
 
-```sql
+```
 set global sql_mode = 'xxx' -- global mode, reconnecting to database takes effect 
 set session sql_mode = 'xxx' -- session mode 
 ```
@@ -35,14 +37,16 @@ nation char(20)
 
 INSERT INTO student values(1,'tom',18,'上海'),(2,'jan',19,'上海'),(3,'jen',20,'北京'),(4,'bob',20,'北京'),(5,'tim',20,'广州');
 
-mysql> select * from student group by nation;--This operation is not supported in `ONLY_FULL_GROUP_BY` mode
+mysql> select * from student group by nation;
+-- This operation is not supported in `ONLY_FULL_GROUP_BY` mode
 ERROR 1149 (HY000): SQL syntax error: column "student.id" must appear in the GROUP BY clause or be used in an aggregate function
 
-mysql> SET session sql_mode='ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION,NO_ZERO_DATE,NO_ZERO_IN_DATE,STRICT_TRANS_TAB
-LES';--Turns off ONLY_FULL_GROUP_BY mode for the current session
+mysql> SET session sql_mode='ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION,NO_ZERO_DATE,NO_ZERO_IN_DATE,STRICT_TRANS_TABLES';
+-- Turns off ONLY_FULL_GROUP_BY mode for the current session
 Query OK, 0 rows affected (0.02 sec)
 
-mysql> select * from student group by nation;--Turns off `ONLY_FULL_GROUP_BY` mode immediately in the current session
+mysql> select * from student group by nation;
+-- Turns off `ONLY_FULL_GROUP_BY` mode immediately in the current session
 +------+------+------+--------+
 | id   | name | age  | nation |
 +------+------+------+--------+
@@ -52,10 +56,12 @@ mysql> select * from student group by nation;--Turns off `ONLY_FULL_GROUP_BY` mo
 +------+------+------+--------+
 3 rows in set (0.00 sec)
 
-mysql> SET global sql_mode='ONLY_FULL_GROUP_BY';--Set the global ONLY_FULL_GROUP_BY mode on.
+mysql> SET global sql_mode='ONLY_FULL_GROUP_BY';
+-- Set the global ONLY_FULL_GROUP_BY mode on.
 Query OK, 0 rows affected (0.02 sec)
 
-mysql> select * from student group by nation;--ONLY_FULL_GROUP_BY mode does not take effect, because you need to reconnect to the database for global mode to take effect.
+mysql> select * from student group by nation;
+-- ONLY_FULL_GROUP_BY mode does not take effect, because you need to reconnect to the database for global mode to take effect.
 +------+------+------+--------+
 | id   | name | age  | nation |
 +------+------+------+--------+
@@ -65,8 +71,10 @@ mysql> select * from student group by nation;--ONLY_FULL_GROUP_BY mode does not 
 +------+------+------+--------+
 3 rows in set (0.00 sec)
 
-mysql> exit --Exit the current session
+-- Exit the current session
+mysql> exit;
 
-mysql> select * from student group by nation;--After reconnecting the database and executing the query, ONLY_FULL_GROUP_BY mode is successfully enabled.
+mysql> select * from student group by nation;
+-- After reconnecting the database and executing the query, ONLY_FULL_GROUP_BY mode is successfully enabled.
 ERROR 1149 (HY000): SQL syntax error: column "student.id" must appear in the GROUP BY clause or be used in an aggregate function
 ```

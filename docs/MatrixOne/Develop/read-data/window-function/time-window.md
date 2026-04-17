@@ -14,7 +14,7 @@ Downsampling refers to the process of extracting smaller, more manageable subset
 
 In MatrixOne, a time window needs to be used in conjunction with a timing table, which is a table that must have `ts` as the primary key when it is built and is of type `timestamp`.
 
-```sql
+```
 DDL Clause:
     CREATE TABLE TS_TBL (ts timestamp(6) primary key, SIGNAL1 FLOAT, SIGNAL2 DOUBLE, ...);
 
@@ -107,6 +107,9 @@ This example adds interpolation logic to the previous table and populates it wit
 
 ```sql
 select _wstart(ts), _wend(ts), max(temperature), min(temperature) from sensor_data where ts > "2023-08-01 00:00:00.000" and ts < "2023-08-01 00:50:00.000" interval(ts, 10, minute) sliding(5, minute) fill(prev);
+```
+
+```
          _wstart         |          _wend          |   max(temperature)   |   min(temperature)   |
 ==================================================================================================
  2023-08-01 00:00:00.000 | 2023-08-01 00:10:00.000 |           26.0000000 |           26.0000000 |

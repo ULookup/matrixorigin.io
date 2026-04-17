@@ -28,8 +28,8 @@ create view slow_query_with_plan as select statement,request_at,duration/1000000
 For all queries longer than 1 second, execute the following SQL statement to view them:
 
 ```sql
-> select * from mo_ts.slow_query;
-> select * from mo_ts.slow_query_with_plan;
+select * from mo_ts.slow_query;
+select * from mo_ts.slow_query_with_plan;
 ```
 
 **Explanations**
@@ -47,9 +47,9 @@ When slow query is enabled, you can enable error logs, check logs, and locate er
 To enable the error log, , execute the following SQL statements:
 
 ```sql
-create database mo_ts if not exists mo_ts;
+create database if not exists mo_ts;
 use mo_ts;
-create view error_message as select timestamp,message from system.log_info where level in ('error','panic','faltal');
+create view error_message as select timestamp,message from system.log_info where level in ('error','panic','fatal');
 create view error_sql as select si.request_at time_stamp,si.statement,si.error as SQL from system.statement_info si where si.user<>'internal' and si.status='Failed' ;
 ```
 

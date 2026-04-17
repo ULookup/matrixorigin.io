@@ -23,8 +23,12 @@ SELECT SAMPLE(<column_list>, <N ROWS>/<K PERCENT>) FROM <table> [WHERE ...] [GRO
 3. Application Examples
 
 ```sql
-SELECT SAMPLE(a, 100 ROWS) FROM t1; --Returns 100 random samples 
-SELECT SAMPLE(a, 0.2 PERCENT) FROM t1; --Returns about 0.2 percent of samples 
-SELECT SAMPLE(a, 100 ROWS) FROM t1 WHERE a > 1; --Filters before sampling 
-SELECT a, SAMPLE(b, 100 ROWS) FROM t1 GROUP BY a; --Groups after sampling
+-- Returns 100 random samples
+SELECT SAMPLE(a, 100 ROWS) FROM t1;
+-- Returns about 0.2 percent of samples
+SELECT SAMPLE(a, 0.2 PERCENT) FROM t1;
+-- Filters before sampling
+SELECT SAMPLE(a, 100 ROWS) FROM t1 WHERE a > 1;
+-- Groups after sampling
+SELECT a, SAMPLE(b, 100 ROWS) FROM t1 GROUP BY a;
 ```

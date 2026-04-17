@@ -139,7 +139,8 @@ BITMAP_CONSTRUCT_AGG( <bit_position> )
 
 ```sql
 CREATE TABLE t1 ( n1 int);
-INSERT INTO t1 VALUES(0),(1),(1),(32767);--Inserted data in [0,32767].
+INSERT INTO t1 VALUES(0),(1),(1),(32767);
+-- Inserted data in [0,32767].
 
 mysql> select * from t1;
 +-------+
@@ -165,7 +166,8 @@ mysql> SELECT BITMAP_CONSTRUCT_AGG(BITMAP_BIT_POSITION(n1)) AS bitmap FROM t1;
     bitmap column contains the physical representation of bitmap and is not readable. To determine which bits are set, we should use a combination of `BITMAP` functions (rather than checking binary values ourselves).
 
 ```sql
-mysql> SELECT bitmap_count(BITMAP_CONSTRUCT_AGG(BITMAP_BIT_POSITION(n1))) AS n1_discnt FROM t1;The number set to 1 in the --bitmap.
+-- The number set to 1 in the bitmap
+mysql> SELECT bitmap_count(BITMAP_CONSTRUCT_AGG(BITMAP_BIT_POSITION(n1))) AS n1_discnt FROM t1;
 +-----------+
 | n1_discnt |
 +-----------+
@@ -173,7 +175,8 @@ mysql> SELECT bitmap_count(BITMAP_CONSTRUCT_AGG(BITMAP_BIT_POSITION(n1))) AS n1_
 +-----------+
 1 row in set (0.00 sec)
 
-mysql> SELECT count(DISTINCT n1) AS n1_discnt FROM t1;--Return Consistency
+mysql> SELECT count(DISTINCT n1) AS n1_discnt FROM t1;
+-- Return Consistency
 +-----------+
 | n1_discnt |
 +-----------+
@@ -181,7 +184,8 @@ mysql> SELECT count(DISTINCT n1) AS n1_discnt FROM t1;--Return Consistency
 +-----------+
 1 row in set (0.01 sec)
 
-INSERT INTO t1 VALUES(32768),(32769),(65535);--Insert data greater than 32767
+INSERT INTO t1 VALUES(32768),(32769),(65535);
+-- Insert data greater than 32767
 
 mysql> select * from t1;
 +-------+
@@ -197,7 +201,7 @@ mysql> select * from t1;
 +-------+
 7 rows in set (0.01 sec)
 
---The result is the same as the first insertion because bucket_bit_position = n1 % 32768 and the data inserted the second time is in the same position in a different bucket than the first insertion, so it is de-emphasized.
+-- The result is the same as the first insertion because bucket_bit_position = n1 % 32768 and the data inserted the second time is in the same position in a different bucket than the first insertion, so it is de-emphasized.
 mysql> SELECT bitmap_count(BITMAP_CONSTRUCT_AGG(BITMAP_BIT_POSITION(n1))) AS n1_discnt FROM t1;
 +-----------+
 | t1_bitmap |
@@ -218,7 +222,7 @@ mysql> SELECT bitmap_bit_position(0),bitmap_bit_position(1),bitmap_bit_position(
 So you need to combine the `BITMAP_BUCKET_NUMBER()` function if you want to dedupe data larger than 32767.
 
 ```sql
---Grouped in buckets, the first bucket contains three non-repeating numbers (0,1,32767) and the second bucket contains three non-repeating numbers (32768,32769,65535).
+-- Grouped in buckets, the first bucket contains three non-repeating numbers (0,1,32767) and the second bucket contains three non-repeating numbers (32768,32769,65535).
 mysql> SELECT bitmap_count(BITMAP_CONSTRUCT_AGG(BITMAP_BIT_POSITION(n1))) AS t1_bitmap FROM t1 GROUP BY BITMAP_BUCKET_NUMBER(n1);
 +-----------+
 | t1_bitmap |
@@ -228,7 +232,7 @@ mysql> SELECT bitmap_count(BITMAP_CONSTRUCT_AGG(BITMAP_BIT_POSITION(n1))) AS t1_
 +-----------+
 2 rows in set (0.01 sec)
 
---Combine this with the sum() function to calculate the non-repeating value of n1.
+-- Combine this with the sum() function to calculate the non-repeating value of n1.
 mysql> SELECT SUM(t1_bitmap) FROM (
     -> SELECT bitmap_count(BITMAP_CONSTRUCT_AGG(BITMAP_BIT_POSITION(n1))) AS t1_bitmap
     -> FROM t1 
@@ -263,7 +267,7 @@ BITMAP_OR_AGG( bitmap )
 #### Examples
 
 ```sql
---Create a table to store information about the author's published books, including the author's name, the year of publication, and the book id.
+-- Create a table to store information about the author's published books, including the author's name, the year of publication, and the book id.
 CREATE TABLE book_table(
     id int auto_increment primary key,
     author varchar(100),
@@ -294,7 +298,7 @@ mysql> select * from book_table;
 +------+----------+----------+---------+
 11 rows in set (0.00 sec)
 
---Define a pre-calculated table to save the results of coarse-grained calculations in the table, followed by a variety of different dimensions of aggregation can be used to pre-calculate the results of the table, after a simple calculation of the results can be obtained to accelerate the query.
+-- Define a pre-calculated table to save the results of coarse-grained calculations in the table, followed by a variety of different dimensions of aggregation can be used to pre-calculate the results of the table, after a simple calculation of the results can be obtained to accelerate the query.
 CREATE TABLE precompute AS
 SELECT
   author,
@@ -319,9 +323,9 @@ mysql> select * from precompute;
 | B author| 2021     |      2 | :0                |
 +---------+----------+--------+----------------------+
 
---Calculates the number of book_id de-duplications in the case of author and publication year aggregation, reflecting the number of book types published by the author in different years.
---The sum() function sums the number of 1's in the bitmaps of different buckets.
---For example, when author=A author, pub_year=2020, book_id=(1,1,32768), after de-emphasis is book_id=(1,32768), but 1 is located in the first bucket, 32768 is located in the second bucket, so we need to sum for accumulation.
+-- Calculates the number of book_id de-duplications in the case of author and publication year aggregation, reflecting the number of book types published by the author in different years.
+-- The sum() function sums the number of 1's in the bitmaps of different buckets.
+-- For example, when author=A author, pub_year=2020, book_id=(1,1,32768), after de-emphasis is book_id=(1,32768), but 1 is located in the first bucket, 32768 is located in the second bucket, so we need to sum for accumulation.
 mysql> SELECT
     ->   author,
     ->   pub_year,
@@ -338,7 +342,8 @@ mysql> SELECT
 +---------+----------+---------------------------+
 4 rows in set (0.00 sec)
 
-mysql> SELECT author,pub_year,count( DISTINCT book_id) FROM book_table group by author,pub_year;--返回一致
+mysql> SELECT author,pub_year,count( DISTINCT book_id) FROM book_table group by author,pub_year;
+-- 返回一致
 +----------+----------+-------------------------+
 | author   | pub_year | count(distinct book_id) |
 +----------+----------+-------------------------+
@@ -349,9 +354,9 @@ mysql> SELECT author,pub_year,count( DISTINCT book_id) FROM book_table group by 
 +----------+----------+-------------------------+
 4 rows in set (0.00 sec)
 
---Calculates the number of book_id de-duplications in the case of author aggregation, reflecting the number of book types published by the author in total.
---The BITMAP_OR_AGG() function merges bitmaps of different dimensions (same author different years).
---For example, when author=A author, pub_date=2020, book_id is (1,32768) after de-weighting, when pub_date=2021, book_id is (32767,32768,65536) after de-weighting, BITMAP_OR_AGG do or operation on the bitmap of the two different years to get book_id=(1,32767,32768,65536), finally sum() accumulates book_id of different bucktets.
+-- Calculates the number of book_id de-duplications in the case of author aggregation, reflecting the number of book types published by the author in total.
+-- The BITMAP_OR_AGG() function merges bitmaps of different dimensions (same author different years).
+-- For example, when author=A author, pub_date=2020, book_id is (1,32768) after de-weighting, when pub_date=2021, book_id is (32767,32768,65536) after de-weighting, BITMAP_OR_AGG do or operation on the bitmap of the two different years to get book_id=(1,32767,32768,65536), finally sum() accumulates book_id of different bucktets.
 mysql> SELECT author, SUM(cnt) FROM (
     ->   SELECT
     ->     author,
@@ -368,7 +373,8 @@ mysql> SELECT author, SUM(cnt) FROM (
 +---------+----------+
 2 rows in set (0.01 sec)
 
-mysql> SELECT author,count(DISTINCT book_id) FROM book_table GROUP BY author;--Return Consistency
+mysql> SELECT author,count(DISTINCT book_id) FROM book_table GROUP BY author;
+-- Return Consistency
 +----------+-------------------------+
 | author   | count(distinct book_id) |
 +----------+-------------------------+

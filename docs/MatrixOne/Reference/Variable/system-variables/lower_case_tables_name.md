@@ -18,7 +18,7 @@ show variables like "lower_case_table_names"; -- defaults to 1
 Set `lower_case_table_names` in MatrixOne with the following command:
 
 ```sql
-set global lower_case_table_names = 0; --default is 1, reconnecting to database takes effect
+set global lower_case_table_names = 0; -- default is 1, reconnecting to database takes effect
 ```
 
 ## Explanation of parameters
@@ -30,7 +30,8 @@ Set `lower_case_table_names` to 0. Identifiers are stored as raw strings with na
 **Examples**
 
 ```sql
-mysql> show variables like "lower_case_table_names";--Check the default parameter, the default value is 1
+mysql> show variables like "lower_case_table_names";
+-- Check the default parameter, the default value is 1
 +------------------------+-------+
 | Variable_name          | Value |
 +------------------------+-------+
@@ -38,9 +39,10 @@ mysql> show variables like "lower_case_table_names";--Check the default paramete
 +------------------------+-------+
 1 row in set (0.00 sec)
 
-set global lower_case_table_names = 0;--Reconnecting to the database takes effect
+set global lower_case_table_names = 0;
+-- Reconnecting to the database takes effect
 
-mysql> show variables like "lower_case_table_names";--Reconnect to the database to view the parameters, the change was successful
+mysql> show variables like "lower_case_table_names"; -- Reconnect to the database to view the parameters, the change was successful
 +------------------------+-------+
 | Variable_name          | Value |
 +------------------------+-------+
@@ -51,7 +53,7 @@ mysql> show variables like "lower_case_table_names";--Reconnect to the database 
 create table Tt (Aa int);
 insert into Tt values (1), (2), (3);
 
-mysql> select Aa from Tt;--Name comparison is case sensitive
+mysql> select Aa from Tt; -- Name comparison is case sensitive
 +------+
 | Aa   |
 +------+
@@ -69,9 +71,11 @@ mysql> select Aa from Tt;--Name comparison is case sensitive
 **Example**
 
 ```sql
-set global lower_case_table_names = 1;--Reconnecting to the database takes effect
+set global lower_case_table_names = 1;
+-- Reconnecting to the database takes effect
 
-mysql> show variables like "lower_case_table_names";--Reconnect to the database to view the parameters, the change was successful
+mysql> show variables like "lower_case_table_names";
+-- Reconnect to the database to view the parameters, the change was successful
 +------------------------+-------+
 | Variable_name          | Value |
 +------------------------+-------+
@@ -82,7 +86,7 @@ mysql> show variables like "lower_case_table_names";--Reconnect to the database 
 create table Tt (Aa int,Bb int);
 insert into Tt values (1,2), (2,3), (3,4);
 
-mysql> select Aa from Tt;--Name comparison is case insensitive
+mysql> select Aa from Tt; -- Name comparison is case insensitive
 +------+
 | aa   |
 +------+

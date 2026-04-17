@@ -39,7 +39,7 @@ create table EMPQ_cdc
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT  into empq VALUES (1,"张三","sale",1,'2024-01-01',1000,NULL,1);
-INSERT  into empq VALUES (2,"李四","develo,"2,'2024-03-05',5000,NULL,2);
+INSERT  into empq VALUES (2,"李四","develop",2,'2024-03-05',5000,NULL,2);
 INSERT  into empq VALUES (3,"王五","hr",3,'2024-03-18',2000,NULL,2);
 INSERT  into empq VALUES (4,"赵六","pm",4,'2024-03-11',2000,NULL,3);
 ```
@@ -75,7 +75,7 @@ create table EMPQ
 
 ### Turn on checkpoint
 
-```sql
+```
 SET execution.checkpointing.interval = 3s; 
 ```
 
@@ -83,7 +83,7 @@ SET execution.checkpointing.interval = 3s;
 
 The build table statement is in smt/result/flink-create.all.sql.
 
-```sql
+```
 -- Creating Test Libraries
 CREATE DATABASE IF NOT EXISTS `default_catalog`.`test`;
 
@@ -128,7 +128,7 @@ PRIMARY KEY(`empno`) NOT ENFORCED
 
 ### Importing TiDB data into MatrixOne
 
-```sql
+```
 INSERT INTO `default_catalog`.`test`.`EMPQ_sink` SELECT * FROM `default_catalog`.`test`.`EMPQ_src`; 
 ```
 

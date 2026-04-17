@@ -7,7 +7,7 @@
 !!! note
     The dates '0000-00-00' and '0000-01-01' are considered invalid. When querying `0000-00-00` and `0000-01-01`, `TO_DAYS()` will return an error message:
 
-     ```sql
+     ```
      mysql> SELECT TO_DAYS('0000-00-00');
      ERROR 20301 (HY000): invalid input: invalid datetime value 0000-00-00
      mysql> SELECT TO_DAYS('0000-01-01');

@@ -23,7 +23,7 @@ create table t1(a varchar(3), b int);
 insert into t1 values("ABC",1);
 insert into t1 values("DEF",NULL);
 
-mysql> select serial_full(a,b) from t1;--The query returns the result serialized for the combination of columns a and b. NULL values are preserved when available.
+mysql> select serial_full(a,b) from t1; -- The query returns the result serialized for the combination of columns a and b. NULL values are preserved when available.
 +-------------------+
 | serial_full(a, b) |
 +-------------------+
@@ -32,7 +32,7 @@ mysql> select serial_full(a,b) from t1;--The query returns the result serialized
 +-------------------+
 2 rows in set (0.00 sec)
 
-mysql> select serial_full(1.2,'world') ;--The query returns the result serialized as a combination of the value 1.2 and the value hello.
+mysql> select serial_full(1.2,'world') ; -- The query returns the result serialized as a combination of the value 1.2 and the value hello.
 +-------------------------+
 | serial_full(1.2, world) |
 +-------------------------+

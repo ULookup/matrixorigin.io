@@ -57,15 +57,15 @@ drop table transactions;
 drop table users;
 
 CREATE TABLE IF NOT EXISTS Users (
-    user_id INT AUTO_INCREMENT PRIMARY KEY, --user id
-    username VARCHAR(255) NOT NULL, --username
-    account_balance DECIMAL(10, 2) NOT NULL --account balance
+    user_id INT AUTO_INCREMENT PRIMARY KEY, -- user id
+    username VARCHAR(255) NOT NULL, -- username
+    account_balance DECIMAL(10, 2) NOT NULL -- account balance
 );
 CREATE TABLE IF NOT EXISTS Transactions (
-    transaction_id INT AUTO_INCREMENT PRIMARY KEY, --transaction id
-    user_id INT NOT NULL, --user id
-    amount DECIMAL(10, 2) NOT NULL, --transaction amount
-    transaction_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP, --transaction time
+    transaction_id INT AUTO_INCREMENT PRIMARY KEY, -- transaction id
+    user_id INT NOT NULL, -- user id
+    amount DECIMAL(10, 2) NOT NULL, -- transaction amount
+    transaction_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- transaction time
     FOREIGN KEY (user_id) REFERENCES Users(user_id)
 );
 ```

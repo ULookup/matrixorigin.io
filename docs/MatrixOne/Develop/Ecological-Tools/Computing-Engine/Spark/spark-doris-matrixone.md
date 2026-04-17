@@ -16,7 +16,7 @@ This practice requires the installation and deployment of the following software
 
 ### Step one: Prepare data in Doris
 
-```sql
+```
 create database test;
 
 use test;

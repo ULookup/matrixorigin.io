@@ -253,7 +253,7 @@ Let's take the data according to 8: 1: The scale of 1 is divided into a training
 
 We store the test set as new data emerging from the production process in the MO. [Click here to](https://github.com/matrixorigin/matrixone/blob/main/pkg/udf/pythonservice/demo/ddl.sql) get the `ddl.sql` file, import the data table with the following statement and some of the test data:
 
-```sql
+```
 source /your_download_path/ddl.sql 
 ```
 
@@ -336,8 +336,10 @@ source /your_download_path/ddl.sql
     create or replace function py_detect(features json, amount decimal) 
     returns bool 
     language python 
-    import 'your_code_path/detect-1.0.0-py3-none-any.whl' -- replace with handler 'credit.detect';
-    handler 'credit.detect';-- detect function under credit module
+    import 'your_code_path/detect-1.0.0-py3-none-any.whl'
+    -- replace with your wheel path; maps to handler 'credit.detect'
+    handler 'credit.detect';
+    -- detect function under credit module
     ```
 
 2. Call the udf function for fraud detection:

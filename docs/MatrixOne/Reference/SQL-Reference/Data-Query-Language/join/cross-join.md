@@ -30,7 +30,7 @@ CREATE TABLE Fruits (
 INSERT INTO Colors (color_name) VALUES ('Red'), ('Green'), ('Blue');
 INSERT INTO Fruits (fruit_name) VALUES ('Apple'), ('Banana'), ('Cherry');
 
-mysql> SELECT c.color_name, f.fruit_name FROM Colors c CROSS JOIN Fruits f;--Generate a result set with all colors and all fruit combinations
+mysql> SELECT c.color_name, f.fruit_name FROM Colors c CROSS JOIN Fruits f; -- Generate a result set with all colors and all fruit combinations
 +------------+------------+
 | color_name | fruit_name |
 +------------+------------+
@@ -46,7 +46,7 @@ mysql> SELECT c.color_name, f.fruit_name FROM Colors c CROSS JOIN Fruits f;--Gen
 +------------+------------+
 9 rows in set (0.00 sec)
 
-mysql> SELECT c.color_name,f.fruit_name FROM Colors c CROSS JOIN Fruits f WHERE c.color_name = 'Red' AND f.fruit_name = 'Apple';--Filter out combinations of specific colors and specific fruits
+mysql> SELECT c.color_name,f.fruit_name FROM Colors c CROSS JOIN Fruits f WHERE c.color_name = 'Red' AND f.fruit_name = 'Apple'; -- Filter out combinations of specific colors and specific fruits
 +------------+------------+
 | color_name | fruit_name |
 +------------+------------+

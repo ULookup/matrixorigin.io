@@ -26,13 +26,13 @@ This time you are using the user scott in Oracle to create the table (or other u
 
 - Access to the database
 
-```sql
+```
 sqlplus / as sysdba
 ```
 
 - Create a scott user and specify a password
 
-```sql
+```
 create user scott identified by tiger; 
 ```
 
@@ -44,13 +44,13 @@ grant dba to scott;
 
 - Subsequent access is available via the scott user login:
 
-```sql
+```
 sqlplus scott/tiger 
 ```
 
 - Creating Test Data in Oracle
 
-```sql
+```
 create table employees_oracle(
 id number(5),
 name varchar(20)

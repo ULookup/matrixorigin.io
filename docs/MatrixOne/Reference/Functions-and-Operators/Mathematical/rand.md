@@ -8,7 +8,7 @@ If you need to randomly select data from a table, you can use the `RAND()` funct
 
 ```sql
 -- Randomly retrieve all data from the table and sort it in a random order, the order of the query results may differ each time.
-SELECT * FROM table ORDER BY RAND();
+SELECT * FROM `table` ORDER BY RAND();
 ```
 
 ## **Syntax**

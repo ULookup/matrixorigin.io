@@ -20,7 +20,7 @@ Before you can start writing data to MatrixOne using DataX, you need to complete
 
 Create database test or test if test does not exist
 
-```sql
+```
 >create database test;
 >use test
 #Viewing the current database
@@ -42,9 +42,9 @@ test
 ### Creating a Target Table in MatrixOne
 
 ```sql
-mysql> create database test;
-mysql> use test;
-mysql> CREATE TABLE `mongodbtest` (
+create database test;
+use test;
+CREATE TABLE `mongodbtest` (
   `name` varchar(30) NOT NULL COMMENT "",
   `age` int(11) NOT NULL COMMENT ""
 );

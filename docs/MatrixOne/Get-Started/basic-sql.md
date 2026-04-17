@@ -69,7 +69,7 @@ DROP DATABASE dbdemo;
 
 - To create a table, use the `CREATE TABLE` statement:
 
-```sql
+```
 CREATE TABLE table_name column_name data_type constraint;
 ```
 
@@ -91,7 +91,7 @@ SHOW CREATE table person;
 
 Expected result:
 
-```sql
+```
 +--------+-----------------------------------------------------------------------------------------------------------------+
 | Table  | Create Table                                                                                                    |
 +--------+-----------------------------------------------------------------------------------------------------------------+
@@ -132,10 +132,10 @@ INSERT INTO person(id,name) VALUES('2','bob');
 UPDATE person SET birthday='20180808' WHERE id=2;
 ```
 
-- To replace some field data of table records in the table, use the `UPDATE` statement:
+- To replace some field data of table records in the table, use the `REPLACE INTO` statement:
 
 ```sql
-REPLACE INTO person SET birthday='20180809' WHERE id=2;
+REPLACE INTO person (id, birthday) VALUES (2, '20180809');
 ```
 
 - To delete the data in a table, use the `DELETE` statement:

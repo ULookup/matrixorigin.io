@@ -44,7 +44,7 @@ rollback;
 
 In MatrixOne, there is a parameter `AUTOCOMMIT`, which determines whether there is a single SQL statement to be automatically committed as an independent transaction without `START TRANSACTION` or `BEGIN`. The syntax is as follows:
 
-```sql
+```
 -- Set the value of this parameter
 SET AUTOCOMMIT={on|off|0|1}  
 SHOW VARIABLES LIKE 'AUTOCOMMIT';

@@ -85,7 +85,7 @@ mysql> SHOW PITR WHERE pitr_name='db_pitr1';
 **Example 5: Tenant admin creates a table-level PITR**
 
 ```sql
-mysql> CREATE PITR tab_pitr1 FOR TABLE db1 TABLE t1 RANGE 1 'y';
+mysql> CREATE PITR tab_pitr1 FOR TABLE db1 t1 RANGE 1 'y';
 Query OK, 0 rows affected (0.02 sec)
 
 mysql> SHOW PITR WHERE pitr_name='tab_pitr1';

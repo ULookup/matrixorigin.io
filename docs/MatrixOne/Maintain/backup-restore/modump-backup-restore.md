@@ -45,7 +45,7 @@ create table t1
     c19 blob,
     c20 uuid
 );
-insert into t1 values ​​(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, '2019-01-01', '2019-01-01 00:00:00', '2019-01 -01 00:00:00', 'a', 'a', '{"a":1}','1212.1212', 'a', 'aza', '00000000-0000-0000-0000-000000000000' );
+insert into t1 values (1, 1, 1, 1, 1, 1, 1, 1, 1, 1, '2019-01-01', '2019-01-01 00:00:00', '2019-01-01 00:00:00', 'a', 'a', '{"a":1}','1212.1212', 'a', 'aza', '00000000-0000-0000-0000-000000000000' );
 ```
 
 If you want to generate a backup of a single database, you can run the following command. This command will generate a backup of the database named *t*that contains the structure and data in the *t.sql*file.
@@ -69,15 +69,15 @@ Restoring exported *sql*files to a MatrixOne database is relatively simple. To r
 
 Connect MatrixOne to the same server as the MySQL client, and make sure the exported *sql*file is also on the same server.
 
-```sql
-mysql> create database t if not exists;
+```
+mysql> create database if not exists t;
 mysql> source /YOUR_SQL_FILE_PATH/t.sql
 ```
 
 After successfully executing the above command, execute the following command to check whether all objects are created on the database named *t*.
 
 ```sql
-mysql> use t;
-mysql> show tables;
-mysql> select count(*) from t1;
+use t;
+show tables;
+select count(*) from t1;
 ```

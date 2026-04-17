@@ -14,23 +14,28 @@ Today, when data security is increasingly important, reasonable connection contr
 ## Check
 
 ```sql
-SELECT @@global.connection_control_failed_connections_threshold; --Default value is 3
-SELECT @@global.connection_control_max_connection_delay; --Default value is 0
-SELECT @@global.default_password_lifetime; --Default value is 0
-SELECT @@global.password_history; --Default value is 0
-SELECT @@global.password_reuse_interval; --Default value is 0
+SELECT @@global.connection_control_failed_connections_threshold;
+-- Default value is 3
+SELECT @@global.connection_control_max_connection_delay;
+-- Default value is 0
+SELECT @@global.default_password_lifetime;
+-- Default value is 0
+SELECT @@global.password_history;
+-- Default value is 0
+SELECT @@global.password_reuse_interval;
+-- Default value is 0
 ```
 
 ## set up
 
 After setting, you need to exit and reconnect to take effect.
 
-```sql
+```
 set global connection_control_failed_connections_threshold=xx;
-set global connection_control_max_connection_delay=xx;--Unit: ms
-set global default_password_lifetime=xx;--unit is days
+set global connection_control_max_connection_delay=xx; -- Unit: ms
+set global default_password_lifetime=xx; -- unit is days
 set global password_history=xx;
-set global password_reuse_interval=xx;--unit is days
+set global password_reuse_interval=xx; -- unit is days
 ```
 
 ## Example
@@ -132,7 +137,8 @@ mysql> SELECT @@global.default_password_lifetime;
 
 set global default_password_lifetime=1;
 
-mysql> SELECT @@global.default_password_lifetime; --Effective after reconnection
+mysql> SELECT @@global.default_password_lifetime;
+-- Effective after reconnection
 +-----------------------------+
 | @@default_password_lifetime |
 +-----------------------------+
@@ -238,7 +244,8 @@ mysql> select @@global.password_reuse_interval;
 mysql> set global password_reuse_interval=30;
 Query OK, 0 rows affected (0.00 sec)
 
-mysql> select @@global.password_reuse_interval; --Effective after reconnection
+mysql> select @@global.password_reuse_interval;
+-- Effective after reconnection
 +---------------------------+
 | @@password_reuse_interval |
 +---------------------------+

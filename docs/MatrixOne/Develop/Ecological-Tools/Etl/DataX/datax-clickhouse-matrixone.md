@@ -18,7 +18,7 @@ Before you can start writing data to MatrixOne using DataX, you need to complete
 
 ### Log in to the clickhouse database to create test data
 
-```sql
+```
 create database source_ck_database;
 use source_ck_database; 
 

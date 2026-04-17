@@ -18,7 +18,7 @@ Before you can start writing data to MatrixOne using DataX, you need to complete
 
 ### Create sql server test data
 
-```sql
+```
 CREATE TABLE test.dbo.test2 (
 	id int NULL,
 	age int NULL,

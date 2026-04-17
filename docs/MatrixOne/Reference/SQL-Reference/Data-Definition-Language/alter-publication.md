@@ -33,7 +33,8 @@ create account acc2 admin_name 'root' identified by '111';
 create database t;
 create publication pub3 database t account acc0,acc1;
 
-alter publication pub3 account add acc2;--Modify release scope
+alter publication pub3 account add acc2;
+-- Modify release scope
 mysql> show create publication pub3;
 +-------------+-----------------------------------------------------------+
 | Publication | Create Publication                                        |
@@ -50,7 +51,8 @@ mysql> show publications;
 +-------------+----------+--------+----------------+---------------------+---------------------+---------------------+----------+
 1 row in set (0.00 sec)
 
-alter publication pub3  comment "this is pubs";--Modify release notes
+alter publication pub3  comment "this is pubs";
+-- Modify release notes
 mysql> show publications;
 +-------------+----------+--------+----------------+---------------------+---------------------+---------------------+--------------+
 | publication | database | tables | sub_account    | subscribed_accounts | create_time         | update_time         | comments     |
@@ -60,7 +62,8 @@ mysql> show publications;
 1 row in set (0.00 sec)
 
 create database new_pub3;
-alter publication pub3 database new_pub3;--Modify publishing database
+alter publication pub3 database new_pub3;
+-- Modify publishing database
 mysql> show publications;
 +-------------+----------+--------+----------------+---------------------+---------------------+---------------------+--------------+
 | publication | database | tables | sub_account    | subscribed_accounts | create_time         | update_time         | comments     |

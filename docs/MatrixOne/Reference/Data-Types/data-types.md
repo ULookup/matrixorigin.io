@@ -155,7 +155,8 @@ mysql> select min(big),max(big),max(big)-1 from floattable;
 
 ```sql
 create table t1 (a bit);
-mysql> desc  t1;--bit(M)  M DEFAULT 1
+-- bit(M)  M DEFAULT 1
+mysql> desc  t1;
 +-------+--------+------+------+---------+-------+---------+
 | Field | Type   | Null | Key  | Default | Extra | Comment |
 +-------+--------+------+------+---------+-------+---------+
@@ -179,7 +180,7 @@ mysql> select * from t2;
 
 truncate table t2;
 
---Assigning values with hex-value literal syntax
+-- Assigning values with hex-value literal syntax
 insert into t2 values (0x10);
 insert into t2 values (x'10');
 mysql> select * from t2;
@@ -193,9 +194,11 @@ mysql> select * from t2;
 
 truncate table t2;
 
---Supports assignment by int type, but the length of the binary representation of int cannot exceed the length of bit type.
-insert into t2 values (255);--a = b'11111111'
-mysql> insert into t2 values (256);--The length of the binary representation of 256 exceeds 8.
+-- Supports assignment by int type, but the length of the binary representation of int cannot exceed the length of bit type.
+insert into t2 values (255);
+-- a = b'11111111'
+mysql> insert into t2 values (256);
+-- The length of the binary representation of 256 exceeds 8.
 ERROR 20301 (HY000): invalid input: data too long, type width = 8, val = 100000000
 
 mysql> select * from t2;
@@ -208,8 +211,9 @@ mysql> select * from t2;
 
 truncate table t2;
 
---Floating-point data will first be rounded to int type and then assigned according to the int type.
-insert into t2 values (2.1);--a = b'00000010'
+-- Floating-point data will first be rounded to int type and then assigned according to the int type.
+insert into t2 values (2.1);
+-- a = b'00000010'
 mysql> select * from t2;
 +------------+
 | a          |
@@ -220,9 +224,11 @@ mysql> select * from t2;
 
 truncate table t2;
 
---Character data is stored as its encoded value, and the total length of the encoding into which the entire string is converted must not exceed the bit type.
-insert into t2 values ('a');--a = b'01100001' 
-mysql> insert into t2 values ('啊');--utf8('啊') = 0xe5958a;
+-- Character data is stored as its encoded value, and the total length of the encoding into which the entire string is converted must not exceed the bit type.
+insert into t2 values ('a');
+-- a = b'01100001'
+mysql> insert into t2 values ('啊');
+-- utf8('啊') = 0xe5958a;
 ERROR 20301 (HY000): invalid input: data too long, type width = 8, val = 111001011001010110001010
 
 mysql> select * from t2;
@@ -532,7 +538,7 @@ mysql> select * from decimalTest;
 create table t1(a uuid primary key);
 
 -- Insert a new UUID value into column 'a' of table 't1'
-insert into t1 values ​​(uuid());
+insert into t1 values (uuid());
 
 -- Query the length of the value of the 'a' column in the 't1' table converted to a string
 mysql> select length(cast(a as varchar)) from t1;

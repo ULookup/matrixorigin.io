@@ -34,9 +34,9 @@ Prepare a table named `user_behavior_table` and the corresponding csv data, whic
 
 ```sql
 CREATE TABLE user_behavior_table(
-user_id int,--user id 
-behavior varchar(100),--behavior, including browser,purchase,returns
-occur_year varchar(100)----behavior occurred year
+user_id int, -- user id
+behavior varchar(100), -- behavior, including browser,purchase,returns
+occur_year varchar(100) -- behavior occurred year
 );
 
 LOAD DATA INFILE '/your_path/user_behavior_table.csv' INTO TABLE user_behavior_table FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"';

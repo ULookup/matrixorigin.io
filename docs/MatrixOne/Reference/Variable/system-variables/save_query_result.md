@@ -77,7 +77,7 @@ You can query metadata information using the following SQL statement:
 
 ```sql
 select * from meta_scan(query_id) as u;
-current account_id
+-- current account_id (example metadata field in the result set; see table below)
 select query_id from meta_scan(query_id) as u;
 ```
 
@@ -103,7 +103,7 @@ You can save the query results on your local disk or S3.
 
 ### Syntax structure
 
-```sql
+```
 MODUMP QUERY_RESULT query_id INTO s3_path
      [FIELDS TERMINATED BY 'char']
      [ENCLOSED BY 'char']

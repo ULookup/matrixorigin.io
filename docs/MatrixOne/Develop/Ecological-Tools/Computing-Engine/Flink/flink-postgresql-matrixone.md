@@ -92,12 +92,14 @@ Switch to the flink directory and execute the following command:
 
 Set up checkpoint every 3 seconds
 
+<!-- validator-ignore -->
 ```sql
 SET execution.checkpointing.interval = 3s; 
 ```
 
 ### Create source table with flink ddl
 
+<!-- validator-ignore -->
 ```sql
 CREATE TABLE pgsql_bog  (
       stu_id  int not null,
@@ -123,6 +125,7 @@ If it's table sql, pgoutput is the standard logical decode output plugin in Post
 
 ### Create sink table
 
+<!-- validator-ignore -->
 ```sql
 CREATE TABLE test_pg (
       stu_id  int not null,
@@ -142,6 +145,7 @@ CREATE TABLE test_pg (
 
 ### Importing PostgreSQL data into MatrixOne
 
+<!-- validator-ignore -->
 ```sql
 insert into test_pg select * from pgsql_bog; 
 ```
@@ -165,6 +169,7 @@ Data can be found to have been imported
 
 ### Adding data to postgrsql
 
+<!-- validator-ignore -->
 ```sql
 insert into public.student values (51, '58', 39, '2020-01-03'); 
 ```
@@ -189,18 +194,20 @@ You can find that the data has been synchronized to the MatrixOne correspondence
 
 To delete data:
 
+<!-- validator-ignore -->
 ```sql
 delete from public.student where stu_id=1; 
 ```
 
 If something goes wrong,
 
-```sql
+```
 cannot delete from table "student" because it does not have a replica identity and publishes deletes 
 ```
 
 then execute
 
+<!-- validator-ignore -->
 ```sql
 alter table public.student replica identity full; 
 ```

@@ -256,22 +256,26 @@ You can now start migrating MySQL data to MatrixOne using Flink.
 
 1. Prepare MySQL data: On node3, connect to your local Mysql using the Mysql client, create the required database, data table, and insert the data:
 
-    ```sql
+    ```
     mysql -h127.0.0.1 -P3306 -uroot -proot
-    mysql> CREATE DATABASE motest;
-    mysql> USE motest;
-    mysql> CREATE TABLE `person` (`id` int DEFAULT NULL, `name` varchar(255) DEFAULT NULL, `birthday` date DEFAULT NULL);
-    mysql> INSERT INTO motest.person (id, name, birthday) VALUES(2, 'lisi', '2023-07-09'),(3, 'wangwu', '2023-07-13'),(4, 'zhaoliu', '2023-08-08');
+    ```
+    ```sql
+    CREATE DATABASE motest;
+    USE motest;
+    CREATE TABLE `person` (`id` int DEFAULT NULL, `name` varchar(255) DEFAULT NULL, `birthday` date DEFAULT NULL);
+    INSERT INTO motest.person (id, name, birthday) VALUES(2, 'lisi', '2023-07-09'),(3, 'wangwu', '2023-07-13'),(4, 'zhaoliu', '2023-08-08');
     ```
 
 2. Empty MatrixOne table data:
 
     On node3, connect node1's MatrixOne using a MySQL client. Since this example continues to use the `test` database from the example that read the MatrixOne data earlier, we need to first empty the data from the `person` table.
 
-    ```sql
+    ```
     -- on node3, connect node1's MatrixOne 
     mysql -hxx.xx.xx.xx -P6001 -uroot -p111 
-    mysql> TRUNCATE TABLE test.person using the Mysql client;
+    ```
+    ```sql
+    TRUNCATE TABLE test.person;
     ```
 
 3. Write code in IDEA:

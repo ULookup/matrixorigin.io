@@ -25,11 +25,11 @@ Log in with your default account
 influx -host 'localhost' -port '8086'
 ```
 
-```sql
---Creating and using databases
+```
+-- Creating and using databases
 create database testDb;
 use testDb;
---insert data
+-- insert data
 insert air_condition_outdoor,home_id=0000000000000,sensor_id=0000000000034 temperature=0.0000000000000000,humidity=80.0000000000000000,battery_voltage=3.2000000000000002 1514764800000000000
 insert air_condition_outdoor,home_id=0000000000001,sensor_id=0000000000093 temperature=0.0000000000000000,humidity=80.0000000000000000,battery_voltage=3.2000000000000002 1514764800000000000
 insert air_condition_outdoor,home_id=0000000000003,sensor_id=0000000000197 temperature=0.0000000000000000,humidity=80.0000000000000000,battery_voltage=3.2000000000000002 1514764800000000000
@@ -44,7 +44,7 @@ insert air_condition_outdoor,home_id=0000000000003,sensor_id=0000000000204 tempe
 
 ### Create a test account
 
-```sql
+```
 create user "test" with password '123456' with all privileges;
 grant all privileges on testDb to test;
 show grants for test;
@@ -75,9 +75,9 @@ influx -host 'localhost' -port '8086' -username 'test' -password '123456'
 ### Creating a Target Table in MatrixOne
 
 ```sql
-mysql> create database test;
-mysql> use test;
-mysql> create  table air_condition_outdoor(
+create database test;
+use test;
+create table air_condition_outdoor(
 time  datetime,
 battery_voltage float,
 home_id  char(15),

@@ -18,7 +18,7 @@ Before you can start writing data to MatrixOne using DataX, you need to complete
 
 ### Creating Test Data in Doris
 
-```sql
+```
 create database test;
 
 use test;

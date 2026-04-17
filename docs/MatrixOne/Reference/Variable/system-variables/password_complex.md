@@ -56,15 +56,15 @@ select @@global.validate_password.special_char_count;
 
 After setting, you need to exit and reconnect to take effect.
 
-```sql
+```
 set global validate_password=xx; --Default is 0
 set global validate_password.changed_characters_percentage=xx; --Default is 0
-set global validate_password.check_user_name=xx;--Default is 1
-set global validate_password.policy=xx;--Default is 0
-set global validate_password.length=xx;--Default is 8
-set global validate_password.mixed_case_count=xx;--Default is 1
-set global validate_password.number_count=xx;--Default is 1
-set global validate_password.special_char_count==xx;--Default is 1
+set global validate_password.check_user_name=xx; -- Default is 1
+set global validate_password.policy=xx; -- Default is 0
+set global validate_password.length=xx; -- Default is 8
+set global validate_password.mixed_case_count=xx; -- Default is 1
+set global validate_password.number_count=xx; -- Default is 1
+set global validate_password.special_char_count==xx; -- Default is 1
 ```
 
 ## Example
@@ -83,7 +83,8 @@ mysql> select @@global.validate_password;
 mysql> set global validate_password=1;
 Query OK, 0 rows affected (0.02 sec)
 
-mysql> select @@global.validate_password; --Reconnection takes effect
+mysql> select @@global.validate_password;
+-- Reconnection takes effect
 +---------------------+
 | @@validate_password |
 +---------------------+
@@ -108,9 +109,9 @@ mysql> select @@global.validate_password.changed_characters_percentage;
 mysql> create user u1 identified by '12345678';
 Query OK, 0 rows affected (0.02 sec)
 
-mysql>set global validate_password.changed_characters_percentage=80;--Set character proportion to 80%
+mysql>set global validate_password.changed_characters_percentage=80; -- Set character proportion to 80%
 
-mysql> select @@global.validate_password.changed_characters_percentage; --Reconnection takes effect
+mysql> select @@global.validate_password.changed_characters_percentage; -- Reconnection takes effect
 +---------------------------------------------------+
 | @@validate_password.changed_characters_percentage |
 +---------------------------------------------------+
@@ -145,7 +146,8 @@ mysql> select @@global.validate_password.policy;
 1 row in set (0.00 sec)
 set global validate_password.policy=1;
 
-mysql> select @@global.validate_password.policy;--Reconnection takes effect
+mysql> select @@global.validate_password.policy;
+-- Reconnection takes effect
 +----------------------------+
 | @@validate_password.policy |
 +----------------------------+
@@ -200,15 +202,15 @@ mysql> select @@global.validate_password.mixed_case_count;
 +--------------------------------------+
 1 row in set (0.00 sec)
 
---Create user u4, the password contains one uppercase letter and one lowercase letter, the creation is successful
+-- Create user u4, the password contains one uppercase letter and one lowercase letter, the creation is successful
 mysql> create user u4 identified by 'Pa12345!';
 Query OK, 0 rows affected (0.01 sec)
 
---Set validate_password.mixed_case_count to 2
+-- Set validate_password.mixed_case_count to 2
 mysql> set global validate_password.mixed_case_count=2;
 Query OK, 0 rows affected (0.01 sec)
 
-mysql> select @@global.validate_password.mixed_case_count; --Reconnection takes effect
+mysql> select @@global.validate_password.mixed_case_count; -- Reconnection takes effect
 +--------------------------------------+
 | @@validate_password.mixed_case_count |
 +--------------------------------------+
@@ -216,11 +218,11 @@ mysql> select @@global.validate_password.mixed_case_count; --Reconnection takes 
 +--------------------------------------+
 1 row in set (0.00 sec)
 
---Create user u5. The password contains one uppercase letter and one lowercase letter. The creation failed.
+-- Create user u5. The password contains one uppercase letter and one lowercase letter. The creation failed.
 mysql> create user u5 identified by 'Pa12345!';
 ERROR 20301 (HY000): invalid input: Password 'Pa12345!' does not meet the Lowercase requirements
 
---Create user u5. The password contains two uppercase letters and two lowercase letters. The creation failed.
+-- Create user u5. The password contains two uppercase letters and two lowercase letters. The creation failed.
 mysql> create user u5 identified by 'PPaa123!';
 Query OK, 0 rows affected (0.01 sec)
 ```
@@ -236,7 +238,7 @@ mysql> select @@global.validate_password.number_count;
 +----------------------------------+
 1 row in set (0.00 sec)
 
---Create user u6, the password contains 1 number, the creation is successful
+-- Create user u6, the password contains 1 number, the creation is successful
 mysql> create user u6 identified by 'Password1!';
 Query OK, 0 rows affected (0.01 sec)
 
@@ -251,11 +253,11 @@ mysql> select @@global.validate_password.number_count;
 +----------------------------------+
 1 row in set (0.00 sec)
 
---Create user u7, the password contains a number, the creation failed
+-- Create user u7, the password contains a number, the creation failed
 mysql> create user u7 identified by 'Password1!';
 ERROR 20301 (HY000): invalid input: Password 'Password1!' does not meet the Number requirements
 
---Create user u7, the password contains two numbers, the creation is successful
+-- Create user u7, the password contains two numbers, the creation is successful
 mysql> create user u7 identified by 'Password12!';
 Query OK, 0 rows affected (0.01 sec)
 ```
@@ -271,14 +273,15 @@ mysql> select @@global.validate_password.special_char_count;
 +----------------------------------------+
 1 row in set (0.00 sec)
 
---Create user u8, the password contains a special character, the creation is successful
+-- Create user u8, the password contains a special character, the creation is successful
 mysql> create user u8 identified by 'Password123!';
 Query OK, 0 rows affected (0.01 sec)
 
 mysql> set global validate_password.special_char_count=2;
 Query OK, 0 rows affected (0.01 sec)
 
-mysql> select @@global.validate_password.special_char_count; --Effective after reconnection
+mysql> select @@global.validate_password.special_char_count;
+-- Effective after reconnection
 +----------------------------------------+
 | @@validate_password.special_char_count |
 +----------------------------------------+

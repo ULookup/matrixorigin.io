@@ -138,7 +138,7 @@ MatrixOne supports integration with the data visualization tool FineBI. This art
     count(DISTINCT customer_id)
     from orders.order_detail
     group by d
-    order by d
+    order by d;
 
     -- Monthly active users and order count
     select count(DISTINCT customer_id),
@@ -146,7 +146,7 @@ MatrixOne supports integration with the data visualization tool FineBI. This art
     concat(y, '-', m)
     from orders.order_detail
     group by y,m
-    order by y,m
+    order by y,m;
 
     -- Active users and order count in different periods
     select h,
@@ -154,13 +154,13 @@ MatrixOne supports integration with the data visualization tool FineBI. This art
     count(order_id) order_num
     from orders.order_detail
     group by h
-    order by h
+    order by h;
 
     -- User count by type
     SELECT count(*),
     user_type
     from orders.rfm
-    GROUP BY user_type
+    GROUP BY user_type;
 
     -- Monthly GMV
     select y,m,
@@ -168,7 +168,7 @@ MatrixOne supports integration with the data visualization tool FineBI. This art
     concat(y, "-", m) month
     from orders.order_detail
     group by y,m
-    order by y,m
+    order by y,m;
 
     -- Quarterly GMV
     select y,q,
@@ -176,7 +176,7 @@ MatrixOne supports integration with the data visualization tool FineBI. This art
     concat(y, "季度", q) as quator
     from orders.order_detail
     group by y,q
-    order by concat(y, "季度", q) asc
+    order by concat(y, "季度", q) asc;
 
     -- Quarterly ARPU
     select y,q,
@@ -184,7 +184,7 @@ MatrixOne supports integration with the data visualization tool FineBI. This art
     concat(y, "季度", q) as quator
     from orders.order_detail
     group by y,q
-    order by y,q
+    order by y,q;
 
     -- Monthly ARPU
     select y,m,
@@ -192,7 +192,7 @@ MatrixOne supports integration with the data visualization tool FineBI. This art
     concat(y, "-", m) as month
     from orders.order_detail
     group by y,m
-    order by y,m
+    order by y,m;
 
     -- Important retained users' popularity index
     SELECT e.product_category_name_english good_type,
@@ -209,7 +209,7 @@ MatrixOne supports integration with the data visualization tool FineBI. This art
     LEFT JOIN orders.product d ON a.product_id=d.product_id
     LEFT JOIN orders.category e ON d.product_category_name=e.product_category_name
     where e.product_category_name_english is not NULL
-    GROUP BY e.product_category_name_english limit 50
+    GROUP BY e.product_category_name_english limit 50;
 
     -- General retained users' popularity index
     SELECT e.product_category_name_english good_type,
@@ -225,7 +225,7 @@ MatrixOne supports integration with the data visualization tool FineBI. This art
     LEFT JOIN orders.product d ON a.product_id=d.product_id
     LEFT JOIN orders.category e ON d.product_category_name=e.product_category_name
     where e.product_category_name_english is not NULL
-    GROUP BY e.product_category_name_english limit 50
+    GROUP BY e.product_category_name_english limit 50;
     ```
 
 3. Update Data:

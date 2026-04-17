@@ -100,7 +100,7 @@ This practice requires the installation and deployment of the following software
 
 Create a Hive database, data table, and insert data by executing the following command in a terminal window:
 
-```sql
+```
 hive
 hive> create database motest;
 hive> CREATE TABLE `users`(

@@ -43,9 +43,11 @@ mysql> SHOW SNAPSHOTS;
 ```sql
 CREATE SNAPSHOT account_sp2 FOR ACCOUNT acc1;
 CREATE SNAPSHOT account_sp3 FOR ACCOUNT;
+```
 
+```
 mysql> CREATE SNAPSHOT account_sp2 FOR ACCOUNT acc2;
-ERROR 20101 (HY000): internal error: only sys tenant can create tenant level snapshot for other tenant--Tenant admins can only create snapshots for their own tenant
+ERROR 20101 (HY000): internal error: only sys tenant can create tenant level snapshot for other tenant -- Tenant admins can only create snapshots for their own tenant
 
 mysql> SHOW SNAPSHOTS;
 +---------------+----------------------------+----------------+--------------+---------------+------------+

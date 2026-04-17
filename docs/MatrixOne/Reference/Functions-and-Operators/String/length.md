@@ -19,8 +19,10 @@ The length() function returns the length of the string.
 ## **Examples**
 
 ```sql
-> select a,length(a) from t1;
+select a,length(a) from t1;
+```
 
+```
 a	length(a)
 a       1
 ab      2

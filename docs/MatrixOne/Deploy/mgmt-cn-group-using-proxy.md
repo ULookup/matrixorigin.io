@@ -177,9 +177,9 @@ In this chapter, assuming that account load isolation needs to be implemented fo
 
     ```sql
     -- Create a new account acc1 with a password of 123456 (a simple password is set here, which is only used as an example)
-    mysql> create account acc1 admin_name 'admin' identified by '123456';
+    create account acc1 admin_name 'admin' identified by '123456';
     -- Create a new account acc2 with a password of 123456 (a simple password is set here, which is only used as an example)
-    mysql> create account acc2 admin_name 'admin' identified by '123456';
+    create account acc2 admin_name 'admin' identified by '123456';
     ```
 
 2. Modify the `mo.yaml` file of the MatrixOne cluster, and label the two CN groups with `account:acc1` and `account:acc2` respectively, corresponding to tenants named `acc1` and `acc2` respectively:

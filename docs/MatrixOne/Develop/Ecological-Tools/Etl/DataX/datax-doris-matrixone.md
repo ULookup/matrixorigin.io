@@ -10,7 +10,7 @@ Before you can start writing data to MatrixOne using DataX, you need to complete
 - Install [JDK 8+ version](https://www.oracle.com/sg/java/technologies/javase/javase8-archive-downloads.html).
 - Install [Python 3.8 (or plus)](https://www.python.org/downloads/).
 - Download the [DataX](https://datax-opensource.oss-cn-hangzhou.aliyuncs.com/202210/datax.tar.gz) installation package and unzip it.
-- Download and install [Doris](https://doris.apache.org/zh-CN/docs/dev/get-starting/quick-start/).
+- Download and install [Doris](https://doris.apache.org/zh-CN/docs/gettingStarted/quick-start).
 - Download [matrixonewriter.zip](https://community-shared-data-1308875761.cos.ap-beijing.myqcloud.com/artwork/docs/develop/Computing-Engine/datax-write/matrixonewriter.zip) and extract it to the `plugin/writer/` directory in the root of your DataX project.
 - Install the <a href="https://dev.mysql.com/downloads/mysql" target="_blank">MySQL Client</a>.
 

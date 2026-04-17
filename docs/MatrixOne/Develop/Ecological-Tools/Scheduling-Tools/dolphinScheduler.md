@@ -12,7 +12,7 @@ MatrixOne supports integration with DolphinScheduler, a visual DAG workflow task
 
 - Completed [MatrixOne installation and setup](../../../Get-Started/install-standalone-matrixone.md).
 
-- Installed [DolphinScheduler installation](https://dolphinscheduler.apache.org/docs/3.1.8/en/installation/standalone).
+- Installed [DolphinScheduler installation](https://github.com/apache/dolphinscheduler/blob/dev/docs/docs/en/guide/installation/standalone.md).
 
 ## Operating Steps
 

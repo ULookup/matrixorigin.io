@@ -36,6 +36,7 @@ async function main() {
     .option('-c, --changed-only', 'Only check changed files', false)
     .option('-l, --limit <number>', 'Limit the number of files to check (for quick testing)', parseInt)
     .option('--check <type>', 'Check type: syntax|execution|all', 'syntax')
+    .option('--base-branch <branch>', 'Base branch for changed-only diff', 'main')
     .option('--db-host <host>', 'Database host', config.defaultDbConfig.host)
     .option('--db-port <port>', 'Database port', config.defaultDbConfig.port)
     .option('--db-user <user>', 'Database user', config.defaultDbConfig.user)
@@ -67,7 +68,13 @@ async function main() {
     }
 
     console.log('📝 Check mode: Changed files only')
-    filesToCheck = getChangedFiles('main')
+    console.log(`🌿 Diff base branch: ${options.baseBranch}`)
+    try {
+      filesToCheck = getChangedFiles(options.baseBranch)
+    } catch (error) {
+      console.error(`❌ Error: Unable to determine changed files: ${error.message}`)
+      process.exit(1)
+    }
 
     if (filesToCheck.length === 0) {
       console.log('✅ No changed Markdown files')

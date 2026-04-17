@@ -8,12 +8,14 @@ on:
   workflow_dispatch:
     inputs:
       branch:
-        description: 'Target branch for image selection (leave empty for auto-detect)'
+        description: 'Target branch for image selection (leave empty to use MO_TARGET_BRANCH)'
         required: false
         type: string
 
 env:
   TENCENT_TCR_REPO: ccr.ccs.tencentyun.com/matrixone-dev/matrixone
+  MO_TARGET_BRANCH: 3.0-dev
+  DOCS_BASE_BRANCH: main
 
 jobs:
   validate-sql:
@@ -61,14 +63,26 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y mysql-client
 
-      - name: Run SQL Validation with Branch Fallback
+      - name: Run SQL Validation on Target Branch
         run: |
-          echo "🔍 Starting SQL Execution Validation with Branch Fallback"
+          TARGET_BRANCH="${{ github.event.inputs.branch || env.MO_TARGET_BRANCH }}"
+          BASE_BRANCH="${{ github.base_ref || env.DOCS_BASE_BRANCH }}"
+
+          if ! [[ "${TARGET_BRANCH}" =~ ^[0-9]+\.[0-9]+-dev$ ]]; then
+            echo "❌ Invalid target branch: ${TARGET_BRANCH}"
+            echo "Expected release branch format: x.y-dev (example: 3.0-dev)"
+            exit 1
+          fi
+
+          echo "🔍 Starting SQL Execution Validation for target branch"
           echo "============================================================"
+          echo "🎯 MatrixOne target branch: ${TARGET_BRANCH}"
+          echo "🧾 Diff base branch: ${BASE_BRANCH}"
+          echo ""
 
           # Get sorted commit list
-          echo "📋 Fetching commit list from main and dev branches..."
-          COMMITS=$(bash ./scripts/mo-test-env.sh get-commits)
+          echo "📋 Fetching commit list from target branch..."
+          COMMITS=$(bash ./scripts/mo-test-env.sh get-commits "${TARGET_BRANCH}")
 
           if [ -z "$COMMITS" ]; then
             echo "❌ Failed to fetch commits"
@@ -81,11 +95,18 @@ jobs:
           done
           echo ""
 
-          # Track which branches have been tested
-          TESTED_MAIN=false
-          TESTED_DEV=false
-          LAST_FAILED_BRANCH=""
           TEST_PASSED=false
+          IMAGE_START_FAIL_COUNT=0
+          SQL_VALIDATE_FAIL_COUNT=0
+
+          # Assert all candidate commits belong to target branch
+          while IFS= read -r line; do
+            COMMIT_BRANCH=$(echo "$line" | cut -d' ' -f2)
+            if [ -n "$COMMIT_BRANCH" ] && [ "$COMMIT_BRANCH" != "$TARGET_BRANCH" ]; then
+              echo "❌ Unexpected commit branch in candidate list: $COMMIT_BRANCH (expected: $TARGET_BRANCH)"
+              exit 1
+            fi
+          done <<< "$COMMITS"
 
           # Iterate through commits
           while IFS= read -r line; do
@@ -93,12 +114,6 @@ jobs:
             BRANCH=$(echo "$line" | cut -d' ' -f2)
 
             if [ -z "$SHA" ]; then
-              continue
-            fi
-
-            # Skip if this branch type already failed and we're looking at the same branch
-            if [ -n "$LAST_FAILED_BRANCH" ] && [ "$BRANCH" = "$LAST_FAILED_BRANCH" ]; then
-              echo "⏭️  Skipping $SHA ($BRANCH) - already tested this branch"
               continue
             fi
 
@@ -113,6 +128,7 @@ jobs:
             echo "🚀 Starting MatrixOne with $IMAGE..."
             if ! bash ./scripts/mo-test-env.sh start-image "$IMAGE"; then
               echo "⚠️  Failed to start database with $SHA, trying next..."
+              IMAGE_START_FAIL_COUNT=$((IMAGE_START_FAIL_COUNT + 1))
               continue
             fi
 
@@ -136,13 +152,14 @@ jobs:
             if [ "$DB_READY" = false ]; then
               echo "⚠️  Database failed to start with $SHA, trying next..."
               pnpm run db:stop || true
+              IMAGE_START_FAIL_COUNT=$((IMAGE_START_FAIL_COUNT + 1))
               continue
             fi
 
             # Run SQL validation
             echo ""
             echo "🔍 Running SQL Execution Validation..."
-            if pnpm run check:sql-exec:changed; then
+            if pnpm run check:sql-exec:changed -- --base-branch "${BASE_BRANCH}"; then
               echo ""
               echo "============================================================"
               echo "✅ SQL Validation PASSED with $SHA ($BRANCH)"
@@ -153,26 +170,8 @@ jobs:
             else
               echo ""
               echo "⚠️  SQL Validation FAILED with $SHA ($BRANCH)"
-
-              # Mark this branch as tested
-              if [ "$BRANCH" = "main" ]; then
-                TESTED_MAIN=true
-              else
-                TESTED_DEV=true
-              fi
-              LAST_FAILED_BRANCH="$BRANCH"
-
-              # Check if both branches have been tested
-              if [ "$TESTED_MAIN" = true ] && [ "$TESTED_DEV" = true ]; then
-                echo ""
-                echo "============================================================"
-                echo "❌ Both main and dev branches have been tested and failed"
-                echo "============================================================"
-                pnpm run db:stop || true
-                exit 1
-              fi
-
-              echo "🔄 Will try another branch..."
+              echo "🔄 Will try another commit from ${TARGET_BRANCH}..."
+              SQL_VALIDATE_FAIL_COUNT=$((SQL_VALIDATE_FAIL_COUNT + 1))
               pnpm run db:stop || true
             fi
           done <<< "$COMMITS"
@@ -181,6 +180,8 @@ jobs:
             echo ""
             echo "============================================================"
             echo "❌ No available commit passed the SQL validation"
+            echo "   Image/database start failures: ${IMAGE_START_FAIL_COUNT}"
+            echo "   SQL validation failures: ${SQL_VALIDATE_FAIL_COUNT}"
             echo "============================================================"
             exit 1
           fi

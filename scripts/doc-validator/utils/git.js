@@ -2,7 +2,16 @@
  * Git Utility Functions
  */
 
-import { execSync } from 'node:child_process'
+import { execSync, execFileSync } from 'node:child_process'
+
+function normalizeAndValidateBranch(baseBranch = 'main') {
+    const normalizedBaseBranch = baseBranch && baseBranch.trim() ? baseBranch.trim() : 'main'
+    // Keep branch refs strict to avoid shell/meta injection and invalid refs.
+    if (!/^[A-Za-z0-9._/-]+$/.test(normalizedBaseBranch) || normalizedBaseBranch.startsWith('-')) {
+        throw new Error(`Invalid base branch: ${normalizedBaseBranch}`)
+    }
+    return normalizedBaseBranch
+}
 
 /**
  * Get list of changed files relative to a specified branch
@@ -11,30 +20,32 @@ import { execSync } from 'node:child_process'
  * @returns {Array<string>} List of changed file paths
  */
 export function getChangedFiles(baseBranch = 'main', pattern = '*.md') {
+    const normalizedBaseBranch = normalizeAndValidateBranch(baseBranch)
+    const remoteRef = `origin/${normalizedBaseBranch}`
+
+    // Ensure getting the latest remote branch information
     try {
-        // Ensure getting the latest remote branch information
-        try {
-            execSync(`git fetch origin ${baseBranch}`, { stdio: 'pipe' })
-        } catch (e) {
-            // If fetch fails, continue using local branch
-            console.warn(`Warning: Could not fetch origin/${baseBranch}, using local branch`)
-        }
-
-        // Get changed files
-        const command = `git diff --name-only origin/${baseBranch}...HEAD`
-        const output = execSync(command, { encoding: 'utf-8' })
-
-        // Filter files
-        const files = output
-            .split('\n')
-            .filter(file => file.trim())
-            .filter(file => file.endsWith('.md'))
-
-        return files
-    } catch (error) {
-        console.error('Error getting changed files:', error.message)
-        return []
+        execFileSync('git', ['fetch', 'origin', normalizedBaseBranch], { stdio: 'pipe' })
+    } catch (e) {
+        // If fetch fails, continue using local branch
+        console.warn(`Warning: Could not fetch ${remoteRef}, using local branch`)
     }
+
+    // Get changed files
+    let output
+    try {
+        output = execFileSync('git', ['diff', '--name-only', `${remoteRef}...HEAD`], { encoding: 'utf-8' })
+    } catch (error) {
+        throw new Error(`Failed to diff against ${remoteRef}: ${error.message}`)
+    }
+
+    // Filter files
+    const files = output
+        .split('\n')
+        .filter(file => file.trim())
+        .filter(file => file.endsWith('.md'))
+
+    return files
 }
 
 /**
@@ -74,8 +85,9 @@ export function isGitRepository() {
  */
 export function getFileDiff(filePath, baseBranch = 'main') {
     try {
-        const command = `git diff origin/${baseBranch}...HEAD -- ${filePath}`
-        const diff = execSync(command, { encoding: 'utf-8' })
+        const normalizedBaseBranch = normalizeAndValidateBranch(baseBranch)
+        const remoteRef = `origin/${normalizedBaseBranch}`
+        const diff = execFileSync('git', ['diff', `${remoteRef}...HEAD`, '--', filePath], { encoding: 'utf-8' })
         return diff
     } catch (error) {
         console.error(`Error getting diff for ${filePath}:`, error.message)

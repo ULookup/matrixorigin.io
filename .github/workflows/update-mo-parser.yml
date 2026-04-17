@@ -5,7 +5,15 @@ on:
   #   # 每 3 天运行一次 (UTC 时间 00:00)
   #   - cron: '0 0 */3 * *'
   workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Target MatrixOne release branch (leave empty to use MO_TARGET_BRANCH)'
+        required: false
+        type: string
     # 支持手动触发（自动调度已关闭）
+
+env:
+  MO_TARGET_BRANCH: 3.0-dev
 
 jobs:
   update-parser:
@@ -31,11 +39,21 @@ jobs:
           echo "version=$CURRENT" >> $GITHUB_OUTPUT
           echo "📌 Current MO version: $CURRENT"
 
-      - name: Update to latest MO main branch
+      - name: Update to target MO release branch
+        id: target
         working-directory: scripts/doc-validator/syntax-checker
         run: |
-          echo "🔄 Updating MatrixOne parser to latest main..."
-          go get github.com/matrixorigin/matrixone@main
+          TARGET_BRANCH="${{ github.event.inputs.branch || env.MO_TARGET_BRANCH }}"
+
+          if ! [[ "${TARGET_BRANCH}" =~ ^[0-9]+\.[0-9]+-dev$ ]]; then
+            echo "❌ Invalid target branch: ${TARGET_BRANCH}"
+            echo "Expected release branch format: x.y-dev (example: 3.0-dev)"
+            exit 1
+          fi
+
+          echo "target_branch=${TARGET_BRANCH}" >> $GITHUB_OUTPUT
+          echo "🔄 Updating MatrixOne parser to ${TARGET_BRANCH}..."
+          go get github.com/matrixorigin/matrixone@${TARGET_BRANCH}
           go mod tidy
 
       - name: Get new MO version
@@ -81,7 +99,7 @@ jobs:
           body: |
             ## 🔄 Auto-update MatrixOne SQL Parser
 
-            This PR updates the MatrixOne SQL parser to the latest version from the main branch.
+            This PR updates the MatrixOne SQL parser to the latest version from the target release branch `${{ steps.target.outputs.target_branch }}`.
 
             ### Changes
             - **Previous version**: `${{ steps.current.outputs.version }}`

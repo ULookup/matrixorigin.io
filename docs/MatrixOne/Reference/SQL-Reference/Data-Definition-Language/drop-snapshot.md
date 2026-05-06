@@ -18,7 +18,6 @@ mo_only:
 
 ## Examples
 
-<!-- validator-ignore -->
 ```sql
 create snapshot sp1 for account sys;
 

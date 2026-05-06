@@ -54,7 +54,6 @@ We simulate a real-world scenario: a main orders table where the risk control te
 
 ### Step 1: Prepare the Main Table Data
 
-<!-- validator-ignore -->
 ```sql
 -- Create demo database
 DROP DATABASE IF EXISTS demo_branch;
@@ -100,7 +99,6 @@ Result:
 
 Before any modifications, take a snapshot of the main table first. This is your "safety net" — no matter what happens next, you can always return to this point.
 
-<!-- validator-ignore -->
 ```sql
 CREATE SNAPSHOT sp_orders_v1 FOR TABLE demo_branch orders;
 ```
@@ -217,7 +215,6 @@ Result:
 
 **You can also directly compare the differences between two branches:**
 
-<!-- validator-ignore -->
 ```sql
 -- DATA BRANCH DIFF orders_risk AGAINST orders_promo;
 ```
@@ -238,7 +235,6 @@ This shows all differing rows between the two branches, helping you anticipate p
 
 If you need to bring changes to another environment (e.g., syncing from staging to production), you can export the DIFF results as a file before merging:
 
-<!-- validator-ignore -->
 ```sql
 -- Export to local directory (execute before merge to ensure the patch reflects the original branch changes)
 -- DATA BRANCH DIFF orders_risk AGAINST orders OUTPUT FILE '/tmp/diff_output/';
@@ -302,7 +298,6 @@ Now merge the operations branch. Note that the operations branch also modified `
 
 **Default behavior — error on conflict:**
 
-<!-- validator-ignore -->
 ```sql
 -- DATA BRANCH MERGE orders_promo INTO orders;
 -- ERROR: conflict on pk(1002)
@@ -355,7 +350,6 @@ Result:
 
 After branches are no longer needed, clean them up promptly:
 
-<!-- validator-ignore -->
 ```sql
 DATA BRANCH DELETE TABLE orders_risk;
 DATA BRANCH DELETE TABLE orders_promo;
@@ -376,7 +370,6 @@ This is the value of snapshots — turning "rollback" from a high-risk operation
 
 ### Clean Up the Environment
 
-<!-- validator-ignore -->
 ```sql
 DROP SNAPSHOT sp_orders_v1;
 DROP DATABASE demo_branch;
@@ -388,7 +381,6 @@ DROP DATABASE demo_branch;
 
 In addition to table-level branches, you can also create branches for an entire database, copying all tables at once:
 
-<!-- validator-ignore -->
 ```sql
 -- DATA BRANCH CREATE DATABASE dev_db FROM prod_db;
 
@@ -400,7 +392,6 @@ In addition to table-level branches, you can also create branches for an entire 
 
 Create a branch from a specific historical point in time, suitable for "going back to yesterday's data for analysis":
 
-<!-- validator-ignore -->
 ```sql
 -- CREATE SNAPSHOT sp_yesterday FOR TABLE mydb mytable;
 -- ... time passes, data changes ...
@@ -411,7 +402,6 @@ Create a branch from a specific historical point in time, suitable for "going ba
 
 Branches can create further branches, forming a multi-level structure:
 
-<!-- validator-ignore -->
 ```sql
 -- DATA BRANCH CREATE TABLE branch_v1 FROM main_table;
 -- Modify on branch_v1...

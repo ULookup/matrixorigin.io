@@ -61,7 +61,7 @@ DATA BRANCH DELETE DATABASE database_name
 
 ### Example 1: Delete Table Branch
 
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 -- Expected-Rows: 0
 CREATE DATABASE test_db;
@@ -166,7 +166,6 @@ DROP DATABASE source_db;
 
 ### Example 3: Metadata Status After Branch Deletion
 
-<!-- validator-ignore -->
 ```sql
 -- Expected-Rows: 0
 CREATE DATABASE br_meta_db;
@@ -219,7 +218,6 @@ DROP DATABASE br_meta_db;
 
 ### Example 4: Batch Delete All Branch Tables in a Database
 
-<!-- validator-ignore -->
 ```sql
 -- Expected-Rows: 0
 CREATE DATABASE src_db;

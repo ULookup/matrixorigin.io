@@ -26,7 +26,7 @@ PUBLICATION pubname;
 
 ## **Example**
 
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 create account acc01 admin_name 'root' identified by '111';
 create database db1;

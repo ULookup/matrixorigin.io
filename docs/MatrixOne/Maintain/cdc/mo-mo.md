@@ -12,14 +12,12 @@ A social media platform company uses MatrixOne as its production database to sto
 
 ### Create PITR
 
-<!-- validator-ignore -->
 ```sql
 create pitr pitr_activity for account range 2 "h";
 ```
 
 ### Create Table and Insert Data on Source
 
-<!-- validator-ignore -->
 ```sql
 CREATE DATABASE production_db;
 CREATE TABLE production_db.user_activities (
@@ -37,7 +35,6 @@ INSERT INTO production_db.user_activities VALUES
 
 ### Create Downstream Database
 
-<!-- validator-ignore -->
 ```sql
 CREATE DATABASE analytics_db;
 ```
@@ -95,7 +92,6 @@ mysql> SELECT * FROM analytics_db.analytics_activities;
 
 After the task is established, perform data changes in the upstream MatrixOne.
 
-<!-- validator-ignore -->
 ```sql
 INSERT INTO production_db.user_activities VALUES
     (4, 1004, 'share', '2024-01-03 16:45:00', 'desktop');
@@ -130,7 +126,7 @@ Now, the task is interrupted due to an unexpected event.
 
 During the task interruption, continue inserting data into the upstream MatrixOne.
 
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 INSERT INTO production_db.user_activities VALUES
     (5, 1005, 'login', '2024-01-04 08:00:00', 'mobile');
@@ -158,7 +154,6 @@ Manually resume the task.
 
 Connect to the downstream MySQL to verify checkpoint recovery.
 
-<!-- validator-ignore -->
 ```sql
 mysql> -- The downstream should include data inserted during the interruption.
 SELECT * FROM analytics_db.analytics_activities;

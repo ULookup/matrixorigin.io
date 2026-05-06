@@ -570,7 +570,6 @@ aa"aa|bb"bb|cc"cc|dd"dd
 
 Create a table named t1 in MatrixOne:
 
-<!-- validator-ignore -->
 ```sql
 mysql> drop table if exists t1;
 Query OK, 0 rows affected (0.01 sec)
@@ -672,7 +671,6 @@ The data in the file locally named *jsonline_array.jl* is as follows:
 
 Create a table named t1 in MatrixOne:
 
-<!-- validator-ignore -->
 ```sql
 mysql> drop table if exists t1;
 Query OK, 0 rows affected (0.01 sec)

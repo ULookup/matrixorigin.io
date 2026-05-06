@@ -80,7 +80,6 @@ CLONE source_db
 
 ### Preparation: Create Test Tenants, Databases, and Tables
 
-<!-- validator-ignore -->
 ```sql
 -- Create test tenants under the sys tenant
 CREATE ACCOUNT acc1 ADMIN_NAME = 'admin' IDENTIFIED BY '111';

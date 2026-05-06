@@ -32,7 +32,7 @@ RESTORE ACCOUNT <account_name> FROM SNAPSHOT <snapshot_name> TO ACCOUNT <target_
 
 ### Example 1: Restore Cluster
   
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 -- Execute in tenants acc1, acc2
 CREATE DATABASE db1;
@@ -92,7 +92,7 @@ mysql> SHOW DATABASES;
 
 ### Example 2: Restore Tenant
 
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 -- Execute in tenant acc1
 CREATE DATABASE db1;
@@ -151,7 +151,7 @@ mysql> SHOW DATABASES;
 
 ### Example 3: Restore Database
 
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 -- Execute in tenant acc1
 CREATE DATABASE db1;
@@ -245,7 +245,7 @@ mysql> SELECT * FROM t1;
 
 ### Example 5: System Tenant Restores Regular Tenant to Itself
 
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 -- Execute in tenant acc1
 CREATE DATABASE db1;
@@ -305,7 +305,7 @@ mysql> SHOW DATABASES;
 
 ### Example 6: System Tenant Restores Regular Tenant to New Tenant
 
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 -- Execute in tenant acc1
 CREATE DATABASE db1;

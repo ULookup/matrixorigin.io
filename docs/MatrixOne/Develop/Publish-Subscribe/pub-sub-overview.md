@@ -58,7 +58,6 @@ The publish and subscribe function has a variety of typical application scenario
 
 Suppose there is a cross-regional retail company. The central warehouse database needs to publish inventory and product price changes, and each branch database subscribes to these changes to ensure that inventory and price information are synchronized in each branch system.
 
-<!-- validator-ignore -->
 ```sql
 drop account if exists acc1;
 create account acc1 admin_name = 'test_account' identified by '111';

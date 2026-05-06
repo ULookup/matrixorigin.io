@@ -192,7 +192,7 @@ Tenant level recovery
 
 - Connect to the Matrixone system tenant to execute sql statements
 
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 create database if not exists snapshot_read;
 
@@ -214,7 +214,7 @@ mysql> show databases;
 
 - Connect the Matrixone system tenant to delete the database
 
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 drop database snapshot_read;
 
@@ -247,7 +247,7 @@ mysql> show databases;
 
 - Connect to the Matrixone system tenant to query the recovery status
 
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 mysql> show databases;
 +--------------------+
@@ -267,7 +267,7 @@ mysql> show databases;
 
 - Connect to the new tenant acc2 to query the recovery status
 
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 mysql> show databases;
 +--------------------+
@@ -285,7 +285,7 @@ mysql> show databases;
 
 ## Example 4 Cluster level recovery
 
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 --Executed under tenant acc1, acc2
 create database db1;
@@ -316,7 +316,7 @@ cluster_sp1 2024-10-14 03:52:55.657359 cluster
 
 - Connect the Matrixone system tenant to delete the database
 
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 --Executed under tenant acc1, acc2
 drop database db1;
@@ -342,7 +342,7 @@ mysql> show databases;
 
 - Connect to tenants acc1 and acc2 to query the recovery status
 
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 mysql> show databases;
 +--------------------+

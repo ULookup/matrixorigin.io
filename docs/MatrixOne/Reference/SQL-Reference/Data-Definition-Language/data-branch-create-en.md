@@ -149,7 +149,7 @@ DATA BRANCH CREATE TABLE test.orders_dev FROM test.orders;
 
 Create a data branch from a specific point in time using a snapshot:
 
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 -- Expected-Rows: 0
 CREATE TABLE test.products (
@@ -263,7 +263,7 @@ DROP SNAPSHOT sp_source;
 
 Create new branches from existing branches:
 
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 -- Expected-Rows: 0
 USE test;

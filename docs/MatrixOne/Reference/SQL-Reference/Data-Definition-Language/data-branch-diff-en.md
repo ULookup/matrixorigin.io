@@ -122,7 +122,7 @@ DROP TABLE test.t2;
 
 ### Example 2: Compare Branch Tables (With Common Ancestor)
 
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 -- Expected-Rows: 0
 CREATE TABLE test.t0 (a INT PRIMARY KEY, b INT);
@@ -158,7 +158,7 @@ DROP TABLE test.t2;
 
 ### Example 3: Compare Using Snapshots
 
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 -- Expected-Rows: 0
 CREATE TABLE test.t1 (a INT PRIMARY KEY, b INT);
@@ -197,7 +197,7 @@ DROP TABLE test.t1;
 
 ### Example 4: Get Only Difference Count
 
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 -- Expected-Rows: 0
 CREATE TABLE test.t1 (a INT PRIMARY KEY, b INT);
@@ -227,7 +227,7 @@ DROP TABLE test.t2;
 
 ### Example 5: Limit Returned Rows
 
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 -- Expected-Rows: 0
 CREATE TABLE test.t1 (a INT PRIMARY KEY, b INT);

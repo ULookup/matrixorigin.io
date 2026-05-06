@@ -94,8 +94,7 @@ wget <https://repo1.maven.org/maven2/com/ververica/flink-sql-connector-mongodb-c
 
 Build a mapping table for the data source mongodb, the column names must also be identical
 
-<!-- validator-ignore -->
-```sql
+```flink
 CREATE TABLE products (
   _id STRING, 
   -- There must be this column, and it must also be the primary key, because mongodb automatically generates an id for each row of data
@@ -118,8 +117,7 @@ Once established you can execute `select * from` products; check if the connecti
 
 Create a mapping table for matrixone with the same structure and no columns with ids
 
-<!-- validator-ignore -->
-```sql
+```flink
 CREATE TABLE cdc_matrixone (
    `name` STRING,
    age INT,

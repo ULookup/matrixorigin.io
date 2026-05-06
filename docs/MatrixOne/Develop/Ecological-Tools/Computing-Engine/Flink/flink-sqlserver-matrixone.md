@@ -17,8 +17,7 @@ This practice requires the installation and deployment of the following software
 
 ### Create libraries, tables, and insert data in SQL Server
 
-<!-- validator-ignore -->
-```sql
+```tsql
 create database sstomo;
 use sstomo;
 create table sqlserver_data (
@@ -42,8 +41,7 @@ values  (1, 'Lisa', 25, '2010-10-12', '0'),
 
 1. Verify that the current user has sysadmin privileges turned on Queries for the current user permissions. The CDC (Change Data Capture) feature must be enabled for the database to be a member of the sysadmin fixed server role. query the sa user for sysadmin by the following command
 
-    <!-- validator-ignore -->
-    ```sql
+    ```tsql
     exec sp_helpsrvrolemember 'sysadmin';
     ```
 
@@ -61,8 +59,7 @@ values  (1, 'Lisa', 25, '2010-10-12', '0'),
 
     If not, execute the following sql open:
 
-    <!-- validator-ignore -->
-    ```sql
+    ```tsql
     use sstomo; exec sys.sp_cdc_enable_db; 
     ```
 
@@ -78,8 +75,7 @@ values  (1, 'Lisa', 25, '2010-10-12', '0'),
 
     Remarks: 0: means not enabled; 1: means enabled If not, execute the following sql to turn it on:
 
-    <!-- validator-ignore -->
-    ```sql
+    ```tsql
     use sstomo;
     exec sys.sp_cdc_enable_table 
     @source_schema = 'dbo', 
@@ -100,8 +96,7 @@ values  (1, 'Lisa', 25, '2010-10-12', '0'),
 
     Execute the following command to see if the CDC agent is on:
 
-    <!-- validator-ignore -->
-    ```sql
+    ```tsql
     exec master.dbo.xp_servicecontrol N'QUERYSTATE', N'SQLSERVERAGENT'; 
     ```
 
@@ -168,8 +163,7 @@ CREATE TABLE sqlserver_data (
 
 ### Create source/sink table with flink ddl
 
-<!-- validator-ignore -->
-```sql
+```flink
 -- Create source table
 CREATE TABLE sqlserver_source (
 id INT,
@@ -224,8 +218,7 @@ select * from sqlserver_data;
 
 Insert 3 pieces of data into the SqlServer table sqlserver_data:
 
-<!-- validator-ignore -->
-```sql
+```tsql
 insert into sstomo.dbo.sqlserver_data (id, name, age, entrytime, gender)
 values (7, 'Liss12a', 25, '2010-10-12', '0'),
       (8, '12233s', 26, '2013-10-12', '0'),
@@ -246,8 +239,7 @@ select * from sstomo.sqlserver_data;
 
 Delete two rows with ids 3 and 4 in SQL Server:
 
-<!-- validator-ignore -->
-```sql
+```tsql
 delete from sstomo.dbo.sqlserver_data where id in(3,4); 
 ```
 
@@ -261,8 +253,7 @@ Query table data in mo, these two rows have been deleted synchronously:
 
 Update two rows of data in a SqlServer table:
 
-<!-- validator-ignore -->
-```sql
+```tsql
 update sstomo.dbo.sqlserver_data set age = 18 where id in(1,2); 
 ```
 

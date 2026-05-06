@@ -86,9 +86,16 @@ export class DbConnectionManager {
         await this.ensureConnection()
         const timestamp = Date.now()
         const random = Math.random().toString(36).substring(7)
+        // Force the generated database name to lowercase. MatrixOne defaults to
+        // `lower_case_table_names = 1`, which lowercases identifiers internally.
+        // Statements whose planner path re-resolves the current database (e.g.
+        // CREATE TABLE ... PARTITION BY RANGE/LIST/HASH) would otherwise look
+        // for the lowercased form and fail with "Unknown database ..." even
+        // though SELECT DATABASE() reports the original mixed-case name.
         const dbName = `doc_test_${baseName}_${timestamp}_${random}`
             .replace(/[^a-zA-Z0-9_]/g, '_')
             .substring(0, 64)
+            .toLowerCase()
 
         try {
             await this.connection.query(`CREATE DATABASE IF NOT EXISTS \`${dbName}\``)

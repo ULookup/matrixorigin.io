@@ -1,3 +1,9 @@
+---
+title: "SHOW COLLATION"
+mysql_compat: partial
+differs_from_mysql:
+  - "Only utf8mb4_bin is effective; other collations appear but are inert"
+---
 # **SHOW COLLATION**
 
 ## **Description**

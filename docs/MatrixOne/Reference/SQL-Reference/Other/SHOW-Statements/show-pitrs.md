@@ -1,3 +1,9 @@
+---
+title: "SHOW PITR"
+mysql_compat: mo_only
+mo_only:
+  - "SHOW PITR"
+---
 # SHOW PITR
 
 ## Syntax description

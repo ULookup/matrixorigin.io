@@ -1,3 +1,9 @@
+---
+title: "SET ROLE"
+mysql_compat: mo_only
+mo_only:
+  - "SET ROLE (multi-account RBAC)"
+---
 # **SET ROLE**
 
 ## **Description**

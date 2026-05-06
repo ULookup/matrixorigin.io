@@ -1,3 +1,14 @@
+---
+title: "CREATE INDEX"
+mysql_compat: partial
+differs_from_mysql:
+  - "Secondary indexes are syntactically accepted but do not yet provide query speed-up"
+  - "Foreign keys do not support ON CASCADE DELETE"
+mo_only:
+  - "USING IVFFLAT — vector index for approximate nearest neighbour"
+  - "USING HNSW — vector index for approximate nearest neighbour"
+  - "USING MASTER — composite master index"
+---
 # **CREATE INDEX**
 
 ## **Description**

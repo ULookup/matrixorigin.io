@@ -1,3 +1,7 @@
+---
+title: "DROP USER"
+mysql_compat: full
+---
 # **DROP USER**
 
 ## **Description**

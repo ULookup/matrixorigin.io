@@ -1,3 +1,7 @@
+---
+title: "Comparisons Using Subqueries"
+mysql_compat: full
+---
 # **Comparisons Using Subqueries**
 
 ## **Description**

@@ -1,3 +1,9 @@
+---
+title: "CREATE INDEX USING IVFFLAT"
+mysql_compat: mo_only
+mo_only:
+  - "CREATE INDEX … USING IVFFLAT"
+---
 # CREATE INDEX USING IVFFLAT
 
 ## Syntax Description

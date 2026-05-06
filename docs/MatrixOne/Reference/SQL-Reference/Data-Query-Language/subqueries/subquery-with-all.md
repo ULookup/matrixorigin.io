@@ -1,3 +1,7 @@
+---
+title: "Subqueries with ALL"
+mysql_compat: full
+---
 # **Subqueries with ALL**
 
 ## **Description**

@@ -1,3 +1,9 @@
+---
+title: "Subqueries with IN"
+mysql_compat: partial
+differs_from_mysql:
+  - "Multi-level correlated subqueries inside IN() are not supported"
+---
 # **Subqueries with IN**
 
 ## **Description**

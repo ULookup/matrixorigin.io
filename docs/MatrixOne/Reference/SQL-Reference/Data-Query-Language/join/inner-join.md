@@ -1,3 +1,7 @@
+---
+title: "INNER JOIN"
+mysql_compat: full
+---
 # **INNER JOIN**
 
 ## **Description**

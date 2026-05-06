@@ -1,3 +1,11 @@
+---
+title: "CREATE DATABASE"
+mysql_compat: partial
+differs_from_mysql:
+  - "Chinese database names not supported"
+  - "Only utf8mb4 / utf8mb4_bin are supported and cannot be changed"
+  - "ENCRYPTION clause accepted but inert"
+---
 # **CREATE DATABASE**
 
 ## **Description**

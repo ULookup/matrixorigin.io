@@ -1,3 +1,9 @@
+---
+title: "CREATE SOURCE"
+mysql_compat: mo_only
+mo_only:
+  - "CREATE SOURCE (stream/Kafka connector)"
+---
 # **CREATE SOURCE**
 
 ## **Grammar description**

@@ -1,3 +1,9 @@
+---
+title: "GRANT"
+mysql_compat: partial
+differs_from_mysql:
+  - "Authorization logic differs from MySQL — MatrixOne evaluates via its role/account model"
+---
 # **GRANT**
 
 ## **Description**

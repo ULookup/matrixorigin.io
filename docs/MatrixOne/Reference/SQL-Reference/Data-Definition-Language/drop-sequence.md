@@ -1,3 +1,9 @@
+---
+title: "DROP SEQUENCE"
+mysql_compat: mo_only
+mo_only:
+  - "DROP SEQUENCE"
+---
 # **DROP SEQUENCE**
 
 ## **Description**

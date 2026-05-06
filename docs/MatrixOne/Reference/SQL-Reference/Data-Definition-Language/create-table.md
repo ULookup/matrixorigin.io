@@ -1,3 +1,13 @@
+---
+title: "CREATE TABLE"
+mysql_compat: partial
+differs_from_mysql:
+  - "ENGINE= clause in table definition not supported (MatrixOne has a single TAE engine)"
+  - "Spatial and SET types not supported; MEDIUMINT not supported"
+  - "BOOL is a native boolean type, not an INT alias as in MySQL"
+mo_only:
+  - "CLUSTER BY (col, …) — pre-sort columns to accelerate queries"
+---
 # **CREATE TABLE**
 
 ## **Description**

@@ -1,3 +1,9 @@
+---
+title: "RESTORE ... SNAPSHOT"
+mysql_compat: mo_only
+mo_only:
+  - "RESTORE … FROM SNAPSHOT"
+---
 # RESTORE ... SNAPSHOT
 
 ## Syntax Description

@@ -1,3 +1,9 @@
+---
+title: "SHOW INDEX"
+mysql_compat: partial
+differs_from_mysql:
+  - "Reflects MatrixOne index model — secondary index rows appear but may not accelerate queries"
+---
 # **SHOW INDEX**
 
 ## **Description**

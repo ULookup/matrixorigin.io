@@ -1,3 +1,7 @@
+---
+title: "JOIN"
+mysql_compat: full
+---
 # **JOIN**
 
 ## **Description**

@@ -1,3 +1,7 @@
+---
+title: "OUTER JOIN"
+mysql_compat: full
+---
 # **OUTER JOIN**
 
 ## **Description**

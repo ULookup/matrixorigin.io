@@ -1,3 +1,9 @@
+---
+title: "CREATE INDEX USING HNSW"
+mysql_compat: mo_only
+mo_only:
+  - "CREATE INDEX … USING HNSW"
+---
 # CREATE INDEX USING HNSW
 
 ## Syntax Description

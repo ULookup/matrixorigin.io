@@ -1,3 +1,9 @@
+---
+title: "MINUS"
+mysql_compat: mo_only
+mo_only:
+  - "MINUS (set-difference query, not in MySQL)"
+---
 # **MINUS**
 
 ## **Description**

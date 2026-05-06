@@ -1,3 +1,7 @@
+---
+title: "Create Fulltext Index"
+mysql_compat: full
+---
 # Create Fulltext Index
 
 ## Syntax Description

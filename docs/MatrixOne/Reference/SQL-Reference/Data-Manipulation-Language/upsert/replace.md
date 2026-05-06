@@ -1,3 +1,10 @@
+---
+title: "REPLACE"
+mysql_compat: partial
+differs_from_mysql:
+  - "REPLACE does not support VALUES row_constructor_list"
+  - "node-sql-parser rejects REPLACE … WHERE (parser bug, not MatrixOne)"
+---
 # **REPLACE**
 
 ## **Grammar description**

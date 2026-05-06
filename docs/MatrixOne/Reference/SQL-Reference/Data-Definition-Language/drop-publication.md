@@ -1,3 +1,9 @@
+---
+title: "DROP PUBLICATION"
+mysql_compat: mo_only
+mo_only:
+  - "DROP PUBLICATION"
+---
 # **DROP PUBLICATION**
 
 ## **Description**

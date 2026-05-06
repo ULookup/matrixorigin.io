@@ -1,3 +1,12 @@
+---
+title: "LOAD DATA"
+mysql_compat: partial
+differs_from_mysql:
+  - "LOAD DATA LOCAL requires --local-infile on the client"
+  - "SET clause only accepts columns_name = nullif(expr1, expr2)"
+  - "JSONLines import uses MatrixOne-specific syntax"
+  - "Object-storage import (S3/URL) uses MatrixOne-specific syntax"
+---
 # **LOAD DATA**
 
 ## **Description**

@@ -12,14 +12,12 @@ export const config = {
     // Identifiers for SQL code blocks
     sqlCodeBlockLanguages: ['sql', 'SQL'],
 
-    // Supported MatrixOne versions
-    supportedVersions: [
-        'v0.8',
-        'v1.0',
-        'v1.1',
-        'v1.2',
-        'latest'
-    ],
+    // MatrixOne version policy:
+    // The validator runs against whatever MatrixOne version `scripts/mo-test-env.sh`
+    // resolves at execution time (CI uses `MO_TARGET_BRANCH=3.0-dev`; local runs use
+    // the latest image returned by the GitHub API / TCR / Docker Hub nightly chain).
+    // Page-level version metadata is intentionally NOT supported — docs are validated
+    // against a single rolling baseline.
 
     // Default database configuration
     defaultDbConfig: {
@@ -43,8 +41,11 @@ export const config = {
         ],
 
         // MatrixOne-specific syntax whitelist
-        // These syntaxes are valid in MatrixOne but not supported by MySQL parser
-        // SQL matching these patterns will skip syntax check
+        // Only consulted in fallback mode (when the native MatrixOne parser binary
+        // is unavailable and we fall back to node-sql-parser). CI builds the native
+        // parser via `postinstall`, so this list does not affect PR verdicts there.
+        // Patterns here deliberately err on the side of skipping to avoid false
+        // positives in the MySQL dialect parser.
         matrixoneWhitelist: [
             // ==================== Account and Permission Management ====================
             // Fine-grained validation: Check required parameters

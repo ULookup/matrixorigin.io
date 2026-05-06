@@ -1,7 +1,7 @@
 # Makefile for MatrixOne Documentation
 # =====================================
 
-.PHONY: help install install-python install-node serve serve-custom build build-strict clean lint lint-fix test check validate list-files count-pages watch version upgrade dev new-page check-links check-links-file check-links-changed check-sql-syntax check-sql-syntax-file check-sql-syntax-changed check-sql-exec check-sql-exec-file check-sql-exec-changed db-start db-stop db-status db-test check-all validate-all pre-commit setup
+.PHONY: help install install-python install-node serve serve-custom build build-strict clean lint lint-fix test check validate list-files count-pages watch version upgrade dev new-page check-links check-links-file check-links-changed check-sql-syntax check-sql-syntax-file check-sql-syntax-changed check-sql-syntax-all check-sql-exec check-sql-exec-file check-sql-exec-changed check-sql-exec-all db-start db-stop db-status db-test check-all validate-all pre-commit setup
 
 # Default target
 .DEFAULT_GOAL := help
@@ -147,6 +147,11 @@ check-sql-syntax-changed: ## Check SQL syntax in changed files only
 	@$(PNPM) run check:sql-syntax:changed
 	@echo "$(GREEN)✓ SQL syntax check completed!$(NC)"
 
+check-sql-syntax-all: ## Check SQL syntax across the full corpus (docs/MatrixOne/**/*.md)
+	@echo "$(BLUE)Checking SQL syntax across full corpus...$(NC)"
+	@$(PNPM) run check:sql-syntax:all
+	@echo "$(GREEN)✓ SQL syntax check completed!$(NC)"
+
 # ============================================
 # SQL Execution Checking Commands
 # ============================================
@@ -171,6 +176,12 @@ check-sql-exec-changed: ## Check SQL execution in changed files only (requires d
 	@echo "$(BLUE)Checking SQL execution in changed files...$(NC)"
 	@echo "$(YELLOW)Note: This requires a running database$(NC)"
 	@$(PNPM) run check:sql-exec:changed
+	@echo "$(GREEN)✓ SQL execution check completed!$(NC)"
+
+check-sql-exec-all: ## Check SQL execution across the full corpus (requires database)
+	@echo "$(BLUE)Running full-corpus SQL execution scan...$(NC)"
+	@echo "$(YELLOW)Note: This requires a running database; expect minutes to tens of minutes.$(NC)"
+	@$(PNPM) run check:sql-exec:all
 	@echo "$(GREEN)✓ SQL execution check completed!$(NC)"
 
 # ============================================

@@ -1,3 +1,7 @@
+---
+title: "INSERT ... ON DUPLICATE KEY UPDATE"
+mysql_compat: full
+---
 # **INSERT ... ON DUPLICATE KEY UPDATE**
 
 ## **Grammar description**

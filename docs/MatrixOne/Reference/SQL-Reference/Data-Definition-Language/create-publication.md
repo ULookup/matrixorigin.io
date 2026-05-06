@@ -1,3 +1,9 @@
+---
+title: "CREATE PUBLICATION"
+mysql_compat: mo_only
+mo_only:
+  - "CREATE PUBLICATION"
+---
 # **CREATE PUBLICATION**
 
 ## **Syntax description**

@@ -1,3 +1,9 @@
+---
+title: "CREATE...FROM...PUBLICATION..."
+mysql_compat: mo_only
+mo_only:
+  - "CREATE DATABASE … FROM … PUBLICATION …"
+---
 # **CREATE...FROM...PUBLICATION...**
 
 ## **Syntax description**

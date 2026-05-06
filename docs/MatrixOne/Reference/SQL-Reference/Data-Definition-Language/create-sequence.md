@@ -1,3 +1,9 @@
+---
+title: "CREATE SEQUENCE"
+mysql_compat: mo_only
+mo_only:
+  - "CREATE SEQUENCE (PostgreSQL-style)"
+---
 # **CREATE SEQUENCE**
 
 ## **Description**

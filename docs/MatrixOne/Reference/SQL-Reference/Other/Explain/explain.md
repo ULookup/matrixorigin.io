@@ -1,3 +1,10 @@
+---
+title: "EXPLAIN"
+mysql_compat: partial
+differs_from_mysql:
+  - "Output format mirrors PostgreSQL, not MySQL"
+  - "JSON output not supported"
+---
 # EXPLAIN
 
 EXPLAIN - Shows the execution plan for a statement.

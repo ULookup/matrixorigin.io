@@ -70,7 +70,7 @@ Range partitioning is a partitioning method based on continuous values. The part
 
 The following two tables use an integer column and a date column as partitioning keys, respectively:
 
-```sql
+```sql <!-- validator-ignore-exec -->
 CREATE TABLE members (
     firstname VARCHAR(25) NOT NULL,
     lastname VARCHAR(25) NOT NULL,
@@ -94,7 +94,7 @@ List partitioning requires each partition to be composed of a defined value list
 
 **Example**
 
-```sql
+```sql <!-- validator-ignore-exec -->
 CREATE TABLE employees (
     id INT NOT NULL,
     fname VARCHAR(30),
@@ -122,7 +122,7 @@ In HASH function partitioning, the column or expression used for partitioning mu
 
 **Example**
 
-```sql
+```sql <!-- validator-ignore-exec -->
 CREATE TABLE employees (
     id INT NOT NULL,
     fname VARCHAR(30),

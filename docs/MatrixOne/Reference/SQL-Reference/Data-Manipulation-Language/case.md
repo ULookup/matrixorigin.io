@@ -1,3 +1,7 @@
+---
+title: "CASE"
+mysql_compat: full
+---
 # **CASE**
 
 ## **Description**

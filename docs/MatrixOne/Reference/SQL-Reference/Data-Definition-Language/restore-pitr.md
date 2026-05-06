@@ -1,3 +1,9 @@
+---
+title: "RESTORE ... FROM PITR"
+mysql_compat: mo_only
+mo_only:
+  - "RESTORE … FROM PITR"
+---
 # RESTORE ... FROM PITR
 
 ## Syntax description

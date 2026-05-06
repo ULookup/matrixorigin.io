@@ -1,3 +1,9 @@
+---
+title: "SHOW CREATE VIEW"
+mysql_compat: partial
+differs_from_mysql:
+  - "DEFINER / SQL SECURITY clauses absent from output"
+---
 # **SHOW CREATE VIEW**
 
 ## **Description**

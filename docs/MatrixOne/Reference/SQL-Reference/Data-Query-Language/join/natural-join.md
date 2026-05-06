@@ -1,3 +1,7 @@
+---
+title: "NATURAL JOIN"
+mysql_compat: full
+---
 # **NATURAL JOIN**
 
 ## **Description**

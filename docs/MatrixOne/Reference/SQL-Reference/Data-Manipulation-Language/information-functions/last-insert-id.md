@@ -1,3 +1,7 @@
+---
+title: "LAST_INSERT_ID()"
+mysql_compat: full
+---
 # **LAST_INSERT_ID()**
 
 ## **Description**

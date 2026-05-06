@@ -1,3 +1,7 @@
+---
+title: "KILL"
+mysql_compat: full
+---
 # **KILL**
 
 ## **Description**

@@ -1,3 +1,9 @@
+---
+title: "DATA BRANCH DELETE"
+mysql_compat: mo_only
+mo_only:
+  - "DATA BRANCH DELETE"
+---
 <!-- version: v3.0.4 -->
 
 # DATA BRANCH DELETE

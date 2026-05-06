@@ -1,3 +1,7 @@
+---
+title: "TRUNCATE TABLE"
+mysql_compat: full
+---
 # **TRUNCATE TABLE**
 
 ## **Description**

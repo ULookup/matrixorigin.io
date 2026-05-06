@@ -1,3 +1,9 @@
+---
+title: "DROP PITR"
+mysql_compat: mo_only
+mo_only:
+  - "DROP PITR"
+---
 # DROP PITR
 
 ## Syntax description

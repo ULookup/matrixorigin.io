@@ -1,3 +1,9 @@
+---
+title: "DROP SNAPSHOT"
+mysql_compat: mo_only
+mo_only:
+  - "DROP SNAPSHOT"
+---
 # DROP SNAPSHOT
 
 ## Syntax Description

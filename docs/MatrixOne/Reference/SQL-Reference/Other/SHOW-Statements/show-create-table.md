@@ -1,3 +1,9 @@
+---
+title: "SHOW CREATE TABLE"
+mysql_compat: partial
+differs_from_mysql:
+  - "Output reflects MatrixOne-specific extensions (CLUSTER BY, USING IVFFLAT/HNSW, etc.)"
+---
 # **SHOW CREATE TABLE**
 
 ## **Description**

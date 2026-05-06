@@ -1,3 +1,9 @@
+---
+title: "SHOW ROLES"
+mysql_compat: mo_only
+mo_only:
+  - "SHOW ROLES"
+---
 # **SHOW ROLES**
 
 ## **Description**

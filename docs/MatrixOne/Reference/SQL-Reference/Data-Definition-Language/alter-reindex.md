@@ -1,3 +1,9 @@
+---
+title: "ALTER REINDEX"
+mysql_compat: mo_only
+mo_only:
+  - "ALTER … REINDEX (rebuild vector index)"
+---
 # ALTER REINDEX
 
 ## Syntax Description

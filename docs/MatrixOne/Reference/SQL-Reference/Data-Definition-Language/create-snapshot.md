@@ -1,3 +1,9 @@
+---
+title: "CREATE SNAPSHOT"
+mysql_compat: mo_only
+mo_only:
+  - "CREATE SNAPSHOT FOR {ACCOUNT|DATABASE|TABLE|CLUSTER}"
+---
 # CREATE SNAPSHOT
 
 ## Syntax Description

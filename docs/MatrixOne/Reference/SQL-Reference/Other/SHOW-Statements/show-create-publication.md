@@ -1,3 +1,9 @@
+---
+title: "SHOW CREATE PUBLICATION"
+mysql_compat: mo_only
+mo_only:
+  - "SHOW CREATE PUBLICATION"
+---
 # **SHOW CREATE PUBLICATION**
 
 ## **Description**

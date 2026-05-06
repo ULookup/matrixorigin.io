@@ -1,3 +1,7 @@
+---
+title: "Subqueries with ANY or SOME"
+mysql_compat: full
+---
 # **Subqueries with ANY or SOME**
 
 ## **Description**

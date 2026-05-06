@@ -1,3 +1,7 @@
+---
+title: "DROP VIEW"
+mysql_compat: full
+---
 # **DROP VIEW**
 
 ## **Description**

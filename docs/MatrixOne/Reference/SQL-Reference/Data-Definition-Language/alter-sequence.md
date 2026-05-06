@@ -1,3 +1,9 @@
+---
+title: "ALTER SEQUENCE"
+mysql_compat: mo_only
+mo_only:
+  - "ALTER SEQUENCE"
+---
 # **ALTER SEQUENCE**
 
 ## **Grammar description**

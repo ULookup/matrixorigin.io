@@ -1,3 +1,9 @@
+---
+title: "UPSERT"
+mysql_compat: mo_only
+mo_only:
+  - "UPSERT (convenience alias over INSERT … ON DUPLICATE KEY UPDATE)"
+---
 # UPSERT
 
 ## What is Upsert in SQL?

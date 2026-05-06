@@ -1,3 +1,9 @@
+---
+title: "LOAD DATA INLINE"
+mysql_compat: mo_only
+mo_only:
+  - "LOAD DATA INLINE (stage-sourced import)"
+---
 # **LOAD DATA INLINE**
 
 ## **Overview**

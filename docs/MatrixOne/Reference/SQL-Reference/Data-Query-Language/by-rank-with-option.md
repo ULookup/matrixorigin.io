@@ -1,3 +1,9 @@
+---
+title: "BY RANK WITH OPTION"
+mysql_compat: mo_only
+mo_only:
+  - "BY RANK WITH OPTION (IVF vector ranking)"
+---
 # BY RANK WITH OPTION
 
 ## Syntax Description

@@ -1,3 +1,9 @@
+---
+title: "CREATE STAGE"
+mysql_compat: mo_only
+mo_only:
+  - "CREATE STAGE (external file-system binding)"
+---
 # **CREATE STAGE**
 
 ## **Syntax description**

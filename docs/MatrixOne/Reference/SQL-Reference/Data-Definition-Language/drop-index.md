@@ -1,3 +1,7 @@
+---
+title: "DROP INDEX"
+mysql_compat: full
+---
 # **DROP INDEX**
 
 ## **Description**

@@ -1,3 +1,9 @@
+---
+title: "CREATE CLUSTER TABLE"
+mysql_compat: mo_only
+mo_only:
+  - "CREATE CLUSTER TABLE"
+---
 # **CREATE CLUSTER TABLE**
 
 ## **Grammar description**

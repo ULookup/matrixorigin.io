@@ -1,3 +1,9 @@
+---
+title: "SHOW FUNCTION STATUS"
+mysql_compat: partial
+differs_from_mysql:
+  - "Lists MatrixOne SQL/Python functions, not MySQL stored routines"
+---
 # **SHOW FUNCTION STATUS**
 
 ## **Description**

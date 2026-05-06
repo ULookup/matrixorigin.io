@@ -1,3 +1,10 @@
+---
+title: "CREATE VIEW"
+mysql_compat: partial
+differs_from_mysql:
+  - "WITH CHECK OPTION clause not supported"
+  - "DEFINER and SQL SECURITY clauses not supported"
+---
 # **CREATE VIEW**
 
 ## **Description**

@@ -1,3 +1,9 @@
+---
+title: "REVOKE"
+mysql_compat: partial
+differs_from_mysql:
+  - "Recovery logic differs from MySQL — privileges return to the role/account graph"
+---
 # **REVOKE**
 
 ## **Description**

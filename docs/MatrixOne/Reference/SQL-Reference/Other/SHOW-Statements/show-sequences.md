@@ -1,3 +1,9 @@
+---
+title: "SHOW SEQUENCES"
+mysql_compat: mo_only
+mo_only:
+  - "SHOW SEQUENCES"
+---
 # **SHOW SEQUENCES**
 
 ## **Description**

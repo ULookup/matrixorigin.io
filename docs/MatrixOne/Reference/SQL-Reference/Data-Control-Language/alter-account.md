@@ -1,3 +1,9 @@
+---
+title: "ALTER ACCOUNT"
+mysql_compat: mo_only
+mo_only:
+  - "ALTER ACCOUNT"
+---
 # **ALTER ACCOUNT**
 
 ## **Description**

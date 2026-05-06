@@ -1,3 +1,9 @@
+---
+title: "EXPLAIN PREPARED"
+mysql_compat: partial
+differs_from_mysql:
+  - "Output format mirrors PostgreSQL; JSON output not supported"
+---
 # EXPLAIN PREPARED
 
 ## Syntax Description

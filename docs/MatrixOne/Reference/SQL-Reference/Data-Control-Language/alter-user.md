@@ -1,3 +1,9 @@
+---
+title: "ALTER USER"
+mysql_compat: partial
+differs_from_mysql:
+  - "Only ALTER USER can change passwords; account-limit clauses not honoured"
+---
 # **ALTER USER**
 
 ## **Description**

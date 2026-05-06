@@ -1,3 +1,9 @@
+---
+title: "CURRENT_ROLE()"
+mysql_compat: mo_only
+mo_only:
+  - "CURRENT_ROLE() / CURRENT_ROLE_NAME()"
+---
 # **CURRENT_ROLE()**
 
 ## **Description**

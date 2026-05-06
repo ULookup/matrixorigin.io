@@ -1,3 +1,9 @@
+---
+title: "SHOW ACCOUNTS"
+mysql_compat: mo_only
+mo_only:
+  - "SHOW ACCOUNTS"
+---
 # **SHOW ACCOUNTS**
 
 ## **Function description**

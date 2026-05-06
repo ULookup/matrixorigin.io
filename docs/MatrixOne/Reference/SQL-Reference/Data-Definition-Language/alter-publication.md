@@ -1,3 +1,9 @@
+---
+title: "ALTER PUBLICATION"
+mysql_compat: mo_only
+mo_only:
+  - "ALTER PUBLICATION"
+---
 # **ALTER PUBLICATION**
 
 ## **Syntax description**

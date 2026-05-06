@@ -1,3 +1,7 @@
+---
+title: "INSERT INTO SELECT"
+mysql_compat: full
+---
 # **INSERT INTO SELECT**
 
 ## **Description**

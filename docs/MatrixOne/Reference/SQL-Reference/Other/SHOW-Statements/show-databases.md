@@ -1,3 +1,7 @@
+---
+title: "SHOW DATABASES"
+mysql_compat: full
+---
 # **SHOW DATABASES**
 
 ## **Description**

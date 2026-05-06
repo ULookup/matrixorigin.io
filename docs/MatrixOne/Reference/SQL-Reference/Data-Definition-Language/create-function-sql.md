@@ -1,3 +1,9 @@
+---
+title: "CREATE FUNCTION...LANGUAGE SQL AS"
+mysql_compat: partial
+differs_from_mysql:
+  - "Only LANGUAGE SQL and LANGUAGE PYTHON are supported; usage differs significantly from MySQL stored functions"
+---
 # **CREATE FUNCTION...LANGUAGE SQL AS**
 
 ## **Grammar description**

@@ -26,7 +26,7 @@ The relationship rules of Partition Keys, Primary Keys, and Unique Keys can be s
 
 For example, because the unique key on the table does not use every column in the table, each statement that creates the table below is invalid:
 
-```sql
+```sql <!-- validator-ignore-exec -->
 > CREATE TABLE t1 (
       col1 INT NOT NULL,
       col2 DATE NOT NULL,
@@ -106,7 +106,7 @@ KEY partitioning will construct a partition expression based on the partition ke
 
 SQL example is as below:
 
-```sql
+```sql <!-- validator-ignore-exec -->
 CREATE TABLE t1 (
     col1 INT NOT NULL,
     col2 DATE NOT NULL,
@@ -124,7 +124,7 @@ HASH partitioning will construct a partition expression based on the partition f
 
 SQL example is as below:
 
-```sql
+```sql <!-- validator-ignore-exec -->
 CREATE TABLE t1 (
     col1 INT,
     col2 CHAR(5),

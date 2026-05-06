@@ -1,3 +1,9 @@
+---
+title: "SHOW STAGES"
+mysql_compat: mo_only
+mo_only:
+  - "SHOW STAGES"
+---
 # **SHOW STAGES**
 
 ## **Syntax description**

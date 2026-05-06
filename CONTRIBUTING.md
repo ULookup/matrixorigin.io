@@ -1,3 +1,16 @@
+## Contributor Checklist for SQL-Reference Pages
+
+When adding or editing any page under `docs/MatrixOne/Reference/SQL-Reference/**`:
+
+1. **`mysql_compat` frontmatter is required.** Set it to one of `full` / `partial` / `none` / `mo_only` / `unknown`. CI (`check-sql-syntax.yml`) rejects pages missing this field. Populate `differs_from_mysql:` and `mo_only:` list fields when status is `partial` or `mo_only`.
+2. **SQL examples must execute.** Every ```` ```sql ```` block is run against a live `3.0-dev` MatrixOne image on PR. Run locally before pushing:
+   ```bash
+   make db-start
+   make check-sql-exec-changed
+   ```
+   Use `<!-- validator-ignore-exec -->` on the fence only when an example intentionally depends on state the harness cannot reproduce (document the reason inline).
+3. **MySQL Compatibility Matrix regenerates automatically.** `docs/MatrixOne/Reference/mysql-compatibility-matrix.md` is built on every `mkdocs build`; do not hand-edit it.
+
 ## Document Preview
 
 The writing and rendering of the documentation is maintained by 2 repositories, see [here](https://github.com/matrixorigin/matrixone/tree/main/docs) for the markdown documentation.

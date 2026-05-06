@@ -1,3 +1,9 @@
+---
+title: "LAST_QUERY_ID"
+mysql_compat: mo_only
+mo_only:
+  - "LAST_QUERY_ID()"
+---
 # **LAST_QUERY_ID**
 
 ## **Description**

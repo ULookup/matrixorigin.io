@@ -1,3 +1,9 @@
+---
+title: "UPDATE"
+mysql_compat: partial
+differs_from_mysql:
+  - "LOW_PRIORITY and IGNORE modifiers not supported"
+---
 # **UPDATE**
 
 ## **Description**

@@ -1,3 +1,9 @@
+---
+title: "ALTER VIEW"
+mysql_compat: partial
+differs_from_mysql:
+  - "Inherits CREATE VIEW limitations: no WITH CHECK OPTION, DEFINER, SQL SECURITY"
+---
 # **ALTER VIEW**
 
 ## **Description**

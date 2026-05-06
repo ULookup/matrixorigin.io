@@ -1,3 +1,9 @@
+---
+title: "PREPARE"
+mysql_compat: partial
+differs_from_mysql:
+  - "MatrixOne cannot PREPARE SET statements"
+---
 # **PREPARE**
 
 ## **Description**

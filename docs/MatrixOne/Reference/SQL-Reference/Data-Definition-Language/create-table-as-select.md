@@ -1,3 +1,7 @@
+---
+title: "CREATE TABLE AS SELECT"
+mysql_compat: full
+---
 # CREATE TABLE AS SELECT
 
 ## Syntax Description

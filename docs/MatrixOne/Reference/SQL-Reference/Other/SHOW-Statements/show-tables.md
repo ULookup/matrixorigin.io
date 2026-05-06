@@ -1,3 +1,7 @@
+---
+title: "SHOW TABLES"
+mysql_compat: full
+---
 # **SHOW TABLES**
 
 ## **Description**

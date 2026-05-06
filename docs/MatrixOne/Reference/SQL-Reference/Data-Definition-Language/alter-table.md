@@ -1,3 +1,12 @@
+---
+title: "ALTER TABLE"
+mysql_compat: partial
+differs_from_mysql:
+  - "CHANGE [COLUMN], MODIFY [COLUMN], RENAME COLUMN, ADD/DROP PRIMARY KEY, ALTER COLUMN ORDER BY cannot be combined with other clauses in the same ALTER TABLE"
+  - "Temporary tables cannot be altered"
+  - "Tables created with CLUSTER BY cannot be altered"
+  - "ALTER TABLE does not support PARTITION operations"
+---
 # **ALTER TABLE**
 
 ## **Syntax Description**

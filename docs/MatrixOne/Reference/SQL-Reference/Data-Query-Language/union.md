@@ -1,3 +1,7 @@
+---
+title: "UNION"
+mysql_compat: full
+---
 # **UNION**
 
 ## **Description**

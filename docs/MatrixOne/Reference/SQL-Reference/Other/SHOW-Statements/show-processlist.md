@@ -1,3 +1,9 @@
+---
+title: "SHOW PROCESSLIST"
+mysql_compat: partial
+differs_from_mysql:
+  - "Output differs significantly from MySQL due to different implementation"
+---
 # **SHOW PROCESSLIST**
 
 ## **Description**

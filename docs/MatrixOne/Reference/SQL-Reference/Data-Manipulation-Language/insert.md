@@ -1,3 +1,9 @@
+---
+title: "INSERT"
+mysql_compat: partial
+differs_from_mysql:
+  - "Modifiers LOW_PRIORITY / DELAYED / HIGH_PRIORITY not supported"
+---
 # **INSERT**
 
 ## **Description**

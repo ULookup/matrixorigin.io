@@ -1,3 +1,9 @@
+---
+title: "DROP ROLE"
+mysql_compat: mo_only
+mo_only:
+  - "DROP ROLE"
+---
 # **DROP ROLE**
 
 ## **Description**

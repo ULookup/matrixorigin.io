@@ -1,3 +1,7 @@
+---
+title: "LEFT JOIN"
+mysql_compat: full
+---
 # **LEFT JOIN**
 
 ## **Description**

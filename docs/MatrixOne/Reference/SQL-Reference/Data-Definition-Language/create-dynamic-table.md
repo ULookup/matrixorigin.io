@@ -1,3 +1,9 @@
+---
+title: "CREATE DYNAMIC TABLE"
+mysql_compat: mo_only
+mo_only:
+  - "CREATE DYNAMIC TABLE"
+---
 # **CREATE DYNAMIC TABLE**
 
 ## **Grammar description**

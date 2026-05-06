@@ -1,3 +1,7 @@
+---
+title: "RIGHT JOIN"
+mysql_compat: full
+---
 # **RIGHT JOIN**
 
 ## **Description**

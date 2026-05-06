@@ -97,3 +97,9 @@ jobs:
           echo "============================================================"
           echo "🧾 Diff base branch: ${BASE_BRANCH}"
           node ./scripts/doc-validator/index.js --changed-only --base-branch "${BASE_BRANCH}"
+
+      - name: Check MySQL Compatibility Frontmatter
+        run: |
+          echo "🔍 Checking mysql_compat frontmatter on SQL-Reference pages"
+          echo "============================================================"
+          node ./scripts/check-compat-frontmatter.js

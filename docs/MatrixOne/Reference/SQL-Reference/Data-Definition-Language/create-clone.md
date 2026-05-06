@@ -1,3 +1,9 @@
+---
+title: "CREATE CLONE"
+mysql_compat: mo_only
+mo_only:
+  - "CREATE TABLE … CLONE db.table [TO ACCOUNT …]"
+---
 # **CREATE CLONE**
 
 ## **Syntax Description**

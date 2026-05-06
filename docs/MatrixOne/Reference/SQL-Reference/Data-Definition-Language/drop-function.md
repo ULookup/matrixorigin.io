@@ -1,3 +1,9 @@
+---
+title: "DROP FUNCTION"
+mysql_compat: partial
+differs_from_mysql:
+  - "Drops MatrixOne-style SQL / Python functions, not MySQL stored procedures/functions"
+---
 # **DROP FUNCTION**
 
 ## **Grammar description**

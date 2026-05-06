@@ -1,3 +1,9 @@
+---
+title: "INSERT IGNORE"
+mysql_compat: partial
+differs_from_mysql:
+  - "LOW_PRIORITY / DELAYED / HIGH_PRIORITY modifiers not supported"
+---
 # INSERT IGNORE
 
 ## Syntax Description

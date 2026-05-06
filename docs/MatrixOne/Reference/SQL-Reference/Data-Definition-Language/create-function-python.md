@@ -1,3 +1,9 @@
+---
+title: "CREATE FUNCTION...LANGUAGE PYTHON AS"
+mysql_compat: mo_only
+mo_only:
+  - "CREATE FUNCTION … LANGUAGE PYTHON AS …"
+---
 # **CREATE FUNCTION...LANGUAGE PYTHON AS**
 
 ## **Grammar description**

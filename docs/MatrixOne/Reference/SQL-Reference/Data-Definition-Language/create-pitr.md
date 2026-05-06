@@ -1,3 +1,9 @@
+---
+title: "CREATE PITR"
+mysql_compat: mo_only
+mo_only:
+  - "CREATE PITR … RANGE N {h|d|mo|y}"
+---
 # CREATE PITR
 
 ## Syntax Description

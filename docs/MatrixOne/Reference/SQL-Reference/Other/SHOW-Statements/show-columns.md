@@ -1,3 +1,7 @@
+---
+title: "SHOW COLUMNS"
+mysql_compat: full
+---
 # **SHOW COLUMNS**
 
 ## **Description**

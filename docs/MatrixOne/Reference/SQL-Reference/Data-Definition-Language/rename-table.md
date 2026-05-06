@@ -1,3 +1,7 @@
+---
+title: "Rename Table"
+mysql_compat: full
+---
 # **Rename Table**
 
 ## **Syntax description**

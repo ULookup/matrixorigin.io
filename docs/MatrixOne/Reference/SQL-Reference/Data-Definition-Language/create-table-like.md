@@ -1,3 +1,7 @@
+---
+title: "CREATE TABLE ... LIKE"
+mysql_compat: full
+---
 # CREATE TABLE ... LIKE
 
 ## Syntax Description

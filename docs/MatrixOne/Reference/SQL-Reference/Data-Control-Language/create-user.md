@@ -1,3 +1,10 @@
+---
+title: "CREATE USER"
+mysql_compat: partial
+differs_from_mysql:
+  - "IDENTIFIED BY is the only supported password form; IDENTIFIED WITH plugins not supported"
+  - "Connection-IP whitelists and connection-limit clauses not supported"
+---
 # **CREATE USER**
 
 ## **Description**

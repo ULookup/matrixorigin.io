@@ -20,7 +20,8 @@ Returns the current UTC date and time as a value in `YYYY-MM-DD hh:mm:ss` or `YY
 
 - Example 1:
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 mysql> SELECT UTC_TIMESTAMP();
 +---------------------+
 | utc_timestamp()     |
@@ -40,7 +41,8 @@ mysql> select unix_timestamp(utc_timestamp());
 
 - Example 2:
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 create table t1 (ts timestamp);
 set time_zone='+00:00';
 
@@ -89,7 +91,8 @@ mysql> select * from t1;
 
 - Example 3:
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 DROP TABLE IF EXISTS t1;
 CREATE TABLE t1 (a TIMESTAMP);
 INSERT INTO t1 select (utc_timestamp());
@@ -107,7 +110,8 @@ mysql> SELECT year(a) FROM t1 WHERE a > '2008-01-01';
 3 rows in set (0.04 sec)
 ```
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 DROP TABLE if exists t1;
 create table t1 (a int primary key, b int, c int, d timestamp);
 insert into t1 select 1,1,1,utc_timestamp();

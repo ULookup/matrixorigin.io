@@ -31,7 +31,6 @@ The output will include the function name, database name, type, creation time, a
 
 ## **Examples**
 
-<!-- validator-ignore-exec -->
 ```sql
 create or replace function py_add(a int, b int) returns int language python as 
 $$

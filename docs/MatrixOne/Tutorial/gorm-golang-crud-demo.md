@@ -92,7 +92,8 @@ go run gorm_create.go
 
 You can use a MySQL client to verify if the table has been successfully created.
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 mysql> show tables;
 +----------------+
 | Tables_in_test |

@@ -16,7 +16,8 @@ This statement deletes the index from the currently selected table and will repo
 
 ## **Examples**
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 create table t5(a int, b int, unique key(a));
 mysql> show create table t5;
 +-------+----------------------------------------------------------------------------------------+

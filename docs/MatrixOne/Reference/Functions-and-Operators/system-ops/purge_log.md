@@ -27,7 +27,8 @@
 
 - Example 1:
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 -- Delete the statement_info type logs before 2023-06-30
 mysql> select purge_log('statement_info', '2023-06-30') a;
 +------+
@@ -40,7 +41,8 @@ mysql> select purge_log('statement_info', '2023-06-30') a;
 
 - Example 2:
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 -- Query the time and quantity of metric log collection
 mysql> select date(collecttime), count(1) from system_metrics.metric group by date(collecttime);
 +-------------------+----------+

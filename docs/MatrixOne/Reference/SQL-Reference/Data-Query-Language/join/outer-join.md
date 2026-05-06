@@ -14,7 +14,8 @@ When performing an ``INNER JOIN``, rows from either table that are unmatched in 
 
 # **Examples**
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 create table t1 (a1 int, a2 char(3));
 insert into t1 values(10,'aaa'), (10,null), (10,'bbb'), (20,'zzz');
 create table t2(a1 char(3), a2 int, a3 real);

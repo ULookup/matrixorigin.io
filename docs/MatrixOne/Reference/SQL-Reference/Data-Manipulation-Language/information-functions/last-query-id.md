@@ -40,7 +40,8 @@ Negative numbers start with the most recently-executed query in the session. For
 
 ## **Examples**
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 mysql> SELECT LAST_QUERY_ID(-1);
 +--------------------------------------+
 | last_query_id(-1)                    |

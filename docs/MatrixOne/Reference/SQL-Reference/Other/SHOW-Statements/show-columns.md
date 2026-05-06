@@ -19,7 +19,8 @@ mysql_compat: full
 
 ## **Examples**
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 drop table if exists t1;
 create table t1(
 col1 int comment 'First column',

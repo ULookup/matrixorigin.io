@@ -37,7 +37,8 @@ FORCE EXECUTE stmt_name
 
 **Example 1**
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 create table t1(n1 int);
 insert into t1 values(1);
 prepare st_t1 from 'select * from t1';
@@ -54,7 +55,8 @@ mysql> explain force execute st_t1;
 
 **Example 2**
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 create table t2 (col1 int, col2 decimal);
 insert into t2 values (1,2);
 prepare st from 'select * from t2 where col1 = ?';

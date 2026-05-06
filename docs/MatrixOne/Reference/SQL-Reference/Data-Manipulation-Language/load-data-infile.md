@@ -311,7 +311,8 @@ By setting the parameter, you can use `SET column_name=nullif(column_name,"null"
 
 3. Load `test.txt` into the table `user`:
 
-    ```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+    ```sql
     LOAD DATA INFILE '/tmp/test.txt' INTO TABLE user SET id=nullif(id,"null");
     ```
 

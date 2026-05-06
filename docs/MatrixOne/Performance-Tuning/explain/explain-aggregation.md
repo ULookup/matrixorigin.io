@@ -26,7 +26,8 @@ The Hash Aggregation algorithm uses a hash table to store intermediate results w
 
 The following is an example of the *Hash Aggregation* operator:
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 > SELECT /*+ HASH_AGG() */ count(*) FROM t1;
 +----------+
 | count(*) |

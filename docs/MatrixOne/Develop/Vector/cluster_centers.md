@@ -73,7 +73,8 @@ Suppose we have annual shopping data for a set of customers, including their ann
 
 2. Determining the Cluster Center
 
-    ```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+    ```sql
     mysql> SELECT cluster_centers(in_ex kmeans '2,vector_l2_ops,random,false') AS centers FROM customer_table;
     +------------------------------------------------------------------------+
     | centers                                                                |
@@ -122,7 +123,8 @@ A music streaming service wants to divide users into groups based on their prefe
 
 2. View vector normalization results
 
-    ```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+    ```sql
     mysql> select normalize_l2(grade) from music_table;
     +---------------------------------------------------------------------------------------------------------+
     | normalize_l2(grade)                                                                                     |
@@ -138,7 +140,8 @@ A music streaming service wants to divide users into groups based on their prefe
 
 3. Determining the Cluster Center
 
-    ```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+    ```sql
     mysql> SELECT cluster_centers(grade kmeans '2,vector_l2_ops,kmeansplusplus,true') AS centers FROM music_table;
     +------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
     | centers                                                                                                                                                                                                          |

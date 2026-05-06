@@ -28,7 +28,8 @@ WHERE columnN LIKE pattern;
 
 ## **Examples**
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 drop table t1;
 create table t1(a varchar(20));
 insert into t1 values ('abc'), ('ABC'), ('abC');

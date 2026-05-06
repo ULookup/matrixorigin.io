@@ -12,7 +12,8 @@ You cannot insert a `NULL` value into a column that contains a `NOT NULL` constr
 
 ## **Examples**
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 create table t1(a int not null,b int);
 mysql> insert into t1 values(null,1);
 ERROR 3819 (HY000): constraint violation: Column 'a' cannot be null

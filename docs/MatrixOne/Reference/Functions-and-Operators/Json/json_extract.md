@@ -78,7 +78,8 @@ Both keys contain a space and must be enclosed in quotes:
 
 ## **Example**
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 mysql> select JSON_EXTRACT('{"a": 1, "b": 2, "c": [3, 4, 5]}', '$.*');
 +---------------------------------------------------------+
 | JSON_EXTRACT('{"a": 1, "b": 2, "c": [3, 4, 5]}', '$.*') |

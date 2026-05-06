@@ -34,7 +34,8 @@ CREATE DATABASE IF NOT EXISTS test01;
 
 You can use [`SHOW DATABASES`](../Other/SHOW-Statements/show-databases.md) to check if the databases have been created.
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 mysql> show databases;
 +--------------------+
 | Database           |

@@ -39,7 +39,8 @@ WITH ( property_name = expression [, ...]);
 
 ## **Examples**
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 create source stream_test(c1 char(25),c2 varchar(500),c3 text,c4 tinytext,c5 mediumtext,c6 longtext )with(
     "type"='kafka',
     "topic"= 'test',

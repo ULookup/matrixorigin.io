@@ -12,7 +12,8 @@ The `IS` tests a value against a boolean value, where boolean_value can be TRUE,
 
 ## **Examples**
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 mysql> SELECT 1 IS TRUE, 0 IS FALSE, NULL IS UNKNOWN;
 +----------+-----------+---------+
 | 1 = true | 0 = false | null =  |

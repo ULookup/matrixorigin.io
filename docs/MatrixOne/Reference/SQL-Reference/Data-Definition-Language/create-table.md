@@ -207,7 +207,8 @@ The following is an example to illustrate the association of parent and child ta
 
 First, create a parent table with field a as the primary key:
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 create table t1(a int primary key,b varchar(5));
 insert into t1 values(101,'abc'),(102,'def');
 mysql> select * from t1;
@@ -222,7 +223,8 @@ mysql> select * from t1;
 
 Then create a child table with field c as the foreign key, associated with parent table field a:
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 create table t2(a int ,b varchar(5),c int, foreign key(c) references t1(a));
 insert into t2 values(1,'zs1',101),(2,'zs2',102);
 insert into t2 values(3,'xyz',null);
@@ -369,7 +371,8 @@ mysql> SELECT * FROM test;
 
 - Example 2: Add comments when creating a table
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 create table t2 (a int, b int) comment = "fact table";
 
 mysql> show create table t2;
@@ -385,7 +388,8 @@ mysql> show create table t2;
 
 - Example 3: Add comments to columns when creating tables
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 create table t3 (a int comment 'Column comment', b int) comment = "table";
 
 mysql> SHOW CREATE TABLE t3;
@@ -401,7 +405,8 @@ mysql> SHOW CREATE TABLE t3;
 
 - Example 4: Create a common partitioned table
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 CREATE TABLE tp1 (col1 INT, col2 CHAR(5), col3 DATE) PARTITION BY KEY(col3) PARTITIONS 4;
 
 mysql> SHOW CREATE TABLE tp1;
@@ -606,7 +611,8 @@ PRIMARY KEY (`col1`)
 
 - Example 5: Primary key auto increment
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 drop table if exists t1;
 create table t1(a bigint primary key auto_increment,
     b varchar(10));

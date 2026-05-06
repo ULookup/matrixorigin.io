@@ -87,7 +87,8 @@ mysql> SELECT * FROM v0;
 
 Use the `SHOW CREATE TABLE|VIEW view_name` statement:
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 mysql> SHOW CREATE VIEW v0;
 +------+----------------------------------------------------------------------------+
 | View | Create View                                                                |

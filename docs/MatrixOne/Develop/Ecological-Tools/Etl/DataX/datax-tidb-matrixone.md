@@ -18,7 +18,8 @@ Before you can start writing data to MatrixOne using DataX, you need to complete
 
 ### Creating Test Data in TiDB
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 CREATE TABLE `tidb_dx` (
     `id` bigint(20) NOT NULL,
     `name` varchar(100) DEFAULT NULL,
@@ -116,7 +117,8 @@ python bin/datax.py job/tidb2mo.json
 
 ### View target table data in MatrixOne
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 mysql> select * from testdx2tidb;
 +------+-------+--------+------+------------+--------+
 | id   | name  | salary | age  | entrytime  | gender |

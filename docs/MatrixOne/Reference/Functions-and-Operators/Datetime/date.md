@@ -18,7 +18,8 @@ Extracts the date part of the date or datetime expression expr.
 
 ## **Examples**
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 drop table if exists t1;
 create table t1(a date, b datetime);
 insert into t1 values('2022-01-01','2022-01-01 01:01:01');

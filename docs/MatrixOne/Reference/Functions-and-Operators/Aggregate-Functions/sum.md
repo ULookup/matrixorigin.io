@@ -31,7 +31,7 @@ If there are no matching rows, SUM() returns NULL.
 
 - Example 1:
 
-```sql <!-- validator-ignore-exec -->
+```sql
 > drop table if exists tbl1;
 drop table if exists tbl2;
 > create table tbl1 (col_1a tinyint, col_1b smallint, col_1c int, col_1d bigint, col_1e char(10) not null);
@@ -63,7 +63,8 @@ drop table if exists tbl2;
 
 - Example 2:
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 > CREATE TABLE t1(a varchar(255), b INT, c INT UNSIGNED, d DECIMAL(12,2), e REAL);
 > INSERT INTO t1 VALUES('iynfj', 1, 1, 1, 1);
 > INSERT INTO t1 VALUES('innfj', 2, 2, 2, 2);

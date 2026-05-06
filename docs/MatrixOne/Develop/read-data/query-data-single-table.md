@@ -71,7 +71,8 @@ Result is as below:
 
 To filter query results, you can use the `WHERE` statement.
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 mysql> SELECT * FROM token_count WHERE id = 25;
 ```
 
@@ -91,7 +92,8 @@ To sort query results, you can use the `ORDER BY` statement.
 
 For example, the following SQL statement can be used to sort the data in the *token_count* table in descending order (DESC) by *times* column.
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 mysql> SELECT id, token, times FROM token_count ORDER BY times DESC;
 ```
 
@@ -119,7 +121,8 @@ Result is as below:
 
 To limit the number of query results, you can use the `LIMIT` statement.
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 mysql> SELECT id, token, times FROM token_count ORDER BY times DESC LIMIT 5;
 ```
 
@@ -143,7 +146,8 @@ To have a better understanding of the overall data situation, you can use the `G
 
 For example, you can group basic information by `id`, `count`, and `times` columns and count them separately:
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 mysql> SELECT id, count, times FROM token_count GROUP BY id, count, times ORDER BY times DESC LIMIT 5;
 ```
 

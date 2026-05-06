@@ -33,7 +33,8 @@ OP_TYPE "vector_l2_ops"
 
 ## Example
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 -- Set parameter experimental_hnsw_index to 1 (default 0) to enable vector index
 SET GLOBAL experimental_hnsw_index = 1;
 DROP TABLE IF EXISTS t1;

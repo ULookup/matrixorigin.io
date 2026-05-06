@@ -33,7 +33,7 @@ Lists meta-information and statistics for tenant users created under your accoun
 
 ## **Example**
 
-```sql <!-- validator-ignore-exec -->
+```sql
 mysql> show accounts;
 +--------------+------------+---------------------+--------+----------------+----------+-----------+----------+---------------+----------------+
 | account_name | admin_name | created_time        | status | suspended_time | db_count | tbl_count | size     | snapshot_size | comments       |

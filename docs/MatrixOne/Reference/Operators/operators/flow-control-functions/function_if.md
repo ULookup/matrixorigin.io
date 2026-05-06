@@ -26,7 +26,8 @@ The `IF()` function returns a value if a condition is `TRUE`, or another value i
 
 ## **Examples**
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 mysql> SELECT IF(1>2,2,3);
 +-----------------+
 | if(1 > 2, 2, 3) |

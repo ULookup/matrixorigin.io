@@ -138,7 +138,8 @@ EXPLAIN SELECT col1 FROM tbl1;
 
 To check the table compression ratio in MatrixOne, you can use the following SQL query:
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 mysql> select ( sum(compress_size) + 1) / ( sum(origin_size) +1 ) from metadata_scan('db1.students', '*') m;
 +---------------------------------------------------+
 | (sum(compress_size) + 1) / (sum(origin_size) + 1) |

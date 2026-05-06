@@ -70,7 +70,7 @@ Range partitioning is a partitioning method based on continuous values. The part
 
 The following two tables use an integer column and a date column as partitioning keys, respectively:
 
-```sql <!-- validator-ignore-exec -->
+```sql
 CREATE TABLE members (
     firstname VARCHAR(25) NOT NULL,
     lastname VARCHAR(25) NOT NULL,
@@ -94,7 +94,7 @@ List partitioning requires each partition to be composed of a defined value list
 
 **Example**
 
-```sql <!-- validator-ignore-exec -->
+```sql
 CREATE TABLE employees (
     id INT NOT NULL,
     fname VARCHAR(30),
@@ -122,7 +122,7 @@ In HASH function partitioning, the column or expression used for partitioning mu
 
 **Example**
 
-```sql <!-- validator-ignore-exec -->
+```sql
 CREATE TABLE employees (
     id INT NOT NULL,
     fname VARCHAR(30),
@@ -166,7 +166,8 @@ The types that can be used in composite partitioning include:
 
 Range composite partitioning allows multiple types of columns to be combined, such as:
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 CREATE TABLE rcx (
          a INT,
          b INT,
@@ -183,7 +184,8 @@ CREATE TABLE rcx (
 
 List composite partitions allow users to define partitions in the same way that multiple columns can be combined, such as:
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 CREATE TABLE t1 (
     a INT,
     b int,

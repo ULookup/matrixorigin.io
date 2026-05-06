@@ -34,7 +34,8 @@ UPDATE table_reference
 
 - **Single-table Examples**
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 CREATE TABLE t1 (a bigint(3), b bigint(5) primary key);
 insert INTO t1 VALUES (1,1),(1,2);
 update t1 set a=2 where a=1 limit 1;
@@ -50,7 +51,8 @@ mysql> select * from t1;
 
 - **Multiple-table Examples**
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 drop table if exists t1;
 create table t1 (a int);
 insert into t1 values(1), (2), (4);

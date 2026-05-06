@@ -16,7 +16,8 @@ The USE statement tells MatrixOne to use the named database as the default (curr
 
 ## **Examples**
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 USE db1;
 SELECT COUNT(*) FROM mytable;
 ```

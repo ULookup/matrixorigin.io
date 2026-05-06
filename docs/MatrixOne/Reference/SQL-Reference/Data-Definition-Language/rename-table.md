@@ -24,7 +24,8 @@ Things to note:
 
 ## **Example**
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 create table old_table1(n1 int);
 create table old_table2(n1 int);
 create table old_table3(n1 int);

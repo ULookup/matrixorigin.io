@@ -38,7 +38,8 @@ mysql> SELECT id FROM t1 MINUS SELECT id FROM t2;
 
 - Example 2
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 drop table if exists t1;
 drop table if exists t2;
 create table t1 (a smallint, b bigint, c int);

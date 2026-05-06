@@ -17,7 +17,8 @@ MatrixOne slow query feature is available with the following basic information:
 
 To enable the slow query, execute the following SQL statements:
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 drop database if exists mo_ts;
 create database mo_ts;
 use mo_ts;
@@ -27,7 +28,8 @@ create view slow_query_with_plan as select statement,request_at,duration/1000000
 
 For all queries longer than 1 second, execute the following SQL statement to view them:
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 select * from mo_ts.slow_query;
 select * from mo_ts.slow_query_with_plan;
 ```

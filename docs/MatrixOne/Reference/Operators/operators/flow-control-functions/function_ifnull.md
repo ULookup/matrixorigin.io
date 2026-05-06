@@ -13,7 +13,8 @@ The default return type of `IFNULL(expr1,expr2)` is the more "general" of the tw
 
 ## **Examples**
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 mysql> SELECT IFNULL(NULL,10);
 +------------------+
 | ifnull(null, 10) |
@@ -23,7 +24,8 @@ mysql> SELECT IFNULL(NULL,10);
 1 row in set (0.00 sec)
 ```
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 mysql> SELECT CAST(IFNULL(NULL, NULL) AS DECIMAL);
 +-----------------------------------------+
 | cast(ifnull(null, null) as decimal(10)) |

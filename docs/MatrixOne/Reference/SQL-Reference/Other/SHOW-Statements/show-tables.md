@@ -16,7 +16,8 @@ Shows the list of tables in the currently selected database.
 
 ## **Examples**
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 > SHOW TABLES;
 +---------------+
 | name          |

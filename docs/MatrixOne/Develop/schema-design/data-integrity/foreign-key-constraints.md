@@ -67,7 +67,8 @@ These parameters collectively define a foreign key constraint, ensuring the data
 
 ### Example 1
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 -- Create a table named t1, containing two columns: a and b. The column a is of type int and is set as the primary key, while the column b is of type varchar with a length of 5.
 create table t1(a int primary key, b varchar(5));
 

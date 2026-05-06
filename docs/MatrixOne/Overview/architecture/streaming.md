@@ -61,6 +61,7 @@ SELECT * FROM STUDENTS WHERE `rank` > 5;
 
 Additionally, you can insert new events, as demonstrated below:
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 INSERT INTO foo (ROWTIME, KEY_COL, COL_A) VALUES (1510923225000, 'key', 'A');
 ```

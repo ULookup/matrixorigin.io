@@ -18,7 +18,8 @@ Returns the day of the year for date, in the range 1 to 366.
 
 ## **Examples**
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 drop table if exists t1;
 create table t1(a date, b datetime,c varchar(30));
 insert into t1 values('2022-01-01','2022-01-01 01:01:01','2022-01-01 01:01:01');

@@ -22,7 +22,8 @@ mysql> SELECT 2 NOT BETWEEN 1 AND 3, 2 NOT BETWEEN 3 and 1;
 1 row in set (0.00 sec)
 ```
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 create table t (id bigint unsigned, b int);
 insert into t values(8894754949779693574,1);
 insert into t values(8894754949779693579,2);

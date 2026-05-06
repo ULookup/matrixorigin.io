@@ -18,7 +18,8 @@
 
 ## **Examples**
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 mysql> select lcase('HELLO');
 +--------------+
 | lcase(HELLO) |

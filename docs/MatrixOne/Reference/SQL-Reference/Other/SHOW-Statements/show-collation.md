@@ -19,7 +19,8 @@ This statement lists collations supported by MatrixOne. By default, the output f
 
 ## **Examples**
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 mysql> show collation;
 +-------------+---------+------+----------+---------+
 | Collation   | Charset | Id   | Compiled | Sortlen |

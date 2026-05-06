@@ -52,8 +52,8 @@ MATCH (col1, col2, ...) AGAINST (expr [search_modifier]);
 
 ## Examples
 
-```sql <!-- validator-ignore-exec -->
-
+<!-- validator-ignore-exec -->
+```sql
 CREATE TABLE example_table (
     id INT PRIMARY KEY,
     english_text TEXT,       -- English text

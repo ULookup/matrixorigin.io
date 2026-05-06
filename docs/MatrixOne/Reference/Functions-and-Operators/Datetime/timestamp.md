@@ -18,7 +18,8 @@ With a single argument, this function returns the date or datetime expression ex
 
 ## **Examples**
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 mysql> SELECT TIMESTAMP('2003-12-31');
 +----------------------------+
 | timestamp(2003-12-31)      |
@@ -28,7 +29,8 @@ mysql> SELECT TIMESTAMP('2003-12-31');
 1 row in set (0.00 sec)
 ```
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 CREATE TABLE t1(c1 DATE NOT NULL);
 INSERT INTO t1 VALUES('2000-01-01');
 INSERT INTO t1 VALUES('1999-12-31');

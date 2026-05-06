@@ -12,7 +12,8 @@ SELECT CURRENT_USER();
 
 ## **Examples**
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 mysql> select current_user();
 +----------------+
 | current_user() |

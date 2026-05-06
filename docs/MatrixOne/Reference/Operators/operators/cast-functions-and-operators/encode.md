@@ -19,7 +19,8 @@ The `ENCODE()` function is used to symmetrically encrypt a string. It encodes a 
 
 ## **Example**
 
-```SQL <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```SQL
 mysql> SELECT ENCODE('hello', 'mysecretkey');
 +----------------------------+
 | ENCODE(hello, mysecretkey) |

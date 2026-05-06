@@ -19,7 +19,6 @@ __Note:__ To query the role you are currently using, use the [`select current_ro
 ```
 
 ## **Examples**
-
 <!-- validator-ignore-exec -->
 ```sql
 -- Show the roles currently under your account

@@ -176,7 +176,8 @@ truncate table orders;
 
     Connect acc1 query, you can see that the data is successfully restored
 
-    ```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+    ```sql
     mysql> show databases;
     +--------------------+
     | Database           |
@@ -204,7 +205,8 @@ truncate table orders;
 
     Connect acc2 query and you can see that the data is successfully restored
 
-    ```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+    ```sql
     mysql> show databases;
     +--------------------+
     | Database           |

@@ -26,7 +26,7 @@ The relationship rules of Partition Keys, Primary Keys, and Unique Keys can be s
 
 For example, because the unique key on the table does not use every column in the table, each statement that creates the table below is invalid:
 
-```sql <!-- validator-ignore-exec -->
+```sql
 > CREATE TABLE t1 (
       col1 INT NOT NULL,
       col2 DATE NOT NULL,
@@ -62,7 +62,8 @@ ERROR 1503 (HY000): A PRIMARY KEY must include all columns in the table's partit
 
     For example, in the following table construction sentence, the KEY partition key is NULL, no primary key is defined, but the unique key is used as the partitioning key when the partition expression is constructed:
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 CREATE TABLE t1 (
 	col1 INT  NOT NULL,
 	col2 DATE NOT NULL,
@@ -106,7 +107,7 @@ KEY partitioning will construct a partition expression based on the partition ke
 
 SQL example is as below:
 
-```sql <!-- validator-ignore-exec -->
+```sql
 CREATE TABLE t1 (
     col1 INT NOT NULL,
     col2 DATE NOT NULL,
@@ -124,7 +125,7 @@ HASH partitioning will construct a partition expression based on the partition f
 
 SQL example is as below:
 
-```sql <!-- validator-ignore-exec -->
+```sql
 CREATE TABLE t1 (
     col1 INT,
     col2 CHAR(5),

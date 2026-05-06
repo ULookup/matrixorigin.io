@@ -18,7 +18,8 @@ The COT() function returns the cotangent of input number(given in radians).
 
 ## **Examples**
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 mysql> SELECT COT(12);
 +---------------------+
 | cot(12)             |

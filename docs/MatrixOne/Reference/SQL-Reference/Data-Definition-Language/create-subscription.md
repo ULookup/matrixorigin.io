@@ -25,7 +25,6 @@ PUBLICATION pubname;
 - account_name: The tenant name of the publication can be obtained.
 
 ## **Example**
-
 <!-- validator-ignore-exec -->
 ```sql
 create account acc01 admin_name 'root' identified by '111';

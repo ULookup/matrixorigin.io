@@ -48,7 +48,8 @@ In general, tables containing `NULL` values and empty tables are "edge cases." W
 
 ## **Examples**
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 create table t1 (a int);
 create table t2 (a int, b int);
 create table t3 (a int);

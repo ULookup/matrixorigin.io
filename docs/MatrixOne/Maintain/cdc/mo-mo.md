@@ -125,7 +125,6 @@ Now, the task is interrupted due to an unexpected event.
 ```
 
 During the task interruption, continue inserting data into the upstream MatrixOne.
-
 <!-- validator-ignore-exec -->
 ```sql
 INSERT INTO production_db.user_activities VALUES

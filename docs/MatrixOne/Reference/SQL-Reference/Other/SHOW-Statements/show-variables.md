@@ -25,7 +25,8 @@ differs_from_mysql:
 
 ## **Examples**
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 mysql> SHOW VARIABLES;
 +--------------------------+-----------------------------------------------------------------------------------------------------------------------+
 | Variable_name            | Value                                                                                                                 |

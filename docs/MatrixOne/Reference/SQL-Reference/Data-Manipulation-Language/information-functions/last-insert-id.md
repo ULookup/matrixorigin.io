@@ -14,7 +14,8 @@ The value of `LAST_INSERT_ID()` remains unchanged if no rows are successfully in
 
 In MySQL, if you insert multiple rows using a single INSERT statement, LAST_INSERT_ID() returns the value generated for the first inserted row only. For example:
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 mysql> CREATE TABLE t (id INT AUTO_INCREMENT NOT NULL PRIMARY KEY, name VARCHAR(10) NOT NULL);
 mysql> INSERT INTO t VALUES (NULL, 'Bob');
 mysql> SELECT * FROM t;

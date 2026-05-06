@@ -148,7 +148,6 @@ DATA BRANCH CREATE TABLE test.orders_dev FROM test.orders;
 ### Example 2: Create Table Branch from Snapshot
 
 Create a data branch from a specific point in time using a snapshot:
-
 <!-- validator-ignore-exec -->
 ```sql
 -- Expected-Rows: 0
@@ -262,7 +261,6 @@ DROP SNAPSHOT sp_source;
 ### Example 5: Multi-level Branching
 
 Create new branches from existing branches:
-
 <!-- validator-ignore-exec -->
 ```sql
 -- Expected-Rows: 0

@@ -112,7 +112,8 @@ create account acc2 admin_name = 'test_account' identified by '111';
 
 3. Subscribe to publications individually in branch tenants
 
-    ```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+    ```sql
     -- Subscribe to db_warehouse_pub in acc1
     create database db_warehouse_sub from sys publication db_warehouse_pub;
 
@@ -191,7 +192,8 @@ create account acc2 admin_name = 'test_account' identified by '111';
 
     On the publishing side of data, the publishing and subscription mechanism will synchronize these changes to the subscribing side.
 
-    ```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+    ```sql
     -- Modify the inventory quantity in the inventory table
     UPDATE inventory SET stock_quantity = 80 WHERE product_id = 1;
 
@@ -220,7 +222,8 @@ create account acc2 admin_name = 'test_account' identified by '111';
 
 5. View changes on the subscription side
 
-    ```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+    ```sql
     -- Check stock availability in acc1
     mysql> select * from inventory ;
     +------------+--------------+----------------+

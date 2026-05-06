@@ -96,7 +96,6 @@ mysql> select * from analytics_db.orders_backup;
 ### Incremental Synchronization Task
 
 After the task is established, perform data changes in the upstream MatrixOne.
-
 <!-- validator-ignore-exec -->
 ```sql
 INSERT INTO source_db.orders (order_id, customer_id, order_date, amount, status) VALUES
@@ -145,7 +144,6 @@ Now, the task is interrupted due to an unexpected event.
 ```
 
 During the task interruption, continue inserting data into the upstream MatrixOne.
-
 <!-- validator-ignore-exec -->
 ```sql
 INSERT INTO source_db.orders (order_id, customer_id, order_date, amount, status) VALUES

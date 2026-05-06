@@ -65,7 +65,8 @@ values  (1, 'Lisa', 25, '2010-10-12', '0'),
 
 3. Query whether the table has CDC (Change Data Capture) enabled
 
-    ```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+    ```sql
     select name,is_tracked_by_cdc from sys.tables where name = 'sqlserver_data'; 
     ```
 

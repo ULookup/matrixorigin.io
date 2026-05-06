@@ -33,7 +33,8 @@ Currently, `convert` can support following conversion:
 
 ## **Examples**
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 mysql> select convert(150,char);
 +-------------------+
 | cast(150 as char) |

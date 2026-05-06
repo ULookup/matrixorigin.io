@@ -24,7 +24,8 @@ If flink is already started, you need to restart flink and load the effective ja
 
 ### Create a table in TiDB and insert data
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 create table EMPQ_cdc
 (
     empno    bigint not null,
@@ -146,7 +147,8 @@ Data can be found to have been imported
 
 ### Delete a piece of data in TiDB
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 delete from EMPQ_cdc where empno=1; 
 ```
 

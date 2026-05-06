@@ -18,7 +18,8 @@ SHOW TABLE_NUMBER FROM {DATABASE_NAME}
 
 - **Example 1**: Check the total number of tables in the system database mo_catalog:
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 mysql> show table_number from mo_catalog;
 +--------------------------------+
 | Number of tables in mo_catalog |
@@ -79,7 +80,8 @@ SHOW COLUMN_NUMBER FROM {[DATABASE_NAME.]TABLE_NAME}
 
 ### Example
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 use mo_catalog;
 use mo_user;
 mysql> show column_number from mo_user;
@@ -131,7 +133,8 @@ SHOW TABLE_VALUES FROM {[DATABASE_NAME.]TABLE_NAME}
 
 ### Example
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 create table t1(
 col1 int,
 col2 float,
@@ -159,7 +162,8 @@ SELECT MO_TABLE_ROWS({DATABASE_NAME},{TABLE_NAME})
 
 ### Example
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 -- Query the total number of rows of mo_tables in mo_catalog
 mysql> select mo_table_rows('mo_catalog','mo_tables');
 +--------------------------------------+
@@ -181,7 +185,8 @@ SELECT MO_TABLE_SIZE({DATABASE_NAME},{TABLE_NAME})
 
 ### Example
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 -- Query the storage space occupied by the table mo_tables in the database mo_catalog
 mysql> select mo_table_size('mo_catalog','mo_tables');
 +--------------------------------------+

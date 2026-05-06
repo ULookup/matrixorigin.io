@@ -24,7 +24,8 @@ AS SELECT ... from stream_name ;
 
 ## **Examples**
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 create dynamic table dt_test as select * from stream_test;
 ```
 

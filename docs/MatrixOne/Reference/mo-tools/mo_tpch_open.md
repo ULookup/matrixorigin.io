@@ -85,7 +85,8 @@ Then execute the following script to build the table.
 
 Connect to MatrixOne to view and build table successfully.
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 mysql> show tables;
 +----------------+
 | Tables_in_tpch |

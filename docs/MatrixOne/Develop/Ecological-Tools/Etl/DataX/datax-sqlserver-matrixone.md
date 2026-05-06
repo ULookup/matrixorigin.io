@@ -39,7 +39,8 @@ VALUES(1, 1, N'shdfhg '),
 
 Since DataX can only synchronize data, not table structure, we need to manually create the table in the target database (MatrixOne) before we can perform the task.
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 CREATE TABLE test.test_2 (
 	id int not NULL,
 	age int NULL,

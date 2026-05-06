@@ -19,7 +19,8 @@ mo_only:
 
 ## **Examples**
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 CREATE SEQUENCE s1 START 101;
 CREATE SEQUENCE s3 as smallint INCREMENT 10 MINVALUE -100 MAXVALUE 100 START 0 CYCLE;
 CREATE SEQUENCE seq_id INCREMENT BY 1 MAXVALUE 1000 START with 1;

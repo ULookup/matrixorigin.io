@@ -26,7 +26,8 @@ If count is negative, everything to the right of the final delimiter (counting f
 
 ## **Examples**
 
-```SQL <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```SQL
 mysql> SELECT SUBSTRING_INDEX('www.mysql.com', '.', 2);
 +--------------------------------------+
 | substring_index(www.mysql.com, ., 2) |

@@ -18,7 +18,8 @@ SPACE(N) Returns a string consisting of N space characters.
 
 ## **Examples**
 
-```SQL <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```SQL
 > drop table if exists t1;
 > CREATE TABLE t1
 (

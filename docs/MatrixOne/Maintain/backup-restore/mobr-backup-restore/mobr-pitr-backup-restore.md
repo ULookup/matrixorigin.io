@@ -43,7 +43,6 @@ A large SaaS provider manages a multi-tenant environment that provides various s
 
 There are two tenants acc1 and acc2 under this system, which represent different customers. Each tenant has product information and order information.
   
-<!-- validator-ignore-exec -->
 ```sql
 create account acc1 admin_name 'root' identified by '111';
 create account acc2 admin_name 'root' identified by '111';

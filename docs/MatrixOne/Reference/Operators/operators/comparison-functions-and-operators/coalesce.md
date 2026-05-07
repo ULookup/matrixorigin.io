@@ -20,7 +20,6 @@ The `COALESCE()` function returns the first non-null value in a list.
 
 - Example: Calculate
 
-<!-- validator-ignore-exec -->
 ```sql
 mysql> SELECT COALESCE(1)+COALESCE(1);
 +---------------------------+

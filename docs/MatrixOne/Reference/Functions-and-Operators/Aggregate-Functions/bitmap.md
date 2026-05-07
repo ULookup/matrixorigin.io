@@ -223,7 +223,6 @@ mysql> SELECT bitmap_bit_position(0),bitmap_bit_position(1),bitmap_bit_position(
 
 So you need to combine the `BITMAP_BUCKET_NUMBER()` function if you want to dedupe data larger than 32767.
 
-<!-- validator-ignore-exec -->
 ```sql
 -- Grouped in buckets, the first bucket contains three non-repeating numbers (0,1,32767) and the second bucket contains three non-repeating numbers (32768,32769,65535).
 mysql> SELECT bitmap_count(BITMAP_CONSTRUCT_AGG(BITMAP_BIT_POSITION(n1))) AS t1_bitmap FROM t1 GROUP BY BITMAP_BUCKET_NUMBER(n1);

@@ -20,7 +20,6 @@ Returns the minute for time, in the range 0 to 59, or NULL if time is NULL.
 
 - Example 1:
 
-<!-- validator-ignore-exec -->
 ```sql
 mysql> SELECT MINUTE('2008-02-03 10:05:03');
 +-----------------------------+

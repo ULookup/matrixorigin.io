@@ -13,7 +13,6 @@ The default return type of `IFNULL(expr1,expr2)` is the more "general" of the tw
 
 ## **Examples**
 
-<!-- validator-ignore-exec -->
 ```sql
 mysql> SELECT IFNULL(NULL,10);
 +------------------+

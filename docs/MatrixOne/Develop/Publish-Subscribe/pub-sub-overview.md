@@ -222,7 +222,7 @@ create account acc2 admin_name = 'test_account' identified by '111';
 
 5. View changes on the subscription side
 
-<!-- validator-ignore-exec -->
+    <!-- validator-ignore-exec -->
     ```sql
     -- Check stock availability in acc1
     mysql> select * from inventory ;

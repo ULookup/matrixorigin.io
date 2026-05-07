@@ -20,7 +20,6 @@ Unlike the `RANK()` and `DENSE_RANK()` functions, `ROW_NUMBER()` gives each row 
 
 ## **Examples**
 
-<!-- validator-ignore-exec -->
 ```sql
 -- Create a new table, 'SalesTable' with three fields: 'Department', 'Employee', and 'Sales'
 CREATE TABLE SalesTable (

@@ -63,7 +63,6 @@ drop table if exists tbl2;
 
 - Example 2:
 
-<!-- validator-ignore-exec -->
 ```sql
 > CREATE TABLE t1(a varchar(255), b INT, c INT UNSIGNED, d DECIMAL(12,2), e REAL);
 > INSERT INTO t1 VALUES('iynfj', 1, 1, 1, 1);

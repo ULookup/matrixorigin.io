@@ -307,7 +307,6 @@ mysql -h <mo_host> -P <mo_port> -u <user> -p <db_name> < diff_t2_t1_20241225.sql
 
 **Import CSV file (full sync)**:
 
-<!-- validator-ignore-exec -->
 ```sql
 -- Expected-Success: false
 LOAD DATA LOCAL INFILE '/tmp/diff_output/diff_xxx.csv'

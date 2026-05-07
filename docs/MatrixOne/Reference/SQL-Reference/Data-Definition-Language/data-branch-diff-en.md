@@ -79,7 +79,6 @@ The system automatically detects the branch relationship between two tables:
 
 Compare two tables without a common ancestor:
 
-<!-- validator-ignore-exec -->
 ```sql
 -- Expected-Rows: 0
 CREATE DATABASE test;
@@ -121,7 +120,6 @@ DROP TABLE test.t2;
 ```
 
 ### Example 2: Compare Branch Tables (With Common Ancestor)
-<!-- validator-ignore-exec -->
 ```sql
 -- Expected-Rows: 0
 CREATE TABLE test.t0 (a INT PRIMARY KEY, b INT);
@@ -156,7 +154,6 @@ DROP TABLE test.t2;
 ```
 
 ### Example 3: Compare Using Snapshots
-<!-- validator-ignore-exec -->
 ```sql
 -- Expected-Rows: 0
 CREATE TABLE test.t1 (a INT PRIMARY KEY, b INT);
@@ -194,7 +191,6 @@ DROP TABLE test.t1;
     When comparing two snapshots of the same table, the system compares based on incremental changes between snapshots. In this example, although the UPDATE operation modified the row where a=1, due to the special mechanism of snapshot comparison, only the newly inserted row is shown.
 
 ### Example 4: Get Only Difference Count
-<!-- validator-ignore-exec -->
 ```sql
 -- Expected-Rows: 0
 CREATE TABLE test.t1 (a INT PRIMARY KEY, b INT);
@@ -223,7 +219,6 @@ DROP TABLE test.t2;
 ```
 
 ### Example 5: Limit Returned Rows
-<!-- validator-ignore-exec -->
 ```sql
 -- Expected-Rows: 0
 CREATE TABLE test.t1 (a INT PRIMARY KEY, b INT);
@@ -258,7 +253,6 @@ DROP TABLE test.t2;
 
 ### Example 6: Export Differences as SQL File
 
-<!-- validator-ignore-exec -->
 ```sql
 -- Expected-Rows: 0
 CREATE TABLE test.t1 (a INT PRIMARY KEY, b INT);
@@ -319,7 +313,6 @@ LINES TERMINATED BY '\n';
 
 Stage is a logical object in MatrixOne for connecting to external storage (such as S3, HDFS). You can output difference files directly to object storage for cross-cluster/cross-environment data synchronization.
 
-<!-- validator-ignore-exec -->
 ```sql
 -- Expected-Rows: 0
 CREATE STAGE my_stage URL = 's3://my-bucket/diff-output/?region=us-east-1&access_key_id=xxx&secret_access_key=yyy';
@@ -347,7 +340,6 @@ Advantages of using Stage:
 
 ### Example 7: Detect Update Operations
 
-<!-- validator-ignore-exec -->
 ```sql
 -- Expected-Rows: 0
 CREATE TABLE test.t0 (a INT PRIMARY KEY, b INT, c INT);
@@ -388,7 +380,6 @@ DROP TABLE test.t2;
 
 ### Example 8: Difference Comparison for Composite Primary Key Tables
 
-<!-- validator-ignore-exec -->
 ```sql
 -- Expected-Rows: 0
 CREATE TABLE test.orders (

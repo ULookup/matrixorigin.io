@@ -173,7 +173,6 @@ mysql> SELECT * FROM ot1 LEFT JOIN ot2 ON ot1.a=ot2.a WHERE COALESCE(ot2.a,0) IN
 
 - Example: `HAVING`
 
-<!-- validator-ignore-exec -->
 ```sql
 drop table if exists t1;
 create table t1(a datetime);

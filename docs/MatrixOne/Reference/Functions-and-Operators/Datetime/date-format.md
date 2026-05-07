@@ -125,7 +125,6 @@ mysql> SELECT Date_format(f1, "%m") AS d1,
   2 rows in set (0.00 sec)
 ```
 
-<!-- validator-ignore-exec -->
 ```sql
 CREATE TABLE t5 (a int, b date);
 INSERT INTO t5

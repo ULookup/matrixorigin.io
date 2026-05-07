@@ -26,7 +26,6 @@ The return value is an integer if no argument is given or the argument does not 
 
 If you use `UNIX_TIMESTAMP()` and `FROM_UNIXTIME()` to convert between values in a non-UTC time zone and Unix timestamp values, the conversion is lossy because the mapping is not one-to-one in both directions. For example, due to conventions for local time zone changes such as Daylight Saving Time (DST), it is possible for `UNIX_TIMESTAMP()` to map two values that are distinct in a non-UTC time zone to the same Unix timestamp value. `FROM_UNIXTIME()` maps that value back to only one of the original values. Here is an example, using values that are distinct in the MET time zone:
 
-<!-- validator-ignore-exec -->
 ```sql
 mysql> SET time_zone = 'MET';
 Query OK, 0 rows affected (0.01 sec)
@@ -58,7 +57,6 @@ mysql> SELECT FROM_UNIXTIME(1111885200);
 
 ## **Examples**
 
-<!-- validator-ignore-exec -->
 ```sql
 mysql> SELECT UNIX_TIMESTAMP("2016-07-11");
 +----------------------------+

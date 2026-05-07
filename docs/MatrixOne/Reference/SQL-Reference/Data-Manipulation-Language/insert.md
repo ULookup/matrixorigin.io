@@ -18,7 +18,6 @@ Writing data.
 
 ## **Examples**
 
-<!-- validator-ignore-exec -->
 ```sql
 drop table if exists t1;
 create table t1(a int default (1+12), b int);

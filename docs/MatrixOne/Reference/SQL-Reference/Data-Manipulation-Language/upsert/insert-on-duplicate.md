@@ -21,7 +21,6 @@ It is important to note that using this syntax presupposes that a primary key co
 
 ## **Examples**
 
-<!-- validator-ignore-exec -->
 ```sql
 CREATE TABLE user (
     id INT(11) NOT NULL PRIMARY KEY,

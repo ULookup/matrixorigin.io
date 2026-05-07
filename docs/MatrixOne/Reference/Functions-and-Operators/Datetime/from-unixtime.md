@@ -19,7 +19,6 @@ The ``FROM_UNIXTIME()`` function returns a representation of ``unix_timestamp`` 
 
 ## **Examples**
 
-<!-- validator-ignore-exec -->
 ```sql
 mysql> SELECT FROM_UNIXTIME(1447430881);
 +---------------------------+

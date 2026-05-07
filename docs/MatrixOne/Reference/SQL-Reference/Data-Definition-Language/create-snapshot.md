@@ -21,7 +21,6 @@ CREATE SNAPSHOT <snapshot_name> FOR [CLUSTER]|[ACCOUNT [<account_name>]]|[DATABA
 
 **Example 1: Cluster admin creates a cluster-level snapshot**
 
-<!-- validator-ignore-exec -->
 ```sql
 CREATE SNAPSHOT cluster_sp FOR CLUSTER;
 mysql> SHOW SNAPSHOTS;

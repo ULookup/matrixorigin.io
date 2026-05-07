@@ -32,7 +32,6 @@ mysql> SELECT MINUTE('2008-02-03 10:05:03');
 
 - Example 2:
 
-<!-- validator-ignore-exec -->
 ```sql
 drop table if exists t1;
 create table t1(a datetime, b timestamp);

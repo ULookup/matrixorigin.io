@@ -6,7 +6,6 @@
 
 We have prepared a simple example to help you understand the execution plan for interpreting the `VIEW` using `EXPLAIN`.
 
-<!-- validator-ignore-exec -->
 ```sql
 > drop table if exists t1;
 > create table t1 (id int,ti tinyint unsigned,si smallint,bi bigint unsigned,fl float,dl double,de decimal,ch char(20),vch varchar(20),dd date,dt datetime);

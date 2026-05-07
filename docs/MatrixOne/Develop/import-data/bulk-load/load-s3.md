@@ -45,7 +45,7 @@ The other paramaters are identical to a ordinary LOAD DATA, see [LOAD DATA](../.
 
 **Statement Examples**:
 
-```sql <!-- validator-ignore -->
+```sql <!-- validator-ignore-exec -->
 # LOAD a csv file from AWS S3 us-east-1 region, test-load-mo bucket, without compression
 LOAD DATA URL s3option{"endpoint"='s3.us-east-1.amazonaws.com', "access_key_id"='XXXXXX', "secret_access_key"='XXXXXX', "bucket"='test-load-mo', "filepath"='test.csv', "region"='us-east-1', "compression"='none'} INTO TABLE t1 FIELDS TERMINATED BY ',' ENCLOSED BY '\"' LINES TERMINATED BY '\n';
 

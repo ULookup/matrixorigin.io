@@ -131,7 +131,7 @@ The join result of an inner join returns only rows that match the join condition
 
 There are two ways of writing an `inner join` that are completely equivalent in results:
 
-```sql <!-- validator-ignore -->
+```sql <!-- validator-ignore-exec -->
 mysql> SELECT   
     l_orderkey,
     SUM(l_extendedprice * (1 - l_discount)) AS revenue,
@@ -169,7 +169,7 @@ LIMIT 10;
 
 Write as `Join`, the syntax is as follows:
 
-```sql <!-- validator-ignore -->
+```sql <!-- validator-ignore-exec -->
 mysql> SELECT   
     l_orderkey,
     SUM(l_extendedprice * (1 - l_discount)) AS revenue,

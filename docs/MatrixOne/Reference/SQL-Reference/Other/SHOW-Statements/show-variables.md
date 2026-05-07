@@ -1,3 +1,9 @@
+---
+title: "SHOW VARIABLES"
+mysql_compat: partial
+differs_from_mysql:
+  - "System variables are mostly syntactic stubs; actual behaviour differs from MySQL"
+---
 # **SHOW VARIABLES**
 
 ## **Description**
@@ -19,7 +25,8 @@
 
 ## **Examples**
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 mysql> SHOW VARIABLES;
 +--------------------------+-----------------------------------------------------------------------------------------------------------------------+
 | Variable_name            | Value                                                                                                                 |

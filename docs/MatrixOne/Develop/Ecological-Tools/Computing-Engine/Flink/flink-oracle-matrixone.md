@@ -17,8 +17,7 @@ This practice requires the installation and deployment of the following software
 
 ### Create a table in Oracle and insert data
 
-<!-- validator-ignore -->
-```sql
+```plsql
 create table flinkcdc_empt
 (
     EMPNO    NUMBER not null primary key,
@@ -85,8 +84,7 @@ SET execution.checkpointing.interval = 3s;
 
 ### Create source/sink table with flink ddl
 
-<!-- validator-ignore -->
-```sql
+```flink
 -- Create source table (oracle)
 CREATE TABLE `oracle_source` (
     EMPNO bigint NOT NULL,

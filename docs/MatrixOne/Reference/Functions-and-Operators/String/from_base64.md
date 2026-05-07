@@ -18,7 +18,8 @@
 
 ## Examples
 
-```SQL <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```SQL
 mysql> select from_base64('MjU1');
 +-------------------+
 | from_base64(MjU1) |

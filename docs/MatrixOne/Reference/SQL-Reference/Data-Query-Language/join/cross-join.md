@@ -1,3 +1,7 @@
+---
+title: "CROSS JOIN"
+mysql_compat: full
+---
 # **CROSS JOIN**
 
 ## **Grammar description**

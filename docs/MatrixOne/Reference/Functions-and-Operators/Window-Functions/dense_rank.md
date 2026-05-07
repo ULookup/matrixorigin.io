@@ -20,7 +20,8 @@ The `DENSE_RANK()` function handles ties (i.e., two or more rows with the same v
 
 ## **Examples**
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 -- Create a new table, 'SalesTable' with three fields: 'Department', 'Employee', and 'Sales'
 CREATE TABLE SalesTable (
   Department VARCHAR(50),

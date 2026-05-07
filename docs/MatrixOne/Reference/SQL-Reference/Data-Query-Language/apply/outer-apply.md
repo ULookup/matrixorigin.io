@@ -1,3 +1,9 @@
+---
+title: "OUTER APPLY"
+mysql_compat: mo_only
+mo_only:
+  - "OUTER APPLY (SQL Server-style, not in MySQL)"
+---
 # **OUTER APPLY**
 
 ## **Syntax description**

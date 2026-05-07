@@ -12,7 +12,8 @@ The `IS NOT` tests a value against a boolean value, where boolean_value can be T
 
 ## **Examples**
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 mysql> SELECT 1 IS NOT TRUE, 0 IS NOT FALSE, NULL IS NOT UNKNOWN;
 +-----------+------------+----------+
 | 1 != true | 0 != false | null !=  |

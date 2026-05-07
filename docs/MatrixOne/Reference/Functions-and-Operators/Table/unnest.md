@@ -24,7 +24,8 @@ When a `NULL` value is entered, the `UNNEST` function returns an empty table bec
 
 - Example 1:
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 -- Expand a string array containing JSON objects, '{"a":1}' is a string array containing a single element. This element is a string representing a JSON object.
 > select * from unnest('{"a":1}') u;
 +----------------+------+------+------+-------+-------+----------+

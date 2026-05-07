@@ -1,3 +1,7 @@
+---
+title: "Subqueries with ANY or SOME"
+mysql_compat: full
+---
 # **Subqueries with ANY or SOME**
 
 ## **Description**
@@ -17,7 +21,8 @@ Subqueries that use the `ANY` keyword return true when any value retrieved in th
 
 ## **Examples**
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 create table t1 (a int);
 create table t2 (a int, b int);
 create table t3 (a int);

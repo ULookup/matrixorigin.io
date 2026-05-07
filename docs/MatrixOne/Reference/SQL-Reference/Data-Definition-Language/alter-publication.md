@@ -1,3 +1,9 @@
+---
+title: "ALTER PUBLICATION"
+mysql_compat: mo_only
+mo_only:
+  - "ALTER PUBLICATION"
+---
 # **ALTER PUBLICATION**
 
 ## **Syntax description**
@@ -26,7 +32,8 @@ ALTER PUBLICATION pubname
 
 ## **示例**
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 create account acc0 admin_name 'root' identified by '111';
 create account acc1 admin_name 'root' identified by '111';
 create account acc2 admin_name 'root' identified by '111';

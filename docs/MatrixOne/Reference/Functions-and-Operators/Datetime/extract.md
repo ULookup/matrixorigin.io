@@ -19,7 +19,8 @@ The ``EXTRACT()`` function uses the same kinds of unit specifiers as ``DATE_ADD(
 
 ## **Examples**
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 create table t2(orderid int, productname varchar(20), orderdate datetime);
 insert into t2 values ('1','Jarl','2008-11-11 13:23:44.657');
 

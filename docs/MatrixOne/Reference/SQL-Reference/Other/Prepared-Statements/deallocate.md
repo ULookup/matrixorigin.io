@@ -1,3 +1,7 @@
+---
+title: "DEALLOCATE PREPARE"
+mysql_compat: full
+---
 # **DEALLOCATE PREPARE**
 
 ## **Description**

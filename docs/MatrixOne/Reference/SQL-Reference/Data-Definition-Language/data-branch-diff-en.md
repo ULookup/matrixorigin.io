@@ -1,3 +1,9 @@
+---
+title: "DATA BRANCH DIFF"
+mysql_compat: mo_only
+mo_only:
+  - "DATA BRANCH DIFF"
+---
 # DATA BRANCH DIFF
 
 ## Description
@@ -115,8 +121,7 @@ DROP TABLE test.t2;
 ```
 
 ### Example 2: Compare Branch Tables (With Common Ancestor)
-
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 -- Expected-Rows: 0
 CREATE TABLE test.t0 (a INT PRIMARY KEY, b INT);
@@ -151,8 +156,7 @@ DROP TABLE test.t2;
 ```
 
 ### Example 3: Compare Using Snapshots
-
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 -- Expected-Rows: 0
 CREATE TABLE test.t1 (a INT PRIMARY KEY, b INT);
@@ -190,8 +194,7 @@ DROP TABLE test.t1;
     When comparing two snapshots of the same table, the system compares based on incremental changes between snapshots. In this example, although the UPDATE operation modified the row where a=1, due to the special mechanism of snapshot comparison, only the newly inserted row is shown.
 
 ### Example 4: Get Only Difference Count
-
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 -- Expected-Rows: 0
 CREATE TABLE test.t1 (a INT PRIMARY KEY, b INT);
@@ -220,8 +223,7 @@ DROP TABLE test.t2;
 ```
 
 ### Example 5: Limit Returned Rows
-
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 -- Expected-Rows: 0
 CREATE TABLE test.t1 (a INT PRIMARY KEY, b INT);

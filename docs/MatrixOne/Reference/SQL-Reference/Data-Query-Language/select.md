@@ -1,3 +1,12 @@
+---
+title: "SELECT"
+mysql_compat: partial
+differs_from_mysql:
+  - "SELECT … FOR UPDATE only supports single-table queries"
+  - "Window functions limited to RANK, DENSE_RANK, ROW_NUMBER"
+mo_only:
+  - "AS OF TIMESTAMP — time-travel query against snapshot/PITR"
+---
 # **SELECT**
 
 ## **Syntax Description**

@@ -1,3 +1,9 @@
+---
+title: "SHOW INDEX"
+mysql_compat: partial
+differs_from_mysql:
+  - "Reflects MatrixOne index model — secondary index rows appear but may not accelerate queries"
+---
 # **SHOW INDEX**
 
 ## **Description**
@@ -37,7 +43,8 @@ An alternative to tbl_name FROM db_name syntax is db_name.tbl_name.
 
 ## **Examples**
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 CREATE TABLE show_01(sname varchar(30),id int);
 mysql> show INDEX FROM show_01;
 +---------+------------+------------+--------------+-------------+-----------+-------------+----------+--------+------+------------+------------------+---------+------------+

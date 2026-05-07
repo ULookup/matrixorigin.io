@@ -1,3 +1,7 @@
+---
+title: "CASE"
+mysql_compat: full
+---
 # **CASE**
 
 ## **Description**
@@ -41,7 +45,8 @@ For the second syntax, each `WHEN` clause search_condition expression is evaluat
 
 ## **Examples**
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 CREATE TABLE t1(c0 INTEGER, c1 INTEGER, c2 INTEGER);
 INSERT INTO t1 VALUES(1, 1, 1), (1, 1, 1);
 

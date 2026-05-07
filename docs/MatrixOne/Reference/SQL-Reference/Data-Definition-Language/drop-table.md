@@ -1,3 +1,7 @@
+---
+title: "DROP TABLE"
+mysql_compat: full
+---
 # **DROP TABLE**
 
 ## **Description**

@@ -26,7 +26,8 @@ This function ``CONCAT_WS()`` stands for Concatenate With Separator and is a spe
 
 ## **Examples**
 
-```SQL <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```SQL
 SELECT CONCAT_WS(',','First name','Second name','Last Name');
 +--------------------------------------------------+
 | concat_ws(,, First name, Second name, Last Name) |

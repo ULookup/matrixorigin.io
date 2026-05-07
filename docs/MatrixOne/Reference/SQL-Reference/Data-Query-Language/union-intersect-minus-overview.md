@@ -1,3 +1,9 @@
+---
+title: "Combining Queries (UNION, INTERSECT, MINUS)"
+mysql_compat: mo_only
+mo_only:
+  - "MINUS, INTERSECT set operators"
+---
 # Combining Queries (UNION, INTERSECT, MINUS)
 
 The results of the two queries can be combined using the set operations `UNION`, `INTERSECT`, and `MINUS`. The syntax is as below:

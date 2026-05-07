@@ -12,7 +12,8 @@ The `VERSION()` function is used to retrieve the version information of the curr
 
 ## **Example**
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 mysql> select version();
 +-----------+
 | version() |

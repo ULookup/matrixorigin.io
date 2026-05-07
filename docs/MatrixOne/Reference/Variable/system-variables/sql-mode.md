@@ -27,7 +27,8 @@ set session sql_mode = 'xxx' -- session mode
 
 ## Examples
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 CREATE TABLE student(
 id int,
 name char(20),

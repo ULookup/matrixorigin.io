@@ -1,3 +1,9 @@
+---
+title: "BY RANK WITH OPTION"
+mysql_compat: mo_only
+mo_only:
+  - "BY RANK WITH OPTION (IVF vector ranking)"
+---
 # BY RANK WITH OPTION
 
 ## Syntax Description
@@ -58,7 +64,7 @@ BY RANK WITH OPTION 'mode = post';
 
 ### Complete Example
 
-```sql <!-- validator-ignore-exec -->
+```sql
 -- Enable IVF index feature
 SET GLOBAL experimental_ivf_index = 1;
 

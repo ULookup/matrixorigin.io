@@ -1,3 +1,12 @@
+---
+title: "LOAD DATA"
+mysql_compat: partial
+differs_from_mysql:
+  - "LOAD DATA LOCAL requires --local-infile on the client"
+  - "SET clause only accepts columns_name = nullif(expr1, expr2)"
+  - "JSONLines import uses MatrixOne-specific syntax"
+  - "Object-storage import (S3/URL) uses MatrixOne-specific syntax"
+---
 # **LOAD DATA**
 
 ## **Description**
@@ -302,7 +311,8 @@ By setting the parameter, you can use `SET column_name=nullif(column_name,"null"
 
 3. Load `test.txt` into the table `user`:
 
-    ```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+    ```sql
     LOAD DATA INFILE '/tmp/test.txt' INTO TABLE user SET id=nullif(id,"null");
     ```
 
@@ -561,7 +571,6 @@ aa"aa|bb"bb|cc"cc|dd"dd
 
 Create a table named t1 in MatrixOne:
 
-<!-- validator-ignore -->
 ```sql
 mysql> drop table if exists t1;
 Query OK, 0 rows affected (0.01 sec)
@@ -663,7 +672,6 @@ The data in the file locally named *jsonline_array.jl* is as follows:
 
 Create a table named t1 in MatrixOne:
 
-<!-- validator-ignore -->
 ```sql
 mysql> drop table if exists t1;
 Query OK, 0 rows affected (0.01 sec)

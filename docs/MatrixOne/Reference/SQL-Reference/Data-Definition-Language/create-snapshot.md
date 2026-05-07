@@ -1,3 +1,9 @@
+---
+title: "CREATE SNAPSHOT"
+mysql_compat: mo_only
+mo_only:
+  - "CREATE SNAPSHOT FOR {ACCOUNT|DATABASE|TABLE|CLUSTER}"
+---
 # CREATE SNAPSHOT
 
 ## Syntax Description
@@ -15,7 +21,7 @@ CREATE SNAPSHOT <snapshot_name> FOR [CLUSTER]|[ACCOUNT [<account_name>]]|[DATABA
 
 **Example 1: Cluster admin creates a cluster-level snapshot**
 
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 CREATE SNAPSHOT cluster_sp FOR CLUSTER;
 mysql> SHOW SNAPSHOTS;
@@ -28,8 +34,7 @@ mysql> SHOW SNAPSHOTS;
 ```
 
 **Example 2: Cluster admin creates a tenant-level snapshot**
-
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 mysql> CREATE SNAPSHOT account_sp1 FOR ACCOUNT acc1;
 mysql> SHOW SNAPSHOTS;

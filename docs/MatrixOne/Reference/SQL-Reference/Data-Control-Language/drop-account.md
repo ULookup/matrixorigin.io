@@ -1,3 +1,9 @@
+---
+title: "DROP ACCOUNT"
+mysql_compat: mo_only
+mo_only:
+  - "DROP ACCOUNT"
+---
 # **DROP ACCOUNT**
 
 ## **Description**

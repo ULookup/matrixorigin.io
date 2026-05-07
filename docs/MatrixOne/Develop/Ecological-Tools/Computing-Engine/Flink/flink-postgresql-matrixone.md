@@ -92,15 +92,13 @@ Switch to the flink directory and execute the following command:
 
 Set up checkpoint every 3 seconds
 
-<!-- validator-ignore -->
-```sql
+```flink
 SET execution.checkpointing.interval = 3s; 
 ```
 
 ### Create source table with flink ddl
 
-<!-- validator-ignore -->
-```sql
+```flink
 CREATE TABLE pgsql_bog  (
       stu_id  int not null,
       stu_name    varchar(50),
@@ -125,8 +123,7 @@ If it's table sql, pgoutput is the standard logical decode output plugin in Post
 
 ### Create sink table
 
-<!-- validator-ignore -->
-```sql
+```flink
 CREATE TABLE test_pg (
       stu_id  int not null,
       stu_name    varchar(50),
@@ -152,7 +149,8 @@ insert into test_pg select * from pgsql_bog;
 
 Query the corresponding table data in MatrixOne;
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 mysql> select * from student;
 +--------+----------+---------+------------+
 | stu_id | stu_name | stu_age | stu_bth    |
@@ -176,7 +174,8 @@ insert into public.student values (51, '58', 39, '2020-01-03');
 
 Query the corresponding table data in MatrixOne;
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 mysql>  select * from student;
 +--------+----------+---------+------------+
 | stu_id | stu_name | stu_age | stu_bth    |
@@ -207,14 +206,14 @@ cannot delete from table "student" because it does not have a replica identity a
 
 then execute
 
-<!-- validator-ignore -->
-```sql
+```postgresql
 alter table public.student replica identity full; 
 ```
 
 Query the corresponding table data in MatrixOne;
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 mysql> select * from student;
 +--------+----------+---------+------------+
 | stu_id | stu_name | stu_age | stu_bth    |

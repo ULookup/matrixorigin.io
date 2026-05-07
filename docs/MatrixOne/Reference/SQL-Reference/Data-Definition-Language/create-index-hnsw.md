@@ -1,3 +1,9 @@
+---
+title: "CREATE INDEX USING HNSW"
+mysql_compat: mo_only
+mo_only:
+  - "CREATE INDEX … USING HNSW"
+---
 # CREATE INDEX USING HNSW
 
 ## Syntax Description
@@ -27,7 +33,8 @@ OP_TYPE "vector_l2_ops"
 
 ## Example
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 -- Set parameter experimental_hnsw_index to 1 (default 0) to enable vector index
 SET GLOBAL experimental_hnsw_index = 1;
 DROP TABLE IF EXISTS t1;

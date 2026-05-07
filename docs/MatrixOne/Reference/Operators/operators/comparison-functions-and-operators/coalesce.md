@@ -20,7 +20,8 @@ The `COALESCE()` function returns the first non-null value in a list.
 
 - Example: Calculate
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 mysql> SELECT COALESCE(1)+COALESCE(1);
 +---------------------------+
 | coalesce(1) + coalesce(1) |
@@ -31,7 +32,8 @@ mysql> SELECT COALESCE(1)+COALESCE(1);
 
 - Example: Comparison
 
-```SQL <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```SQL
 drop table if exists t2;
 create table t2(a float, b datetime);
 insert into t2 values (12.345, '2022-02-20 10:10:10.999999');
@@ -142,7 +144,8 @@ mysql> SELECT col_int_nokey FROM ot WHERE col_varchar_nokey IN(SELECT col_varcha
 
 - Example: `WHERE`
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 CREATE TABLE ot1(a INT);
 CREATE TABLE ot2(a INT);
 CREATE TABLE ot3(a INT);
@@ -171,7 +174,8 @@ mysql> SELECT * FROM ot1 LEFT JOIN ot2 ON ot1.a=ot2.a WHERE COALESCE(ot2.a,0) IN
 
 - Example: `HAVING`
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 drop table if exists t1;
 create table t1(a datetime);
 INSERT INTO t1 VALUES (NULL), ('2001-01-01 00:00:00.12'), ('2002-01-01 00:00:00.567');
@@ -186,7 +190,8 @@ mysql> select a from t1 group by a having COALESCE(a)<"2002-01-01";
 
 - Example: `ON CONDITION`
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 drop table if exists t1;
 drop table if exists t2;
 create table t1(a INT,  b varchar(255));

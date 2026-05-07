@@ -18,7 +18,8 @@ Returns the hour for time. The range of the return value is 0 to 23 for time-of-
 
 ## **Examples**
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 drop table if exists t1;
 create table t1(a datetime, b timestamp);
 insert into t1 values("2022-07-01", "2011-01-31 12:00:00");

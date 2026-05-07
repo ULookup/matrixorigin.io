@@ -12,7 +12,8 @@ PI() returns the value of π (pi).
 
 ## **Examples**
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 drop table if exists t1;
 create table t1(a int,b float);
 insert into t1 values(0,0),(-15,-20),(-22,-12.5);

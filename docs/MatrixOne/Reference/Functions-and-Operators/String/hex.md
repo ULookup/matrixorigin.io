@@ -23,7 +23,8 @@ For a `NULL` argument, this function returns `NULL`.
 
 ## **Examples**
 
-```SQL <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```SQL
 > SELECT HEX('abc');
 +----------+
 | hex(abc) |

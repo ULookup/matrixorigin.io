@@ -26,7 +26,8 @@ Regarding case, the `LOCATE()` function is case-insensitive.
 
 - Example 1
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 mysql> SELECT LOCATE('bar', 'footbarbar');
 +-------------------------+
 | locate(bar, footbarbar) |
@@ -38,7 +39,8 @@ mysql> SELECT LOCATE('bar', 'footbarbar');
 
 - Example 2
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 mysql>SELECT LOCATE('bar', 'footbarbar',6);
 +----------------------------+
 | locate(bar, footbarbar, 6) |
@@ -50,7 +52,8 @@ mysql>SELECT LOCATE('bar', 'footbarbar',6);
 
 - Example 3
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 mysql>SELECT SUBSTRING('hello world',LOCATE('o','hello world'),5);
 +---------------------------------------------------+
 | substring(hello world, locate(o, hello world), 5) |

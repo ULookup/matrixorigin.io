@@ -1,3 +1,9 @@
+---
+title: "DROP SEQUENCE"
+mysql_compat: mo_only
+mo_only:
+  - "DROP SEQUENCE"
+---
 # **DROP SEQUENCE**
 
 ## **Description**
@@ -15,7 +21,8 @@ Deleting a sequence deletes all properties and values of the sequence. Therefore
 
 ## **Examples**
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 -- Delete the sequence named "seq_id"
 DROP SEQUENCE seq_id;
 ```

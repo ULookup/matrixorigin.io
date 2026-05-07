@@ -1,3 +1,9 @@
+---
+title: "CREATE ROLE"
+mysql_compat: mo_only
+mo_only:
+  - "CREATE ROLE (multi-account RBAC)"
+---
 # **CREATE ROLE**
 
 ## **Description**

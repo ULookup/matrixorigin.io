@@ -1,3 +1,9 @@
+---
+title: "CURRENT_ROLE()"
+mysql_compat: mo_only
+mo_only:
+  - "CURRENT_ROLE() / CURRENT_ROLE_NAME()"
+---
 # **CURRENT_ROLE()**
 
 ## **Description**
@@ -12,7 +18,8 @@ SELECT CURRENT_ROLE();
 
 ## **Examples**
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 mysql> select current_role();
 +----------------+
 | current_role() |

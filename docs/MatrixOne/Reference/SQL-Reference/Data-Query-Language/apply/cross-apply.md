@@ -1,3 +1,9 @@
+---
+title: "CROSS APPLY"
+mysql_compat: mo_only
+mo_only:
+  - "CROSS APPLY (SQL Server-style, not in MySQL)"
+---
 # **CROSS APPLY**
 
 ## **Syntax description**

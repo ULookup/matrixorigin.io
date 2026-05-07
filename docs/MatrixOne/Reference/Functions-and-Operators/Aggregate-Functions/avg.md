@@ -26,7 +26,7 @@ NaN if the input parameter is empty.
 
 ## **Examples**
 
-```sql <!-- validator-ignore-exec -->
+```sql
 > drop table if exists tbl1;
 drop table if exists tbl2;
 > create table tbl1 (col_1a tinyint, col_1b smallint, col_1c int, col_1d bigint, col_1e char(10) not null);

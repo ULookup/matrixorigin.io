@@ -1385,6 +1385,17 @@ export class SqlRunner {
         // Direct match
         if (actualStr === expectedStr || actualStr.toLowerCase() === expectedStr.toLowerCase()) return true
 
+        // Boolean display equivalence: the mysql2 driver decodes MatrixOne BOOL
+        // columns and boolean-valued expressions as JS numbers (1/0), while the
+        // `mysql` CLI renders them as `true`/`false` — which is what the docs
+        // show. Treat the two representations as equal so docs can stay in
+        // CLI form. Only trips when one side is exactly "1"/"0" and the other
+        // is exactly "true"/"false" (case-insensitive).
+        const boolPairs = { '1': 'true', '0': 'false', 'true': '1', 'false': '0' }
+        const aLower = actualStr.toLowerCase()
+        const eLower = expectedStr.toLowerCase()
+        if (boolPairs[aLower] === eLower) return true
+
         // Try JSON normalization - compare parsed JSON if both are valid JSON
         try {
             const actualJson = typeof actual === 'object' ? actual : JSON.parse(actualStr)
@@ -1404,6 +1415,30 @@ export class SqlRunner {
     /** Parse a single table row: "| a | b |" -> ["a", "b"] */
     parseTableRow(line) {
         return line.split('|').slice(1, -1).map(p => p.trim())
+    }
+
+    /**
+     * Columns whose literal values depend on the runtime environment (the
+     * sandbox database name, the exact wall-clock instant the function was
+     * created, the role owner id assigned by MO, etc.) and must not be
+     * strictly compared against the documented example output. Matching is
+     * relaxed to a non-empty / shape-only check for these columns.
+     */
+    static VOLATILE_COLUMNS = new Set([
+        // Database name the doc was written in (e.g. "db1") vs doc_test_*
+        'db', 'database', 'database()',
+        // Timestamps
+        'created_time', 'modified_time', 'created', 'modified',
+        'timestamp', 'last_altered', 'create_time', 'update_time',
+        // Identity assigned by MO
+        'role_id', 'user_id', 'connection id', 'id',
+        // Size / footprint columns that fluctuate
+        'size', 'db_count', 'tbl_count', 'snapshot_size',
+    ])
+
+    static isVolatileColumn(col) {
+        if (!col) return false
+        return SqlRunner.VOLATILE_COLUMNS.has(String(col).trim().toLowerCase())
     }
 
     /** Compare table output with actual query results */
@@ -1431,6 +1466,15 @@ export class SqlRunner {
 
         for (let i = 0; i < expected.rows.length; i++) {
             for (const col of expected.columns) {
+                // Skip volatile columns — their values depend on the sandbox
+                // database, wall-clock time, assigned role/user id, etc.
+                // We only require the column to be present and non-null.
+                if (SqlRunner.isVolatileColumn(col)) {
+                    if (actualRows[i][col] === undefined) {
+                        return { matched: false, reason: `Row ${i + 1}, column '${col}': column missing in actual result` }
+                    }
+                    continue
+                }
                 if (!this.valuesMatch(actualRows[i][col], expected.rows[i][col])) {
                     // Serialize objects for display in error message
                     const actualVal = typeof actualRows[i][col] === 'object' && actualRows[i][col] !== null

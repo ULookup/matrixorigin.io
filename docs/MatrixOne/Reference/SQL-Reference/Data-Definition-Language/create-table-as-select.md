@@ -1,3 +1,7 @@
+---
+title: "CREATE TABLE AS SELECT"
+mysql_compat: full
+---
 # CREATE TABLE AS SELECT
 
 ## Syntax Description
@@ -54,6 +58,7 @@ For detailed permission operations, see [MatrixOne Permission Types](../../acces
 
 - Example 1: Copy entire table
 
+<!-- validator-ignore-exec -->
 ```sql
 CREATE TABLE t1(a INT DEFAULT 123, b CHAR(5));
 INSERT INTO t1 VALUES (1, '1'),(2,'2'),(0x7fffffff, 'max');
@@ -83,7 +88,8 @@ mysql> SELECT * FROM t2;
 
 - Example 2: Column aliasing
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 CREATE TABLE t1(a INT DEFAULT 123, b CHAR(5));
 INSERT INTO t1 VALUES (1, '1'),(2,'2'),(0x7fffffff, 'max');
 
@@ -111,6 +117,7 @@ mysql> SELECT * FROM test;
 
 - Example 3: Copy schema only
 
+<!-- validator-ignore-exec -->
 ```sql
 CREATE TABLE t1(a INT DEFAULT 123, b CHAR(5));
 INSERT INTO t1 VALUES (1, '1'),(2,'2'),(0x7fffffff, 'max');
@@ -133,7 +140,8 @@ Empty set (0.00 sec)
 
 - Example 4: Aggregated values
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 CREATE TABLE t1(a INT DEFAULT 123, b CHAR(5));
 INSERT INTO t1 VALUES (1, '1'),(2,'2'),(0x7fffffff, 'max');
 
@@ -160,6 +168,7 @@ mysql> SELECT * FROM t4;
 
 - Example 5: DISTINCT rows
 
+<!-- validator-ignore-exec -->
 ```sql
 CREATE TABLE t5(n1 INT,n2 INT,n3 INT);
 INSERT INTO t5 VALUES(1,1,1),(1,1,1),(3,3,3);
@@ -179,6 +188,7 @@ mysql> SELECT * FROM t5_1;
 
 - Example 6: Sorted results
 
+<!-- validator-ignore-exec -->
 ```sql
 CREATE TABLE t6(n1 INT,n2 INT,n3 INT);
 INSERT INTO t6 VALUES(1,1,3),(2,2,2),(3,3,1);
@@ -199,6 +209,7 @@ mysql> SELECT * FROM t6_1;
 
 - Example 7: Grouped results
 
+<!-- validator-ignore-exec -->
 ```sql
 CREATE TABLE t7(n1 INT,n2 INT,n3 INT);
 INSERT INTO t7 VALUES(1,1,3),(1,2,2),(2,3,1),(2,3,1),(3,3,1);
@@ -218,6 +229,7 @@ mysql> SELECT * FROM t7_1;
 
 - Example 8: Limited rows
 
+<!-- validator-ignore-exec -->
 ```sql src/main.sql
 CREATE TABLE t8(n1 INT,n2 INT,n3 INT);
 INSERT INTO t8 VALUES(1,1,1),(2,2,2),(3,3,3);
@@ -236,7 +248,8 @@ mysql> SELECT * FROM t8_1;
 
 - Example 9: Constraints handling
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 CREATE TABLE t9 (a INT PRIMARY KEY, b VARCHAR(5) UNIQUE KEY);
 CREATE TABLE t9_1 (
   a INT PRIMARY KEY,

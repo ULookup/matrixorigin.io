@@ -1,3 +1,7 @@
+---
+title: "Type of SQL Statements"
+mysql_compat: full
+---
 # Type of SQL Statements
 
 In MatrixOne, SQL statements are classified into various categories, and each category's definition and contents are presented in the following sections:
@@ -77,7 +81,8 @@ Data Manipulation Language (DML) is used for database operations, including prog
 
 ### LOAD DATA Statement - Bulk Importing Data from Files into the Database
 
-- [LOAD DATA](Data-Manipulation-Language/load-data.md)
+- [LOAD DATA INFILE](Data-Manipulation-Language/load-data-infile.md)
+- [LOAD DATA INLINE](Data-Manipulation-Language/load-data-inline.md)
 
 ### REPLACE Statement - Replacing Rows
 

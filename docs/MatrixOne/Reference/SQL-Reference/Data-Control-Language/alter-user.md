@@ -1,3 +1,9 @@
+---
+title: "ALTER USER"
+mysql_compat: partial
+differs_from_mysql:
+  - "Only ALTER USER can change passwords; account-limit clauses not honoured"
+---
 # **ALTER USER**
 
 ## **Description**
@@ -26,7 +32,8 @@ Specifies the default user name and authorization mode of the account, `auth_str
 
 ## **Examples**
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 -- Create a user named "admin_1" with password "123456"
 mysql> create user admin_1 identified by '123456';
 Query OK, 0 rows affected (0.02 sec)

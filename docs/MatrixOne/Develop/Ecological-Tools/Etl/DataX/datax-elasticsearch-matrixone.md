@@ -181,7 +181,8 @@ After the job is executed, the output is as follows:
 
 View the results in the target table in the MatrixOne database to confirm that the migration is complete:
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 mysql> select * from mo.person;
 +------+-----------+------------+
 | id   | name      | birthday   |

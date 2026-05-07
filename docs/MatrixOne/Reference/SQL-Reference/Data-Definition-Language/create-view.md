@@ -1,3 +1,10 @@
+---
+title: "CREATE VIEW"
+mysql_compat: partial
+differs_from_mysql:
+  - "WITH CHECK OPTION clause not supported"
+  - "DEFINER and SQL SECURITY clauses not supported"
+---
 # **CREATE VIEW**
 
 ## **Description**
@@ -26,7 +33,8 @@ A view is created with the `CREATE VIEW` statement.
 
 - Example 1:
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 CREATE TABLE t00(a INTEGER);
 INSERT INTO t00 VALUES (1),(2);
 CREATE TABLE t01(a INTEGER);
@@ -61,7 +69,8 @@ mysql> SHOW CREATE VIEW v0;
 
 - Example 2:
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 drop table if exists t1;
 create table t1 (id int,ti tinyint unsigned,si smallint,bi bigint unsigned,fl float,dl double,de decimal,ch char(20),vch varchar(20),dd date,dt datetime);
 insert into t1 values(1,1,4,3,1113.32,111332,1113.32,'hello','subquery','2022-04-28','2022-04-28 22:40:11');

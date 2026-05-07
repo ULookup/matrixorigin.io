@@ -1,3 +1,9 @@
+---
+title: "DATA BRANCH CREATE"
+mysql_compat: mo_only
+mo_only:
+  - "DATA BRANCH CREATE (Git-for-Data)"
+---
 # DATA BRANCH CREATE
 
 ## Description
@@ -142,8 +148,7 @@ DATA BRANCH CREATE TABLE test.orders_dev FROM test.orders;
 ### Example 2: Create Table Branch from Snapshot
 
 Create a data branch from a specific point in time using a snapshot:
-
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 -- Expected-Rows: 0
 CREATE TABLE test.products (
@@ -256,8 +261,7 @@ DROP SNAPSHOT sp_source;
 ### Example 5: Multi-level Branching
 
 Create new branches from existing branches:
-
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 -- Expected-Rows: 0
 USE test;

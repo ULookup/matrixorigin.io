@@ -1,3 +1,7 @@
+---
+title: "FULL JOIN"
+mysql_compat: full
+---
 # **FULL JOIN**
 
 ## **Description**
@@ -19,7 +23,7 @@ ON table1.column_name=table2.column_name;
 
 ## **Examples**
 
-```sql <!-- validator-ignore-exec -->
+```sql
 drop table if exists t1;
 drop table if exists t2;
 drop table if exists t3;

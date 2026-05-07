@@ -1,3 +1,9 @@
+---
+title: "DROP STAGE"
+mysql_compat: mo_only
+mo_only:
+  - "DROP STAGE"
+---
 # **DROP STAGE**
 
 ## **Syntax description**

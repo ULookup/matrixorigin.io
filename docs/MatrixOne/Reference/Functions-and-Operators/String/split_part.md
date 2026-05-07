@@ -39,7 +39,8 @@ mysql> select split_part('axbxc','x',1);
 
 - Example 2
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 -- Create a new table 't1' with three columns: 'a' (varchar type), 'b' (varchar type), and 'c' (int type).
 create table t1(a varchar,b varchar,c int);
 -- Insert multiple rows of data into the 't1' table

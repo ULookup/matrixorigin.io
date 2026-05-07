@@ -1,3 +1,9 @@
+---
+title: "CREATE EXTERNAL TABLE"
+mysql_compat: mo_only
+mo_only:
+  - "CREATE EXTERNAL TABLE"
+---
 # **CREATE EXTERNAL TABLE**
 
 ## **Description**

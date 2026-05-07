@@ -1,3 +1,9 @@
+---
+title: "UPSERT"
+mysql_compat: mo_only
+mo_only:
+  - "UPSERT (convenience alias over INSERT … ON DUPLICATE KEY UPDATE)"
+---
 # UPSERT
 
 ## What is Upsert in SQL?
@@ -6,7 +12,8 @@
 
 For example, we have a `student` table with the `id` column as the primary key:
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 > desc student;
 +-------+-------------+------+------+---------+-------+---------+
 | Field | Type        | Null | Key  | Default | Extra | Comment |

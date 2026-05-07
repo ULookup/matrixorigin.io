@@ -52,6 +52,18 @@ We appreciate your feedback! If you find any documentation issues:
 - 📝 [Create an Issue](https://github.com/matrixorigin/matrixorigin.io/issues/new) to let us know
 - 🔧 [Submit a Pull Request](https://github.com/matrixorigin/matrixorigin.io/pulls) to help fix it directly
 
+## 🤖 For AI Agents
+
+These docs are built to be consumed by LLM-driven clients (Cursor, Claude Code, ChatGPT, MCP servers). Three machine-readable artifacts ship alongside the HTML site:
+
+| URL | Purpose |
+|---|---|
+| `https://docs.matrixorigin.io/llms.txt` | Curated index in the [llmstxt.org](https://llmstxt.org) format. Paste into Cursor / Claude / ChatGPT to load MatrixOne context. |
+| `https://docs.matrixorigin.io/llms-full.txt` | Whole corpus concatenated into one markdown file — drop into a long-context model for full coverage. |
+| `https://docs.matrixorigin.io/<path>.md` | Every HTML page has a matching raw markdown mirror at the same path. |
+
+Additionally, the `mysql_compat` frontmatter on every SQL-Reference page feeds the [MySQL Compatibility Matrix](https://docs.matrixorigin.io/MatrixOne/Reference/mysql-compatibility-matrix.md) — agents should consult it before assuming MySQL 8.0 syntax works on MatrixOne. Every SQL example is validated against the `3.0-dev` nightly image by `scripts/doc-validator` on every pull request.
+
 ## 🚀 Quick Start
 
 ### Prerequisites

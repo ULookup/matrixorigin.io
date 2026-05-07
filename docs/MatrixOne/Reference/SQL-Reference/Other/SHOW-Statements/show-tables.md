@@ -1,3 +1,7 @@
+---
+title: "SHOW TABLES"
+mysql_compat: full
+---
 # **SHOW TABLES**
 
 ## **Description**
@@ -12,7 +16,8 @@ Shows the list of tables in the currently selected database.
 
 ## **Examples**
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 > SHOW TABLES;
 +---------------+
 | name          |

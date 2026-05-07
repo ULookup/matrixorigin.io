@@ -1,3 +1,7 @@
+---
+title: "Derived Tables"
+mysql_compat: full
+---
 # **Derived Tables**
 
 ## **Description**

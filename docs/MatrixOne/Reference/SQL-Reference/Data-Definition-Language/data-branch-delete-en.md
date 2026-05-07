@@ -1,3 +1,9 @@
+---
+title: "DATA BRANCH DELETE"
+mysql_compat: mo_only
+mo_only:
+  - "DATA BRANCH DELETE"
+---
 <!-- version: v3.0.4 -->
 
 # DATA BRANCH DELETE
@@ -54,8 +60,7 @@ DATA BRANCH DELETE DATABASE database_name
 ## Examples
 
 ### Example 1: Delete Table Branch
-
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 -- Expected-Rows: 0
 CREATE DATABASE test_db;
@@ -160,7 +165,7 @@ DROP DATABASE source_db;
 
 ### Example 3: Metadata Status After Branch Deletion
 
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 -- Expected-Rows: 0
 CREATE DATABASE br_meta_db;
@@ -213,7 +218,7 @@ DROP DATABASE br_meta_db;
 
 ### Example 4: Batch Delete All Branch Tables in a Database
 
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 -- Expected-Rows: 0
 CREATE DATABASE src_db;

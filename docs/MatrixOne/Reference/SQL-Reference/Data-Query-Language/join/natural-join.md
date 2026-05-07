@@ -1,3 +1,7 @@
+---
+title: "NATURAL JOIN"
+mysql_compat: full
+---
 # **NATURAL JOIN**
 
 ## **Description**
@@ -15,7 +19,8 @@ NATURAL JOIN table_name2;
 
 ## **Examples**
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 create table t1(id int,desc1 varchar(50),desc2 varchar(50));
 create table t2(id int,desc3 varchar(50),desc4 varchar(50));
 INSERT INTO t1(id,desc1,desc2) VALUES(100,'desc11','desc12'),(101,'desc21','desc22'),(102,'desc31','desc32');

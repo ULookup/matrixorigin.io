@@ -1,3 +1,11 @@
+---
+title: "CREATE DATABASE"
+mysql_compat: partial
+differs_from_mysql:
+  - "Chinese database names not supported"
+  - "Only utf8mb4 / utf8mb4_bin are supported and cannot be changed"
+  - "ENCRYPTION clause accepted but inert"
+---
 # **CREATE DATABASE**
 
 ## **Description**
@@ -26,7 +34,8 @@ CREATE DATABASE IF NOT EXISTS test01;
 
 You can use [`SHOW DATABASES`](../Other/SHOW-Statements/show-databases.md) to check if the databases have been created.
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 mysql> show databases;
 +--------------------+
 | Database           |

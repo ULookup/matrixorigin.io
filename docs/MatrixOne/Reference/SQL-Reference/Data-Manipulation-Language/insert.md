@@ -1,3 +1,9 @@
+---
+title: "INSERT"
+mysql_compat: partial
+differs_from_mysql:
+  - "Modifiers LOW_PRIORITY / DELAYED / HIGH_PRIORITY not supported"
+---
 # **INSERT**
 
 ## **Description**
@@ -12,7 +18,8 @@ Writing data.
 
 ## **Examples**
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 drop table if exists t1;
 create table t1(a int default (1+12), b int);
 insert into t1(b) values(1), (1);

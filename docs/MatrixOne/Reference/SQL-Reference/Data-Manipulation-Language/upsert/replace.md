@@ -1,3 +1,10 @@
+---
+title: "REPLACE"
+mysql_compat: partial
+differs_from_mysql:
+  - "REPLACE does not support VALUES row_constructor_list"
+  - "node-sql-parser rejects REPLACE … WHERE (parser bug, not MatrixOne)"
+---
 # **REPLACE**
 
 ## **Grammar description**
@@ -67,7 +74,8 @@ The following is an explanation of each parameter:
 
 ## **Examples**
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 create table names(id int PRIMARY KEY,name VARCHAR(255),age int);
 
 -- Insert a row of data with id=1, name="Abby", age=24

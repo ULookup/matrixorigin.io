@@ -1,3 +1,9 @@
+---
+title: "CREATE...FROM...PUBLICATION..."
+mysql_compat: mo_only
+mo_only:
+  - "CREATE DATABASE … FROM … PUBLICATION …"
+---
 # **CREATE...FROM...PUBLICATION...**
 
 ## **Syntax description**
@@ -19,8 +25,7 @@ PUBLICATION pubname;
 - account_name: The tenant name of the publication can be obtained.
 
 ## **Example**
-
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 create account acc01 admin_name 'root' identified by '111';
 create database db1;

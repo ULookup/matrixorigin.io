@@ -1,3 +1,9 @@
+---
+title: "ALTER REINDEX"
+mysql_compat: mo_only
+mo_only:
+  - "ALTER … REINDEX (rebuild vector index)"
+---
 # ALTER REINDEX
 
 ## Syntax Description
@@ -22,8 +28,7 @@ The ideal values for LISTS are:
 
 ## Examples
 
-```sql <!-- validator-ignore-exec -->
-
+```sql
 drop table if exists t1;
 create table t1(n1 int,n2  vecf32(3));
 insert into t1 values(1,"[1,2,3]"),(2,"[2,3,4]"),(3,"[3,4,5]");

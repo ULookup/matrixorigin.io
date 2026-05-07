@@ -6,7 +6,8 @@ Because SQL is a declarative language, you cannot automatically tell whether a q
 
 We have prepared a simple example to help you understand how to interpret an execution plan using `EXPLAIN`.
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 > drop table if exists a;
 > create table a(a int);
 > insert into a values(1),(2),(3),(4),(5),(6),(7),(8);
@@ -55,7 +56,8 @@ n addition to the query plan and estimated costs, which a normal EXPLAIN will pr
 
 With the above example, to get the actual execution time, you can either execute the query or use `EXPLAIN ANALYZE`:
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 > explain analyze select count(*) from a where a>=2 and a<=8;
 +-------------------------------------------------------------------------------------------------------------------------------+
 | QUERY PLAN                                                                                                                    |

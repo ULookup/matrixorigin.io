@@ -1,3 +1,9 @@
+---
+title: "SHOW GRANTS"
+mysql_compat: partial
+differs_from_mysql:
+  - "Results reflect MatrixOne role/account graph and differ from MySQL significantly"
+---
 # **SHOW GRANTS**
 
 ## **Description**

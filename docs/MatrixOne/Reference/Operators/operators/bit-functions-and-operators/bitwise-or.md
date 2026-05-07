@@ -18,7 +18,8 @@ The result type depends on whether the arguments are evaluated as binary strings
 
 ## **Examples**
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 mysql> SELECT 29 | 15;
 +---------+
 | 29 | 15 |

@@ -1,3 +1,7 @@
+---
+title: "UNION"
+mysql_compat: full
+---
 # **UNION**
 
 ## **Description**
@@ -51,7 +55,7 @@ ORDER BY a LIMIT 10;
 
 ## **Examples**
 
-```sql <!-- validator-ignore-exec -->
+```sql
 CREATE TABLE t1 (id INT PRIMARY KEY);
 CREATE TABLE t2 (id INT PRIMARY KEY);
 INSERT INTO t1 VALUES (1),(2),(3);
@@ -80,7 +84,7 @@ mysql> SELECT id FROM t1 UNION ALL SELECT id FROM t2;
 +------+
 ```
 
-```sql <!-- validator-ignore-exec -->
+```sql
 drop table t1;
 CREATE TABLE t1 (a INT, b INT);
 INSERT INTO t1 VALUES ROW(4,-2),ROW(5,9),ROW(10,1),ROW(11,2),ROW(13,5);

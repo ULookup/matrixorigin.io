@@ -1,3 +1,7 @@
+---
+title: "INTERSECT"
+mysql_compat: full
+---
 # **INTERSECT**
 
 ## **Description**

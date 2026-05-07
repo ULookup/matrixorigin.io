@@ -1,3 +1,9 @@
+---
+title: "CREATE ACCOUNT"
+mysql_compat: mo_only
+mo_only:
+  - "CREATE ACCOUNT … ADMIN_NAME …"
+---
 # **CREATE ACCOUNT**
 
 ## **Description**

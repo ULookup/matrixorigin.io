@@ -1,3 +1,7 @@
+---
+title: "SHOW COLUMNS"
+mysql_compat: full
+---
 # **SHOW COLUMNS**
 
 ## **Description**
@@ -15,7 +19,8 @@
 
 ## **Examples**
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 drop table if exists t1;
 create table t1(
 col1 int comment 'First column',

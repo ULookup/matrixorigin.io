@@ -1,3 +1,7 @@
+---
+title: "SHOW DATABASES"
+mysql_compat: full
+---
 # **SHOW DATABASES**
 
 ## **Description**
@@ -17,7 +21,8 @@ Database information is also available from the `INFORMATION_SCHEMA` SCHEMATA ta
 
 ## **Examples**
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 create database demo_1;
 
 mysql> show databases;

@@ -20,7 +20,8 @@ Returns the weekday index for date (0 = Monday, 1 = Tuesday, … 6 = Sunday). Re
 
 - Example 1:
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 mysql> SELECT WEEKDAY('2008-02-03 22:23:00');
 +------------------------------+
 | weekday(2008-02-03 22:23:00) |

@@ -1,3 +1,9 @@
+---
+title: "ALTER PITR"
+mysql_compat: mo_only
+mo_only:
+  - "ALTER PITR"
+---
 # **ALTER PITR**
 
 ## **Syntax description**

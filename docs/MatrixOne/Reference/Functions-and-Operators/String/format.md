@@ -20,7 +20,8 @@ Formats the number X to a format like '#,###,###.##', rounded to D decimal place
 
 ## **Examples**
 
-```SQL <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```SQL
 mysql> SELECT FORMAT(12332.123456, 4);
 +-------------------------+
 | format(12332.123456, 4) |

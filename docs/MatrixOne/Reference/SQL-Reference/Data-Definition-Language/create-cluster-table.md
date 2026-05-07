@@ -1,3 +1,9 @@
+---
+title: "CREATE CLUSTER TABLE"
+mysql_compat: mo_only
+mo_only:
+  - "CREATE CLUSTER TABLE"
+---
 # **CREATE CLUSTER TABLE**
 
 ## **Grammar description**
@@ -27,7 +33,8 @@ This document describes how to set up cluster tables in a MatrixOne database.
 
 ## Examples
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 -- Create two tenants, test1 and test2
 mysql> create account test1 admin_name = 'root' identified by '111' open comment 'tenant_test';
 Query OK, 0 rows affected (0.44 sec)

@@ -1,3 +1,9 @@
+---
+title: "SHOW SUBSCRIPTIONS"
+mysql_compat: mo_only
+mo_only:
+  - "SHOW SUBSCRIPTIONS"
+---
 # **SHOW SUBSCRIPTIONS**
 
 ## **Syntax description**
@@ -15,8 +21,7 @@ SHOW SUBSCRIPTIONS [ALL];
 -The **ALL**option allows you to see all subscriptions with permissions. For unsubscribed sub_time, sub_name is null. Without **ALL**, you can only see subscribed publication information.
 
 ## **Example**
-
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 
 --Execute in sys tenant

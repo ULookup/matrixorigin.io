@@ -1,3 +1,9 @@
+---
+title: "DROP SNAPSHOT"
+mysql_compat: mo_only
+mo_only:
+  - "DROP SNAPSHOT"
+---
 # DROP SNAPSHOT
 
 ## Syntax Description
@@ -12,7 +18,6 @@
 
 ## Examples
 
-<!-- validator-ignore -->
 ```sql
 create snapshot sp1 for account sys;
 

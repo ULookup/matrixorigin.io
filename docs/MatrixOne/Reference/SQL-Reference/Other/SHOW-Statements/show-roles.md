@@ -1,3 +1,9 @@
+---
+title: "SHOW ROLES"
+mysql_compat: mo_only
+mo_only:
+  - "SHOW ROLES"
+---
 # **SHOW ROLES**
 
 ## **Description**
@@ -13,8 +19,7 @@ __Note:__ To query the role you are currently using, use the [`select current_ro
 ```
 
 ## **Examples**
-
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 -- Show the roles currently under your account
 mysql> show roles;

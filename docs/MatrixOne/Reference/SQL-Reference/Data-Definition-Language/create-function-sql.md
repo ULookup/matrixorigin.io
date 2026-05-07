@@ -1,3 +1,9 @@
+---
+title: "CREATE FUNCTION...LANGUAGE SQL AS"
+mysql_compat: partial
+differs_from_mysql:
+  - "Only LANGUAGE SQL and LANGUAGE PYTHON are supported; usage differs significantly from MySQL stored functions"
+---
 # **CREATE FUNCTION...LANGUAGE SQL AS**
 
 ## **Grammar description**
@@ -31,7 +37,6 @@ RETURNS <result_data_type>  LANGUAGE SQL AS 'function_body'
 
 **Example 1**
 
-<!-- validator-ignore -->
 ```sql
 --Creating an unparameterized sql custom function
 
@@ -55,7 +60,6 @@ mysql> select t1_fun();
 
 **Example 2**
 
-<!-- validator-ignore -->
 ```sql
 --Creating sql custom functions that return the sum of two arguments
 mysql> CREATE FUNCTION twoadd (x int, y int) RETURNS int LANGUAGE SQL AS 'select $1 + $2' ;

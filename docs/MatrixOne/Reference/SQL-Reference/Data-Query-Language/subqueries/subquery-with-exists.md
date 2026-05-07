@@ -1,3 +1,7 @@
+---
+title: "Subqueries with EXISTS or NOT EXISTS"
+mysql_compat: full
+---
 # **Subqueries with EXISTS or NOT EXISTS**
 
 ## **Description**

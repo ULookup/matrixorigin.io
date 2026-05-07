@@ -1,3 +1,9 @@
+---
+title: "CREATE DYNAMIC TABLE"
+mysql_compat: mo_only
+mo_only:
+  - "CREATE DYNAMIC TABLE"
+---
 # **CREATE DYNAMIC TABLE**
 
 ## **Grammar description**
@@ -18,7 +24,8 @@ AS SELECT ... from stream_name ;
 
 ## **Examples**
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 create dynamic table dt_test as select * from stream_test;
 ```
 

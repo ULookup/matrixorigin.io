@@ -1,3 +1,9 @@
+---
+title: "ALTER STAGE"
+mysql_compat: mo_only
+mo_only:
+  - "ALTER STAGE"
+---
 # **ALTER STAGE**
 
 ## **Syntax description**

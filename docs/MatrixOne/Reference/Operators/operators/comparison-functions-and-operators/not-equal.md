@@ -22,7 +22,8 @@ mysql> SELECT 2 <> 2;
 1 row in set (0.01 sec)
 ```
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 create table t1 (spID smallint,userID bigint,score int);
 insert into t1 values (1,1,1);
 insert into t1 values (2,2,2);

@@ -1,3 +1,7 @@
+---
+title: "INSERT ... ON DUPLICATE KEY UPDATE"
+mysql_compat: full
+---
 # **INSERT ... ON DUPLICATE KEY UPDATE**
 
 ## **Grammar description**
@@ -17,7 +21,8 @@ It is important to note that using this syntax presupposes that a primary key co
 
 ## **Examples**
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 CREATE TABLE user (
     id INT(11) NOT NULL PRIMARY KEY,
     name VARCHAR(50) NOT NULL,

@@ -15,8 +15,7 @@ MatrixOne supports incremental and full physical backup recovery using `mo_br`:
 ### Example 1 Full backup and restore
 
 - Connect mo to create databases db1, db2.
-
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 create database db1;
 create database db2;
@@ -56,8 +55,7 @@ Backup ID
 ```
 
 - Connect mo to drop database db1 and create database db3.
-
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 drop database db1;
 create database db3;
@@ -108,8 +106,7 @@ Copy tae file 1
 ```
 mo_ctl start
 ```
-
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 mysql> show databases;
 +--------------------+
@@ -133,8 +130,7 @@ As you can see, the recovery was successful.
 ### Example 2 Incremental backup and recovery
 
 - Connect mo to create databases db1, db2
-
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 create database db1;
 create database db2;
@@ -187,8 +183,7 @@ Backup ID
 Comparing the duration of incremental backup and full backup, you can see that incremental backup takes less time.
 
 - Connect mo to drop database db1 and create database db3.
-
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 drop database db1;
 create database db3;
@@ -236,8 +231,7 @@ TaePath
 ```
 mo_ctl start
 ```
-
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 mysql> show databases;
 +--------------------+

@@ -1,3 +1,9 @@
+---
+title: "DELETE"
+mysql_compat: partial
+differs_from_mysql:
+  - "LOW_PRIORITY, QUICK, IGNORE modifiers not supported"
+---
 # **DELETE**
 
 ## **Description**

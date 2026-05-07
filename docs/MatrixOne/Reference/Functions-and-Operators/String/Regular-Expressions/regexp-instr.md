@@ -32,7 +32,8 @@
 
 ## **Examples**
 
-```SQL <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```SQL
 mysql> SELECT REGEXP_INSTR('Hello, my number is 12345.', '[0-9]+');
 +--------------------------------------------------+
 | regexp_instr(Hello, my number is 12345., [0-9]+) |

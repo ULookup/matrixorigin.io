@@ -24,7 +24,8 @@ Returns 1 whether string starts with the specified prefix, otherwise it returns 
 
 ## **Examples**
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 > drop table if exists t1;
 > create table t1(a int,b varchar(100),c char(20));
 > insert into t1 values

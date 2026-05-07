@@ -1,3 +1,9 @@
+---
+title: "SHOW COLLATION"
+mysql_compat: partial
+differs_from_mysql:
+  - "Only utf8mb4_bin is effective; other collations appear but are inert"
+---
 # **SHOW COLLATION**
 
 ## **Description**
@@ -13,7 +19,8 @@ This statement lists collations supported by MatrixOne. By default, the output f
 
 ## **Examples**
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 mysql> show collation;
 +-------------+---------+------+----------+---------+
 | Collation   | Charset | Id   | Compiled | Sortlen |

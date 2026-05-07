@@ -19,7 +19,8 @@ select jq(jsonDoc, pathExpression);
 
 ## **Example**
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 mysql> select jq('{"foo": 128}', '.foo');
 +------------------------+
 | jq({"foo": 128}, .foo) |

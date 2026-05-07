@@ -32,7 +32,8 @@
 
 ## **Examples**
 
-```SQL <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```SQL
 mysql> SELECT REGEXP_REPLACE('Hello, World!', 'World', 'Universe');
 +------------------------------------------------+
 | regexp_replace(Hello, World!, World, Universe) |

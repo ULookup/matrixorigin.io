@@ -68,7 +68,7 @@ Conflicts occur when:
 
 ### Example 1: Simple Merge (No Conflicts)
 
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 -- Expected-Rows: 0
 CREATE DATABASE test;
@@ -129,7 +129,7 @@ DROP TABLE test.t2;
 
 ### Example 2: Handling INSERT Conflicts
 
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 -- Create base table
 -- Expected-Rows: 0
@@ -199,7 +199,7 @@ DROP TABLE test.t2;
 
 ### Example 3: Handling UPDATE Conflicts
 
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 -- Create base table
 -- Expected-Rows: 0
@@ -257,7 +257,7 @@ DROP TABLE test.t2;
 
 ### Example 4: Merge Without Common Ancestor
 
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 -- Create two independent tables
 -- Expected-Rows: 0
@@ -316,7 +316,7 @@ DROP TABLE test.t2;
 
 ### Example 5: Complex Merge Scenario
 
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 -- Create base table
 -- Expected-Rows: 0
@@ -389,7 +389,7 @@ DROP TABLE test.t3;
 
 ### Example 6: Merge with NULL Values
 
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 -- Create table with NULL values
 -- Expected-Rows: 0

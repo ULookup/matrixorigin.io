@@ -142,7 +142,7 @@ CREATE TABLE test_pg (
 
 ### Importing PostgreSQL data into MatrixOne
 
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 insert into test_pg select * from pgsql_bog; 
 ```
@@ -167,7 +167,7 @@ Data can be found to have been imported
 
 ### Adding data to postgrsql
 
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 insert into public.student values (51, '58', 39, '2020-01-03'); 
 ```
@@ -193,7 +193,7 @@ You can find that the data has been synchronized to the MatrixOne correspondence
 
 To delete data:
 
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 delete from public.student where stu_id=1; 
 ```

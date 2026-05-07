@@ -43,7 +43,7 @@ A large SaaS provider manages a multi-tenant environment that provides various s
 
 There are two tenants acc1 and acc2 under this system, which represent different customers. Each tenant has product information and order information.
   
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 create account acc1 admin_name 'root' identified by '111';
 create account acc2 admin_name 'root' identified by '111';
@@ -154,7 +154,7 @@ pitr3 2024-10-28 17:25:32 2024-10-28 17:25:32 account acc2 **10 h
 
 Due to an upgrade script error, both db1 and db2 under acc1 were deleted, db1 under acc2 was deleted, and the orders table data under db2 was cleared.
 
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 --Execute under acc1
 drop database db1;

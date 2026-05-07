@@ -20,7 +20,7 @@ The `DROP FUNCTION` statement represents the deletion of a user-defined function
 
 **Example 1**
 
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 --Removing Parametric Functions
 

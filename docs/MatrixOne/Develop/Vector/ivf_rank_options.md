@@ -6,7 +6,7 @@ When performing vector similarity search using IVF (Inverted File) indexes, Matr
 
 ## Syntax
 
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 SELECT column_list
 FROM table_name

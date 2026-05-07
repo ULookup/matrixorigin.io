@@ -18,7 +18,7 @@ mo_only:
 
 ## **Example**
 
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 mysql> create stage stage_fs url = 'file:///Users/admin/test';
 Query OK, 0 rows affected (0.03 sec)

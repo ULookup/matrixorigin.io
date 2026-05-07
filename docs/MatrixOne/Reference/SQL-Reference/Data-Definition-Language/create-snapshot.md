@@ -48,7 +48,7 @@ mysql> SHOW SNAPSHOTS;
 
 **Example 3: Tenant admin creates tenant-level snapshots**
 
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 CREATE SNAPSHOT account_sp2 FOR ACCOUNT acc1;
 CREATE SNAPSHOT account_sp3 FOR ACCOUNT;
@@ -70,7 +70,7 @@ mysql> SHOW SNAPSHOTS;
 
 **Example 4: Tenant admin creates database-level snapshot**
 
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 mysql> CREATE SNAPSHOT db_sp1 FOR DATABASE db1;
 Query OK, 0 rows affected (0.01 sec)
@@ -86,7 +86,7 @@ mysql> SHOW SNAPSHOTS;
 
 **Example 5: Tenant admin creates table-level snapshot**
 
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 mysql> CREATE SNAPSHOT tab_sp1 FOR TABLE db1 t1;
 Query OK, 0 rows affected (0.01 sec)

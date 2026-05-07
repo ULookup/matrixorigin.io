@@ -12,7 +12,7 @@ The `BY RANK WITH OPTION` clause is used in vector similarity search queries to 
 
 ## Syntax Structure
 
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 SELECT column_list
 FROM table_name

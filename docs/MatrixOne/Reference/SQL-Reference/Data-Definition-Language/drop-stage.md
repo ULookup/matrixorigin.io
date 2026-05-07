@@ -18,7 +18,7 @@ mo_only:
 
 ## **Example**
 
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 create stage stage_fs url = 'file:///Users/admin/test';
 

@@ -41,7 +41,7 @@ This document mainly introduces how to use `mo_br` to perform cluster/tenant lev
 
 - Connect to the Matrixone system tenant to execute table creation statements
 
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 create database if not exists snapshot_read;
 use snapshot_read;
@@ -67,7 +67,7 @@ sp_01 2024-05-10 02:06:08.01635 account sys
 
 - Connect to the Matrixone system tenant and delete some data in the table.
 
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 delete from snapshot_read.test_snapshot_read where a <= 50;
 
@@ -87,7 +87,7 @@ mysql> select count(*) from snapshot_read.test_snapshot_read;
 
 - Connect to the Matrixone system tenant to query the recovery status
 
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 mysql> select count(*) from snapshot_read.test_snapshot_read;
 +----------+
@@ -101,7 +101,7 @@ mysql> select count(*) from snapshot_read.test_snapshot_read;
 
 - Connect to the Matrixone system tenant to execute sql statements
 
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 create database if not exists snapshot_read;
 use snapshot_read;
@@ -138,7 +138,7 @@ sp_02 2024-05-10 02:47:15.638519 account sys
 
 - Connect to Matrixone system tenant to delete some data
 
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 delete from snapshot_read.test_snapshot_read where a <= 50;
 delete from snapshot_read.test_snapshot_read_1 where a >= 50;
@@ -167,7 +167,7 @@ mysql> select count(*) from snapshot_read.test_snapshot_read_1;
 
 - Connect to the Matrixone system tenant to query the recovery status
 
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 mysql> select count(*) from snapshot_read.test_snapshot_read;
 +----------+

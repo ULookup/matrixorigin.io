@@ -136,7 +136,7 @@ CREATE TABLE cdc_matrixone (
 
 Once the sync task is turned on here, mongodb additions and deletions can be synchronized
 
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 INSERT INTO cdc_matrixone SELECT `name`,age FROM products;
 ```

@@ -1385,6 +1385,17 @@ export class SqlRunner {
         // Direct match
         if (actualStr === expectedStr || actualStr.toLowerCase() === expectedStr.toLowerCase()) return true
 
+        // Boolean display equivalence: the mysql2 driver decodes MatrixOne BOOL
+        // columns and boolean-valued expressions as JS numbers (1/0), while the
+        // `mysql` CLI renders them as `true`/`false` — which is what the docs
+        // show. Treat the two representations as equal so docs can stay in
+        // CLI form. Only trips when one side is exactly "1"/"0" and the other
+        // is exactly "true"/"false" (case-insensitive).
+        const boolPairs = { '1': 'true', '0': 'false', 'true': '1', 'false': '0' }
+        const aLower = actualStr.toLowerCase()
+        const eLower = expectedStr.toLowerCase()
+        if (boolPairs[aLower] === eLower) return true
+
         // Try JSON normalization - compare parsed JSON if both are valid JSON
         try {
             const actualJson = typeof actual === 'object' ? actual : JSON.parse(actualStr)

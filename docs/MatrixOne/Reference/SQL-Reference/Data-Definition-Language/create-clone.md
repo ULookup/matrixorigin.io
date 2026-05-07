@@ -111,7 +111,7 @@ INSERT INTO acc2_tbl (id, email) VALUES (1, 'alice@example.com'), (2, 'bob@examp
 
 **Clone Table:**
 
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 -- Clone a table within the same tenant
 CREATE TABLE acc1_db.t2 CLONE acc1_db.acc1_tbl;
@@ -142,7 +142,7 @@ mysql>  SELECT * FROM acc1_db.t3;
 
 **Clone Database:**
 
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 -- Clone a database within the same tenant
 CREATE DATABASE acc1_db_clone CLONE acc1_db;
@@ -185,7 +185,7 @@ mysql> SHOW TABLES;
 
 ### Case 2: Clone Data from Another Ordinary Tenant to Sys
 
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 -- Switch to sys tenant
 -- mysql -h 127.0.0.1 -P 6001 -u sys:root -p111
@@ -225,7 +225,7 @@ mysql> select * from sys_db_from_acc1.acc1_tbl_clone;
 
 ### Case 3: Clone Sys Tenant Data to Another Ordinary Tenant
 
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 -- Create test data under the sys tenant
 CREATE DATABASE sys_db;
@@ -271,7 +271,7 @@ mysql> select * from acc1_db.sys_tbl_clone;
 
 ### Case 4: Clone Data from One Ordinary Tenant to Another
 
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 -- Sys creates a snapshot for the source tenant acc1
 CREATE SNAPSHOT sp_acc1_for_clone FOR ACCOUNT acc1;

@@ -79,7 +79,7 @@ The system automatically detects the branch relationship between two tables:
 
 Compare two tables without a common ancestor:
 
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 -- Expected-Rows: 0
 CREATE DATABASE test;
@@ -258,7 +258,7 @@ DROP TABLE test.t2;
 
 ### Example 6: Export Differences as SQL File
 
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 -- Expected-Rows: 0
 CREATE TABLE test.t1 (a INT PRIMARY KEY, b INT);
@@ -307,7 +307,7 @@ mysql -h <mo_host> -P <mo_port> -u <user> -p <db_name> < diff_t2_t1_20241225.sql
 
 **Import CSV file (full sync)**:
 
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 -- Expected-Success: false
 LOAD DATA LOCAL INFILE '/tmp/diff_output/diff_xxx.csv'
@@ -320,7 +320,7 @@ LINES TERMINATED BY '\n';
 
 Stage is a logical object in MatrixOne for connecting to external storage (such as S3, HDFS). You can output difference files directly to object storage for cross-cluster/cross-environment data synchronization.
 
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 -- Expected-Rows: 0
 CREATE STAGE my_stage URL = 's3://my-bucket/diff-output/?region=us-east-1&access_key_id=xxx&secret_access_key=yyy';
@@ -348,7 +348,7 @@ Advantages of using Stage:
 
 ### Example 7: Detect Update Operations
 
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 -- Expected-Rows: 0
 CREATE TABLE test.t0 (a INT PRIMARY KEY, b INT, c INT);
@@ -389,7 +389,7 @@ DROP TABLE test.t2;
 
 ### Example 8: Difference Comparison for Composite Primary Key Tables
 
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 -- Expected-Rows: 0
 CREATE TABLE test.orders (

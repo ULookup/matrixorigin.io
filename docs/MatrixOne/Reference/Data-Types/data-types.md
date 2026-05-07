@@ -599,7 +599,7 @@ mysql> select * from t1;
 
 ### Example
 
-```sql <!-- validator-ignore -->
+```sql <!-- validator-ignore-exec -->
 drop table test01;
 create table test01 (col1 int, col2 datalink);
 create stage stage01 url='file:///Users/admin/case/';

@@ -334,7 +334,7 @@ source /your_download_path/ddl.sql
 
 1. To create a udf function:
 
-    ```sql <!-- validator-ignore -->
+    ```sql <!-- validator-ignore-exec -->
     create or replace function py_detect(features json, amount decimal) 
     returns bool 
     language python 

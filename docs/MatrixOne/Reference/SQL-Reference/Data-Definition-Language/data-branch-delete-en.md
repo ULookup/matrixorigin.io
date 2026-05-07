@@ -117,7 +117,7 @@ DROP DATABASE test_db;
 
 ### Example 2: Delete Database Branch
 
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 -- Expected-Rows: 0
 CREATE DATABASE source_db;

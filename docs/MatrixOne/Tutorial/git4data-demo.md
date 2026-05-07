@@ -107,7 +107,7 @@ CREATE SNAPSHOT sp_orders_v1 FOR TABLE demo_branch orders;
 
 Create two independent branch tables from the main table, one for each team:
 
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 -- Risk control branch: for flagging high-risk orders
 DATA BRANCH CREATE TABLE orders_risk FROM orders;
@@ -118,7 +118,7 @@ DATA BRANCH CREATE TABLE orders_promo FROM orders;
 
 At this point, all three tables have identical data. Let's verify:
 
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 SELECT * FROM orders_risk ORDER BY order_id;
 SELECT * FROM orders_promo ORDER BY order_id;
@@ -135,7 +135,7 @@ Now both teams work on their own branches independently, without interfering wit
 
 **Risk control team** operates on `orders_risk`:
 
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 -- Flag Bob's order as high risk
 UPDATE orders_risk SET risk_flag = 1 WHERE order_id = 1002;
@@ -149,7 +149,7 @@ INSERT INTO orders_risk VALUES (1006, 'Frank', 500.00, 1, NULL);
 
 **Operations team** operates on `orders_promo`:
 
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 -- Add campaign tags to Alice's and Bob's orders, and apply a 10% discount
 UPDATE orders_promo SET promo_tag = 'summer_sale', amount = amount * 0.9
@@ -161,7 +161,7 @@ INSERT INTO orders_promo VALUES (1007, 'Grace', 39.90, 0, 'summer_sale');
 
 At this point, the main table is completely unaffected:
 
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 SELECT * FROM orders ORDER BY order_id;
 -- Still the original 5 rows, with no changes whatsoever
@@ -173,7 +173,7 @@ Before merging, let's see what each branch has changed relative to the main tabl
 
 **View differences between the risk control branch and the main table:**
 
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 DATA BRANCH DIFF orders_risk AGAINST orders;
 ```
@@ -194,7 +194,7 @@ You can clearly see: 1 row updated, 1 row deleted, 1 row inserted.
 
 **View differences between the operations branch and the main table:**
 
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 DATA BRANCH DIFF orders_promo AGAINST orders;
 ```
@@ -264,14 +264,14 @@ You can also export to object storage (via Stage):
 
 First, merge the risk control branch (no conflict scenario):
 
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 DATA BRANCH MERGE orders_risk INTO orders;
 ```
 
 Verify the main table:
 
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 SELECT * FROM orders ORDER BY order_id;
 ```
@@ -315,14 +315,14 @@ The system tells you which rows have conflicts and will not silently overwrite d
 
 In this scenario, the risk control flag is more important than the operations discount, so we choose SKIP (keep the risk control modifications in the main table):
 
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 DATA BRANCH MERGE orders_promo INTO orders WHEN CONFLICT SKIP;
 ```
 
 Verify the final result:
 
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 SELECT * FROM orders ORDER BY order_id;
 ```
@@ -361,7 +361,7 @@ Unlike a regular `DROP TABLE`, `DATA BRANCH DELETE` retains metadata records in 
 
 If issues are discovered after merging, you can use the snapshot to return to the initial state:
 
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 RESTORE ACCOUNT sys DATABASE demo_branch TABLE orders FROM SNAPSHOT sp_orders_v1;
 ```

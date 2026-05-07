@@ -22,7 +22,7 @@ SELECT cluster_centers(col kmeans 'k, op_type, init_type, normalize')  FROM tbl;
 
 ## Examples
 
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 drop table if exists points;
 CREATE TABLE points (id int auto_increment PRIMARY KEY,coordinate vecf32(2));

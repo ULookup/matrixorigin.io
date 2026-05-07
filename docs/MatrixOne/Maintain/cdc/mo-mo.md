@@ -75,7 +75,7 @@ CREATE DATABASE analytics_db;
 
 Connect to the downstream MatrixOne to check full data synchronization.
 
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 mysql> SELECT * FROM analytics_db.analytics_activities;
 +-------------+---------+---------------+---------------------+---------+
@@ -100,7 +100,7 @@ UPDATE production_db.user_activities SET activity_type = 'logout' WHERE activity
 
 Connect to the downstream MatrixOne to check incremental data synchronization.
 
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 mysql> SELECT * FROM analytics_db.analytics_activities;
 +-------------+---------+---------------+---------------------+---------+

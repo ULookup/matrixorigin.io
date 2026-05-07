@@ -204,7 +204,7 @@ mysql> SHOW DATABASES;
 
 ### Example 4: Restore Table
 
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 -- Execute in tenant acc1
 CREATE TABLE t1(n1 INT);

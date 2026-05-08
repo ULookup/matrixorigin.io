@@ -1,8 +1,16 @@
 ---
 title: "DROP USER"
+doc_type: reference
 mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "Removes the specified user from the system."
 ---
 # **DROP USER**
+
+> Removes the specified user from the system.
 
 ## **Description**
 

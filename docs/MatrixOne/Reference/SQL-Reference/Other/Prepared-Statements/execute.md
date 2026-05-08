@@ -1,8 +1,16 @@
 ---
 title: "EXECUTE"
+doc_type: reference
 mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "After preparing a statement with PREPARE, you execute it with an EXECUTE statement that refers to the prepared statement name."
 ---
 # **EXECUTE**
+
+> After preparing a statement with PREPARE, you execute it with an EXECUTE statement that refers to the prepared statement name.
 
 ## **Description**
 

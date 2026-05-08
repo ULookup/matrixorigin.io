@@ -1,8 +1,16 @@
 ---
 title: "FULL JOIN"
+doc_type: reference
 mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "The `FULL JOIN` keyword returns all records when there is a match in left (table1) or right (table2) table records."
 ---
 # **FULL JOIN**
+
+> The `FULL JOIN` keyword returns all records when there is a match in left (table1) or right (table2) table records.
 
 ## **Description**
 

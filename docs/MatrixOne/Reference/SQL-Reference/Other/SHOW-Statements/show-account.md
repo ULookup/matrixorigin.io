@@ -1,10 +1,17 @@
 ---
 title: "SHOW ACCOUNTS"
+doc_type: reference
 mysql_compat: mo_only
+differs_from_mysql: []
 mo_only:
   - "SHOW ACCOUNTS"
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "Lists meta-information and statistics for tenant users created under your account."
 ---
 # **SHOW ACCOUNTS**
+
+> Lists meta-information and statistics for tenant users created under your account.
 
 ## **Function description**
 

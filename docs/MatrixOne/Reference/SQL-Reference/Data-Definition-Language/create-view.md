@@ -1,11 +1,18 @@
 ---
 title: "CREATE VIEW"
+doc_type: reference
 mysql_compat: partial
 differs_from_mysql:
   - "WITH CHECK OPTION clause not supported"
   - "DEFINER = user clause not supported; SQL SECURITY {DEFINER | INVOKER} is supported"
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "The view is a virtual table based on the result-set of an SQL statement."
 ---
 # **CREATE VIEW**
+
+> The view is a virtual table based on the result-set of an SQL statement.
 
 ## **Description**
 

@@ -1,10 +1,17 @@
 ---
 title: "CURRENT_ROLE()"
+doc_type: reference
 mysql_compat: mo_only
+differs_from_mysql: []
 mo_only:
   - "CURRENT_ROLE() / CURRENT_ROLE_NAME()"
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "Returns the role of the current session."
 ---
 # **CURRENT_ROLE()**
+
+> Returns the role of the current session.
 
 ## **Description**
 

@@ -1,10 +1,17 @@
 ---
 title: "SHOW PUBLICATIONS"
+doc_type: reference
 mysql_compat: mo_only
+differs_from_mysql: []
 mo_only:
   - "SHOW PUBLICATIONS"
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "Returns information such as all publication names, published database/table names, publication creation time, publication latest modification time, and a list of tenant names specified by the publication (if all, \\\"*\\\" is displayed)."
 ---
 # **SHOW PUBLICATIONS**
+
+> Returns information such as all publication names, published database/table names, publication creation time, publication latest modification time, and a list of tenant names specified by the publication (if all, "*" is displayed).
 
 ## **Syntax description**
 

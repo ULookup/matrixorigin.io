@@ -1,10 +1,17 @@
 ---
 title: "SET ROLE"
+doc_type: reference
 mysql_compat: mo_only
+differs_from_mysql: []
 mo_only:
   - "SET ROLE (multi-account RBAC)"
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "Specifies the active/current primary role or secondary role for the session."
 ---
 # **SET ROLE**
+
+> Specifies the active/current primary role or secondary role for the session.
 
 ## **Description**
 

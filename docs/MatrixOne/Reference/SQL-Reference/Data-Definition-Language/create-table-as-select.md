@@ -1,8 +1,16 @@
 ---
 title: "CREATE TABLE AS SELECT"
+doc_type: reference
 mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "The CREATE TABLE AS SELECT command creates a new table by copying column definitions and data from existing tables specified in a SELECT query."
 ---
 # CREATE TABLE AS SELECT
+
+> The CREATE TABLE AS SELECT command creates a new table by copying column definitions and data from existing tables specified in a SELECT query.
 
 ## Syntax Description
 

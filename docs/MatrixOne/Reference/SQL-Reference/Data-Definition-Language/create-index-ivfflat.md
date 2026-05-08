@@ -1,10 +1,17 @@
 ---
 title: "CREATE INDEX USING IVFFLAT"
+doc_type: reference
 mysql_compat: mo_only
+differs_from_mysql: []
 mo_only:
   - "CREATE INDEX … USING IVFFLAT"
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "Vector indexes can be used to speed up KNN (K-Nearest Neighbors) queries on tables containing vector columns."
 ---
 # CREATE INDEX USING IVFFLAT
+
+> Vector indexes can be used to speed up KNN (K-Nearest Neighbors) queries on tables containing vector columns.
 
 ## Syntax Description
 

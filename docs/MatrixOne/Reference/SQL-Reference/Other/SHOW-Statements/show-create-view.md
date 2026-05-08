@@ -1,10 +1,17 @@
 ---
 title: "SHOW CREATE VIEW"
+doc_type: reference
 mysql_compat: partial
 differs_from_mysql:
   - "DEFINER = user clause absent from output; SQL SECURITY {DEFINER|INVOKER} is emitted"
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "This statement shows the CREATE VIEW statement that creates the named view."
 ---
 # **SHOW CREATE VIEW**
+
+> This statement shows the CREATE VIEW statement that creates the named view.
 
 ## **Description**
 

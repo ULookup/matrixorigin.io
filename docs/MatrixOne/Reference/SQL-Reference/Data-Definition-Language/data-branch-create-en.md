@@ -1,10 +1,17 @@
 ---
 title: "DATA BRANCH CREATE"
+doc_type: reference
 mysql_compat: mo_only
+differs_from_mysql: []
 mo_only:
   - "DATA BRANCH CREATE (Git-for-Data)"
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "The DATA BRANCH CREATE statement is used to create data branches."
 ---
 # DATA BRANCH CREATE
+
+> The DATA BRANCH CREATE statement is used to create data branches.
 
 ## Description
 

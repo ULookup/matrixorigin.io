@@ -1,10 +1,17 @@
 ---
 title: "CREATE SEQUENCE"
+doc_type: reference
 mysql_compat: mo_only
+differs_from_mysql: []
 mo_only:
   - "CREATE SEQUENCE (PostgreSQL-style)"
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "The CREATE SEQUENCE user creates a sequence object."
 ---
 # **CREATE SEQUENCE**
+
+> The CREATE SEQUENCE user creates a sequence object.
 
 ## **Description**
 

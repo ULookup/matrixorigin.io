@@ -1,8 +1,16 @@
 ---
 title: "SHOW TABLES"
+doc_type: reference
 mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "Shows the list of tables in the currently selected database."
 ---
 # **SHOW TABLES**
+
+> Shows the list of tables in the currently selected database.
 
 ## **Description**
 

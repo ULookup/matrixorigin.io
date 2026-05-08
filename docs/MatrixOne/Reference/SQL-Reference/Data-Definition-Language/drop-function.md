@@ -1,10 +1,17 @@
 ---
 title: "DROP FUNCTION"
+doc_type: reference
 mysql_compat: partial
 differs_from_mysql:
   - "Drops MatrixOne-style SQL / Python functions, not MySQL stored procedures/functions"
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "The DROP FUNCTION statement represents the deletion of a user-defined function."
 ---
 # **DROP FUNCTION**
+
+> The DROP FUNCTION statement represents the deletion of a user-defined function.
 
 ## **Grammar description**
 

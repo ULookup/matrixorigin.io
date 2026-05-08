@@ -1,10 +1,17 @@
 ---
 title: "DATA BRANCH DIFF"
+doc_type: reference
 mysql_compat: mo_only
+differs_from_mysql: []
 mo_only:
   - "DATA BRANCH DIFF"
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "The DATA BRANCH DIFF statement is used to compare data differences between two tables."
 ---
 # DATA BRANCH DIFF
+
+> The DATA BRANCH DIFF statement is used to compare data differences between two tables.
 
 ## Description
 

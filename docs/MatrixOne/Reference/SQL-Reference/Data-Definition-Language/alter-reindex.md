@@ -1,10 +1,17 @@
 ---
 title: "ALTER REINDEX"
+doc_type: reference
 mysql_compat: mo_only
+differs_from_mysql: []
 mo_only:
   - "ALTER … REINDEX (rebuild vector index)"
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "ALTER TABLE ... ALTER REINDEX is used to repartition data in a vector table."
 ---
 # ALTER REINDEX
+
+> ALTER TABLE ... ALTER REINDEX is used to repartition data in a vector table.
 
 ## Syntax Description
 

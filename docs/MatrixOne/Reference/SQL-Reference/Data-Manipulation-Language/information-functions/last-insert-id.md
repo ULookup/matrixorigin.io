@@ -1,8 +1,16 @@
 ---
 title: "LAST_INSERT_ID()"
+doc_type: reference
 mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "The LASTINSERTID() function returns the AUTO_INCREMENT id of the last row that has been inserted or updated in a table."
 ---
 # **LAST_INSERT_ID()**
+
+> The LASTINSERTID() function returns the AUTO_INCREMENT id of the last row that has been inserted or updated in a table.
 
 ## **Description**
 

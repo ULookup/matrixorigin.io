@@ -1,10 +1,17 @@
 ---
 title: "CROSS APPLY"
+doc_type: reference
 mysql_compat: mo_only
+differs_from_mysql: []
 mo_only:
   - "CROSS APPLY (SQL Server-style, not in MySQL)"
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "CROSS APPLY is a special join operator in MatrixOne, mainly used to join each row of a table with another table function that returns a result set (such as a table-valued function)."
 ---
 # **CROSS APPLY**
+
+> CROSS APPLY is a special join operator in MatrixOne, mainly used to join each row of a table with another table function that returns a result set (such as a table-valued function).
 
 ## **Syntax description**
 

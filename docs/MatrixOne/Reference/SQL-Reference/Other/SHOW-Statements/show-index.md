@@ -1,10 +1,17 @@
 ---
 title: "SHOW INDEX"
+doc_type: reference
 mysql_compat: partial
 differs_from_mysql:
   - "Reflects MatrixOne index model — secondary index rows appear but may not accelerate queries"
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "SHOW INDEX returns table index information."
 ---
 # **SHOW INDEX**
+
+> SHOW INDEX returns table index information.
 
 ## **Description**
 

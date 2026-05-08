@@ -1,10 +1,17 @@
 ---
 title: "BY RANK WITH OPTION"
+doc_type: reference
 mysql_compat: mo_only
+differs_from_mysql: []
 mo_only:
   - "BY RANK WITH OPTION (IVF vector ranking)"
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "The BY RANK WITH OPTION clause is used in vector similarity search queries to control how ranking is performed when using IVF (Inverted File) indexes."
 ---
 # BY RANK WITH OPTION
+
+> The BY RANK WITH OPTION clause is used in vector similarity search queries to control how ranking is performed when using IVF (Inverted File) indexes.
 
 ## Syntax Description
 

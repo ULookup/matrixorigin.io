@@ -1,10 +1,17 @@
 ---
 title: "ALTER SEQUENCE"
+doc_type: reference
 mysql_compat: mo_only
+differs_from_mysql: []
 mo_only:
   - "ALTER SEQUENCE"
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "ALTER SEQUENCE is used to modify an existing sequence."
 ---
 # **ALTER SEQUENCE**
+
+> ALTER SEQUENCE is used to modify an existing sequence.
 
 ## **Grammar description**
 

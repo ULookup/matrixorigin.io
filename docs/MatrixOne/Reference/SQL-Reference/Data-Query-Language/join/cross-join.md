@@ -1,8 +1,16 @@
 ---
 title: "CROSS JOIN"
+doc_type: reference
 mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "CROSS JOIN is used to implement the Cartesian product of two tables, which is to generate a combination of all rows in both tables."
 ---
 # **CROSS JOIN**
+
+> CROSS JOIN is used to implement the Cartesian product of two tables, which is to generate a combination of all rows in both tables.
 
 ## **Grammar description**
 

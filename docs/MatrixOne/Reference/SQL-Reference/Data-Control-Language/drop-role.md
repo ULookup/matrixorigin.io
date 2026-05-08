@@ -1,10 +1,17 @@
 ---
 title: "DROP ROLE"
+doc_type: reference
 mysql_compat: mo_only
+differs_from_mysql: []
 mo_only:
   - "DROP ROLE"
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "Removes the specified role from the system."
 ---
 # **DROP ROLE**
+
+> Removes the specified role from the system.
 
 ## **Description**
 

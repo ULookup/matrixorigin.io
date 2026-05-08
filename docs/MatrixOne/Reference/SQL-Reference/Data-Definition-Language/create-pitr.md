@@ -1,10 +1,17 @@
 ---
 title: "CREATE PITR"
+doc_type: reference
 mysql_compat: mo_only
+differs_from_mysql: []
 mo_only:
   - "CREATE PITR … RANGE N {h|d|mo|y}"
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "The CREATE PITR command is used to create Point-in-Time Recovery (PITR) restore points."
 ---
 # CREATE PITR
+
+> The CREATE PITR command is used to create Point-in-Time Recovery (PITR) restore points.
 
 ## Syntax Description
 

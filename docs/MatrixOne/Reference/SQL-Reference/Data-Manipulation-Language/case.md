@@ -1,8 +1,16 @@
 ---
 title: "CASE"
+doc_type: reference
 mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "The CASE statement for stored programs implements a complex conditional construct."
 ---
 # **CASE**
+
+> The CASE statement for stored programs implements a complex conditional construct.
 
 ## **Description**
 

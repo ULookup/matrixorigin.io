@@ -1,13 +1,20 @@
 ---
 title: "LOAD DATA"
+doc_type: reference
 mysql_compat: partial
 differs_from_mysql:
   - "LOAD DATA LOCAL requires --local-infile on the client"
   - "SET clause only accepts columns_name = nullif(expr1, expr2)"
   - "JSONLines import uses MatrixOne-specific syntax"
   - "Object-storage import (S3/URL) uses MatrixOne-specific syntax"
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "The LOAD DATA statement reads rows from a text file into a table at a very high speed."
 ---
 # **LOAD DATA**
+
+> The LOAD DATA statement reads rows from a text file into a table at a very high speed.
 
 ## **Description**
 

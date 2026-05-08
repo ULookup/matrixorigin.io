@@ -17,9 +17,9 @@ mysql_compat: full
 | ✅ Full | 38 |
 | ⚠️ Partial | 35 |
 | ❌ None | 0 |
-| 🟣 MatrixOne-only | 53 |
+| 🟣 MatrixOne-only | 56 |
 | ❓ Unknown | 0 |
-| **Total** | **126** |
+| **Total** | **129** |
 
 ## Data Definition Language (DDL)
 
@@ -31,7 +31,7 @@ mysql_compat: full
 | [ALTER SEQUENCE](./SQL-Reference/Data-Definition-Language/alter-sequence.md) | 🟣 MatrixOne-only | — | ALTER SEQUENCE |
 | [ALTER STAGE](./SQL-Reference/Data-Definition-Language/alter-stage.md) | 🟣 MatrixOne-only | — | ALTER STAGE |
 | [ALTER TABLE](./SQL-Reference/Data-Definition-Language/alter-table.md) | ⚠️ Partial | CHANGE [COLUMN], MODIFY [COLUMN], RENAME COLUMN, ADD/DROP PRIMARY KEY, ALTER COLUMN ORDER BY cannot be combined with other clauses in the same ALTER TABLE<br/>Temporary tables cannot be altered<br/>Tables created with CLUSTER BY cannot be altered<br/>ALTER TABLE does not support PARTITION operations | — |
-| [ALTER VIEW](./SQL-Reference/Data-Definition-Language/alter-view.md) | ⚠️ Partial | Inherits CREATE VIEW limitations: no WITH CHECK OPTION, DEFINER, SQL SECURITY | — |
+| [ALTER VIEW](./SQL-Reference/Data-Definition-Language/alter-view.md) | ⚠️ Partial | Inherits CREATE VIEW limitations: no WITH CHECK OPTION, no DEFINER = user clause | — |
 | [CREATE CLONE](./SQL-Reference/Data-Definition-Language/create-clone.md) | 🟣 MatrixOne-only | — | CREATE TABLE … CLONE db.table [TO ACCOUNT …] |
 | [CREATE CLUSTER TABLE](./SQL-Reference/Data-Definition-Language/create-cluster-table.md) | 🟣 MatrixOne-only | — | CREATE CLUSTER TABLE |
 | [CREATE DATABASE](./SQL-Reference/Data-Definition-Language/create-database.md) | ⚠️ Partial | Chinese database names not supported<br/>Only utf8mb4 / utf8mb4_bin are supported and cannot be changed<br/>ENCRYPTION clause accepted but inert | — |
@@ -52,12 +52,14 @@ mysql_compat: full
 | [CREATE TABLE](./SQL-Reference/Data-Definition-Language/create-table.md) | ⚠️ Partial | ENGINE= clause in table definition not supported (MatrixOne has a single TAE engine)<br/>Spatial and SET types not supported; MEDIUMINT not supported<br/>BOOL is a native boolean type, not an INT alias as in MySQL | CLUSTER BY (col, …) — pre-sort columns to accelerate queries |
 | [CREATE TABLE ... LIKE](./SQL-Reference/Data-Definition-Language/create-table-like.md) | ✅ Full | — | — |
 | [CREATE TABLE AS SELECT](./SQL-Reference/Data-Definition-Language/create-table-as-select.md) | ✅ Full | — | — |
-| [CREATE VIEW](./SQL-Reference/Data-Definition-Language/create-view.md) | ⚠️ Partial | WITH CHECK OPTION clause not supported<br/>DEFINER and SQL SECURITY clauses not supported | — |
+| [CREATE TASK (SQL Task)](./SQL-Reference/Data-Definition-Language/sql-task.md) | 🟣 MatrixOne-only | — | — |
+| [CREATE VIEW](./SQL-Reference/Data-Definition-Language/create-view.md) | ⚠️ Partial | WITH CHECK OPTION clause not supported<br/>DEFINER = user clause not supported; SQL SECURITY {DEFINER \| INVOKER} is supported | — |
 | [CREATE...FROM...PUBLICATION...](./SQL-Reference/Data-Definition-Language/create-subscription.md) | 🟣 MatrixOne-only | — | CREATE DATABASE … FROM … PUBLICATION … |
 | [DATA BRANCH CREATE](./SQL-Reference/Data-Definition-Language/data-branch-create-en.md) | 🟣 MatrixOne-only | — | DATA BRANCH CREATE (Git-for-Data) |
 | [DATA BRANCH DELETE](./SQL-Reference/Data-Definition-Language/data-branch-delete-en.md) | 🟣 MatrixOne-only | — | DATA BRANCH DELETE |
 | [DATA BRANCH DIFF](./SQL-Reference/Data-Definition-Language/data-branch-diff-en.md) | 🟣 MatrixOne-only | — | DATA BRANCH DIFF |
 | [DATA BRANCH MERGE](./SQL-Reference/Data-Definition-Language/data-branch-merge-en.md) | 🟣 MatrixOne-only | — | DATA BRANCH MERGE |
+| [DATA BRANCH PICK](./SQL-Reference/Data-Definition-Language/data-branch-pick.md) | 🟣 MatrixOne-only | — | — |
 | [DROP DATABASE](./SQL-Reference/Data-Definition-Language/drop-database.md) | ✅ Full | — | — |
 | [DROP FUNCTION](./SQL-Reference/Data-Definition-Language/drop-function.md) | ⚠️ Partial | Drops MatrixOne-style SQL / Python functions, not MySQL stored procedures/functions | — |
 | [DROP INDEX](./SQL-Reference/Data-Definition-Language/drop-index.md) | ✅ Full | — | — |
@@ -136,6 +138,7 @@ mysql_compat: full
 | [DROP USER](./SQL-Reference/Data-Control-Language/drop-user.md) | ✅ Full | — | — |
 | [GRANT](./SQL-Reference/Data-Control-Language/grant.md) | ⚠️ Partial | Authorization logic differs from MySQL — MatrixOne evaluates via its role/account model | — |
 | [REVOKE](./SQL-Reference/Data-Control-Language/revoke.md) | ⚠️ Partial | Recovery logic differs from MySQL — privileges return to the role/account graph | — |
+| [Role Rewrite Rules (ALTER ROLE ... RULE / SHOW RULES)](./SQL-Reference/Data-Control-Language/role-rule.md) | 🟣 MatrixOne-only | — | — |
 
 ## Other
 
@@ -155,7 +158,7 @@ mysql_compat: full
 | [SHOW COLUMNS](./SQL-Reference/Other/SHOW-Statements/show-columns.md) | ✅ Full | — | — |
 | [SHOW CREATE PUBLICATION](./SQL-Reference/Other/SHOW-Statements/show-create-publication.md) | 🟣 MatrixOne-only | — | SHOW CREATE PUBLICATION |
 | [SHOW CREATE TABLE](./SQL-Reference/Other/SHOW-Statements/show-create-table.md) | ⚠️ Partial | Output reflects MatrixOne-specific extensions (CLUSTER BY, USING IVFFLAT/HNSW, etc.) | — |
-| [SHOW CREATE VIEW](./SQL-Reference/Other/SHOW-Statements/show-create-view.md) | ⚠️ Partial | DEFINER / SQL SECURITY clauses absent from output | — |
+| [SHOW CREATE VIEW](./SQL-Reference/Other/SHOW-Statements/show-create-view.md) | ⚠️ Partial | DEFINER = user clause absent from output; SQL SECURITY {DEFINER\|INVOKER} is emitted | — |
 | [SHOW DATABASES](./SQL-Reference/Other/SHOW-Statements/show-databases.md) | ✅ Full | — | — |
 | [SHOW FUNCTION STATUS](./SQL-Reference/Other/SHOW-Statements/show-function-status.md) | ⚠️ Partial | Lists MatrixOne SQL/Python functions, not MySQL stored routines | — |
 | [SHOW GRANTS](./SQL-Reference/Other/SHOW-Statements/show-grants.md) | ⚠️ Partial | Results reflect MatrixOne role/account graph and differ from MySQL significantly | — |

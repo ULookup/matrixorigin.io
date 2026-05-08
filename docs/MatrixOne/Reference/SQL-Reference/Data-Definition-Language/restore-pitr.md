@@ -1,10 +1,17 @@
 ---
 title: "RESTORE ... FROM PITR"
+doc_type: reference
 mysql_compat: mo_only
+differs_from_mysql: []
 mo_only:
   - "RESTORE … FROM PITR"
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "RESTORE ... FROM PITR is used to restore data from a previously created PITR."
 ---
 # RESTORE ... FROM PITR
+
+> RESTORE ... FROM PITR is used to restore data from a previously created PITR.
 
 ## Syntax description
 

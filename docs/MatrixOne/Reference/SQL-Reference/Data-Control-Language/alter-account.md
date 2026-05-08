@@ -1,10 +1,17 @@
 ---
 title: "ALTER ACCOUNT"
+doc_type: reference
 mysql_compat: mo_only
+differs_from_mysql: []
 mo_only:
   - "ALTER ACCOUNT"
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "Modify account information."
 ---
 # **ALTER ACCOUNT**
+
+> Modify account information.
 
 ## **Description**
 

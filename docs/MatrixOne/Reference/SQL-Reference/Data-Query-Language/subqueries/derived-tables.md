@@ -1,8 +1,16 @@
 ---
 title: "Derived Tables"
+doc_type: reference
 mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "This topic describes subqueries that occur as nested SELECT statements in the FROM clause of an outer SELECT statement."
 ---
 # **Derived Tables**
+
+> This topic describes subqueries that occur as nested SELECT statements in the FROM clause of an outer SELECT statement.
 
 ## **Description**
 

@@ -1,8 +1,16 @@
 ---
 title: "INNER JOIN"
+doc_type: reference
 mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "The `INNER JOIN keyword selects records that have matching values in both tables.(Same as JOIN`)"
 ---
 # **INNER JOIN**
+
+> The `INNER JOIN keyword selects records that have matching values in both tables.(Same as JOIN`)
 
 ## **Description**
 

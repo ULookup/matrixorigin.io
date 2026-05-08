@@ -1,10 +1,17 @@
 ---
 title: "DROP ACCOUNT"
+doc_type: reference
 mysql_compat: mo_only
+differs_from_mysql: []
 mo_only:
   - "DROP ACCOUNT"
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "Delete the account in your organization."
 ---
 # **DROP ACCOUNT**
+
+> Delete the account in your organization.
 
 ## **Description**
 

@@ -1,10 +1,17 @@
 ---
 title: "SHOW PITR"
+doc_type: reference
 mysql_compat: mo_only
+differs_from_mysql: []
 mo_only:
   - "SHOW PITR"
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "SHOW PITR returns information about PITR created under the current tenant."
 ---
 # SHOW PITR
+
+> SHOW PITR returns information about PITR created under the current tenant.
 
 ## Syntax description
 

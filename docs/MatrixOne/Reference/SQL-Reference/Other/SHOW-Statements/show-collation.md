@@ -1,10 +1,17 @@
 ---
 title: "SHOW COLLATION"
+doc_type: reference
 mysql_compat: partial
 differs_from_mysql:
   - "Only utf8mb4_bin is effective; other collations appear but are inert"
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "This statement lists collations supported by MatrixOne."
 ---
 # **SHOW COLLATION**
+
+> This statement lists collations supported by MatrixOne.
 
 ## **Description**
 

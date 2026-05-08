@@ -1,8 +1,16 @@
 ---
 title: "Subqueries with ANY or SOME"
+doc_type: reference
 mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "Comparison operators (=, >, < , etc.) are used only on subqueries that return one row. SQL Subqueries with ANY, you can make comparisons on subqueries that return multiple rows. ANY evaluate whether any or all of the values returned by a subquery match the left-hand expression."
 ---
 # **Subqueries with ANY or SOME**
+
+> Comparison operators (=, >, < , etc.) are used only on subqueries that return one row. SQL Subqueries with ANY, you can make comparisons on subqueries that return multiple rows. ANY evaluate whether any or all of the values returned by a subquery match the left-hand expression.
 
 ## **Description**
 

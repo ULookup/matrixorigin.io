@@ -1,10 +1,17 @@
 ---
 title: "INSERT"
+doc_type: reference
 mysql_compat: partial
 differs_from_mysql:
   - "Modifiers LOW_PRIORITY / DELAYED / HIGH_PRIORITY not supported"
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "Writing data."
 ---
 # **INSERT**
+
+> Writing data.
 
 ## **Description**
 

@@ -3,7 +3,7 @@ title: "CREATE TASK (SQL Task)"
 doc_type: reference
 mysql_compat: mo_only
 differs_from_mysql: []
-mo_only: true
+mo_only: []
 since: v3.0.10
 last_updated: 2026-05-08
 llms_summary: "Define, alter, drop, execute, and inspect MatrixOne SQL tasks that run a SQL body on a cron schedule or on demand, with optional gate, retry, and timeout options."

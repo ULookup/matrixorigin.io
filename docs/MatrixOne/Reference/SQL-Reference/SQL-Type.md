@@ -1,8 +1,16 @@
 ---
 title: "Type of SQL Statements"
+doc_type: reference
 mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "In MatrixOne, SQL statements are classified into various categories, and each category's definition and contents are presented in the following sections:"
 ---
 # Type of SQL Statements
+
+> In MatrixOne, SQL statements are classified into various categories, and each category's definition and contents are presented in the following sections:
 
 In MatrixOne, SQL statements are classified into various categories, and each category's definition and contents are presented in the following sections:
 

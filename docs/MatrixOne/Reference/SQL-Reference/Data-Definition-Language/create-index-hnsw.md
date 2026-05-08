@@ -1,10 +1,17 @@
 ---
 title: "CREATE INDEX USING HNSW"
+doc_type: reference
 mysql_compat: mo_only
+differs_from_mysql: []
 mo_only:
   - "CREATE INDEX … USING HNSW"
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "MatrixOne supports using the HNSW (Hierarchical Navigable Small World) algorithm in vector retrieval functionality to accelerate similarity searches for high-dimensional vectors."
 ---
 # CREATE INDEX USING HNSW
+
+> MatrixOne supports using the HNSW (Hierarchical Navigable Small World) algorithm in vector retrieval functionality to accelerate similarity searches for high-dimensional vectors.
 
 ## Syntax Description
 

@@ -1,8 +1,16 @@
 ---
 title: "CREATE TABLE ... LIKE"
+doc_type: reference
 mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "CREATE TABLE ... LIKE Create an empty table based on the definition of another table, which copies the structure of the original table but not the data stored in the original table."
 ---
 # CREATE TABLE ... LIKE
+
+> CREATE TABLE ... LIKE Create an empty table based on the definition of another table, which copies the structure of the original table but not the data stored in the original table.
 
 ## Syntax Description
 

@@ -1,10 +1,17 @@
 ---
 title: "SUBQUERY"
+doc_type: reference
 mysql_compat: partial
 differs_from_mysql:
   - "Multi-level correlated subqueries inside IN() are not supported"
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "A subquery is a `SELECT` statement within another statement."
 ---
 # **SUBQUERY**
+
+> A subquery is a `SELECT` statement within another statement.
 
 A subquery is a ``SELECT`` statement within another statement. is a SQL query nested inside a larger query.
 

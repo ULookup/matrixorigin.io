@@ -1,10 +1,17 @@
 ---
 title: "DATA BRANCH MERGE"
+doc_type: reference
 mysql_compat: mo_only
+differs_from_mysql: []
 mo_only:
   - "DATA BRANCH MERGE"
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "The DATA BRANCH MERGE statement is used to merge data changes from one branch table into another branch table."
 ---
 # DATA BRANCH MERGE
+
+> The DATA BRANCH MERGE statement is used to merge data changes from one branch table into another branch table.
 
 ## Description
 

@@ -1,10 +1,17 @@
 ---
 title: "CREATE CLONE"
+doc_type: reference
 mysql_compat: mo_only
+differs_from_mysql: []
 mo_only:
   - "CREATE TABLE … CLONE db.table [TO ACCOUNT …]"
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "The CLONE operation allows copying the structure and data of tables or databases within the MatrixOne database."
 ---
 # **CREATE CLONE**
+
+> The CLONE operation allows copying the structure and data of tables or databases within the MatrixOne database.
 
 ## **Syntax Description**
 

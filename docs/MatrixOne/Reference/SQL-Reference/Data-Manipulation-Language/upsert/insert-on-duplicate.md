@@ -1,8 +1,16 @@
 ---
 title: "INSERT ... ON DUPLICATE KEY UPDATE"
+doc_type: reference
 mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "INSERT ... ON DUPLICATE KEY UPDATE When inserting data into a database table, update the data if it already exists, otherwise insert new data."
 ---
 # **INSERT ... ON DUPLICATE KEY UPDATE**
+
+> INSERT ... ON DUPLICATE KEY UPDATE When inserting data into a database table, update the data if it already exists, otherwise insert new data.
 
 ## **Grammar description**
 

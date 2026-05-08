@@ -1,8 +1,16 @@
 ---
 title: "KILL"
+doc_type: reference
 mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "The KILL statement terminates a running query or process."
 ---
 # **KILL**
+
+> The KILL statement terminates a running query or process.
 
 ## **Description**
 

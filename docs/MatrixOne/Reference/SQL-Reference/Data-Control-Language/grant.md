@@ -1,10 +1,17 @@
 ---
 title: "GRANT"
+doc_type: reference
 mysql_compat: partial
 differs_from_mysql:
   - "Authorization logic differs from MySQL — MatrixOne evaluates via its role/account model"
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "The GRANT statement assigns privileges and roles to MatrixOne users and roles."
 ---
 # **GRANT**
+
+> The GRANT statement assigns privileges and roles to MatrixOne users and roles.
 
 ## **Description**
 

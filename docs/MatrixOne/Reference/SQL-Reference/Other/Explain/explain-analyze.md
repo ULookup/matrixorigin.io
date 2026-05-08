@@ -1,10 +1,17 @@
 ---
 title: "Get information with EXPLAIN ANALYZE"
+doc_type: reference
 mysql_compat: partial
 differs_from_mysql:
   - "Output format mirrors PostgreSQL; JSON output not supported"
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "EXPLAIN ANALYZE is an analysis tool for queries that shows you how long SQL spends on queries and why."
 ---
 # Get information with `EXPLAIN ANALYZE`
+
+> EXPLAIN ANALYZE is an analysis tool for queries that shows you how long SQL spends on queries and why.
 
 `EXPLAIN ANALYZE` is an analysis tool for queries that shows you how long SQL spends on queries and why. It will schedule the query, detect it, and execute it, while counting the rows and measuring the time spent at various points in the execution plan. When execution is complete, `EXPLAIN ANALYZE` prints the plan and measurements instead of querying the results.
 

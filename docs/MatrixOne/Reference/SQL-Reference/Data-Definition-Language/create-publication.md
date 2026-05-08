@@ -1,10 +1,17 @@
 ---
 title: "CREATE PUBLICATION"
+doc_type: reference
 mysql_compat: mo_only
+differs_from_mysql: []
 mo_only:
   - "CREATE PUBLICATION"
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "CREATE PUBLICATION adds a new publication to the current database."
 ---
 # **CREATE PUBLICATION**
+
+> CREATE PUBLICATION adds a new publication to the current database.
 
 ## **Syntax description**
 

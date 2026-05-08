@@ -1,10 +1,17 @@
 ---
 title: "SHOW VARIABLES"
+doc_type: reference
 mysql_compat: partial
 differs_from_mysql:
   - "System variables are mostly syntactic stubs; actual behaviour differs from MySQL"
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "SHOW VARIABLES shows the values of MatrixOne system variables."
 ---
 # **SHOW VARIABLES**
+
+> SHOW VARIABLES shows the values of MatrixOne system variables.
 
 ## **Description**
 

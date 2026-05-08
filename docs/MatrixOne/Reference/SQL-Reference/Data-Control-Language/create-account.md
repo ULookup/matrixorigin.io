@@ -1,10 +1,17 @@
 ---
 title: "CREATE ACCOUNT"
+doc_type: reference
 mysql_compat: mo_only
+differs_from_mysql: []
 mo_only:
   - "CREATE ACCOUNT … ADMIN_NAME …"
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "Create a new account in your organization."
 ---
 # **CREATE ACCOUNT**
+
+> Create a new account in your organization.
 
 ## **Description**
 

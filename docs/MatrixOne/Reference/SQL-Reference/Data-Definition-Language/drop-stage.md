@@ -1,10 +1,17 @@
 ---
 title: "DROP STAGE"
+doc_type: reference
 mysql_compat: mo_only
+differs_from_mysql: []
 mo_only:
   - "DROP STAGE"
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "DROP STAGE is used to delete the specified stage in MatrixOne."
 ---
 # **DROP STAGE**
+
+> DROP STAGE is used to delete the specified stage in MatrixOne.
 
 ## **Syntax description**
 

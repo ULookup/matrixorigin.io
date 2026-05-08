@@ -1,8 +1,16 @@
 ---
 title: "NATURAL JOIN"
+doc_type: reference
 mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "The `NATURAL JOIN of two tables is defined to be semantically equivalent to an INNER JOIN or a LEFT JOIN with a USING` clause that names all columns that exist in both tables."
 ---
 # **NATURAL JOIN**
+
+> The `NATURAL JOIN of two tables is defined to be semantically equivalent to an INNER JOIN or a LEFT JOIN with a USING` clause that names all columns that exist in both tables.
 
 ## **Description**
 

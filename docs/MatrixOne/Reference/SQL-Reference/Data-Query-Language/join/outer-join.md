@@ -1,8 +1,16 @@
 ---
 title: "OUTER JOIN"
+doc_type: reference
 mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "When performing an `INNER JOIN, rows from either table that are unmatched in the other table are not returned."
 ---
 # **OUTER JOIN**
+
+> When performing an `INNER JOIN, rows from either table that are unmatched in the other table are not returned.
 
 ## **Description**
 

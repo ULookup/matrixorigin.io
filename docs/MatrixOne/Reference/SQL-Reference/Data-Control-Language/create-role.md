@@ -1,10 +1,17 @@
 ---
 title: "CREATE ROLE"
+doc_type: reference
 mysql_compat: mo_only
+differs_from_mysql: []
 mo_only:
   - "CREATE ROLE (multi-account RBAC)"
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "Create a new role in the system."
 ---
 # **CREATE ROLE**
+
+> Create a new role in the system.
 
 ## **Description**
 

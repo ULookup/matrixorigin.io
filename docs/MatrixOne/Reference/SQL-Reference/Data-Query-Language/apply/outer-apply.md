@@ -1,10 +1,17 @@
 ---
 title: "OUTER APPLY"
+doc_type: reference
 mysql_compat: mo_only
+differs_from_mysql: []
 mo_only:
   - "OUTER APPLY (SQL Server-style, not in MySQL)"
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "OUTER APPLY is used to dynamically associate each row of the main table with the results of a function or subquery."
 ---
 # **OUTER APPLY**
+
+> OUTER APPLY is used to dynamically associate each row of the main table with the results of a function or subquery.
 
 ## **Syntax description**
 

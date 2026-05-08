@@ -1,10 +1,17 @@
 ---
 title: "SHOW SUBSCRIPTIONS"
+doc_type: reference
 mysql_compat: mo_only
+differs_from_mysql: []
 mo_only:
   - "SHOW SUBSCRIPTIONS"
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "Returns all publication names, publishing tenant names, published database names, published table names, comments, time published to the tenant, subscription name, time when the subscription was created, and subscription status (0: normal subscription possible; 1: publication..."
 ---
 # **SHOW SUBSCRIPTIONS**
+
+> Returns all publication names, publishing tenant names, published database names, published table names, comments, time published to the tenant, subscription name, time when the subscription was created, and subscription status (0: normal subscription possible; 1: publication...
 
 ## **Syntax description**
 

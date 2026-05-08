@@ -1,8 +1,16 @@
 ---
 title: "INTERSECT"
+doc_type: reference
 mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "INTERSECT returns only the different rows of two or more queries."
 ---
 # **INTERSECT**
+
+> INTERSECT returns only the different rows of two or more queries.
 
 ## **Description**
 

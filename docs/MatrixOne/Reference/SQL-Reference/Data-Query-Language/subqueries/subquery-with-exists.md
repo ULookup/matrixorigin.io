@@ -1,8 +1,16 @@
 ---
 title: "Subqueries with EXISTS or NOT EXISTS"
+doc_type: reference
 mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "The EXISTS operator is used to test for the existence of any record in a subquery."
 ---
 # **Subqueries with EXISTS or NOT EXISTS**
+
+> The EXISTS operator is used to test for the existence of any record in a subquery.
 
 ## **Description**
 

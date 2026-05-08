@@ -1,12 +1,19 @@
 ---
 title: "DATA BRANCH DELETE"
+doc_type: reference
 mysql_compat: mo_only
+differs_from_mysql: []
 mo_only:
   - "DATA BRANCH DELETE"
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "The DATA BRANCH DELETE statement is used to delete data branches."
 ---
 <!-- version: v3.0.4 -->
 
 # DATA BRANCH DELETE
+
+> The DATA BRANCH DELETE statement is used to delete data branches.
 
 ## Description
 

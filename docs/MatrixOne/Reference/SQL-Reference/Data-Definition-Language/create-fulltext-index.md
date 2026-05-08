@@ -1,8 +1,16 @@
 ---
 title: "Create Fulltext Index"
+doc_type: reference
 mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "MatrixOne supports full-text indexing, allowing users to perform efficient full-text searches on textual data in tables."
 ---
 # Create Fulltext Index
+
+> MatrixOne supports full-text indexing, allowing users to perform efficient full-text searches on textual data in tables.
 
 ## Syntax Description
 

@@ -19,10 +19,15 @@ The system automatically identifies the Lowest Common Ancestor (LCA) between two
 ## Syntax
 
 ```
-DATA BRANCH DIFF target_table [{ SNAPSHOT = 'snapshot_name' }] 
-    AGAINST base_table [{ SNAPSHOT = 'snapshot_name' }] 
+DATA BRANCH DIFF target_table [{ SNAPSHOT = 'snapshot_name' }]
+    AGAINST base_table [{ SNAPSHOT = 'snapshot_name' }]
+    [COLUMNS ( col1 [, col2 ...] )]
     [OUTPUT output_option]
 ```
+
+### COLUMNS projection (since v3.0.10)
+
+`COLUMNS (col1, col2, ...)` restricts the value columns returned per diff row to the listed subset. Primary-key columns are always present in the output because they identify the row; non-PK columns not listed in `COLUMNS` are omitted. Use this to reduce payload size on wide tables when only a few columns matter for the diff.
 
 ### Output Options
 
@@ -32,6 +37,7 @@ output_option:
   | LIMIT number                    -- Limit the number of returned difference rows
   | FILE 'directory_path'           -- Export differences as SQL file
   | AS table_name                   -- Save differences to a table (not yet supported)
+  | SUMMARY                         -- Return aggregated INSERT / DELETE / UPDATE counts
 ```
 
 ## Arguments
@@ -46,6 +52,8 @@ output_option:
 | `OUTPUT COUNT` | Return only the count of differences |
 | `OUTPUT LIMIT number` | Limit the number of returned difference rows |
 | `OUTPUT FILE 'path'` | Export differences as SQL file to specified directory, supports local path or Stage path (e.g., `stage://stage_name/`) |
+| `OUTPUT SUMMARY` | Return an aggregated INSERT / DELETE / UPDATE breakdown instead of the row-by-row diff |
+| `COLUMNS (col1, col2, ...)` | Since v3.0.10. Restrict non-PK columns in the diff output to the listed subset. Primary-key columns are always included. |
 
 ### Output Column Description
 
@@ -433,6 +441,52 @@ DROP TABLE test.orders;
 DROP TABLE test.orders_branch;
 -- Expected-Rows: 0
 DROP DATABASE test;
+```
+
+### Example 9: COLUMNS projection (v3.0.10)
+
+`COLUMNS (col1, ..., colN)` restricts the non-PK columns returned by the diff. The primary-key column(s) are always present.
+
+```sql
+DROP DATABASE IF EXISTS data_branch_diff_columns_demo;
+CREATE DATABASE data_branch_diff_columns_demo;
+USE data_branch_diff_columns_demo;
+
+CREATE TABLE c1 (
+    id INT PRIMARY KEY,
+    name VARCHAR(30),
+    balance DECIMAL(12,2),
+    created_at TIMESTAMP,
+    birthday DATE
+);
+INSERT INTO c1 VALUES
+    (1, 'alice', 1000.50, '2024-01-01 10:00:00', '1990-03-15'),
+    (2, 'bob',   2000.75, '2024-01-02 11:00:00', '1985-07-20'),
+    (3, 'carol', 3000.00, '2024-01-03 12:00:00', '1992-11-08');
+
+DATA BRANCH CREATE TABLE c1_br FROM c1;
+UPDATE c1_br SET balance = 1500.50, name = 'alice_v2' WHERE id = 1;
+DELETE FROM c1_br WHERE id = 2;
+INSERT INTO c1_br VALUES (4, 'dave', 4000.00, '2024-02-01 09:00:00', '1988-12-25');
+
+-- Full diff, all columns.
+DATA BRANCH DIFF c1_br AGAINST c1;
+
+-- Project only the "name" column: primary key + name, no balance/created_at/birthday.
+DATA BRANCH DIFF c1_br AGAINST c1 COLUMNS (name);
+
+-- Project two non-PK columns.
+DATA BRANCH DIFF c1_br AGAINST c1 COLUMNS (name, balance);
+
+-- Project the PK together with a non-PK column; the PK column is always returned.
+DATA BRANCH DIFF c1_br AGAINST c1 COLUMNS (id, balance);
+
+-- Combine COLUMNS with OUTPUT LIMIT.
+DATA BRANCH DIFF c1_br AGAINST c1 COLUMNS (balance) OUTPUT LIMIT 5;
+
+DROP TABLE c1_br;
+DROP TABLE c1;
+DROP DATABASE data_branch_diff_columns_demo;
 ```
 
 ## Notes

@@ -371,6 +371,8 @@ nav:
                   - DELETE BRANCH: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/data-branch-delete-en.md
                   - DIFF BRANCH: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/data-branch-diff-en.md
                   - MERGE BRANCH: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/data-branch-merge-en.md
+                  - DATA BRANCH PICK: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/data-branch-pick.md
+                  - CREATE TASK (SQL Task): MatrixOne/Reference/SQL-Reference/Data-Definition-Language/sql-task.md
                   - ALTER TABLE: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/alter-table.md
                   - ALTER TABLE ... ALTER REINDEX: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/alter-reindex.md
                   - ALTER PITR: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/alter-pitr.md
@@ -440,6 +442,7 @@ nav:
                   - CREATE ACCOUNT: MatrixOne/Reference/SQL-Reference/Data-Control-Language/create-account.md
                   - ALTER ACCOUNT: MatrixOne/Reference/SQL-Reference/Data-Control-Language/alter-account.md
                   - CREATE ROLE: MatrixOne/Reference/SQL-Reference/Data-Control-Language/create-role.md
+                  - Role Rewrite Rules: MatrixOne/Reference/SQL-Reference/Data-Control-Language/role-rule.md
                   - CREATE USER: MatrixOne/Reference/SQL-Reference/Data-Control-Language/create-user.md
                   - ALTER USER: MatrixOne/Reference/SQL-Reference/Data-Control-Language/alter-user.md
                   - DROP ACCOUNT: MatrixOne/Reference/SQL-Reference/Data-Control-Language/drop-account.md

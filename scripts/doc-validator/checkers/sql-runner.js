@@ -1160,7 +1160,7 @@ export class SqlRunner {
         if (/^(GRANT|REVOKE)\s+/i.test(trimmed)) return SQL_TYPES.ADMIN
         // Note: SNAPSHOT is excluded from ADMIN - it should be executed as DDL to create test context
         if (/^(CREATE|DROP|ALTER)\s+(USER|ACCOUNT|ROLE|PITR|PUBLICATION|SUBSCRIPTION)\s+/i.test(trimmed)) return SQL_TYPES.ADMIN
-        if (/^SHOW\s+(PUBLICATIONS|SUBSCRIPTIONS|SNAPSHOTS|PITR|GRANTS)\b/i.test(trimmed)) return SQL_TYPES.ADMIN
+        if (/^SHOW\s+(PUBLICATIONS|SUBSCRIPTIONS|SNAPSHOTS|PITR|GRANTS|RULES)\b/i.test(trimmed)) return SQL_TYPES.ADMIN
         // SESSION commands (SET statements) - cannot be PREPAREd in MO
         if (/^SET\s+/i.test(trimmed)) return SQL_TYPES.SESSION
         // DDL (including SNAPSHOT - must be executed to create test context)

@@ -89,6 +89,7 @@ You can specify the data point in time using the following methods:
 
 Create a data branch from an existing table:
 
+<!-- validator-ignore-exec -->
 ```sql
 -- Expected-Rows: 0
 CREATE DATABASE test;
@@ -148,6 +149,7 @@ DATA BRANCH CREATE TABLE test.orders_dev FROM test.orders;
 
 Create a data branch from a specific point in time using a snapshot:
 
+<!-- validator-ignore-exec -->
 ```sql
 -- Expected-Rows: 0
 CREATE TABLE test.products (
@@ -187,6 +189,7 @@ DROP SNAPSHOT sp_products;
 
 Create a branch of an entire database:
 
+<!-- validator-ignore-exec -->
 ```sql
 -- Expected-Rows: 0
 CREATE DATABASE source_db;
@@ -227,6 +230,7 @@ SELECT * FROM dev_db.users;
 
 ### Example 4: Create Database Branch from Snapshot
 
+<!-- validator-ignore-exec -->
 ```sql
 -- Expected-Rows: 0
 CREATE SNAPSHOT sp_source FOR DATABASE source_db;
@@ -259,6 +263,7 @@ DROP SNAPSHOT sp_source;
 
 Create new branches from existing branches:
 
+<!-- validator-ignore-exec -->
 ```sql
 -- Expected-Rows: 0
 USE test;

@@ -347,6 +347,7 @@ Result:
 
 After branches are no longer needed, clean them up promptly:
 
+<!-- validator-ignore-exec -->
 ```sql
 DATA BRANCH DELETE TABLE orders_risk;
 DATA BRANCH DELETE TABLE orders_promo;

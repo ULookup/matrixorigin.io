@@ -6,8 +6,8 @@ differs_from_mysql:
   - "Authorization logic differs from MySQL — MatrixOne evaluates via its role/account model"
   - "User identifier is a bare username scoped to the current account; MySQL uses 'user'@'host' tuples"
 mo_only:
-  - "GRANT ... ON ACCOUNT * — account-level privileges have no MySQL counterpart"
-  - "GRANT ... ON DATABASE * — MatrixOne-specific database-level grant target"
+  - "`GRANT ... ON ACCOUNT *` — account-level privileges have no MySQL counterpart"
+  - "`GRANT ... ON DATABASE *` — MatrixOne-specific database-level grant target"
 since: unknown
 last_updated: 2026-05-08
 llms_summary: "The GRANT statement assigns privileges and roles to MatrixOne users and roles."

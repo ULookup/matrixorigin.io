@@ -26,6 +26,16 @@ export class DbConnectionManager {
                 port: this.config.port,
                 user: this.config.user,
                 password: this.config.password,
+                // Return DATE / DATETIME / TIMESTAMP / TIME as the raw strings
+                // MatrixOne emits, matching what the doc's expected tables
+                // show. Without this, mysql2 parses them into JS Date objects
+                // using the client's local timezone and re-serialises as UTC,
+                // producing a spurious offset (e.g. `2023-08-01T07:00:00.000Z`
+                // on a PDT host for a doc-declared `2023-08-01 00:00:00`).
+                // This is a driver-layer presentation concern, not a value
+                // difference, so keeping everything as strings keeps the
+                // comparator honest without relaxing any check.
+                dateStrings: true,
             })
             await this.connection.query('SELECT 1')
             return true

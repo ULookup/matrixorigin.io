@@ -118,7 +118,6 @@ python /opt/module/datax/bin/datax.py /opt/module/datax/job/mysql2mo.json
 
 ### View data in a MatrixOne table
 
-<!-- validator-ignore-exec -->
 ```sql
 mysql> select * from mysql_datax;
 +------+-------+--------+------+------------+--------+

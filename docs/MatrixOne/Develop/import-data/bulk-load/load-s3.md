@@ -100,7 +100,8 @@ In this tutorial, we will walk you through the process of loading a **.csv** fil
 
 5. After the import is successful, you can run SQL statements to check the result of imported data:
 
-    ```sql <!-- validator-ignore-exec -->
+    <!-- validator-ignore-exec -->
+    ```sql
     mysql> select * from t1;
     +-----------+-----------+-----------+-----------+
     | col1      | col2      | col3      | col4      |

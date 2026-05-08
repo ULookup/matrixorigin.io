@@ -445,7 +445,6 @@ mysql> select * from datetest;
 
 - DATETIME
 
-<!-- validator-ignore-exec -->
 ```sql
 -- Create a table named "datetimetest" with 1 attributes of a "datetime"
 create table datetimetest (a datetime(0) not null, primary key(a));

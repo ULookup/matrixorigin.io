@@ -26,7 +26,6 @@ Similar to the `TO_DAYS()` function, for example, when querying `SELECT TO_SECON
 
 ## **Examples**
 
-<!-- validator-ignore-exec -->
 ```sql
 mysql> SELECT TO_SECONDS('0001-01-01');
 +------------------------+

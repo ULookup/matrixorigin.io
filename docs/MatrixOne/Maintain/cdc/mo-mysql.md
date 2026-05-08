@@ -37,7 +37,6 @@ INSERT INTO source_db.orders (order_id, customer_id, order_date, amount, status)
 
 ### Create Downstream Database
 
-<!-- validator-ignore-exec -->
 ```sql
 create database analytics_db;
 ```
@@ -78,7 +77,6 @@ Check task status.
 
 Connect to the downstream MySQL to verify full data synchronization.
 
-<!-- validator-ignore-exec -->
 ```sql
 mysql> select * from analytics_db.orders_backup;
 +----------+-------------+---------------------+--------+------------+
@@ -118,7 +116,6 @@ mysql> select * from source_db.orders;
 
 Connect to the downstream MySQL to verify incremental data synchronization.
 
-<!-- validator-ignore-exec -->
 ```sql
 mysql> select * from analytics_db.orders_backup;
 +----------+-------------+---------------------+--------+------------+
@@ -179,7 +176,6 @@ Manually resume the task.
 
 Connect to the downstream MySQL to verify checkpoint recovery.
 
-<!-- validator-ignore-exec -->
 ```sql
 mysql> select * from analytics_db.orders_backup;
 +----------+-------------+---------------------+--------+------------+

@@ -56,7 +56,6 @@ Example of use:
 
 This example demonstrates how to slide every 5 minutes over a 10-minute time window, giving a maximum and minimum temperature every 5 minutes.
 
-<!-- validator-ignore-exec -->
 ```sql
 mysql> drop table if exists sensor_data;
 CREATE TABLE sensor_data (ts timestamp(3) primary key, temperature FLOAT);

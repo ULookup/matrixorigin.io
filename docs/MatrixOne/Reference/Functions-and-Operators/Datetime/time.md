@@ -18,7 +18,6 @@ Extracts the time part of the time or datetime expression expr and returns it as
 
 ## **Examples**
 
-<!-- validator-ignore-exec -->
 ```sql
 mysql> SELECT TIME('2003-12-31 01:02:03');
 +---------------------------+

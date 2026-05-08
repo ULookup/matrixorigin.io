@@ -35,7 +35,6 @@ mysql> select year(a) from t1;
 2 rows in set (0.00 sec)
 ```
 
-<!-- validator-ignore-exec -->
 ```sql
 DROP TABLE IF EXISTS t3;
 CREATE TABLE t3(c1 DATE NOT NULL);

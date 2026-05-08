@@ -99,6 +99,7 @@ Result:
 
 Before any modifications, take a snapshot of the main table first. This is your "safety net" — no matter what happens next, you can always return to this point.
 
+<!-- validator-ignore-exec -->
 ```sql
 CREATE SNAPSHOT sp_orders_v1 FOR TABLE demo_branch orders;
 ```
@@ -118,7 +119,6 @@ DATA BRANCH CREATE TABLE orders_promo FROM orders;
 
 At this point, all three tables have identical data. Let's verify:
 
-<!-- validator-ignore-exec -->
 ```sql
 SELECT * FROM orders_risk ORDER BY order_id;
 SELECT * FROM orders_promo ORDER BY order_id;
@@ -161,7 +161,6 @@ INSERT INTO orders_promo VALUES (1007, 'Grace', 39.90, 0, 'summer_sale');
 
 At this point, the main table is completely unaffected:
 
-<!-- validator-ignore-exec -->
 ```sql
 SELECT * FROM orders ORDER BY order_id;
 -- Still the original 5 rows, with no changes whatsoever
@@ -271,7 +270,6 @@ DATA BRANCH MERGE orders_risk INTO orders;
 
 Verify the main table:
 
-<!-- validator-ignore-exec -->
 ```sql
 SELECT * FROM orders ORDER BY order_id;
 ```
@@ -322,7 +320,6 @@ DATA BRANCH MERGE orders_promo INTO orders WHEN CONFLICT SKIP;
 
 Verify the final result:
 
-<!-- validator-ignore-exec -->
 ```sql
 SELECT * FROM orders ORDER BY order_id;
 ```
@@ -350,6 +347,7 @@ Result:
 
 After branches are no longer needed, clean them up promptly:
 
+<!-- validator-ignore-exec -->
 ```sql
 DATA BRANCH DELETE TABLE orders_risk;
 DATA BRANCH DELETE TABLE orders_promo;
@@ -370,6 +368,7 @@ This is the value of snapshots — turning "rollback" from a high-risk operation
 
 ### Clean Up the Environment
 
+<!-- validator-ignore-exec -->
 ```sql
 DROP SNAPSHOT sp_orders_v1;
 DROP DATABASE demo_branch;

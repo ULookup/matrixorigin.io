@@ -1,4 +1,16 @@
+---
+title: "SUBSTRING_INDEX()"
+doc_type: reference
+mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "This function SUBSTRING_INDEX() returns the substring from string str before count occurrences of the delimiter delim."
+---
 # **SUBSTRING_INDEX()**
+
+> This function SUBSTRING_INDEX() returns the substring from string str before count occurrences of the delimiter delim.
 
 ## **Description**
 

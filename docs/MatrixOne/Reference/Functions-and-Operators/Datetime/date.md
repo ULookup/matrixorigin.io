@@ -1,4 +1,17 @@
+---
+title: "DATE()"
+doc_type: reference
+mysql_compat: partial
+differs_from_mysql:
+  - "Date literals accept only 'yyyy-mm-dd' and 'yyyymmdd' formats; MySQL accepts wider variants (yy-mm-dd, yy/mm/dd, yymmdd, etc.)."
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "Extracts the date part of the date or datetime expression expr."
+---
 # **DATE()**
+
+> Extracts the date part of the date or datetime expression expr.
 
 ## **Description**
 

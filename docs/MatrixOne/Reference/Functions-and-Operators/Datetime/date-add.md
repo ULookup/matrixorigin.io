@@ -1,4 +1,17 @@
+---
+title: "DATE_ADD()"
+doc_type: reference
+mysql_compat: partial
+differs_from_mysql:
+  - "Date literals accept only 'yyyy-mm-dd' and 'yyyymmdd' formats; MySQL accepts wider variants."
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "The DATE_ADD() function adds a time/date interval to a date and then returns the date."
+---
 # **DATE_ADD()**
+
+> The DATE_ADD() function adds a time/date interval to a date and then returns the date.
 
 ## **Description**
 

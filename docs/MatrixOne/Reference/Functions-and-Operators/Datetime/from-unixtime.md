@@ -1,4 +1,17 @@
+---
+title: "FROM_UNIXTIME()"
+doc_type: reference
+mysql_compat: partial
+differs_from_mysql:
+  - "Date literals accept only 'yyyy-mm-dd' and 'yyyymmdd' formats; MySQL accepts wider variants."
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "The FROM_UNIXTIME() function returns a representation of unix_timestamp as a datetime or character string value."
+---
 # **FROM_UNIXTIME()**
+
+> The FROM_UNIXTIME() function returns a representation of unix_timestamp as a datetime or character string value.
 
 ## **Description**
 

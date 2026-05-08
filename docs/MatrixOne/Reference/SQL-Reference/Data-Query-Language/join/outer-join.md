@@ -1,8 +1,9 @@
 ---
 title: "OUTER JOIN"
 doc_type: reference
-mysql_compat: full
-differs_from_mysql: []
+mysql_compat: partial
+differs_from_mysql:
+  - "Overview page that includes FULL OUTER JOIN, which MySQL 8.0 does not support."
 mo_only: []
 since: unknown
 last_updated: 2026-05-08

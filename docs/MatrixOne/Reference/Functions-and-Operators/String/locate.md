@@ -1,4 +1,16 @@
+---
+title: "LOCATE()"
+doc_type: reference
+mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "The LOCATE() function is a function used to find the location of a substring in a string."
+---
 # **LOCATE()**
+
+> The LOCATE() function is a function used to find the location of a substring in a string.
 
 ## **Function Description**
 

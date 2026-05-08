@@ -6,6 +6,8 @@ differs_from_mysql:
   - "ENGINE= clause in table definition not supported (MatrixOne has a single TAE engine)"
   - "Spatial and SET types not supported; MEDIUMINT not supported"
   - "BOOL is a native boolean type, not an INT alias as in MySQL"
+  - "AUTO_INCREMENT step is always 1; @@auto_increment_increment / @@auto_increment_offset are syntactically accepted but inert"
+  - "Partitioning accepts syntax but only HASH and KEY participate in partition pruning (RANGE/LIST/RANGE COLUMNS/LIST COLUMNS are syntax-only); subpartitioning is syntax-only; ADD/DROP/TRUNCATE PARTITION not supported"
 mo_only:
   - "CLUSTER BY (col, …) — pre-sort columns to accelerate queries"
 since: unknown

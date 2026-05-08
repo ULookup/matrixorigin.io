@@ -1,4 +1,16 @@
+---
+title: "TIMESTAMPDIFF()"
+doc_type: reference
+mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "Returns datetime_expr2 − datetime_expr1, where datetime_expr1 and datetime_expr2 are date or datetime expressions."
+---
 # **TIMESTAMPDIFF()**
+
+> Returns datetime_expr2 − datetime_expr1, where datetime_expr1 and datetime_expr2 are date or datetime expressions.
 
 ## **Description**
 

@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 /**
- * Upgrade SQL-Reference pages to the Agent-friendly FULL frontmatter shape:
+ * Upgrade Reference pages to the Agent-friendly FULL frontmatter shape:
  *
  *   ---
- *   title: "..."              (kept)
+ *   title: "..."              (derived from H1 if missing)
  *   doc_type: reference       (added if missing)
- *   mysql_compat: ...         (kept)
+ *   mysql_compat: ...         (kept; derived from classification table when absent)
  *   differs_from_mysql: []    (normalized to list, [] when absent)
  *   mo_only: []               (normalized to list, [] when absent)
  *   since: unknown            (added if missing — per rollout policy)
@@ -16,20 +16,35 @@
  * Also injects a short `> ...` blockquote line immediately under the H1
  * so the summary is visible in the rendered page and in raw markdown.
  *
- * Idempotent: re-running skips files that already carry `llms_summary`.
+ * Idempotent: re-running skips files that already carry `llms_summary`
+ * unless --restyle is set.
+ *
+ * --target selects the corpus / classification profile:
+ *   --target=sql-reference (default)  existing pages already have mysql_compat
+ *   --target=functions-operators      pages may lack frontmatter entirely; pull
+ *                                     mysql_compat from fo-compat-classification.js
  *
  * Usage:
- *   node scripts/upgrade-sql-reference-frontmatter.js            # in-place, all
- *   node scripts/upgrade-sql-reference-frontmatter.js --dry      # report only
- *   node scripts/upgrade-sql-reference-frontmatter.js path/*.md  # specific files
+ *   node scripts/upgrade-sql-reference-frontmatter.js                            # SQL-Reference
+ *   node scripts/upgrade-sql-reference-frontmatter.js --dry                      # report only
+ *   node scripts/upgrade-sql-reference-frontmatter.js --target=functions-operators
+ *   node scripts/upgrade-sql-reference-frontmatter.js path/*.md                  # specific files
  */
 
 import glob from 'fast-glob'
 import { readFileSync, writeFileSync } from 'node:fs'
+import { classify as classifyFO } from './fo-compat-classification.js'
 
 const LAST_UPDATED = '2026-05-08'
 const SINCE = 'unknown'
-const PATTERN = 'docs/MatrixOne/Reference/SQL-Reference/**/*.md'
+const PATTERNS = {
+  'sql-reference':        'docs/MatrixOne/Reference/SQL-Reference/**/*.md',
+  'functions-operators':  'docs/MatrixOne/Reference/Functions-and-Operators/**/*.md',
+}
+const TARGET_ROOTS = {
+  'sql-reference':        'docs/MatrixOne/Reference/SQL-Reference/',
+  'functions-operators':  'docs/MatrixOne/Reference/Functions-and-Operators/',
+}
 const FRONTMATTER_RE = /^---\r?\n([\s\S]*?)\r?\n---\r?\n/
 
 function parseFrontmatter(content) {
@@ -67,8 +82,11 @@ function parseFrontmatter(content) {
 
 function stripQuotes(s) {
   const t = s.trim()
-  if ((t.startsWith('"') && t.endsWith('"')) ||
-      (t.startsWith("'") && t.endsWith("'"))) return t.slice(1, -1)
+  if (t.startsWith('"') && t.endsWith('"')) {
+    // YAML double-quoted scalar: unescape \" and \\ when round-tripping.
+    return t.slice(1, -1).replace(/\\"/g, '"').replace(/\\\\/g, '\\')
+  }
+  if (t.startsWith("'") && t.endsWith("'")) return t.slice(1, -1)
   return t
 }
 
@@ -105,14 +123,20 @@ function emitFrontmatter(data, order) {
 }
 
 // Strip inline markdown (bold, italic, code, backticks, links) to plain text.
+// NOTE: underscore emphasis is only stripped when flanked by word boundaries
+// on the outside — otherwise identifiers like `JSON_SET` would lose their
+// underscores ("_SET_" matches naive /_(.+)_/).
 function stripInlineMarkdown(s) {
   return s
+    // Double-backtick code spans (``OCT(N)``) before single-backtick ones to
+    // avoid leaving a trailing backtick.
+    .replace(/``([^`]+)``/g, '$1')
     .replace(/`([^`]+)`/g, '$1')
     .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')
     .replace(/\*\*([^*]+)\*\*/g, '$1')
-    .replace(/\*([^*]+)\*/g, '$1')
-    .replace(/__([^_]+)__/g, '$1')
-    .replace(/_([^_]+)_/g, '$1')
+    .replace(/(?<![\*\w])\*([^*\s][^*]*?[^*\s])\*(?!\w)/g, '$1')
+    .replace(/(?<![_\w])__([^_\s][^_]*?[^_\s])__(?!\w)/g, '$1')
+    .replace(/(?<![_\w])_([^_\s][^_]*?[^_\s])_(?!\w)/g, '$1')
     .trim()
 }
 
@@ -140,31 +164,63 @@ function deriveSummary(body, title) {
   }
   if (current.length) paragraphs.push(current.join(' '))
 
-  // Find the first paragraph after a "description" H2; if absent, pick the first real paragraph.
-  let summary = null
-  for (let i = 0; i < paragraphs.length; i++) {
-    const p = paragraphs[i]
-    if (/^#{1,6}\s/.test(p)) {
-      const heading = p.replace(/^#+\s*/, '').toLowerCase()
-      if (/description|overview|summary|introduction/.test(heading)) {
-        // find next non-heading paragraph
-        for (let j = i + 1; j < paragraphs.length; j++) {
-          if (!/^#{1,6}\s/.test(paragraphs[j])) { summary = paragraphs[j]; break }
+  // A paragraph counts as "useful" if it's non-trivial prose — not a heading,
+  // not a blockquote, not HTML/admonition/table, and carries at least a short
+  // sentence. The aggregate-function pages frequently open with a one-word
+  // lead like "Aggregate function." so we keep collecting until we have at
+  // least ~30 chars of prose or hit a non-prose boundary.
+  function isProse(p) {
+    if (/^#{1,6}\s/.test(p)) return false
+    if (/^>\s/.test(p)) return false
+    if (/^!{3}\s/.test(p)) return false
+    if (p.startsWith('<!--') || p.startsWith('|') || p.startsWith('<')) return false
+    return true
+  }
+
+  // Gather prose paragraphs starting from fromIdx (inclusive) up to endIdx
+  // (exclusive, default: end of body), joining them with a space. Stops at
+  // the next heading once we have any content.
+  function collectLead(fromIdx, endIdx) {
+    const end = endIdx === undefined ? paragraphs.length : endIdx
+    const pieces = []
+    for (let i = fromIdx; i < end; i++) {
+      const p = paragraphs[i]
+      if (/^#{1,6}\s/.test(p)) {
+        if (pieces.length) break          // stop at next heading once we have something
+        else continue                     // skip leading headings
+      }
+      if (!isProse(p)) {
+        if (pieces.length) break
+        else continue
+      }
+      pieces.push(p)
+      const joined = pieces.join(' ')
+      if (joined.length >= 50) break      // enough to build a sentence
+    }
+    return pieces.join(' ')
+  }
+
+  // If the page opens with prose BEFORE any H2, that's the intro — use it.
+  // This matches pages like Vector/arithmetic.md that start with an
+  // overview paragraph rather than a "## Description" section.
+  let firstH2Idx = paragraphs.findIndex(p => /^##\s/.test(p))
+  if (firstH2Idx === -1) firstH2Idx = paragraphs.length
+  const introLead = collectLead(0, firstH2Idx)
+
+  let summary = introLead || null
+  if (!summary) {
+    for (let i = 0; i < paragraphs.length; i++) {
+      const p = paragraphs[i]
+      if (/^#{1,6}\s/.test(p)) {
+        const heading = p.replace(/^#+\s*/, '').toLowerCase()
+        if (/description|overview|summary|introduction/.test(heading)) {
+          summary = collectLead(i + 1)
+          if (summary) break
         }
-        if (summary) break
       }
     }
   }
-  if (!summary) {
-    for (const p of paragraphs) {
-      if (/^#{1,6}\s/.test(p)) continue
-      if (/^>\s/.test(p)) continue // skip existing blockquotes
-      if (/^!{3}\s/.test(p)) continue // mkdocs admonitions
-      if (p.startsWith('<!--') || p.startsWith('|')) continue
-      summary = p
-      break
-    }
-  }
+  if (!summary) summary = collectLead(0)
   if (!summary) summary = `${title} reference.`
 
   summary = stripInlineMarkdown(summary)
@@ -180,6 +236,29 @@ function deriveSummary(body, title) {
   // truncate on word boundary
   const truncated = summary.slice(0, 277).replace(/\s+\S*$/, '')
   return truncated + '...'
+}
+
+// Replace the existing `> …` blockquote immediately under the H1 with a fresh
+// one-line summary. If there isn't one, fall back to inject.
+function rewriteBlockquote(body, summary) {
+  const lines = body.split(/\r?\n/)
+  let h1Idx = -1
+  for (let i = 0; i < lines.length; i++) {
+    if (/^#\s+\S/.test(lines[i])) { h1Idx = i; break }
+  }
+  if (h1Idx === -1) return body
+  let j = h1Idx + 1
+  while (j < lines.length && lines[j].trim() === '') j++
+  if (j >= lines.length || !lines[j].startsWith('>')) {
+    return injectBlockquote(body, summary)
+  }
+  // drop consecutive blockquote lines (in case the summary was multi-line)
+  let k = j
+  while (k < lines.length && lines[k].startsWith('>')) k++
+  const head = lines.slice(0, h1Idx + 1)
+  const tail = lines.slice(k)
+  while (tail.length && tail[0].trim() === '') tail.shift()
+  return [...head, '', `> ${summary}`, '', ...tail].join('\n')
 }
 
 // Insert a `> summary` blockquote line immediately under the H1, unless one already exists.
@@ -206,78 +285,168 @@ function injectBlockquote(body, summary) {
   return [...head, '', bqLine, '', ...tail].join('\n')
 }
 
-function upgradeOne(filePath, { restyle = false } = {}) {
-  const raw = readFileSync(filePath, 'utf-8')
-  const { data, rawBlock, body } = parseFrontmatter(raw)
-  if (!data) {
-    return { path: filePath, skipped: true, reason: 'no frontmatter' }
+// Extract a title from the first H1 by stripping markdown emphasis and any
+// backslash-escapes that mkdocs-material uses to prevent underscores from
+// being interpreted as italics (`# **STR\_TO\_DATE()**` -> `STR_TO_DATE()`).
+function extractTitleFromH1(body) {
+  const lines = body.split(/\r?\n/)
+  for (const line of lines) {
+    const m = line.match(/^#\s+(.+?)\s*$/)
+    if (m) {
+      return m[1]
+        .replace(/^\*\*|\*\*$/g, '')
+        .replace(/^\*|\*$/g, '')
+        .replace(/\\(_|\*|`|\[|\])/g, '$1')
+        .trim()
+    }
   }
+  return null
+}
+
+function upgradeOne(filePath, { restyle = false, regenSummary = false, target = 'sql-reference' } = {}) {
+  const raw = readFileSync(filePath, 'utf-8')
+  const parsed = parseFrontmatter(raw)
+  const bodyFull = parsed.data ? parsed.body : raw
+  const data = parsed.data || {}
   const alreadyFull = 'llms_summary' in data
-  if (alreadyFull && !restyle) {
+  if (alreadyFull && !restyle && !regenSummary) {
     return { path: filePath, skipped: true, reason: 'already FULL' }
   }
-  if (!('mysql_compat' in data)) {
-    return { path: filePath, skipped: true, reason: 'missing mysql_compat' }
+
+  // Resolve title: existing frontmatter > first H1 > filename fallback.
+  const h1Title = extractTitleFromH1(bodyFull)
+  const title = data.title || h1Title || filePath.split('/').pop().replace(/\.md$/, '')
+
+  // Resolve mysql_compat. If the page already declares one, keep it. Otherwise
+  // look up the classification table for the active target.
+  let mysqlCompat = data.mysql_compat
+  let extraDiffers = []
+  let extraMoOnly = []
+  let classifyReason = null
+  if (!mysqlCompat) {
+    if (target === 'functions-operators') {
+      const root = TARGET_ROOTS[target]
+      const rel = filePath.startsWith(root) ? filePath.slice(root.length) : filePath
+      const cls = classifyFO(rel)
+      mysqlCompat = cls.compat
+      if (Array.isArray(cls.differs)) extraDiffers = cls.differs
+      if (Array.isArray(cls.mo_only_notes)) extraMoOnly = cls.mo_only_notes
+      classifyReason = cls.note || null
+    } else {
+      return { path: filePath, skipped: true, reason: 'missing mysql_compat (no classifier for target)' }
+    }
   }
 
-  const title = data.title || filePath.split('/').pop().replace(/\.md$/, '')
+  // Normalize fields — preserve existing list entries, append any classifier
+  // hints that aren't already covered. Even when re-styling an already-FULL
+  // page, a freshly-updated DIR_DEFAULTS entry should flow through so matrix
+  // consumers see the rationale.
+  const existingDiffers = Array.isArray(data.differs_from_mysql) ? data.differs_from_mysql : []
+  const existingMoOnly = Array.isArray(data.mo_only) ? data.mo_only : []
+  if (target === 'functions-operators' && !existingDiffers.length && !extraDiffers.length && data.mysql_compat) {
+    // If the page already declared a compat value but no differs and the
+    // classifier has something to contribute, pull it in.
+    const root = TARGET_ROOTS[target]
+    const rel = filePath.startsWith(root) ? filePath.slice(root.length) : filePath
+    const cls = classifyFO(rel)
+    if (Array.isArray(cls.differs)) extraDiffers = cls.differs
+    if (Array.isArray(cls.mo_only_notes) && !existingMoOnly.length) extraMoOnly = cls.mo_only_notes
+  }
+  const mergedDiffers = dedupe([...existingDiffers, ...extraDiffers])
+  const mergedMoOnly = dedupe([...existingMoOnly, ...extraMoOnly])
 
-  // Normalize fields
   const newData = {}
   newData.title = title
   newData.doc_type = data.doc_type || 'reference'
-  newData.mysql_compat = data.mysql_compat
-  newData.differs_from_mysql = Array.isArray(data.differs_from_mysql) ? data.differs_from_mysql : []
-  newData.mo_only = Array.isArray(data.mo_only) ? data.mo_only : []
+  newData.mysql_compat = mysqlCompat
+  newData.differs_from_mysql = mergedDiffers
+  newData.mo_only = mergedMoOnly
   newData.since = data.since || SINCE
   newData.last_updated = data.last_updated || LAST_UPDATED
 
   // When re-styling an already-FULL page, keep the existing summary verbatim
-  // rather than regenerating it (it may have been hand-tuned).
-  const summary = alreadyFull ? data.llms_summary : deriveSummary(body, title)
+  // rather than regenerating it (it may have been hand-tuned). --regen-summary
+  // forces regeneration, e.g. after fixing a bug in the markdown stripper.
+  const summary = (alreadyFull && !regenSummary)
+    ? data.llms_summary
+    : deriveSummary(bodyFull, title)
   newData.llms_summary = summary
 
   const order = ['title', 'doc_type', 'mysql_compat', 'differs_from_mysql', 'mo_only', 'since', 'last_updated', 'llms_summary']
 
   const newFm = emitFrontmatter(newData, order)
-  // Only inject the blockquote if we generated a fresh summary — respect the
-  // page's existing layout when re-styling.
-  const newBody = alreadyFull ? body : injectBlockquote(body, summary)
+  // Decide how to handle the blockquote line under H1:
+  //   - first upgrade → inject fresh
+  //   - restyle only (summary unchanged) → leave body alone
+  //   - regen-summary with a changed summary → rewrite the blockquote
+  let newBody
+  if (!alreadyFull) {
+    newBody = injectBlockquote(bodyFull, summary)
+  } else if (regenSummary && summary !== data.llms_summary) {
+    newBody = rewriteBlockquote(bodyFull, summary)
+  } else {
+    newBody = bodyFull
+  }
   const out = newFm + newBody
 
-  // Skip write if content is identical (avoid spurious mtime churn)
   if (out === raw) {
     return { path: filePath, skipped: true, reason: 'no changes needed' }
   }
 
-  return { path: filePath, skipped: false, summary, out }
+  return { path: filePath, skipped: false, summary, out, compat: mysqlCompat, classifyReason }
+}
+
+function dedupe(arr) {
+  const seen = new Set()
+  const out = []
+  for (const v of arr) {
+    if (seen.has(v)) continue
+    seen.add(v)
+    out.push(v)
+  }
+  return out
+}
+
+function parseTarget(argv) {
+  const t = argv.find(a => a.startsWith('--target='))
+  if (!t) return 'sql-reference'
+  const v = t.slice('--target='.length)
+  if (!PATTERNS[v]) throw new Error(`Unknown --target=${v} (allowed: ${Object.keys(PATTERNS).join(', ')})`)
+  return v
 }
 
 async function main() {
   const argv = process.argv.slice(2)
   const dry = argv.includes('--dry')
   const restyle = argv.includes('--restyle')
+  const regenSummary = argv.includes('--regen-summary')
+  const target = parseTarget(argv)
   const files = argv.filter(a => !a.startsWith('--'))
-  const targets = files.length > 0 ? files : await glob(PATTERN)
+  const targets = files.length > 0 ? files : await glob(PATTERNS[target])
 
   let upgraded = 0, skipped = 0
+  const dist = { full: 0, partial: 0, none: 0, mo_only: 0, unknown: 0 }
   for (const f of targets) {
-    const res = upgradeOne(f, { restyle })
+    const res = upgradeOne(f, { restyle, regenSummary, target })
     if (res.skipped) {
       skipped++
       if (dry) console.log(`SKIP  ${f}  (${res.reason})`)
       continue
     }
     upgraded++
+    if (res.compat && dist[res.compat] !== undefined) dist[res.compat]++
     if (dry) {
-      console.log(`UPGRADE ${f}`)
+      console.log(`UPGRADE ${f}  [${res.compat || '?'}]`)
       console.log(`   summary: ${res.summary}`)
+      if (res.classifyReason) console.log(`   note:    ${res.classifyReason}`)
     } else {
       writeFileSync(f, res.out, 'utf-8')
-      console.log(`✓ ${f}`)
+      console.log(`✓ ${f}  [${res.compat || '?'}]`)
     }
   }
-  console.log(`\nUpgraded: ${upgraded}  Skipped: ${skipped}  Total: ${targets.length}`)
+  console.log(`\nTarget: ${target}`)
+  console.log(`Upgraded: ${upgraded}  Skipped: ${skipped}  Total: ${targets.length}`)
+  console.log(`compat distribution (this run): full=${dist.full} partial=${dist.partial} none=${dist.none} mo_only=${dist.mo_only} unknown=${dist.unknown}`)
 }
 
 main().catch(err => { console.error(err); process.exit(1) })

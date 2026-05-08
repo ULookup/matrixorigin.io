@@ -1,4 +1,16 @@
+---
+title: "TIMEDIFF()"
+doc_type: reference
+mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "TIMEDIFF() returns expr1 − expr2 expressed as a time value."
+---
 # **TIMEDIFF()**
+
+> TIMEDIFF() returns expr1 − expr2 expressed as a time value.
 
 ## **Description**
 

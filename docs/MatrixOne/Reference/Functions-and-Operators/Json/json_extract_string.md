@@ -1,4 +1,17 @@
+---
+title: "JSON_EXTRACT_FLOAT64()"
+doc_type: reference
+mysql_compat: mo_only
+differs_from_mysql: []
+mo_only:
+  - "MatrixOne convenience wrapper returning a string result directly."
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "JSON_EXTRACT_FLOAT64() is used to extract the numeric value of the specified path from JSON data."
+---
 # **JSON_EXTRACT_FLOAT64()**
+
+> JSON_EXTRACT_FLOAT64() is used to extract the numeric value of the specified path from JSON data.
 
 ## **Function description**
 

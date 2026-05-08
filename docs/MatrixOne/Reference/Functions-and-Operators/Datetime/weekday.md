@@ -1,4 +1,16 @@
+---
+title: "WEEKDAY()"
+doc_type: reference
+mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "Returns the weekday index for date (0 = Monday, 1 = Tuesday, … 6 = Sunday)."
+---
 # **WEEKDAY()**
+
+> Returns the weekday index for date (0 = Monday, 1 = Tuesday, … 6 = Sunday).
 
 ## **Description**
 

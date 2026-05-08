@@ -1,4 +1,16 @@
+---
+title: "CONCAT_WS()"
+doc_type: reference
+mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "This function CONCAT_WS() stands for Concatenate With Separator and is a special form of CONCAT()."
+---
 # **CONCAT_WS()**
+
+> This function CONCAT_WS() stands for Concatenate With Separator and is a special form of CONCAT().
 
 ## **Description**
 

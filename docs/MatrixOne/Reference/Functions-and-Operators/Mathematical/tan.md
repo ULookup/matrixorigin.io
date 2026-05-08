@@ -1,4 +1,16 @@
+---
+title: "TAN()"
+doc_type: reference
+mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "The TAN() function returns the tangent of input number(given in radians)."
+---
 # **TAN()**
+
+> The TAN() function returns the tangent of input number(given in radians).
 
 ## **Description**
 

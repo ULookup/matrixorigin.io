@@ -1,4 +1,16 @@
+---
+title: "PI()"
+doc_type: reference
+mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "PI() returns the value of π (pi)."
+---
 # **PI()**
+
+> PI() returns the value of π (pi).
 
 ## **Description**
 

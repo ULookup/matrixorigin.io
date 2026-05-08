@@ -1,4 +1,16 @@
+---
+title: "LPAD()"
+doc_type: reference
+mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "This function LPAD(str,len,padstr) returns the string str, left-padded with the string padstr to a length of len characters."
+---
 # **LPAD()**
+
+> This function LPAD(str,len,padstr) returns the string str, left-padded with the string padstr to a length of len characters.
 
 ## **Description**
 

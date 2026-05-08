@@ -1,4 +1,18 @@
+---
+title: "YEAR()"
+doc_type: reference
+mysql_compat: partial
+differs_from_mysql:
+  - "Date literals accept only 'yyyy-mm-dd' and 'yyyymmdd' formats; MySQL accepts wider variants."
+mo_only:
+  - "TOYEAR() is a MatrixOne alias for YEAR() with no MySQL counterpart."
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "The YEAR() or TOYEAR() function returns the year part for a given date (a number from 1000 to 9999)."
+---
 # **YEAR()**
+
+> The YEAR() or TOYEAR() function returns the year part for a given date (a number from 1000 to 9999).
 
 ## **Description**
 

@@ -1,4 +1,16 @@
+---
+title: "WEEK()"
+doc_type: reference
+mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "Used to calculate the week number for a given date."
+---
 # **WEEK()**
+
+> Used to calculate the week number for a given date.
 
 ## **Description**
 

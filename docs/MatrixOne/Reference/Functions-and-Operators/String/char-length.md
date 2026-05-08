@@ -1,4 +1,16 @@
+---
+title: "CHAR_LENGTH()"
+doc_type: reference
+mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "The CHAR_LENGTH function returns the length of the string str, measured in code points."
+---
 # **CHAR_LENGTH()**
+
+> The CHAR_LENGTH function returns the length of the string str, measured in code points.
 
 ## **Description**
 

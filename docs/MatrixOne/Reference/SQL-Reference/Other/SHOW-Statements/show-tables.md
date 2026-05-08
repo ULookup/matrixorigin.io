@@ -1,8 +1,9 @@
 ---
 title: "SHOW TABLES"
 doc_type: reference
-mysql_compat: full
-differs_from_mysql: []
+mysql_compat: partial
+differs_from_mysql:
+  - "Result column is named 'name' rather than MySQL's 'Tables_in_<dbname>'."
 mo_only: []
 since: unknown
 last_updated: 2026-05-08

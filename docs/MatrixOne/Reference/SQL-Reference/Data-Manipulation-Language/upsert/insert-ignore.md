@@ -4,6 +4,8 @@ doc_type: reference
 mysql_compat: partial
 differs_from_mysql:
   - "LOW_PRIORITY / DELAYED / HIGH_PRIORITY modifiers not supported"
+  - "Duplicates are silently ignored; MySQL emits a warning for each skipped row."
+  - "Does not ignore NULL-into-NOT-NULL, type-conversion, or partition-mismatch errors as MySQL does."
 mo_only: []
 since: unknown
 last_updated: 2026-05-08

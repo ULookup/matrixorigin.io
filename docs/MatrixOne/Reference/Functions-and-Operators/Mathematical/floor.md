@@ -1,4 +1,16 @@
+---
+title: "FLOOR()"
+doc_type: reference
+mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "The FLOOR() function returns the largest round number that is less than or equal to the number."
+---
 # **FLOOR()**
+
+> The FLOOR() function returns the largest round number that is less than or equal to the number.
 
 ## **Description**
 

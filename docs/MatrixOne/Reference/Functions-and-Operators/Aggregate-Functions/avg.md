@@ -1,4 +1,16 @@
+---
+title: "AVG"
+doc_type: reference
+mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "Aggregate function. The AVG() function calculates the average value of the argument."
+---
 # **AVG**
+
+> Aggregate function. The AVG() function calculates the average value of the argument.
 
 ## **Description**
 

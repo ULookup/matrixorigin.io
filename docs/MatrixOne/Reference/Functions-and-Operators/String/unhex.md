@@ -1,4 +1,16 @@
+---
+title: "UNHEX()"
+doc_type: reference
+mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "For a string argument str, UNHEX() interprets each pair of characters in the argument as a hexadecimal number and converts it to the byte represented by the number."
+---
 # **UNHEX()**
+
+> For a string argument str, UNHEX() interprets each pair of characters in the argument as a hexadecimal number and converts it to the byte represented by the number.
 
 ## **Description**
 

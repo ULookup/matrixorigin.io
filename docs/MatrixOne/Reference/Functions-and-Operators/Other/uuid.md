@@ -1,4 +1,16 @@
+---
+title: "UUID()"
+doc_type: reference
+mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "Returns a Universal Unique Identifier (UUID) generated according to RFC 4122, \"A Universally Unique IDentifier (UUID) URN Namespace\"."
+---
 # **UUID()**
+
+> Returns a Universal Unique Identifier (UUID) generated according to RFC 4122, "A Universally Unique IDentifier (UUID) URN Namespace".
 
 ## **Description**
 

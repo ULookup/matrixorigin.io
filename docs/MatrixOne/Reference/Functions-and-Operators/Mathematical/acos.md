@@ -1,4 +1,16 @@
+---
+title: "ACOS()"
+doc_type: reference
+mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "The ACOS() function returns the arccosine(given in radians) of the input number."
+---
 # **ACOS()**
+
+> The ACOS() function returns the arccosine(given in radians) of the input number.
 
 ## **Description**
 

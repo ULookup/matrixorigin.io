@@ -1,4 +1,16 @@
+---
+title: "ROW_NUMBER()"
+doc_type: reference
+mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "ROW_NUMBER() provides a unique ordinal number for each row in the dataset, starting at one and ending with the last row in the result set."
+---
 # **ROW_NUMBER()**
+
+> ROW_NUMBER() provides a unique ordinal number for each row in the dataset, starting at one and ending with the last row in the result set.
 
 ## **Description**
 

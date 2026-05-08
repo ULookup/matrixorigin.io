@@ -1,4 +1,17 @@
+---
+title: "STARTSWITH()"
+doc_type: reference
+mysql_compat: mo_only
+differs_from_mysql: []
+mo_only:
+  - "STARTSWITH() is a MatrixOne helper; MySQL has no direct equivalent."
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "Returns 1 whether string starts with the specified prefix, otherwise it returns 0.This function is case sensitive."
+---
 # **STARTSWITH()**
+
+> Returns 1 whether string starts with the specified prefix, otherwise it returns 0.This function is case sensitive.
 
 ## **Description**
 

@@ -3,15 +3,15 @@ title: "ELT()"
 doc_type: reference
 mysql_compat: full
 differs_from_mysql: []
-mo_only: false
+mo_only: []
 since: v3.0.11
 last_updated: 2026-05-08
-llms_summary: "ELT returns the N-th string argument counting from 1, yielding NULL when N is out of range or any referenced argument is NULL in MatrixOne."
+llms_summary: "The ELT() function returns the N-th string argument, counting from 1."
 ---
 
 # **ELT()**
 
-> `ELT(N, str1, str2, ...)` returns the N-th string argument counting from 1, and returns `NULL` when `N` is `NULL`, `N < 1`, `N` exceeds the number of string arguments, or the selected string argument itself is `NULL`.
+> The ELT() function returns the N-th string argument, counting from 1.
 
 ## **Description**
 

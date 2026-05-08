@@ -1,4 +1,16 @@
+---
+title: "SUBSTRING()"
+doc_type: reference
+mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "SUBSTR() and MID() are both synonyms of SUBSTRING()."
+---
 # **SUBSTRING()**
+
+> SUBSTR() and MID() are both synonyms of SUBSTRING().
 
 ## **Description**
 

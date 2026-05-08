@@ -1,4 +1,17 @@
+---
+title: "TIMESTAMP()"
+doc_type: reference
+mysql_compat: partial
+differs_from_mysql:
+  - "MatrixOne TIMESTAMP range is '0001-01-01'–'9999-12-31' vs MySQL '1970-01-01'–'2038-01-19' (compat doc: Data Types)."
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "With a single argument, this function returns the date or datetime expression expr as a datetime value."
+---
 # **TIMESTAMP()**
+
+> With a single argument, this function returns the date or datetime expression expr as a datetime value.
 
 ## **Description**
 

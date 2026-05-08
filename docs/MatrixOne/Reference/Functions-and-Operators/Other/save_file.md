@@ -1,4 +1,17 @@
+---
+title: "SAVE_FILE()"
+doc_type: reference
+mysql_compat: mo_only
+differs_from_mysql: []
+mo_only:
+  - "SAVE_FILE() writes to a MatrixOne stage; no MySQL equivalent."
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "The SAVE_FILE() function is used to write content to the file pointed to by datalink, and the reference line returns the byte length of the written content."
+---
 # **SAVE_FILE()**
+
+> The SAVE_FILE() function is used to write content to the file pointed to by datalink, and the reference line returns the byte length of the written content.
 
 ## **Function description**
 

@@ -1,4 +1,16 @@
+---
+title: "COS()"
+doc_type: reference
+mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "The COS() function returns the cosine of input number(given in radians)."
+---
 # **COS()**
+
+> The COS() function returns the cosine of input number(given in radians).
 
 ## **Description**
 

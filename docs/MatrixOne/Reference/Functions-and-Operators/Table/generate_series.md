@@ -1,4 +1,17 @@
+---
+title: "GENERATE_SERIES()"
+doc_type: reference
+mysql_compat: mo_only
+differs_from_mysql: []
+mo_only:
+  - "Table-valued function; no direct MySQL equivalent."
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "GENERATE_SERIES() can generate a sequence from the start value to the end value, usually used in the following scenarios:"
+---
 # **GENERATE_SERIES()**
+
+> GENERATE_SERIES() can generate a sequence from the start value to the end value, usually used in the following scenarios:
 
 ## **Function description**
 

@@ -1,4 +1,16 @@
+---
+title: "STRCMP()"
+doc_type: reference
+mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "The STRCMP() function is used to compare two strings str1 and str2."
+---
 # **STRCMP()**
+
+> The STRCMP() function is used to compare two strings str1 and str2.
 
 ## **Function Description**
 

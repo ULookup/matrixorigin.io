@@ -1,4 +1,16 @@
+---
+title: "JSON_EXTRACT()"
+doc_type: reference
+mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "JSON EXTRACT() is a JSON query function that can be used to query JSON documents."
+---
 # **JSON_EXTRACT()**
+
+> JSON EXTRACT() is a JSON query function that can be used to query JSON documents.
 
 ## **Function description**
 

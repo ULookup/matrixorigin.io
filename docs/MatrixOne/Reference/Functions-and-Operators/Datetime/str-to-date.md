@@ -1,4 +1,16 @@
+---
+title: "STR_TO_DATE()"
+doc_type: reference
+mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "The STR_TO_DATE() function converts a string to a date or datetime type in the specified date or time display format, synonymous with TO_DATE()."
+---
 # **STR\_TO\_DATE()**
+
+> The STR_TO_DATE() function converts a string to a date or datetime type in the specified date or time display format, synonymous with TO_DATE().
 
 ## **Function Description**
 

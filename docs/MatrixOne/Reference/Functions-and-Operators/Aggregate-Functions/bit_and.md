@@ -1,4 +1,16 @@
+---
+title: "BIT_AND"
+doc_type: reference
+mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "Aggregate function. The BIT_AND(expr) function returns the bitwise AND of all bits in expr."
+---
 # **BIT_AND**
+
+> Aggregate function. The BIT_AND(expr) function returns the bitwise AND of all bits in expr.
 
 ## **Description**
 

@@ -1,4 +1,16 @@
+---
+title: "REVERSE()"
+doc_type: reference
+mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "Returns the string str with the order of the characters reversed."
+---
 # **REVERSE()**
+
+> Returns the string str with the order of the characters reversed.
 
 ## **Description**
 

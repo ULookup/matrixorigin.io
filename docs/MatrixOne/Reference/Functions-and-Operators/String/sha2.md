@@ -1,4 +1,16 @@
+---
+title: "SHA2()"
+doc_type: reference
+mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "The SHA2() encryption function is used to calculate the SHA2 hash of the input string."
+---
 # **SHA2()**
+
+> The SHA2() encryption function is used to calculate the SHA2 hash of the input string.
 
 ## **Function Description**
 

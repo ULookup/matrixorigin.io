@@ -1,4 +1,16 @@
+---
+title: "COUNT"
+doc_type: reference
+mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "Aggregate function. The COUNT() function calculates the number of records returned by a select query."
+---
 # **COUNT**
+
+> Aggregate function. The COUNT() function calculates the number of records returned by a select query.
 
 ## **Description**
 

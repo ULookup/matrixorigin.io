@@ -1,4 +1,18 @@
+---
+title: "TO_DAYS()"
+doc_type: reference
+mysql_compat: partial
+differs_from_mysql:
+  - "Two-digit year handling differs: MatrixOne completes '08-10-07' to year 0008; MySQL interprets it as 2008."
+  - "Dates '0000-00-00' and '0000-01-01' raise an error in MatrixOne rather than being accepted as MySQL does."
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "TO_DAYS() is used to calculate the number of days between a given date and the start date of the Gregorian calendar (January 1, 0000)."
+---
 # **TO_DAYS()**
+
+> TO_DAYS() is used to calculate the number of days between a given date and the start date of the Gregorian calendar (January 1, 0000).
 
 ## **Description**
 

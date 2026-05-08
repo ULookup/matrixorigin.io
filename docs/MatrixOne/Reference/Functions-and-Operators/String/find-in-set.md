@@ -1,4 +1,16 @@
+---
+title: "FIND_IN_SET()"
+doc_type: reference
+mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "This function FIND_IN_SET() returns a value in the range of 1 to *N* if the string str is in the string list strlist consisting of *N* substrings."
+---
 # **FIND_IN_SET()**
+
+> This function FIND_IN_SET() returns a value in the range of 1 to *N* if the string str is in the string list strlist consisting of *N* substrings.
 
 ## **Description**
 

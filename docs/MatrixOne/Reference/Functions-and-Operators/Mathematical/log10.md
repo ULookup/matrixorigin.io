@@ -1,4 +1,16 @@
+---
+title: "LOG10()"
+doc_type: reference
+mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "LOG10(X) returns the base-10 logarithm of X."
+---
 # **LOG10()**
+
+> LOG10(X) returns the base-10 logarithm of X.
 
 ## **Description**
 

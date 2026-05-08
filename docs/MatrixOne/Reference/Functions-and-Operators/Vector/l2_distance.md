@@ -1,4 +1,17 @@
+---
+title: "L2_DISTANCE()"
+doc_type: reference
+mysql_compat: mo_only
+differs_from_mysql: []
+mo_only:
+  - "Vector type and related distance/norm/clustering functions are MatrixOne extensions (compat doc: Data Types — \"MatrixOne supports vector types\")."
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "The L2_DISTANCE() function is used to calculate the Euclidean distance between two vectors."
+---
 # L2_DISTANCE()
+
+> The L2_DISTANCE() function is used to calculate the Euclidean distance between two vectors.
 
 ## Function Description
 

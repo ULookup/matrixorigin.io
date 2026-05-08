@@ -1,4 +1,17 @@
+---
+title: "BITMAP function"
+doc_type: reference
+mysql_compat: mo_only
+differs_from_mysql: []
+mo_only:
+  - "BITMAP aggregates are MatrixOne extensions."
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "A BITMAP function is a set of built-in functions for processing bitmaps, which are contiguous pieces of memory stored as binary data types."
+---
 # BITMAP function
+
+> A BITMAP function is a set of built-in functions for processing bitmaps, which are contiguous pieces of memory stored as binary data types.
 
 ## Function Description
 

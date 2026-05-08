@@ -1,4 +1,17 @@
+---
+title: "CURRENT_USER, CURRENT_USER()"
+doc_type: reference
+mysql_compat: partial
+differs_from_mysql:
+  - "Return format is 'username@0.0.0.0' rather than MySQL's 'username@host' with a resolved client host."
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "Returns the current user account; the returned account format is username@hostname."
+---
 # **CURRENT_USER, CURRENT_USER()**
+
+> Returns the current user account; the returned account format is username@hostname.
 
 ## **Description**
 

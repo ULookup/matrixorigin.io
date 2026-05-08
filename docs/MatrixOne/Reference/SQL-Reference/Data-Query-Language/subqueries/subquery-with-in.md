@@ -7,7 +7,7 @@ differs_from_mysql:
 mo_only: []
 since: unknown
 last_updated: 2026-05-08
-llms_summary: "A subquery can be used with the IN operator as \\\"expression IN (subquery)\\\"."
+llms_summary: "A subquery can be used with the IN operator as \"expression IN (subquery)\"."
 ---
 # **Subqueries with IN**
 

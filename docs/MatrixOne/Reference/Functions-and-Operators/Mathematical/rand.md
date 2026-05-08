@@ -1,4 +1,16 @@
+---
+title: "RAND()"
+doc_type: reference
+mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "The RAND() function is used to generate a Float64 type random number between 0 and 1."
+---
 # **RAND()**
+
+> The RAND() function is used to generate a Float64 type random number between 0 and 1.
 
 ## **Description**
 

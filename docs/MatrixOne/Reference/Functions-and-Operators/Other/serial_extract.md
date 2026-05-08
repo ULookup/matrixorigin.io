@@ -1,4 +1,17 @@
+---
+title: "SERIAL_EXTRACT function"
+doc_type: reference
+mysql_compat: mo_only
+differs_from_mysql: []
+mo_only:
+  - "SERIAL_EXTRACT() is a MatrixOne internal serial-column extractor."
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "The SERIAL_EXTRACT() function is used to extract the individual elements in a sequence/tuple value and is used in conjunction with the functions MAX(), MIN(), SERIAL(), SERIAL_NULL()."
+---
 # SERIAL_EXTRACT function
+
+> The SERIAL_EXTRACT() function is used to extract the individual elements in a sequence/tuple value and is used in conjunction with the functions MAX(), MIN(), SERIAL(), SERIAL_NULL().
 
 ## Function Description
 

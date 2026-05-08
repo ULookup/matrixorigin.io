@@ -1,4 +1,16 @@
+---
+title: "JSON_QUOTE()"
+doc_type: reference
+mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "The JSON_QUOTE function is used to convert a string value to a string in JSON format."
+---
 # **JSON_QUOTE()**
+
+> The JSON_QUOTE function is used to convert a string value to a string in JSON format.
 
 ## **Function description**
 

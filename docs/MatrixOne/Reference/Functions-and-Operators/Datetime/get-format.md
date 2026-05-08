@@ -3,15 +3,15 @@ title: "GET_FORMAT()"
 doc_type: reference
 mysql_compat: full
 differs_from_mysql: []
-mo_only: false
+mo_only: []
 since: v3.0.11
 last_updated: 2026-05-08
-llms_summary: "GET_FORMAT returns the MySQL-style locale-specific format string for DATE, TIME, or DATETIME values across USA, EUR, JIS, ISO, and INTERNAL regions in MatrixOne."
+llms_summary: "The GET_FORMAT() function returns the MySQL-style format string used by locale-specific date/time formatting for a given type (DATE, TIME, or DATETIME) and region (EUR, USA, JIS, ISO, or INTERNAL)."
 ---
 
 # **GET_FORMAT()**
 
-> `GET_FORMAT(type, region)` returns the MySQL-style locale-specific format string for `DATE`, `TIME`, or `DATETIME` values across `USA`, `EUR`, `JIS`, `ISO`, and `INTERNAL` regions; returns `NULL` for unsupported type or region.
+> The GET_FORMAT() function returns the MySQL-style format string used by locale-specific date/time formatting for a given type (DATE, TIME, or DATETIME) and region (EUR, USA, JIS, ISO, or INTERNAL).
 
 ## **Description**
 

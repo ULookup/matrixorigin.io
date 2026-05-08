@@ -3,15 +3,15 @@ title: "CUME_DIST()"
 doc_type: reference
 mysql_compat: full
 differs_from_mysql: []
-mo_only: false
+mo_only: []
 since: v3.0.11
 last_updated: 2026-05-08
-llms_summary: "CUME_DIST returns the cumulative distribution of the current row within its window partition as a DOUBLE in (0, 1], computed as rows-with-value-<=-current divided by partition size in MatrixOne."
+llms_summary: "CUME_DIST() returns the cumulative distribution of the current row within its window partition."
 ---
 
 # **CUME_DIST()**
 
-> `CUME_DIST()` is a window function that returns the cumulative distribution of the current row within its partition as a `DOUBLE` in the range `(0, 1]`, computed as (rows with value less than or equal to the current row) / (partition size).
+> CUME_DIST() returns the cumulative distribution of the current row within its window partition.
 
 ## **Description**
 

@@ -1,4 +1,16 @@
+---
+title: "ROUND()"
+doc_type: reference
+mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "The ROUND() function rounds a number to a specified number of decimal places."
+---
 # **ROUND()**
+
+> The ROUND() function rounds a number to a specified number of decimal places.
 
 ## **Description**
 

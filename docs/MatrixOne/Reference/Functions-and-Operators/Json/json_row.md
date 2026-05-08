@@ -1,4 +1,17 @@
+---
+title: "JSON_ROW()"
+doc_type: reference
+mysql_compat: mo_only
+differs_from_mysql: []
+mo_only:
+  - "MatrixOne-only; no MySQL equivalent."
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "JSON_ROW() is used to convert each row into a json array."
+---
 # **JSON_ROW()**
+
+> JSON_ROW() is used to convert each row into a json array.
 
 ## **Function description**
 

@@ -6,7 +6,7 @@ differs_from_mysql: []
 mo_only: []
 since: unknown
 last_updated: 2026-05-08
-llms_summary: "The word ALL, which must follow a comparison operator, means \\\"return TRUE if the comparison is TRUE for ALL of the values in the column that the subquery returns.\\\":"
+llms_summary: "The word ALL, which must follow a comparison operator, means \"return TRUE if the comparison is TRUE for ALL of the values in the column that the subquery returns.\":"
 ---
 # **Subqueries with ALL**
 

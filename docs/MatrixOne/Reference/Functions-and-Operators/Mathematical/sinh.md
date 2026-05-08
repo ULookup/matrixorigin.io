@@ -1,4 +1,17 @@
+---
+title: "SINH()"
+doc_type: reference
+mysql_compat: mo_only
+differs_from_mysql: []
+mo_only:
+  - "MySQL 8.0 has no hyperbolic trigonometric functions; SINH() is a MatrixOne extension."
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "The SINH() function returns the hyperbolic sine of the input number(given in radians)."
+---
 # **SINH()**
+
+> The SINH() function returns the hyperbolic sine of the input number(given in radians).
 
 ## **Description**
 

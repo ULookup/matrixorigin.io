@@ -1,4 +1,16 @@
+---
+title: "SLEEP()"
+doc_type: reference
+mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "Sleeps (pauses) for the number of seconds given by the duration argument, then returns 0."
+---
 # **SLEEP()**
+
+> Sleeps (pauses) for the number of seconds given by the duration argument, then returns 0.
 
 ## **Description**
 

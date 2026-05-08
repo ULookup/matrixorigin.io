@@ -8,6 +8,7 @@
 | [<>,!=](not-equal.md) | Not equal operator |
 | [<=](less-than-or-equal.md) | Less than or equal operator |
 | [=](assign-equal.md) | Equal operator|
+| [<=>](null-safe-equal.md) | NULL-safe equal operator|
 | [BETWEEN ... AND ...](between.md) | Whether a value is within a range of values |
 | [COALESCE](coalesce.md)|Return the first non-null value in a list|
 | [IN()](in.md) | Whether a value is within a set of values |

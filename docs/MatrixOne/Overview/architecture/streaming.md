@@ -54,7 +54,6 @@ CREATE STREAM STUDENTS (ID STRING KEY, SCORE INT)
 
 You can also query streams and connect them with other tables and materialized views, as shown below:
 
-<!-- validator-ignore-exec -->
 ```sql
 SELECT * FROM STUDENTS WHERE `rank` > 5;
 ```

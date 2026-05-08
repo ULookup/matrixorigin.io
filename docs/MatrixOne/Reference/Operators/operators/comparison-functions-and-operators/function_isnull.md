@@ -18,7 +18,6 @@ The `ISNULL()` function shares some special behaviors with the `IS NULL` compari
 
 - Example 1:
 
-<!-- validator-ignore-exec -->
 ```sql
 mysql> SELECT ISNULL(1+1);
 +---------------+

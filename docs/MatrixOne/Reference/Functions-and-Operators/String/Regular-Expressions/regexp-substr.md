@@ -30,7 +30,6 @@
 
 ## **Examples**
 
-<!-- validator-ignore-exec -->
 ```SQL
 mysql> SELECT REGEXP_SUBSTR('1a 2b 3c', '[0-9]a');
 +---------------------------------+

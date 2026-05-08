@@ -71,7 +71,6 @@ set global validate_password.special_char_count==xx; -- Default is 1
 
 ### validate_password
 
-<!-- validator-ignore-exec -->
 ```sql
 mysql> select @@global.validate_password;
 +---------------------+
@@ -97,7 +96,6 @@ mysql> select @@global.validate_password;
 
 ### validate_password.changed_characters_percentage
 
-<!-- validator-ignore-exec -->
 ```sql
 mysql> select @@global.validate_password.changed_characters_percentage;
 +---------------------------------------------------+
@@ -138,7 +136,6 @@ Query OK, 0 rows affected (0.01 sec)
 
 The following parameters need to enable validate_password.policy to take effect.
 
-<!-- validator-ignore-exec -->
 ```sql
 mysql> select @@global.validate_password.policy;
 +----------------------------+
@@ -161,7 +158,6 @@ mysql> select @@global.validate_password.policy;
 
 #### validate_password.length
 
-<!-- validator-ignore-exec -->
 ```sql
 mysql> select @@global.validate_password.length;
 +----------------------------+
@@ -197,7 +193,6 @@ Query OK, 0 rows affected (0.02 sec)
 
 #### validate_password.mixed_case_count
 
-<!-- validator-ignore-exec -->
 ```sql
 mysql> select @@global.validate_password.mixed_case_count;
 +--------------------------------------+
@@ -234,7 +229,6 @@ Query OK, 0 rows affected (0.01 sec)
 
 #### validate_password.number_count
 
-<!-- validator-ignore-exec -->
 ```sql
 mysql> select @@global.validate_password.number_count;
 +----------------------------------+
@@ -270,7 +264,6 @@ Query OK, 0 rows affected (0.01 sec)
 
 #### validate_password.special_char_count
 
-<!-- validator-ignore-exec -->
 ```sql
 mysql> select @@global.validate_password.special_char_count;
 +----------------------------------------+

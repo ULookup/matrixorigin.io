@@ -18,7 +18,6 @@ Returns the second for time, in the range 0 to 59, or NULL if time is NULL.
 
 ## **Examples**
 
-<!-- validator-ignore-exec -->
 ```sql
 drop table if exists t1;
 create table t1(a datetime, b timestamp);

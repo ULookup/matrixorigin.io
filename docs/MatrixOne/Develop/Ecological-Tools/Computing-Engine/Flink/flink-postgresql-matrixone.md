@@ -149,7 +149,6 @@ insert into test_pg select * from pgsql_bog;
 
 Query the corresponding table data in MatrixOne;
 
-<!-- validator-ignore-exec -->
 ```sql
 mysql> select * from student;
 +--------+----------+---------+------------+

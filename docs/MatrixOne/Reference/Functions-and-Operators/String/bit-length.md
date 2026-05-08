@@ -18,7 +18,6 @@ Returns the length of the string str in bits. Returns `NULL` if str is `NULL`.
 
 ## **Examples**
 
-<!-- validator-ignore-exec -->
 ```SQL
 > SELECT BIT_LENGTH('text');
 +------------------+

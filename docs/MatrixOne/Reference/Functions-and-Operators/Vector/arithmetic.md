@@ -76,7 +76,6 @@ mysql> select cast("[1,2,3]" as vecf32(3)) + 5.0;
 
 ### **Examples**
 
-<!-- validator-ignore-exec -->
 ```sql
 drop table if exists vec_table;
 create table vec_table(a int, b vecf32(3), c vecf64(3));

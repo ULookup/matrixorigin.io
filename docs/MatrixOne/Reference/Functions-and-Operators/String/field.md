@@ -33,7 +33,6 @@ If all arguments to `FIELD()` are strings, all arguments are compared as strings
 
 - Example 1:
 
-<!-- validator-ignore-exec -->
 ```sql
 mysql> SELECT FIELD('Bb', 'Aa', 'Bb', 'Cc', 'Dd', 'Ff');
 +-------------------------------+

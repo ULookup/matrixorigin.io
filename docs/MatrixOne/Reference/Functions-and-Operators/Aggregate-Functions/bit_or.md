@@ -20,7 +20,6 @@ The BIT_OR(expr) function returns the bitwise OR of all bits in expr.
 
 ## **Examples**
 
-<!-- validator-ignore-exec -->
 ```sql
 > drop table if exists t1;
 > CREATE TABLE t1 (id CHAR(1), number INT);

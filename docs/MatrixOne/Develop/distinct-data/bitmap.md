@@ -46,7 +46,8 @@ LOAD DATA INFILE '/your_path/user_behavior_table.csv' INTO TABLE user_behavior_t
 
 The coarse-grained calculation results are saved in the pre-computed table.Subsequent aggregation of various different dimensions can use the results in the pre-computed table.After simple calculation,the results can be obtained and the query can be accelerated.
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 CREATE TABLE precompute AS
 SELECT
   behavior,

@@ -130,7 +130,8 @@ In many business scenarios, we often need to accelerate the queries due to a lar
 
 For example, the following SQL query:
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 SELECT pe1.ts_code, pe1.pe, pe1.pb
 FROM stock2.pe as pe1
 WHERE pe1.pe = (SELECT min(pe2.pe)
@@ -142,7 +143,8 @@ DESC LIMIT 1;
 
 If not optimized, the execution speed is as follows:
 
-```sql <!-- validator-ignore-exec -->
+<!-- validator-ignore-exec -->
+```sql
 SELECT pe1.ts_code, pe1.pe, pe1.pb
 FROM stock2.pe as pe1
 WHERE pe1.pe = (SELECT min(pe2.pe)

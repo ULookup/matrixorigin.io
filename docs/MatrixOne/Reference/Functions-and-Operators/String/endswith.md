@@ -24,7 +24,6 @@ Returns whether to end with the specified suffix. Returns 1 if the string ends w
 
 ## **Examples**
 
-<!-- validator-ignore-exec -->
 ```sql
 > drop table if exists t1;
 > create table t1(a int,b varchar(100),c char(20));

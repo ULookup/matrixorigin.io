@@ -129,6 +129,7 @@ DROP TABLE test.t2;
 ```
 
 ### Example 2: Compare Branch Tables (With Common Ancestor)
+
 <!-- validator-ignore-exec -->
 ```sql
 -- Expected-Rows: 0
@@ -164,6 +165,7 @@ DROP TABLE test.t2;
 ```
 
 ### Example 3: Compare Using Snapshots
+
 <!-- validator-ignore-exec -->
 ```sql
 -- Expected-Rows: 0
@@ -202,6 +204,7 @@ DROP TABLE test.t1;
     When comparing two snapshots of the same table, the system compares based on incremental changes between snapshots. In this example, although the UPDATE operation modified the row where a=1, due to the special mechanism of snapshot comparison, only the newly inserted row is shown.
 
 ### Example 4: Get Only Difference Count
+
 <!-- validator-ignore-exec -->
 ```sql
 -- Expected-Rows: 0
@@ -231,6 +234,7 @@ DROP TABLE test.t2;
 ```
 
 ### Example 5: Limit Returned Rows
+
 <!-- validator-ignore-exec -->
 ```sql
 -- Expected-Rows: 0
@@ -315,7 +319,6 @@ mysql -h <mo_host> -P <mo_port> -u <user> -p <db_name> < diff_t2_t1_20241225.sql
 
 **Import CSV file (full sync)**:
 
-<!-- validator-ignore-exec -->
 ```sql
 -- Expected-Success: false
 LOAD DATA LOCAL INFILE '/tmp/diff_output/diff_xxx.csv'

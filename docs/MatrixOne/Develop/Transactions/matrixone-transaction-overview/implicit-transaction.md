@@ -31,7 +31,6 @@ In MatrixOne, if the implicit transaction is enabled (`SET AUTOCOMMIT=0`), all o
 
 **MySQL Implicit Transaction Behavior Example**
 
-<!-- validator-ignore-exec -->
 ```sql
 mysql> select @@SQL_SELECT_LIMIT;
 +----------------------+
@@ -94,7 +93,6 @@ mysql> select @@SQL_SELECT_LIMIT;
 
 **MatrixOne Implicit Transaction Behavior Example**
 
-<!-- validator-ignore-exec -->
 ```sql
 mysql> select @@SQL_SELECT_LIMIT;
 +----------------------+

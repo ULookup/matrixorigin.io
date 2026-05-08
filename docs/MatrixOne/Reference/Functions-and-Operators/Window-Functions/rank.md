@@ -20,7 +20,6 @@ The `RANK()` function has a unique behavior when it handles the case of equal va
 
 ## **Examples**
 
-<!-- validator-ignore-exec -->
 ```SQL
 -- Create a new table, 'SalesTable' with three fields: 'Department', 'Employee', and 'Sales'
 CREATE TABLE SalesTable (

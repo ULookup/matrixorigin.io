@@ -20,7 +20,6 @@ You can decode a Base64 encoded string using the [`FROM_BASE64()`](from_base64.m
 
 ## Examples
 
-<!-- validator-ignore-exec -->
 ```SQL
 mysql> SELECT TO_BASE64('abc');
 +----------------+

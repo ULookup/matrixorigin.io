@@ -1160,7 +1160,7 @@ export class SqlRunner {
         if (/^(GRANT|REVOKE)\s+/i.test(trimmed)) return SQL_TYPES.ADMIN
         // Note: SNAPSHOT is excluded from ADMIN - it should be executed as DDL to create test context
         if (/^(CREATE|DROP|ALTER)\s+(USER|ACCOUNT|ROLE|PITR|PUBLICATION|SUBSCRIPTION)\s+/i.test(trimmed)) return SQL_TYPES.ADMIN
-        if (/^SHOW\s+(PUBLICATIONS|SUBSCRIPTIONS|SNAPSHOTS|PITR|GRANTS)\b/i.test(trimmed)) return SQL_TYPES.ADMIN
+        if (/^SHOW\s+(PUBLICATIONS|SUBSCRIPTIONS|SNAPSHOTS|PITR|GRANTS|RULES)\b/i.test(trimmed)) return SQL_TYPES.ADMIN
         // SESSION commands (SET statements) - cannot be PREPAREd in MO
         if (/^SET\s+/i.test(trimmed)) return SQL_TYPES.SESSION
         // DDL (including SNAPSHOT - must be executed to create test context)
@@ -1441,6 +1441,21 @@ export class SqlRunner {
         return SqlRunner.VOLATILE_COLUMNS.has(String(col).trim().toLowerCase())
     }
 
+    // SQL column identifiers are case-insensitive. The expected tables in docs
+    // follow the mysql CLI convention of lower-casing function-call column
+    // headers (`any_value(t1.b)`), while MO returns them with the function
+    // preserved as written (`ANY_VALUE(t1.b)`). Look up actual-row values by
+    // canonicalised name so the comparator does not flag these as mismatches.
+    static lookupCell(row, col) {
+        if (row == null) return undefined
+        if (Object.prototype.hasOwnProperty.call(row, col)) return row[col]
+        const want = String(col).trim().toLowerCase()
+        for (const key of Object.keys(row)) {
+            if (key.trim().toLowerCase() === want) return row[key]
+        }
+        return undefined
+    }
+
     /** Compare table output with actual query results */
     compareTableOutput(actualRows, expectedTableStr) {
         if (/^\s*Empty\s+set/i.test(expectedTableStr.trim())) {
@@ -1466,21 +1481,21 @@ export class SqlRunner {
 
         for (let i = 0; i < expected.rows.length; i++) {
             for (const col of expected.columns) {
+                const actualVal = SqlRunner.lookupCell(actualRows[i], col)
                 // Skip volatile columns — their values depend on the sandbox
                 // database, wall-clock time, assigned role/user id, etc.
                 // We only require the column to be present and non-null.
                 if (SqlRunner.isVolatileColumn(col)) {
-                    if (actualRows[i][col] === undefined) {
+                    if (actualVal === undefined) {
                         return { matched: false, reason: `Row ${i + 1}, column '${col}': column missing in actual result` }
                     }
                     continue
                 }
-                if (!this.valuesMatch(actualRows[i][col], expected.rows[i][col])) {
-                    // Serialize objects for display in error message
-                    const actualVal = typeof actualRows[i][col] === 'object' && actualRows[i][col] !== null
-                        ? JSON.stringify(actualRows[i][col])
-                        : actualRows[i][col]
-                    return { matched: false, reason: `Row ${i + 1}, column '${col}': expected '${expected.rows[i][col]}', but got '${actualVal}'` }
+                if (!this.valuesMatch(actualVal, expected.rows[i][col])) {
+                    const display = typeof actualVal === 'object' && actualVal !== null
+                        ? JSON.stringify(actualVal)
+                        : actualVal
+                    return { matched: false, reason: `Row ${i + 1}, column '${col}': expected '${expected.rows[i][col]}', but got '${display}'` }
                 }
             }
         }

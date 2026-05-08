@@ -20,7 +20,6 @@ The BIT_XOR(expr) function returns the bitwise XOR of all bits in expr.
 
 ## **Examples**
 
-<!-- validator-ignore-exec -->
 ```sql
 > drop table if exists t1;
 > CREATE TABLE t1 (id CHAR(1), number INT);

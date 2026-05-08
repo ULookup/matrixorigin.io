@@ -2,7 +2,7 @@
 title: "ALTER VIEW"
 mysql_compat: partial
 differs_from_mysql:
-  - "Inherits CREATE VIEW limitations: no WITH CHECK OPTION, DEFINER, SQL SECURITY"
+  - "Inherits CREATE VIEW limitations: no WITH CHECK OPTION, no DEFINER = user clause"
 ---
 # **ALTER VIEW**
 
@@ -12,10 +12,16 @@ differs_from_mysql:
 
 If any of the views named in the syntax parameter list do not exist, the statement reports an error and cannot change those views that do not exist.
 
+Starting with v3.0.11, `ALTER VIEW` accepts an optional `SQL SECURITY` clause
+that replaces the view's stored security type. See
+[CREATE VIEW](create-view.md) for the meaning of `DEFINER` and `INVOKER`.
+If the clause is omitted, the stored security type is recomputed from the
+current session variable `view_security_type`.
+
 ## **Syntax**
 
 ```
-> ALTER VIEW view_name [(column_list)]
+> ALTER [SQL SECURITY { DEFINER | INVOKER }] VIEW view_name [(column_list)]
   AS select_statement
   [WITH [CASCADED | LOCAL] CHECK OPTION]
 ```

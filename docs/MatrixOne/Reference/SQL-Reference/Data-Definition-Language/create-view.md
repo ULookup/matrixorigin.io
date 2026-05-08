@@ -3,7 +3,7 @@ title: "CREATE VIEW"
 mysql_compat: partial
 differs_from_mysql:
   - "WITH CHECK OPTION clause not supported"
-  - "DEFINER and SQL SECURITY clauses not supported"
+  - "DEFINER = user clause not supported; SQL SECURITY {DEFINER | INVOKER} is supported"
 ---
 # **CREATE VIEW**
 
@@ -17,10 +17,24 @@ You can add SQL statements and functions to a view and present the data as if th
 
 A view is created with the `CREATE VIEW` statement.
 
+Starting with v3.0.11, MatrixOne accepts an optional `SQL SECURITY` clause that
+selects how privileges are checked when the view is queried:
+
+- `SQL SECURITY DEFINER` (default): privileges are checked against the role
+  that created the view. A caller who holds `SELECT` on the view does not
+  need any privilege on the underlying base tables.
+- `SQL SECURITY INVOKER`: privileges are checked against the caller's active
+  role. The caller must hold both `SELECT` on the view and the required
+  privileges on every base table referenced by the view.
+
+If the clause is omitted, the session variable `view_security_type` (default
+`DEFINER`, values `DEFINER` / `INVOKER`) determines which mode is stored with
+the view definition.
+
 ## **Syntax**
 
 ```
-> CREATE [OR REPLACE] VIEW view_name AS
+> CREATE [OR REPLACE] [SQL SECURITY { DEFINER | INVOKER }] VIEW view_name AS
   SELECT column1, column2, ...
   FROM table_name
   WHERE condition;
@@ -28,6 +42,9 @@ A view is created with the `CREATE VIEW` statement.
 
 !!! note
     A view always shows up-to-date data! The database engine recreates the view, every time a user queries it.
+
+!!! note
+    The stored security type is visible via [SHOW CREATE VIEW](../Other/SHOW-Statements/show-create-view.md); the output header is rendered as `CREATE SQL SECURITY DEFINER VIEW ...` or `CREATE SQL SECURITY INVOKER VIEW ...`.
 
 ## **Examples**
 

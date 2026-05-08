@@ -10,6 +10,15 @@ differs_from_mysql:
 
 Removes one or more privileges on a securable object from a role. The privileges that can be revoked are object-specific.
 
+Starting with v3.0.11, `object_type` accepts `VIEW` in addition to `TABLE`,
+`FUNCTION`, and `PROCEDURE`. `REVOKE ... ON TABLE ...` only affects table
+grants and does not implicitly revoke equivalent view grants; revoke view
+privileges with `ON VIEW`:
+
+```
+revoke select on view db1.v1 from role1;
+```
+
 ## **Syntax**
 
 ```
@@ -20,6 +29,13 @@ Removes one or more privileges on a securable object from a role. The privileges
 
 > REVOKE [IF EXISTS] role [, role ] ...
     FROM user_or_role [, user_or_role ] ...
+
+object_type: {
+    TABLE
+  | VIEW
+  | FUNCTION
+  | PROCEDURE
+}
 ```
 
 ## **Examples**

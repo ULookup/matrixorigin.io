@@ -37,6 +37,7 @@ GRANT role [, role] ...
 
 object_type: {
     TABLE
+  | VIEW
   | FUNCTION
   | PROCEDURE
 }
@@ -82,6 +83,23 @@ Table privileges apply to all columns in a given table. To assign table-level pr
 ```
 grant all on table *.* to role1;
 ```
+
+#### View Privileges
+
+Starting with v3.0.11, privileges on views are granted and revoked through a separate `VIEW` object type; a privilege granted `ON TABLE` does not apply to views and vice versa. Use `ON VIEW db_name.view_name` to target a specific view:
+
+```
+grant select on view db1.v1 to role1;
+```
+
+Whether the caller needs privileges on the view's underlying base tables is controlled by the view's stored security type (see [CREATE VIEW](../Data-Definition-Language/create-view.md)):
+
+- `SQL SECURITY DEFINER` (default): the caller only needs `SELECT` on the view. Base-table privileges are checked against the view owner's role and its inherited roles.
+- `SQL SECURITY INVOKER`: the caller needs `SELECT` on the view AND the required privileges on every referenced base table.
+
+Granting `ALL` or `OWNERSHIP` on a base table does not implicitly authorize querying a view built on that table — the caller still needs an explicit privilege on the view object.
+
+`WITH GRANT OPTION` on a view only authorizes onward grants on that same view; it does not extend to other views that happen to be built on the same base tables.
 
 #### Granting Roles
 

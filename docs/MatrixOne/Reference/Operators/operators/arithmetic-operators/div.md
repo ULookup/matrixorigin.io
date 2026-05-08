@@ -4,17 +4,11 @@
 
 The `DIV` operator is used for integer division. Discards from the division result any fractional part to the right of the decimal point.
 
-If either operand has a non-integer type, the operands are converted to `DECIMAL` and divided using `DECIMAL` arithmetic before converting the result to `BIGINT`. If the result exceeds `BIGINT` range, an error occurs.
-
-## **Syntax**
-
-```
-> SELECT value1 DIV value2;
-```
-
-```
-> SELECT column1 DIV column2... FROM table_name;
-```
+`DIV` accepts signed and unsigned integer types as well as `DECIMAL(64)` /
+`DECIMAL(128)` operands. For decimal inputs, MatrixOne aligns the scales of
+the two operands and then performs truncating integer division, returning a
+`BIGINT`-range integer. If the result exceeds `BIGINT` range, an error
+occurs. Division by zero (integer or decimal) returns `NULL`.
 
 ## **Examples**
 

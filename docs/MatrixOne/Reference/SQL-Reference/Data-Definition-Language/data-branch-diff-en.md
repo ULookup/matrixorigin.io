@@ -120,6 +120,7 @@ DROP TABLE test.t2;
 ```
 
 ### Example 2: Compare Branch Tables (With Common Ancestor)
+
 ```sql
 -- Expected-Rows: 0
 CREATE TABLE test.t0 (a INT PRIMARY KEY, b INT);
@@ -154,6 +155,7 @@ DROP TABLE test.t2;
 ```
 
 ### Example 3: Compare Using Snapshots
+
 ```sql
 -- Expected-Rows: 0
 CREATE TABLE test.t1 (a INT PRIMARY KEY, b INT);
@@ -191,6 +193,7 @@ DROP TABLE test.t1;
     When comparing two snapshots of the same table, the system compares based on incremental changes between snapshots. In this example, although the UPDATE operation modified the row where a=1, due to the special mechanism of snapshot comparison, only the newly inserted row is shown.
 
 ### Example 4: Get Only Difference Count
+
 ```sql
 -- Expected-Rows: 0
 CREATE TABLE test.t1 (a INT PRIMARY KEY, b INT);
@@ -219,6 +222,7 @@ DROP TABLE test.t2;
 ```
 
 ### Example 5: Limit Returned Rows
+
 ```sql
 -- Expected-Rows: 0
 CREATE TABLE test.t1 (a INT PRIMARY KEY, b INT);

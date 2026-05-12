@@ -1,4 +1,16 @@
+---
+title: "VAR_POP"
+doc_type: reference
+mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "VAR_POP() is an aggregate function that calculates the overall variance."
+---
 # **VAR_POP**
+
+> VAR_POP() is an aggregate function that calculates the overall variance.
 
 ## **Function Description**
 

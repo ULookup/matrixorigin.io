@@ -1,10 +1,17 @@
 ---
 title: "Subqueries with IN"
+doc_type: reference
 mysql_compat: partial
 differs_from_mysql:
   - "Multi-level correlated subqueries inside IN() are not supported"
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "A subquery can be used with the IN operator as \"expression IN (subquery)\"."
 ---
 # **Subqueries with IN**
+
+> A subquery can be used with the IN operator as "expression IN (subquery)".
 
 ## **Description**
 

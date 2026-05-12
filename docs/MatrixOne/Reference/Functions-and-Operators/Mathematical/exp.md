@@ -1,4 +1,16 @@
+---
+title: "EXP()"
+doc_type: reference
+mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "The EXP() function returns the value of e (the base of natural logarithms) raised to the power of X."
+---
 # **EXP()**
+
+> The EXP() function returns the value of e (the base of natural logarithms) raised to the power of X.
 
 ## **Description**
 

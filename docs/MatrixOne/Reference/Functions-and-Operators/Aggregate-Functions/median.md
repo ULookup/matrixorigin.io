@@ -1,4 +1,17 @@
+---
+title: "MEDIAN()"
+doc_type: reference
+mysql_compat: mo_only
+differs_from_mysql: []
+mo_only:
+  - "MEDIAN aggregate is a MatrixOne-specific aggregate (no native MySQL equivalent)."
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "MEDIAN() returns the median value of a set of values, that is, returns the value in the middle after sorting a set of values."
+---
 # **MEDIAN()**
+
+> MEDIAN() returns the median value of a set of values, that is, returns the value in the middle after sorting a set of values.
 
 ## **Description**
 

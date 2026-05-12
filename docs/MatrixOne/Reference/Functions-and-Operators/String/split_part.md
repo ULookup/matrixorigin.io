@@ -1,4 +1,17 @@
+---
+title: "SPLIT_PART()"
+doc_type: reference
+mysql_compat: mo_only
+differs_from_mysql: []
+mo_only:
+  - "SPLIT_PART() is inherited from PostgreSQL; no MySQL equivalent."
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "The SPLIT_PART() function is used to split a string into multiple parts based on a given delimiter and returns the specified part."
+---
 # **SPLIT_PART()**
+
+> The SPLIT_PART() function is used to split a string into multiple parts based on a given delimiter and returns the specified part.
 
 ## **Description**
 

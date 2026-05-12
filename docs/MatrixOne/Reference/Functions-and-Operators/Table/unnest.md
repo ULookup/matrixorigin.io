@@ -1,4 +1,17 @@
+---
+title: "UNNEST()"
+doc_type: reference
+mysql_compat: mo_only
+differs_from_mysql: []
+mo_only:
+  - "Table-valued function; no direct MySQL equivalent."
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "The UNNEST function is used to expand the column or parameter of the array type in the JSON type data into a table."
+---
 # **UNNEST()**
+
+> The UNNEST function is used to expand the column or parameter of the array type in the JSON type data into a table.
 
 ## **Description**
 

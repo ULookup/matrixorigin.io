@@ -1,4 +1,17 @@
+---
+title: "UNIX_TIMESTAMP()"
+doc_type: reference
+mysql_compat: partial
+differs_from_mysql:
+  - "Date literals accept only 'yyyy-mm-dd' and 'yyyymmdd' formats; MySQL accepts wider variants."
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "If UNIX_TIMESTAMP() is called with no date argument, it returns a Unix timestamp representing seconds since '1970-01-01 00:00:00' UTC."
+---
 # **UNIX_TIMESTAMP()**
+
+> If UNIX_TIMESTAMP() is called with no date argument, it returns a Unix timestamp representing seconds since '1970-01-01 00:00:00' UTC.
 
 ## **Description**
 

@@ -1,10 +1,17 @@
 ---
 title: "CREATE DYNAMIC TABLE"
+doc_type: reference
 mysql_compat: mo_only
+differs_from_mysql: []
 mo_only:
   - "CREATE DYNAMIC TABLE"
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "CREATE DYNAMIC TABLE Adds a new dynamic table to the current database."
 ---
 # **CREATE DYNAMIC TABLE**
+
+> CREATE DYNAMIC TABLE Adds a new dynamic table to the current database.
 
 ## **Grammar description**
 

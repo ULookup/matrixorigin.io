@@ -1,4 +1,16 @@
+---
+title: "VERSION"
+doc_type: reference
+mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "The VERSION() function is used to retrieve the version information of the current database management system."
+---
 # **VERSION**
+
+> The VERSION() function is used to retrieve the version information of the current database management system.
 
 ## **Description**
 

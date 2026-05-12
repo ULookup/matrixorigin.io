@@ -1,10 +1,17 @@
 ---
 title: "ALTER PUBLICATION"
+doc_type: reference
 mysql_compat: mo_only
+differs_from_mysql: []
 mo_only:
   - "ALTER PUBLICATION"
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "ALTER PUBLICATION modifies the publication content."
 ---
 # **ALTER PUBLICATION**
+
+> ALTER PUBLICATION modifies the publication content.
 
 ## **Syntax description**
 

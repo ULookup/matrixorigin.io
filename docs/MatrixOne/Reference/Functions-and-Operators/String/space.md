@@ -1,4 +1,16 @@
+---
+title: "SPACE()"
+doc_type: reference
+mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "SPACE(N) Returns a string consisting of N space characters."
+---
 # **SPACE()**
+
+> SPACE(N) Returns a string consisting of N space characters.
 
 ## **Description**
 

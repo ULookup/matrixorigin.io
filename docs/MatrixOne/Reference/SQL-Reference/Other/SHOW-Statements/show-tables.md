@@ -1,8 +1,17 @@
 ---
 title: "SHOW TABLES"
-mysql_compat: full
+doc_type: reference
+mysql_compat: partial
+differs_from_mysql:
+  - "Result column is named 'name' rather than MySQL's 'Tables_in_<dbname>'."
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "Shows the list of tables in the currently selected database."
 ---
 # **SHOW TABLES**
+
+> Shows the list of tables in the currently selected database.
 
 ## **Description**
 

@@ -1,4 +1,16 @@
+---
+title: "FROM_BASE64()"
+doc_type: reference
+mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "FROM_BASE64() is used to convert a Base64 encoded string back to raw binary data (or text data)."
+---
 # FROM\_BASE64()
+
+> FROM_BASE64() is used to convert a Base64 encoded string back to raw binary data (or text data).
 
 ## Function Description
 

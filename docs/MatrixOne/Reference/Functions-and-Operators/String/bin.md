@@ -1,4 +1,16 @@
+---
+title: "BIN()"
+doc_type: reference
+mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "This function BIN() returns a string representation of the binary value of *N*, where *N* is a longlong (BIGINT) number."
+---
 # **BIN()**
+
+> This function BIN() returns a string representation of the binary value of *N*, where *N* is a longlong (BIGINT) number.
 
 ## **Description**
 

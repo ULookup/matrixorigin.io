@@ -1,11 +1,18 @@
 ---
 title: "REPLACE"
+doc_type: reference
 mysql_compat: partial
 differs_from_mysql:
   - "REPLACE does not support VALUES row_constructor_list"
   - "node-sql-parser rejects REPLACE … WHERE (parser bug, not MatrixOne)"
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "REPLACE is a string function and a data manipulation statement for a replacement operation."
 ---
 # **REPLACE**
+
+> REPLACE is a string function and a data manipulation statement for a replacement operation.
 
 ## **Description**
 

@@ -1,4 +1,16 @@
+---
+title: "REGEXP_REPLACE()"
+doc_type: reference
+mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "REGEXP_REPLACE() is used to replace a string matching a given regular expression pattern with the specified new string."
+---
 # **REGEXP_REPLACE()**
+
+> REGEXP_REPLACE() is used to replace a string matching a given regular expression pattern with the specified new string.
 
 ## **Description**
 

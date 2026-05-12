@@ -1,4 +1,16 @@
+---
+title: "SIN()"
+doc_type: reference
+mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "The SIN() function returns the sine of input number(given in radians)."
+---
 # **SIN()**
+
+> The SIN() function returns the sine of input number(given in radians).
 
 ## **Description**
 

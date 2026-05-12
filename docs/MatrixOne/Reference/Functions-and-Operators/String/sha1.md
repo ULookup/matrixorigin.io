@@ -1,4 +1,16 @@
+---
+title: "SHA1()/SHA()"
+doc_type: reference
+mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "The SHA1()/SHA() function is an encrypted hash function that calculates and returns the SHA-1 hash value for a given string."
+---
 # SHA1()/SHA()
+
+> The SHA1()/SHA() function is an encrypted hash function that calculates and returns the SHA-1 hash value for a given string.
 
 ## Function Description
 

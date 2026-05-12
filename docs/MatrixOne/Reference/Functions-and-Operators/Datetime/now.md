@@ -1,4 +1,16 @@
+---
+title: "NOW()"
+doc_type: reference
+mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "The NOW() function returns a value in 'YYYY-MM-DD HH:MM:SS' format for the current date and time."
+---
 # NOW()
+
+> The NOW() function returns a value in 'YYYY-MM-DD HH:MM:SS' format for the current date and time.
 
 ## Function Description
 

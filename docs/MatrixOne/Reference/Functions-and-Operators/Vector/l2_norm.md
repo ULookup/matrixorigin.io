@@ -1,4 +1,17 @@
+---
+title: "l2_norm()"
+doc_type: reference
+mysql_compat: mo_only
+differs_from_mysql: []
+mo_only:
+  - "Vector type and related distance/norm/clustering functions are MatrixOne extensions (compat doc: Data Types — \"MatrixOne supports vector types\")."
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "The l2_norm function is used to calculate the l2/Euclidean norm."
+---
 # **l2_norm()**
+
+> The l2_norm function is used to calculate the l2/Euclidean norm.
 
 ## **Function Description**
 

@@ -1,4 +1,17 @@
+---
+title: "Summary table of functions"
+doc_type: reference
+mysql_compat: mo_only
+differs_from_mysql: []
+mo_only:
+  - "Listing page (includes MatrixOne-only functions)."
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "This document lists the functions supported in the latest version of MatrixOne."
+---
 # Summary table of functions
+
+> This document lists the functions supported in the latest version of MatrixOne.
 
 This document lists the functions supported in the latest version of MatrixOne.
 

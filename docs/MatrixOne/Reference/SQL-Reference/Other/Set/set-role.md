@@ -1,10 +1,18 @@
 ---
 title: "SET ROLE"
-mysql_compat: mo_only
+doc_type: reference
+mysql_compat: partial
+differs_from_mysql:
+  - "Accepts a single role name only; MySQL 8.0 also supports NONE, DEFAULT, ALL, ALL EXCEPT role_list, and role lists."
 mo_only:
-  - "SET ROLE (multi-account RBAC)"
+  - "SET SECONDARY ROLE {NONE | ALL} — MatrixOne-only primary/secondary role model."
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "Specifies the active/current primary role or secondary role for the session."
 ---
 # **SET ROLE**
+
+> Specifies the active/current primary role or secondary role for the session.
 
 ## **Description**
 

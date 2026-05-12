@@ -1,4 +1,17 @@
+---
+title: "EXTRACT()"
+doc_type: reference
+mysql_compat: partial
+differs_from_mysql:
+  - "Date literals accept only 'yyyy-mm-dd' and 'yyyymmdd' formats; MySQL accepts wider variants."
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "The EXTRACT() function uses the same kinds of unit specifiers as DATE_ADD() or DATE_SUB(), but extracts parts from the date rather than performing date arithmetic."
+---
 # **EXTRACT()**
+
+> The EXTRACT() function uses the same kinds of unit specifiers as DATE_ADD() or DATE_SUB(), but extracts parts from the date rather than performing date arithmetic.
 
 ## **Description**
 

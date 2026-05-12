@@ -3,15 +3,15 @@ title: "JSON Arrow Operators -> and ->>"
 doc_type: reference
 mysql_compat: full
 differs_from_mysql: []
-mo_only: false
+mo_only: []
 since: v3.0.11
 last_updated: 2026-05-08
-llms_summary: "The JSON arrow operators -> and ->> are parser shorthand for json_extract and json_unquote(json_extract(...)), extracting JSON values or unquoted strings by path in MatrixOne."
+llms_summary: "The JSON arrow operators -> and ->> are shorthand for extracting values from a JSON document by path."
 ---
 
 # **JSON Arrow Operators `->` and `->>`**
 
-> The `->` and `->>` operators are parser shorthand for JSON path extraction: `col -> '$.path'` is rewritten to `json_extract(col, '$.path')`, and `col ->> '$.path'` is rewritten to `json_unquote(json_extract(col, '$.path'))`.
+> The JSON arrow operators -> and ->> are shorthand for extracting values from a JSON document by path.
 
 ## **Description**
 

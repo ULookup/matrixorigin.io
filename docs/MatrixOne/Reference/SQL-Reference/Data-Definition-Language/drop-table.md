@@ -1,8 +1,16 @@
 ---
 title: "DROP TABLE"
+doc_type: reference
 mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "Deletes one or more tables. Starting with v3.0.11, a single DROP TABLE statement can list multiple tables separated by commas. Each listed table may be qualified with a database name; if no database is given, the current database is used. Privileges are checked independently..."
 ---
 # **DROP TABLE**
+
+> Deletes one or more tables. Starting with v3.0.11, a single DROP TABLE statement can list multiple tables separated by commas. Each listed table may be qualified with a database name; if no database is given, the current database is used. Privileges are checked independently...
 
 ## **Description**
 

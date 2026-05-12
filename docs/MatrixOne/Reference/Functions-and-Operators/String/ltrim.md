@@ -1,4 +1,16 @@
+---
+title: "LTRIM()"
+doc_type: reference
+mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "This function LTRIM() returns the string with leading space characters removed."
+---
 # **LTRIM()**
+
+> This function LTRIM() returns the string with leading space characters removed.
 
 ## **Description**
 

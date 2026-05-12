@@ -1,4 +1,17 @@
+---
+title: "TRY_JQ()"
+doc_type: reference
+mysql_compat: mo_only
+differs_from_mysql: []
+mo_only:
+  - "MatrixOne integration of the jq JSON query language; no MySQL equivalent."
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "The TRY_JQ() function is used to parse and transform JSON data based on jq expressions."
+---
 # **TRY_JQ()**
+
+> The TRY_JQ() function is used to parse and transform JSON data based on jq expressions.
 
 ## **Function description**
 

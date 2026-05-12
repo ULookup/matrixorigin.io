@@ -1,10 +1,17 @@
 ---
 title: "CREATE FUNCTION...LANGUAGE PYTHON AS"
+doc_type: reference
 mysql_compat: mo_only
+differs_from_mysql: []
 mo_only:
   - "CREATE FUNCTION … LANGUAGE PYTHON AS …"
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "CREATE FUNCTION...LANGUAGE PYTHON AS is used to create user-defined Python functions. Users use self-defined functions to meet customization needs and simplify query writing. UDFs can also be created by importing external Python files or external whl packages."
 ---
 # **CREATE FUNCTION...LANGUAGE PYTHON AS**
+
+> CREATE FUNCTION...LANGUAGE PYTHON AS is used to create user-defined Python functions. Users use self-defined functions to meet customization needs and simplify query writing. UDFs can also be created by importing external Python files or external whl packages.
 
 ## **Grammar description**
 

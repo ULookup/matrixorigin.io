@@ -1,10 +1,17 @@
 ---
 title: "SHOW GRANTS"
+doc_type: reference
 mysql_compat: partial
 differs_from_mysql:
   - "Results reflect MatrixOne role/account graph and differ from MySQL significantly"
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "Use the SHOW GRANTS statement to display all grant information for a user."
 ---
 # **SHOW GRANTS**
+
+> Use the SHOW GRANTS statement to display all grant information for a user.
 
 ## **Description**
 

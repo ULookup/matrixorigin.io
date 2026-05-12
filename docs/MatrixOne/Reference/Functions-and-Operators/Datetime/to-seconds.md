@@ -1,4 +1,18 @@
+---
+title: "TO_SECONDS()"
+doc_type: reference
+mysql_compat: partial
+differs_from_mysql:
+  - "Two-digit year handling differs: MatrixOne completes '08-10-07' to year 0008; MySQL interprets it as 2008."
+  - "Dates '0000-00-00' and '0000-01-01' raise an error in MatrixOne rather than being accepted as MySQL does."
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "The TO_SECONDS(expr) function is used to calculate the number of seconds between a given date or datetime expr and the year 0, January 1, 00:00:00."
+---
 # **TO_SECONDS()**
+
+> The TO_SECONDS(expr) function is used to calculate the number of seconds between a given date or datetime expr and the year 0, January 1, 00:00:00.
 
 ## **Description**
 

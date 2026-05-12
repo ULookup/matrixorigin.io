@@ -1,13 +1,20 @@
 ---
 title: "ALTER TABLE"
+doc_type: reference
 mysql_compat: partial
 differs_from_mysql:
   - "CHANGE [COLUMN], MODIFY [COLUMN], RENAME COLUMN, ADD/DROP PRIMARY KEY, ALTER COLUMN ORDER BY cannot be combined with other clauses in the same ALTER TABLE"
   - "Temporary tables cannot be altered"
   - "Tables created with CLUSTER BY cannot be altered"
   - "ALTER TABLE does not support PARTITION operations"
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "ALTER TABLE is used to modify the structure of an existing table."
 ---
 # **ALTER TABLE**
+
+> ALTER TABLE is used to modify the structure of an existing table.
 
 ## **Syntax Description**
 

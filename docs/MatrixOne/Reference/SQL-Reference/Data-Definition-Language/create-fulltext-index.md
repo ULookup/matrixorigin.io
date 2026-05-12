@@ -1,8 +1,17 @@
 ---
 title: "Create Fulltext Index"
-mysql_compat: full
+doc_type: reference
+mysql_compat: partial
+differs_from_mysql:
+  - "MatrixOne full-text index is implemented on TAE storage with CJK/English optimizations; MySQL implements it on InnoDB/MyISAM with different stopword and parser semantics."
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "MatrixOne supports full-text indexing, allowing users to perform efficient full-text searches on textual data in tables."
 ---
 # Create Fulltext Index
+
+> MatrixOne supports full-text indexing, allowing users to perform efficient full-text searches on textual data in tables.
 
 ## Syntax Description
 

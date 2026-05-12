@@ -1,10 +1,17 @@
 ---
 title: "CREATE EXTERNAL TABLE"
+doc_type: reference
 mysql_compat: mo_only
+differs_from_mysql: []
 mo_only:
   - "CREATE EXTERNAL TABLE"
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "External table access data in external sources as if it were in a table in the database."
 ---
 # **CREATE EXTERNAL TABLE**
+
+> External table access data in external sources as if it were in a table in the database.
 
 ## **Description**
 

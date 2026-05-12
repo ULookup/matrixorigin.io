@@ -3,15 +3,15 @@ title: "PERCENT_RANK()"
 doc_type: reference
 mysql_compat: full
 differs_from_mysql: []
-mo_only: false
+mo_only: []
 since: v3.0.11
 last_updated: 2026-05-08
-llms_summary: "PERCENT_RANK returns the relative rank of the current row within its window partition as a DOUBLE in the range [0, 1], computed as (rank - 1) divided by (partition size - 1) in MatrixOne."
+llms_summary: "PERCENT_RANK() returns the relative rank of the current row within its window partition as a value in the range [0, 1]."
 ---
 
 # **PERCENT_RANK()**
 
-> `PERCENT_RANK()` is a window function that returns the relative rank of the current row within its partition as a `DOUBLE` in the range `[0, 1]`, computed as `(rank - 1) / (partition_size - 1)`; a partition of size 1 yields 0.
+> PERCENT_RANK() returns the relative rank of the current row within its window partition as a value in the range [0, 1].
 
 ## **Description**
 

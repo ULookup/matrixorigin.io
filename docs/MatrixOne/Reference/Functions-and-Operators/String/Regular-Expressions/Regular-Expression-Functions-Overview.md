@@ -1,4 +1,16 @@
+---
+title: "Regular Expressions Overview"
+doc_type: reference
+mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "Regular expressions provide a powerful method for matching text patterns."
+---
 # Regular Expressions Overview
+
+> Regular expressions provide a powerful method for matching text patterns.
 
 Regular expressions provide a powerful method for matching text patterns. You can use simple wildcards (such as %, _) in LIKE statements, but regular expressions offer more flexibility and matching options.
 

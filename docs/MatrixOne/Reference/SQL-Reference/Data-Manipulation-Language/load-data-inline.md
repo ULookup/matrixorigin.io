@@ -1,10 +1,17 @@
 ---
 title: "LOAD DATA INLINE"
+doc_type: reference
 mysql_compat: mo_only
+differs_from_mysql: []
 mo_only:
   - "LOAD DATA INLINE (stage-sourced import)"
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "The LOAD DATA INLINE syntax imports strings organized in csv format into a data table, faster than INSERT INTO operations."
 ---
 # **LOAD DATA INLINE**
+
+> The LOAD DATA INLINE syntax imports strings organized in csv format into a data table, faster than INSERT INTO operations.
 
 ## **Overview**
 

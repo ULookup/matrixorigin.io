@@ -1,4 +1,16 @@
+---
+title: "GROUP_CONCAT"
+doc_type: reference
+mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "This function returns a string result with the concatenated non-NULL values from a group."
+---
 # **GROUP_CONCAT**
+
+> This function returns a string result with the concatenated non-NULL values from a group.
 
 ## **Description**
 

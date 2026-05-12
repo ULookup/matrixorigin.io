@@ -1,8 +1,17 @@
 ---
 title: "LAST_INSERT_ID()"
-mysql_compat: full
+doc_type: reference
+mysql_compat: partial
+differs_from_mysql:
+  - "Multi-row INSERT returns the last inserted auto-increment value; MySQL returns the first inserted value."
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "The LAST_INSERT_ID() function returns the AUTO_INCREMENT id of the last row that has been inserted or updated in a table."
 ---
 # **LAST_INSERT_ID()**
+
+> The LAST_INSERT_ID() function returns the AUTO_INCREMENT id of the last row that has been inserted or updated in a table.
 
 ## **Description**
 

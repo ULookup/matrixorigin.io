@@ -1,4 +1,16 @@
+---
+title: "LCASE()"
+doc_type: reference
+mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "LCASE() is used to convert a given string to lowercase, a synonym for LOWER()."
+---
 # **LCASE()**
+
+> LCASE() is used to convert a given string to lowercase, a synonym for LOWER().
 
 ## **Function Description**
 

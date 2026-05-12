@@ -1,4 +1,17 @@
+---
+title: "vector_dims()"
+doc_type: reference
+mysql_compat: mo_only
+differs_from_mysql: []
+mo_only:
+  - "Vector type and related distance/norm/clustering functions are MatrixOne extensions (compat doc: Data Types — \"MatrixOne supports vector types\")."
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "The vector_dims function is used to determine the dimension of a vector."
+---
 # **vector_dims()**
+
+> The vector_dims function is used to determine the dimension of a vector.
 
 ## **Function Description**
 

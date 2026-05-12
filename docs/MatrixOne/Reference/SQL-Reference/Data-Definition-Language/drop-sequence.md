@@ -1,10 +1,17 @@
 ---
 title: "DROP SEQUENCE"
+doc_type: reference
 mysql_compat: mo_only
+differs_from_mysql: []
 mo_only:
   - "DROP SEQUENCE"
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "DROP SEQUENCE is used to drop a sequence."
 ---
 # **DROP SEQUENCE**
+
+> DROP SEQUENCE is used to drop a sequence.
 
 ## **Description**
 

@@ -1,4 +1,17 @@
+---
+title: "ENDSWITH()"
+doc_type: reference
+mysql_compat: mo_only
+differs_from_mysql: []
+mo_only:
+  - "ENDSWITH() is a MatrixOne helper; MySQL has no direct equivalent."
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "Returns whether to end with the specified suffix."
+---
 # **ENDSWITH()**
+
+> Returns whether to end with the specified suffix.
 
 ## **Description**
 

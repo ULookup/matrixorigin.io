@@ -1,8 +1,16 @@
 ---
 title: "DROP INDEX"
+doc_type: reference
 mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "This statement deletes the index from the currently selected table and will report an error if the index does not exist unless the IF EXISTS modifier is used."
 ---
 # **DROP INDEX**
+
+> This statement deletes the index from the currently selected table and will report an error if the index does not exist unless the IF EXISTS modifier is used.
 
 ## **Description**
 

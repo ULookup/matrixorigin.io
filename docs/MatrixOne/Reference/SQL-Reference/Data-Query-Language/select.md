@@ -1,13 +1,21 @@
 ---
 title: "SELECT"
+doc_type: reference
 mysql_compat: partial
 differs_from_mysql:
   - "SELECT … FOR UPDATE only supports single-table queries"
-  - "Window functions limited to RANK, DENSE_RANK, ROW_NUMBER"
+  - "SELECT INTO OUTFILE is only partially supported"
+  - "Unqualified SELECT ... FROM DUAL requires explicit database name (SELECT ... FROM dbname.DUAL)"
 mo_only:
-  - "AS OF TIMESTAMP — time-travel query against snapshot/PITR"
+  - "{ AS OF TIMESTAMP 'YYYY-MM-DD HH:MM:SS' } — time-travel query against snapshot/PITR"
+  - "ORDER BY ... NULLS { FIRST | LAST } — PostgreSQL-style NULL ordering not available in MySQL"
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "The SELECT statement is used to retrieve data from a table."
 ---
 # **SELECT**
+
+> The SELECT statement is used to retrieve data from a table.
 
 ## **Syntax Description**
 

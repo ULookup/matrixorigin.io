@@ -1,4 +1,16 @@
+---
+title: "NOT REGEXP"
+doc_type: reference
+mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "NOT REGEXP is used to test whether a string does not match a specified regular expression."
+---
 # **NOT REGEXP**
+
+> NOT REGEXP is used to test whether a string does not match a specified regular expression.
 
 ## **Description**
 

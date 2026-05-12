@@ -1,4 +1,17 @@
+---
+title: "TO_DATE()"
+doc_type: reference
+mysql_compat: mo_only
+differs_from_mysql: []
+mo_only:
+  - "TO_DATE is a MatrixOne alias for MySQL STR_TO_DATE (compat doc: Date and Time Functions). MySQL's own TO_DATE does not exist."
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "TO_DATE() returns a DATETIME value if the format string contains both date and time parts, or a DATE or TIME value if the string contains only date or time parts."
+---
 # **TO_DATE()**
+
+> TO_DATE() returns a DATETIME value if the format string contains both date and time parts, or a DATE or TIME value if the string contains only date or time parts.
 
 ## **Description**
 

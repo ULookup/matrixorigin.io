@@ -1,10 +1,17 @@
 ---
 title: "CREATE SOURCE"
+doc_type: reference
 mysql_compat: mo_only
+differs_from_mysql: []
 mo_only:
   - "CREATE SOURCE (stream/Kafka connector)"
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "CREATE SOURCE Creates a connection to streamed data and adds a new SOURCE table to the current database."
 ---
 # **CREATE SOURCE**
+
+> CREATE SOURCE Creates a connection to streamed data and adds a new SOURCE table to the current database.
 
 ## **Grammar description**
 

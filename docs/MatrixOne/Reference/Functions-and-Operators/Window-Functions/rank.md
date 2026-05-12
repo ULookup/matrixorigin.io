@@ -1,4 +1,16 @@
+---
+title: "RANK()"
+doc_type: reference
+mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "RANK() provides a unique rank for each row in the dataset."
+---
 # **RANK()**
+
+> RANK() provides a unique rank for each row in the dataset.
 
 ## **Description**
 

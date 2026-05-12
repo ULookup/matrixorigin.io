@@ -1,10 +1,17 @@
 ---
 title: "CREATE SNAPSHOT"
+doc_type: reference
 mysql_compat: mo_only
+differs_from_mysql: []
 mo_only:
   - "CREATE SNAPSHOT FOR {ACCOUNT|DATABASE|TABLE|CLUSTER}"
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "The CREATE SNAPSHOT command is used to create database snapshots."
 ---
 # CREATE SNAPSHOT
+
+> The CREATE SNAPSHOT command is used to create database snapshots.
 
 ## Syntax Description
 

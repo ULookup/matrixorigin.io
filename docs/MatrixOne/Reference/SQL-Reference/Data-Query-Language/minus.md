@@ -1,10 +1,17 @@
 ---
 title: "MINUS"
+doc_type: reference
 mysql_compat: mo_only
+differs_from_mysql: []
 mo_only:
   - "MINUS (set-difference query, not in MySQL)"
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "MINUS compares the result of two queries and returns the different rows in the first query that are not output by the second query."
 ---
 # **MINUS**
+
+> MINUS compares the result of two queries and returns the different rows in the first query that are not output by the second query.
 
 ## **Description**
 

@@ -1,4 +1,16 @@
+---
+title: "REGEXP_SUBSTR()"
+doc_type: reference
+mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "REGEXP_SUBSTR() is used to return the substring of the string expr that matches the regular expression pattern pat."
+---
 # **REGEXP_SUBSTR()**
+
+> REGEXP_SUBSTR() is used to return the substring of the string expr that matches the regular expression pattern pat.
 
 ## **Description**
 

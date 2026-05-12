@@ -1,4 +1,17 @@
+---
+title: "EMPTY()"
+doc_type: reference
+mysql_compat: mo_only
+differs_from_mysql: []
+mo_only:
+  - "EMPTY() is a MatrixOne helper returning whether a string is empty."
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "Checks whether the input string is empty."
+---
 # **EMPTY()**
+
+> Checks whether the input string is empty.
 
 ## **Description**
 

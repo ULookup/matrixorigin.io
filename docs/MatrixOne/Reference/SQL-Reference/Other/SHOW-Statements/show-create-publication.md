@@ -1,10 +1,17 @@
 ---
 title: "SHOW CREATE PUBLICATION"
+doc_type: reference
 mysql_compat: mo_only
+differs_from_mysql: []
 mo_only:
   - "SHOW CREATE PUBLICATION"
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "Returns the SQL statement when PUBLICATION was created."
 ---
 # **SHOW CREATE PUBLICATION**
+
+> Returns the SQL statement when PUBLICATION was created.
 
 ## **Description**
 

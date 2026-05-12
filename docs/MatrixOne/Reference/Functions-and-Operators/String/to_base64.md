@@ -1,4 +1,16 @@
+---
+title: "TO_BASE64()"
+doc_type: reference
+mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "The TO_BASE64() function is used to convert a string to a Base64 encoded string."
+---
 # TO\_BASE64()
+
+> The TO_BASE64() function is used to convert a string to a Base64 encoded string.
 
 ## Function Description
 

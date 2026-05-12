@@ -3,15 +3,15 @@ title: "SUBTIME()"
 doc_type: reference
 mysql_compat: full
 differs_from_mysql: []
-mo_only: false
+mo_only: []
 since: v3.0.11
 last_updated: 2026-05-08
-llms_summary: "SUBTIME subtracts a TIME expression from a TIME, DATETIME, TIMESTAMP, or string value, with the result type following the input type and the scale widening to the larger input scale in MatrixOne."
+llms_summary: "The SUBTIME() function subtracts expr2 from expr1 and returns the result."
 ---
 
 # **SUBTIME()**
 
-> `SUBTIME(expr1, expr2)` returns `expr1 - expr2` where `expr2` is a `TIME` expression; the result type follows `expr1` (TIME → TIME, DATETIME/TIMESTAMP → DATETIME, string → DATETIME(6)) and the scale widens to the larger input scale.
+> The SUBTIME() function subtracts expr2 from expr1 and returns the result.
 
 ## **Description**
 

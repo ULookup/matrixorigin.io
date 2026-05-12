@@ -1,8 +1,16 @@
 ---
 title: "UNION"
+doc_type: reference
 mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "UNION combines the result from multiple SELECT statements into a single result set."
 ---
 # **UNION**
+
+> UNION combines the result from multiple SELECT statements into a single result set.
 
 ## **Description**
 

@@ -1,5 +1,6 @@
 ---
 title: "CREATE INDEX"
+doc_type: reference
 mysql_compat: partial
 differs_from_mysql:
   - "Secondary indexes are syntactically accepted but do not yet provide query speed-up"
@@ -8,8 +9,13 @@ mo_only:
   - "USING IVFFLAT — vector index for approximate nearest neighbour"
   - "USING HNSW — vector index for approximate nearest neighbour"
   - "USING MASTER — composite master index"
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "Create indexes on tables to query data more quickly and efficiently."
 ---
 # **CREATE INDEX**
+
+> Create indexes on tables to query data more quickly and efficiently.
 
 ## **Description**
 

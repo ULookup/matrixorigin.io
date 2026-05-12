@@ -1,4 +1,16 @@
+---
+title: "REGEXP_INSTR()"
+doc_type: reference
+mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "REGEXP_INSTR() returns the starting position in the string of the matched regular expression pattern."
+---
 # **REGEXP_INSTR()**
+
+> REGEXP_INSTR() returns the starting position in the string of the matched regular expression pattern.
 
 ## **Description**
 

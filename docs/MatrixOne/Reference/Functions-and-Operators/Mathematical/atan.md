@@ -1,4 +1,16 @@
+---
+title: "ATAN()"
+doc_type: reference
+mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "The ATAN() function returns the arctangent(given in radians) of the input number."
+---
 # **ATAN()**
+
+> The ATAN() function returns the arctangent(given in radians) of the input number.
 
 ## **Description**
 

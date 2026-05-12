@@ -1,10 +1,17 @@
 ---
 title: "SHOW PROCESSLIST"
+doc_type: reference
 mysql_compat: partial
 differs_from_mysql:
   - "Output differs significantly from MySQL due to different implementation"
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "SHOW PROCESSLIST is used to view a list of currently executing threads (also known as a process list), providing information about all active connections and executing queries on the MatrixOne server."
 ---
 # **SHOW PROCESSLIST**
+
+> SHOW PROCESSLIST is used to view a list of currently executing threads (also known as a process list), providing information about all active connections and executing queries on the MatrixOne server.
 
 ## **Description**
 

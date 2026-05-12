@@ -1,4 +1,17 @@
+---
+title: "cosine_similarity()"
+doc_type: reference
+mysql_compat: mo_only
+differs_from_mysql: []
+mo_only:
+  - "Vector type and related distance/norm/clustering functions are MatrixOne extensions (compat doc: Data Types — \"MatrixOne supports vector types\")."
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "cosine_similarity() is a cosine similarity that measures the cosine value of the angle between two vectors, indicating their similarity by how close they are in multidimensional space, where 1 means exactly similar and -1 means completely different."
+---
 # **cosine\_similarity()**
+
+> cosine_similarity() is a cosine similarity that measures the cosine value of the angle between two vectors, indicating their similarity by how close they are in multidimensional space, where 1 means exactly similar and -1 means completely different.
 
 ## **Function Description**
 

@@ -1,4 +1,16 @@
+---
+title: "CRC32()"
+doc_type: reference
+mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "The CRC32() function is used to calculate the CRC32 checksum of a string."
+---
 # **CRC32()**
+
+> The CRC32() function is used to calculate the CRC32 checksum of a string.
 
 ## **Function description**
 

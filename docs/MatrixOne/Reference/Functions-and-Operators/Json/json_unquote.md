@@ -1,4 +1,16 @@
+---
+title: "JSON_UNQUOTE()"
+doc_type: reference
+mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "The JSON_UNQUOTE() function is used to extract an unquoted JSON value from a JSON string and return it as a string."
+---
 # **JSON_UNQUOTE()**
+
+> The JSON_UNQUOTE() function is used to extract an unquoted JSON value from a JSON string and return it as a string.
 
 ## **Function description**
 

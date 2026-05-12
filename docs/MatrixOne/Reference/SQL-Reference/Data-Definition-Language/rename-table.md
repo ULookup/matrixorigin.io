@@ -1,8 +1,16 @@
 ---
 title: "Rename Table"
+doc_type: reference
 mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "In MatrixOne, the RENAME TABLE statement is used to change the name of a table."
 ---
 # **Rename Table**
+
+> In MatrixOne, the RENAME TABLE statement is used to change the name of a table.
 
 ## **Syntax description**
 

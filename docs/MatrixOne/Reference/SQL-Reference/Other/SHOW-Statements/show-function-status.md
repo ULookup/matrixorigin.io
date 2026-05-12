@@ -1,10 +1,17 @@
 ---
 title: "SHOW FUNCTION STATUS"
+doc_type: reference
 mysql_compat: partial
 differs_from_mysql:
   - "Lists MatrixOne SQL/Python functions, not MySQL stored routines"
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "SHOW FUNCTION STATUS displays information about all functions in the database, including function name, database name, creation time, etc."
 ---
 # **SHOW FUNCTION STATUS**
+
+> SHOW FUNCTION STATUS displays information about all functions in the database, including function name, database name, creation time, etc.
 
 ## **Description**
 

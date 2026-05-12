@@ -1,4 +1,16 @@
+---
+title: "CONCAT()"
+doc_type: reference
+mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "This function CONCAT() returns the string that results from concatenating the arguments."
+---
 # **CONCAT()**
+
+> This function CONCAT() returns the string that results from concatenating the arguments.
 
 ## **Description**
 

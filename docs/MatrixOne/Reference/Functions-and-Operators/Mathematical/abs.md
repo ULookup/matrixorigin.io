@@ -1,4 +1,16 @@
+---
+title: "ABS()"
+doc_type: reference
+mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "ABS(X) Returns the absolute value of X, or NULL if X is NULL."
+---
 # **ABS()**
+
+> ABS(X) Returns the absolute value of X, or NULL if X is NULL.
 
 ## **Description**
 

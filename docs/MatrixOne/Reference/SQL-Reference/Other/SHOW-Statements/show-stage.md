@@ -1,10 +1,17 @@
 ---
 title: "SHOW STAGES"
+doc_type: reference
 mysql_compat: mo_only
+differs_from_mysql: []
 mo_only:
   - "SHOW STAGES"
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "SHOW STAGES returns stage specific information."
 ---
 # **SHOW STAGES**
+
+> SHOW STAGES returns stage specific information.
 
 ## **Syntax description**
 

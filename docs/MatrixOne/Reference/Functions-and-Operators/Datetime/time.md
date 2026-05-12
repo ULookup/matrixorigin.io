@@ -1,4 +1,16 @@
+---
+title: "TIME()"
+doc_type: reference
+mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "Extracts the time part of the time or datetime expression expr and returns it as a string."
+---
 # **TIME()**
+
+> Extracts the time part of the time or datetime expression expr and returns it as a string.
 
 ## **Description**
 

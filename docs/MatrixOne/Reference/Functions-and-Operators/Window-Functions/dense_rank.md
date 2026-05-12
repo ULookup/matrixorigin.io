@@ -1,4 +1,16 @@
+---
+title: "DENSE_RANK()"
+doc_type: reference
+mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "DENSE_RANK() gives each row in the dataset a unique rank, very similar to the RANK() function."
+---
 # **DENSE_RANK()**
+
+> DENSE_RANK() gives each row in the dataset a unique rank, very similar to the RANK() function.
 
 ## **Description**
 

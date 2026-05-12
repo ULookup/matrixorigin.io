@@ -1,10 +1,17 @@
 ---
 title: "Combining Queries (UNION, INTERSECT, MINUS)"
+doc_type: reference
 mysql_compat: mo_only
+differs_from_mysql: []
 mo_only:
   - "MINUS, INTERSECT set operators"
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "The results of the two queries can be combined using the set operations UNION, INTERSECT, and MINUS."
 ---
 # Combining Queries (UNION, INTERSECT, MINUS)
+
+> The results of the two queries can be combined using the set operations UNION, INTERSECT, and MINUS.
 
 The results of the two queries can be combined using the set operations `UNION`, `INTERSECT`, and `MINUS`. The syntax is as below:
 

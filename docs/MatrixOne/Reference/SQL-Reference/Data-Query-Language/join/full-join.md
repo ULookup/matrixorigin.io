@@ -1,8 +1,17 @@
 ---
 title: "FULL JOIN"
-mysql_compat: full
+doc_type: reference
+mysql_compat: mo_only
+differs_from_mysql: []
+mo_only:
+  - "FULL JOIN / FULL OUTER JOIN is not supported in MySQL 8.0 (users must emulate it with LEFT JOIN UNION RIGHT JOIN)."
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "The `FULL JOIN` keyword returns all records when there is a match in left (table1) or right (table2) table records."
 ---
 # **FULL JOIN**
+
+> The `FULL JOIN` keyword returns all records when there is a match in left (table1) or right (table2) table records.
 
 ## **Description**
 

@@ -1,4 +1,16 @@
+---
+title: "LEFT()"
+doc_type: reference
+mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "This function LEFT() returns the leftmost len characters from the string str, or NULL if any argument is NULL."
+---
 # **LEFT()**
+
+> This function LEFT() returns the leftmost len characters from the string str, or NULL if any argument is NULL.
 
 ## **Description**
 

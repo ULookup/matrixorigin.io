@@ -1,10 +1,17 @@
 ---
 title: "LAST_QUERY_ID"
+doc_type: reference
 mysql_compat: mo_only
+differs_from_mysql: []
 mo_only:
   - "LAST_QUERY_ID()"
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "Returns the ID of a specified query in the current session."
 ---
 # **LAST_QUERY_ID**
+
+> Returns the ID of a specified query in the current session.
 
 ## **Description**
 

@@ -1,4 +1,16 @@
+---
+title: "CONVERT_TZ()"
+doc_type: reference
+mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "The CONVERT_TZ() function is used to convert a given datetime from one time zone to another."
+---
 # **CONVERT_TZ()**
+
+> The CONVERT_TZ() function is used to convert a given datetime from one time zone to another.
 
 ## **Function Description**
 

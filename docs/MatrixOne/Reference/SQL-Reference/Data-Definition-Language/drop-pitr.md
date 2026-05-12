@@ -1,10 +1,17 @@
 ---
 title: "DROP PITR"
+doc_type: reference
 mysql_compat: mo_only
+differs_from_mysql: []
 mo_only:
   - "DROP PITR"
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "DROP PITR is used to delete the pitr created under the current tenant."
 ---
 # DROP PITR
+
+> DROP PITR is used to delete the pitr created under the current tenant.
 
 ## Syntax description
 

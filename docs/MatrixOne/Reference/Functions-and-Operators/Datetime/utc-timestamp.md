@@ -1,4 +1,16 @@
+---
+title: "UTC_TIMESTAMP()"
+doc_type: reference
+mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "Returns the current UTC date and time as a value in YYYY-MM-DD hh:mm:ss or YYYYMMDDhhmmss format, depending on whether the function is used in string or numeric context."
+---
 # **UTC_TIMESTAMP()**
+
+> Returns the current UTC date and time as a value in YYYY-MM-DD hh:mm:ss or YYYYMMDDhhmmss format, depending on whether the function is used in string or numeric context.
 
 ## **Description**
 

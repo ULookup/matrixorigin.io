@@ -1,4 +1,16 @@
+---
+title: "POWER()"
+doc_type: reference
+mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "POWER(X, Y) returns the value of X raised to the power of Y."
+---
 # **POWER()**
+
+> POWER(X, Y) returns the value of X raised to the power of Y.
 
 ## **Description**
 

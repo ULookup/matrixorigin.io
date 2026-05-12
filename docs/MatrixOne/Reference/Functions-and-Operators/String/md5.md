@@ -1,4 +1,16 @@
+---
+title: "MD5()"
+doc_type: reference
+mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "MD5 () Function A widely used hash function that generates a 32-character long hexadecimal MD5 hash of a string."
+---
 # MD5()
+
+> MD5 () Function A widely used hash function that generates a 32-character long hexadecimal MD5 hash of a string.
 
 ## Function Description
 

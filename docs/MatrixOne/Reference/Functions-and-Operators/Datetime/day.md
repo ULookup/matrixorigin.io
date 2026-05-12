@@ -1,4 +1,16 @@
+---
+title: "DAY()"
+doc_type: reference
+mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "Returns the day of the month for date, in the range 1 to 31, or 0 for dates such as 0000-00-00 or 2008-00-00 that have a zero day part."
+---
 # **DAY()**
+
+> Returns the day of the month for date, in the range 1 to 31, or 0 for dates such as 0000-00-00 or 2008-00-00 that have a zero day part.
 
 ## **Description**
 

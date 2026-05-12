@@ -1,4 +1,16 @@
+---
+title: "CURRENT_TIMESTAMP()"
+doc_type: reference
+mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "CURRENT_TIMESTAMP and CURRENT_TIMESTAMP() are synonyms for NOW()."
+---
 # **CURRENT_TIMESTAMP()**
+
+> CURRENT_TIMESTAMP and CURRENT_TIMESTAMP() are synonyms for NOW().
 
 ## **Description**
 

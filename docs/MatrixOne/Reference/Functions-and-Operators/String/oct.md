@@ -1,4 +1,16 @@
+---
+title: "OCT(N)"
+doc_type: reference
+mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "This function OCT(N) returns a string representation of the octal value of *N*, where *N* is a longlong (BIGINT) number."
+---
 # **OCT(N)**
+
+> This function OCT(N) returns a string representation of the octal value of *N*, where *N* is a longlong (BIGINT) number.
 
 ## **Description**
 

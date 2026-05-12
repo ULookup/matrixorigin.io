@@ -1,10 +1,17 @@
 ---
 title: "SHOW ROLES"
+doc_type: reference
 mysql_compat: mo_only
+differs_from_mysql: []
 mo_only:
   - "SHOW ROLES"
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "Lists the meta information of the roles created under your account, including role name, creator, creation time, and comments."
 ---
 # **SHOW ROLES**
+
+> Lists the meta information of the roles created under your account, including role name, creator, creation time, and comments.
 
 ## **Description**
 

@@ -1,10 +1,17 @@
 ---
 title: "CREATE STAGE"
+doc_type: reference
 mysql_compat: mo_only
+differs_from_mysql: []
 mo_only:
   - "CREATE STAGE (external file-system binding)"
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "CREATE STAGE is used to provide an efficient and secure way to interact with data from external storage (such as Amazon S3, file systems)."
 ---
 # **CREATE STAGE**
+
+> CREATE STAGE is used to provide an efficient and secure way to interact with data from external storage (such as Amazon S3, file systems).
 
 ## **Syntax description**
 

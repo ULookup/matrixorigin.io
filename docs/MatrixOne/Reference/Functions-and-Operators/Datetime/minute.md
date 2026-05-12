@@ -1,4 +1,16 @@
+---
+title: "MINUTE()"
+doc_type: reference
+mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "Returns the minute for time, in the range 0 to 59, or NULL if time is NULL."
+---
 # **MINUTE()**
+
+> Returns the minute for time, in the range 0 to 59, or NULL if time is NULL.
 
 ## **Description**
 

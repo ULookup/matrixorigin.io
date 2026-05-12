@@ -1,8 +1,16 @@
 ---
 title: "WITH (Common Table Expressions)"
+doc_type: reference
 mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "Common Table Expression (CTE) is a temporary result set defined within the scope of a single statement, valid only during the execution of the query."
 ---
 # **WITH (Common Table Expressions)**
+
+> Common Table Expression (CTE) is a temporary result set defined within the scope of a single statement, valid only during the execution of the query.
 
 ## **Description**
 

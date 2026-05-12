@@ -1,10 +1,17 @@
 ---
 title: "ALTER STAGE"
+doc_type: reference
 mysql_compat: mo_only
+differs_from_mysql: []
 mo_only:
   - "ALTER STAGE"
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "ALTER STAGE is used to modify the properties of an existing stage."
 ---
 # **ALTER STAGE**
+
+> ALTER STAGE is used to modify the properties of an existing stage.
 
 ## **Syntax description**
 

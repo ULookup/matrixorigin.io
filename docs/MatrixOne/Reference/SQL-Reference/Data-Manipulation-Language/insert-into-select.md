@@ -1,8 +1,16 @@
 ---
 title: "INSERT INTO SELECT"
+doc_type: reference
 mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "The `INSERT INTO SELECT` statement copies data from one table and inserts it into another table."
 ---
 # **INSERT INTO SELECT**
+
+> The `INSERT INTO SELECT` statement copies data from one table and inserts it into another table.
 
 ## **Description**
 

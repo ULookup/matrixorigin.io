@@ -1,4 +1,17 @@
+---
+title: "STAGE_LIST()"
+doc_type: reference
+mysql_compat: mo_only
+differs_from_mysql: []
+mo_only:
+  - "STAGE_LIST() lists MatrixOne stage contents."
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "The STAGE_LIST() function is used to view the directories and files in the stage."
+---
 # **STAGE_LIST()**
+
+> The STAGE_LIST() function is used to view the directories and files in the stage.
 
 ## **Function description**
 

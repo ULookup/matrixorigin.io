@@ -1,4 +1,17 @@
+---
+title: "CURDATE()"
+doc_type: reference
+mysql_compat: partial
+differs_from_mysql:
+  - "curdate()+int returns days since 1970-01-01 rather than coercing both sides to integer and adding like MySQL."
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "The CURDATE() function returns the current date as a value in YYYY-MM-DD format, depending on whether the function is used in string or numeric context."
+---
 # **CURDATE()**
+
+> The CURDATE() function returns the current date as a value in YYYY-MM-DD format, depending on whether the function is used in string or numeric context.
 
 ## **Description**
 

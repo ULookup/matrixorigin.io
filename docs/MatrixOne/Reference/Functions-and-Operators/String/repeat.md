@@ -1,4 +1,16 @@
+---
+title: "REPEAT()"
+doc_type: reference
+mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "Returns a string consisting of the string str repeated count times."
+---
 # **REPEAT()**
+
+> Returns a string consisting of the string str repeated count times.
 
 ## **Description**
 

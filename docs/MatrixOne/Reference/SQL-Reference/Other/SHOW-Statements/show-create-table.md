@@ -1,10 +1,17 @@
 ---
 title: "SHOW CREATE TABLE"
+doc_type: reference
 mysql_compat: partial
 differs_from_mysql:
   - "Output reflects MatrixOne-specific extensions (CLUSTER BY, USING IVFFLAT/HNSW, etc.)"
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "This statement shows the CREATE TABLE statement that creates the named table."
 ---
 # **SHOW CREATE TABLE**
+
+> This statement shows the CREATE TABLE statement that creates the named table.
 
 ## **Description**
 

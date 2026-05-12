@@ -1,10 +1,17 @@
 ---
 title: "RESTORE ... SNAPSHOT"
+doc_type: reference
 mysql_compat: mo_only
+differs_from_mysql: []
 mo_only:
   - "RESTORE … FROM SNAPSHOT"
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "RESTORE ... SNAPSHOT is used to restore data at the cluster/tenant/database/table level from previously created snapshots of the corresponding levels."
 ---
 # RESTORE ... SNAPSHOT
+
+> RESTORE ... SNAPSHOT is used to restore data at the cluster/tenant/database/table level from previously created snapshots of the corresponding levels.
 
 ## Syntax Description
 

@@ -1,8 +1,17 @@
 ---
 title: "OUTER JOIN"
-mysql_compat: full
+doc_type: reference
+mysql_compat: partial
+differs_from_mysql:
+  - "Overview page that includes FULL OUTER JOIN, which MySQL 8.0 does not support."
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "When performing an `INNER JOIN, rows from either table that are unmatched in the other table are not returned."
 ---
 # **OUTER JOIN**
+
+> When performing an `INNER JOIN, rows from either table that are unmatched in the other table are not returned.
 
 ## **Description**
 

@@ -1,4 +1,17 @@
+---
+title: "inner_product()"
+doc_type: reference
+mysql_compat: mo_only
+differs_from_mysql: []
+mo_only:
+  - "Vector type and related distance/norm/clustering functions are MatrixOne extensions (compat doc: Data Types — \"MatrixOne supports vector types\")."
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "The INNER PRODUCT function is used to calculate the inner/dot product between two vectors."
+---
 # **inner_product()**
+
+> The INNER PRODUCT function is used to calculate the inner/dot product between two vectors.
 
 ## **Function Description**
 

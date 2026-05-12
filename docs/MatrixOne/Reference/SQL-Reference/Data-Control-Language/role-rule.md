@@ -3,7 +3,7 @@ title: "Role Rewrite Rules (ALTER ROLE ... RULE / SHOW RULES)"
 doc_type: reference
 mysql_compat: mo_only
 differs_from_mysql: []
-mo_only: true
+mo_only: []
 since: v3.0.10
 last_updated: 2026-05-08
 llms_summary: "Attach per-table rewrite rules to a MatrixOne role via ALTER ROLE ADD RULE / DROP RULE and list them with SHOW RULES ON ROLE, enabled per session by enable_remap_hint."

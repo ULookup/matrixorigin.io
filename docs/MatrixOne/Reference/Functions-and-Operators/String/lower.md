@@ -1,4 +1,16 @@
+---
+title: "LOWER()"
+doc_type: reference
+mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "LOWER() Converts the given string to lowercase."
+---
 # **LOWER()**
+
+> LOWER() Converts the given string to lowercase.
 
 ## **Function Description**
 

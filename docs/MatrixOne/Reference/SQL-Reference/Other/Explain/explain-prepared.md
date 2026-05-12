@@ -1,10 +1,17 @@
 ---
 title: "EXPLAIN PREPARED"
-mysql_compat: partial
-differs_from_mysql:
-  - "Output format mirrors PostgreSQL; JSON output not supported"
+doc_type: reference
+mysql_compat: mo_only
+differs_from_mysql: []
+mo_only:
+  - "EXPLAIN FORCE EXECUTE stmt_name [USING @var] is a MatrixOne extension; MySQL explains prepared statements through EXPLAIN FOR CONNECTION."
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "In MatrixOne, EXPLAIN is a command to get an execution plan for a SQL query, and PREPARE is a command to create a prepared statement."
 ---
 # EXPLAIN PREPARED
+
+> In MatrixOne, EXPLAIN is a command to get an execution plan for a SQL query, and PREPARE is a command to create a prepared statement.
 
 ## Syntax Description
 

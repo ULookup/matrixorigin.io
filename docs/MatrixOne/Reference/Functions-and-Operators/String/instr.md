@@ -1,4 +1,16 @@
+---
+title: "INSTR()"
+doc_type: reference
+mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "INSTR() function is used to return the position of the first occurrence of a substring in a given string."
+---
 # **INSTR()**
+
+> INSTR() function is used to return the position of the first occurrence of a substring in a given string.
 
 ## **Description**
 

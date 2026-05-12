@@ -1,10 +1,20 @@
 ---
 title: "REVOKE"
+doc_type: reference
 mysql_compat: partial
 differs_from_mysql:
   - "Recovery logic differs from MySQL — privileges return to the role/account graph"
+  - "User identifier is a bare username scoped to the current account; MySQL uses 'user'@'host' tuples"
+mo_only:
+  - "`REVOKE ... ON ACCOUNT *` — account-level privileges have no MySQL counterpart"
+  - "`REVOKE ... ON DATABASE *` — MatrixOne-specific database-level revoke target"
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "Removes one or more privileges on a securable object from a role."
 ---
 # **REVOKE**
+
+> Removes one or more privileges on a securable object from a role.
 
 ## **Description**
 

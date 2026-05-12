@@ -1,8 +1,16 @@
 ---
 title: "DROP VIEW"
+doc_type: reference
 mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "DROP VIEW removes one or more views."
 ---
 # **DROP VIEW**
+
+> DROP VIEW removes one or more views.
 
 ## **Description**
 

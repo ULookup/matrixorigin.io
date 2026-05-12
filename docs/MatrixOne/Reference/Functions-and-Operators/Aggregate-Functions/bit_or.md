@@ -1,4 +1,16 @@
+---
+title: "BIT_OR"
+doc_type: reference
+mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "Aggregate function. The BIT_OR(expr) function returns the bitwise OR of all bits in expr."
+---
 # **BIT_OR**
+
+> Aggregate function. The BIT_OR(expr) function returns the bitwise OR of all bits in expr.
 
 ## **Description**
 

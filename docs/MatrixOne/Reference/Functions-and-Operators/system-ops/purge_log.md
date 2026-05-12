@@ -1,4 +1,17 @@
+---
+title: "PURGE_LOG()"
+doc_type: reference
+mysql_compat: mo_only
+differs_from_mysql: []
+mo_only:
+  - "MatrixOne multi-account/role system management function (compat doc: System Management Functions)."
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "PURGE_LOG() deletes logs recorded in MatrixOne database system tables."
+---
 # **PURGE_LOG()**
+
+> PURGE_LOG() deletes logs recorded in MatrixOne database system tables.
 
 ## **Description**
 

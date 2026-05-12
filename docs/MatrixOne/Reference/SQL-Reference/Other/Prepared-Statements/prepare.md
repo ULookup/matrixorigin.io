@@ -1,10 +1,17 @@
 ---
 title: "PREPARE"
+doc_type: reference
 mysql_compat: partial
 differs_from_mysql:
   - "MatrixOne cannot PREPARE SET statements"
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "The PREPARE statement prepares a SQL statement and assigns it a name, The prepared statement is executed with EXECUTE and released with DEALLOCATE PREPARE."
 ---
 # **PREPARE**
+
+> The PREPARE statement prepares a SQL statement and assigns it a name, The prepared statement is executed with EXECUTE and released with DEALLOCATE PREPARE.
 
 ## **Description**
 

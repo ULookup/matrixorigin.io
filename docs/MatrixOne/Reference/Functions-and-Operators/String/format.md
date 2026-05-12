@@ -1,4 +1,16 @@
+---
+title: "FORMAT()"
+doc_type: reference
+mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "Formats the number X to a format like '#,###,###.##', rounded to D decimal places, and returns the result as a string."
+---
 # **FORMAT()**
+
+> Formats the number X to a format like '#,###,###.##', rounded to D decimal places, and returns the result as a string.
 
 ## **Description**
 

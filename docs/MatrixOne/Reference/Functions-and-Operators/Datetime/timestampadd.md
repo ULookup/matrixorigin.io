@@ -3,15 +3,15 @@ title: "TIMESTAMPADD()"
 doc_type: reference
 mysql_compat: full
 differs_from_mysql: []
-mo_only: false
+mo_only: []
 since: v3.0.11
 last_updated: 2026-05-08
-llms_summary: "TIMESTAMPADD adds an integer interval of a given unit to a date, datetime, timestamp, or string expression, with the return type aligned to the input type in MatrixOne."
+llms_summary: "The TIMESTAMPADD() function adds an integer interval of the specified unit to a date, datetime, or timestamp expression datetime_expr and returns the result."
 ---
 
 # **TIMESTAMPADD()**
 
-> `TIMESTAMPADD(unit, interval, datetime_expr)` adds an integer `interval` of the given `unit` (MICROSECOND / SECOND / MINUTE / HOUR / DAY / WEEK / MONTH / QUARTER / YEAR) to a date, datetime, timestamp, or string expression; the return type is aligned with the input type.
+> The TIMESTAMPADD() function adds an integer interval of the specified unit to a date, datetime, or timestamp expression datetime_expr and returns the result.
 
 ## **Description**
 

@@ -1,8 +1,16 @@
 ---
 title: "SHOW DATABASES"
+doc_type: reference
 mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "SHOW DATABASES lists the databases on the MatrixOne."
 ---
 # **SHOW DATABASES**
+
+> SHOW DATABASES lists the databases on the MatrixOne.
 
 ## **Description**
 

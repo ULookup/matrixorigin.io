@@ -1,8 +1,16 @@
 ---
 title: "SHOW COLUMNS"
+doc_type: reference
 mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "SHOW COLUMNS displays information about the columns in a given table."
 ---
 # **SHOW COLUMNS**
+
+> SHOW COLUMNS displays information about the columns in a given table.
 
 ## **Description**
 

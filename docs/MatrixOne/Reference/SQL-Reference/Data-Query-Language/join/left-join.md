@@ -1,8 +1,16 @@
 ---
 title: "LEFT JOIN"
+doc_type: reference
 mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "The `LEFT JOIN` keyword returns all records from the left table (table1), and the matching records from the right table (table2)."
 ---
 # **LEFT JOIN**
+
+> The `LEFT JOIN` keyword returns all records from the left table (table1), and the matching records from the right table (table2).
 
 ## **Description**
 

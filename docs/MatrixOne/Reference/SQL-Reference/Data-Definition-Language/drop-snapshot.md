@@ -1,10 +1,17 @@
 ---
 title: "DROP SNAPSHOT"
+doc_type: reference
 mysql_compat: mo_only
+differs_from_mysql: []
 mo_only:
   - "DROP SNAPSHOT"
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "DROP SNAPSHOT is used to delete snapshots created under the current tenant."
 ---
 # DROP SNAPSHOT
+
+> DROP SNAPSHOT is used to delete snapshots created under the current tenant.
 
 ## Syntax Description
 

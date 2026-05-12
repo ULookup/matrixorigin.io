@@ -1,4 +1,16 @@
+---
+title: "LOG2()"
+doc_type: reference
+mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "LOG2(X) returns the base-2 logarithm of X."
+---
 # **LOG2()**
+
+> LOG2(X) returns the base-2 logarithm of X.
 
 ## **Description**
 

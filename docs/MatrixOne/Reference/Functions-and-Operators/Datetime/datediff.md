@@ -1,4 +1,16 @@
+---
+title: "DATEDIFF()"
+doc_type: reference
+mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "DATEDIFF() returns expr1 − expr2 expressed as a value in days from one date to the other."
+---
 # **DATEDIFF()**
+
+> DATEDIFF() returns expr1 − expr2 expressed as a value in days from one date to the other.
 
 ## **Description**
 

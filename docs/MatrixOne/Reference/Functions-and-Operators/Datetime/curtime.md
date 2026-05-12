@@ -3,15 +3,15 @@ title: "CURTIME()"
 doc_type: reference
 mysql_compat: full
 differs_from_mysql: []
-mo_only: false
+mo_only: []
 since: v3.0.11
 last_updated: 2026-05-08
-llms_summary: "CURTIME and its synonym CURRENT_TIME return the current server time as a TIME value, optionally with up to microsecond precision in MatrixOne."
+llms_summary: "The CURTIME() function returns the current time as a TIME value."
 ---
 
 # **CURTIME()**
 
-> `CURTIME([fsp])` and its synonym `CURRENT_TIME([fsp])` return the current server time as a `TIME` value, optionally with `fsp` digits of fractional seconds (up to microsecond precision).
+> The CURTIME() function returns the current time as a TIME value.
 
 ## **Description**
 

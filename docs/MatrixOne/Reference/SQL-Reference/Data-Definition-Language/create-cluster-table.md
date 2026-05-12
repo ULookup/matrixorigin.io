@@ -1,10 +1,17 @@
 ---
 title: "CREATE CLUSTER TABLE"
+doc_type: reference
 mysql_compat: mo_only
+differs_from_mysql: []
 mo_only:
   - "CREATE CLUSTER TABLE"
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "A cluster table is a table created by the system library mo_catalog under a system tenant that takes effect simultaneously under other tenants."
 ---
 # **CREATE CLUSTER TABLE**
+
+> A cluster table is a table created by the system library mo_catalog under a system tenant that takes effect simultaneously under other tenants.
 
 ## **Grammar description**
 

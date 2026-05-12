@@ -2,16 +2,18 @@
 title: "AES_ENCRYPT()"
 doc_type: reference
 mysql_compat: partial
-differs_from_mysql: ["Only aes-128-ecb and aes-256-cbc are supported via block_encryption_mode; other MySQL modes are not implemented."]
-mo_only: false
+differs_from_mysql:
+  - "MatrixOne supports only aes-128-ecb and aes-256-cbc block modes; MySQL 8.0 also supports the full set of ECB/CBC/CFB/OFB variants at multiple key sizes."
+  - "MatrixOne AES_ENCRYPT does not accept the optional kdf_name / salt / info KDF arguments present in MySQL 8.0."
+mo_only: []
 since: v3.0.11
 last_updated: 2026-05-08
-llms_summary: "AES_ENCRYPT encrypts plaintext with a key and returns a BLOB using the mode set by block_encryption_mode, supporting aes-128-ecb (default) and aes-256-cbc with a required 16-byte IV in MatrixOne."
+llms_summary: "The AES_ENCRYPT() function encrypts str with key_str using AES and returns the ciphertext as a BLOB."
 ---
 
 # **AES_ENCRYPT()**
 
-> `AES_ENCRYPT(str, key_str[, init_vector])` encrypts a string using AES and returns a `BLOB` ciphertext; the mode is selected by session variable `block_encryption_mode` (`aes-128-ecb` default; `aes-256-cbc` requires a 16-byte IV in the third argument).
+> The AES_ENCRYPT() function encrypts str with key_str using AES and returns the ciphertext as a BLOB.
 
 ## **Description**
 

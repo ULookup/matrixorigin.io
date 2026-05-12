@@ -1,4 +1,16 @@
+---
+title: "JSON_SET()"
+doc_type: reference
+mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "JSON_SET() is used to set or update the value of a key in a JSON document."
+---
 # **JSON_SET()**
+
+> JSON_SET() is used to set or update the value of a key in a JSON document.
 
 ## **Function Description**
 

@@ -1,4 +1,17 @@
+---
+title: "Arithmetic operators"
+doc_type: reference
+mysql_compat: mo_only
+differs_from_mysql: []
+mo_only:
+  - "Vector type and related distance/norm/clustering functions are MatrixOne extensions (compat doc: Data Types — \"MatrixOne supports vector types\")."
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "MatrixOne supports basic arithmetic operators such as addition, subtraction, multiplication, and division between vectors or between vectors and scalars."
+---
 # Arithmetic operators
+
+> MatrixOne supports basic arithmetic operators such as addition, subtraction, multiplication, and division between vectors or between vectors and scalars.
 
 MatrixOne supports basic arithmetic operators such as addition, subtraction, multiplication, and division between vectors or between vectors and scalars. These operators perform element-by-element arithmetic and return a new vector.
 

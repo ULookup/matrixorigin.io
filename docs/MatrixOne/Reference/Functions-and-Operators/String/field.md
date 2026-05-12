@@ -1,4 +1,16 @@
+---
+title: "FIELD()"
+doc_type: reference
+mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "FIELD() returns the index (position) of str in the str1, str2, str3, ... list."
+---
 # **FIELD()**
+
+> FIELD() returns the index (position) of str in the str1, str2, str3, ... list.
 
 ## **Description**
 

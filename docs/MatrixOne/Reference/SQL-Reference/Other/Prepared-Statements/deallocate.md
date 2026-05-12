@@ -1,8 +1,16 @@
 ---
 title: "DEALLOCATE PREPARE"
+doc_type: reference
 mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "To deallocate a prepared statement produced with PREPARE, use a DEALLOCATE PREPARE statement that refers to the prepared statement name."
 ---
 # **DEALLOCATE PREPARE**
+
+> To deallocate a prepared statement produced with PREPARE, use a DEALLOCATE PREPARE statement that refers to the prepared statement name.
 
 ## **Description**
 

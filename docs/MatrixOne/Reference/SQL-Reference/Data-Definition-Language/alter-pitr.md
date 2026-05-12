@@ -1,10 +1,17 @@
 ---
 title: "ALTER PITR"
+doc_type: reference
 mysql_compat: mo_only
+differs_from_mysql: []
 mo_only:
   - "ALTER PITR"
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "ALTER PITR is used to change PITR."
 ---
 # **ALTER PITR**
+
+> ALTER PITR is used to change PITR.
 
 ## **Syntax description**
 

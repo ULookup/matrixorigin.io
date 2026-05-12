@@ -1,10 +1,19 @@
 ---
 title: "INSERT IGNORE"
+doc_type: reference
 mysql_compat: partial
 differs_from_mysql:
   - "LOW_PRIORITY / DELAYED / HIGH_PRIORITY modifiers not supported"
+  - "Duplicates are silently ignored; MySQL emits a warning for each skipped row."
+  - "Does not ignore NULL-into-NOT-NULL, type-conversion, or partition-mismatch errors as MySQL does."
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "INSERT IGNORE is used when inserting data into a database table with the same unique index or primary key to ignore the data if it already exists instead of returning an error, otherwise insert new data."
 ---
 # INSERT IGNORE
+
+> INSERT IGNORE is used when inserting data into a database table with the same unique index or primary key to ignore the data if it already exists instead of returning an error, otherwise insert new data.
 
 ## Syntax Description
 

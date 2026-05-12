@@ -1,4 +1,16 @@
+---
+title: "UCASE()"
+doc_type: reference
+mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "UCASE() is used to convert a given string to uppercase form, a synonym for UPPER()."
+---
 # **UCASE()**
+
+> UCASE() is used to convert a given string to uppercase form, a synonym for UPPER().
 
 ## **Function Description**
 

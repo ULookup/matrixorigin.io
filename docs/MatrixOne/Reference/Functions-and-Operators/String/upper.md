@@ -1,4 +1,16 @@
+---
+title: "UPPER()"
+doc_type: reference
+mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "UPPER() is used to convert a given string to uppercase."
+---
 # **UPPER()**
+
+> UPPER() is used to convert a given string to uppercase.
 
 ## **Function Description**
 

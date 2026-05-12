@@ -1,8 +1,17 @@
 ---
 title: "DROP USER"
-mysql_compat: full
+doc_type: reference
+mysql_compat: partial
+differs_from_mysql:
+  - "User identifier is a bare username scoped to the current account; MySQL uses 'user'@'host' tuples."
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "Removes the specified user from the system."
 ---
 # **DROP USER**
+
+> Removes the specified user from the system.
 
 ## **Description**
 

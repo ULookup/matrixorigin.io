@@ -1,8 +1,16 @@
 ---
 title: "RIGHT JOIN"
+doc_type: reference
 mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "The `RIGHT JOIN keyword returns all records from the right table (table2), and the matching records from the left table (table1)."
 ---
 # **RIGHT JOIN**
+
+> The `RIGHT JOIN keyword returns all records from the right table (table2), and the matching records from the left table (table1).
 
 ## **Description**
 

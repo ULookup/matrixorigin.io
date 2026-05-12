@@ -1,4 +1,16 @@
+---
+title: "CEILING()"
+doc_type: reference
+mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-08
+llms_summary: "The CEILING(X) function returns the smallest integer value not less than X.Synonymous with CEIL()."
+---
 # **CEILING()**
+
+> The CEILING(X) function returns the smallest integer value not less than X.Synonymous with CEIL().
 
 ## **Description**
 

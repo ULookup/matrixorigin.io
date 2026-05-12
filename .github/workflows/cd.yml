@@ -35,6 +35,21 @@ jobs:
         run: |
           git rev-parse --abbrev-ref HEAD
           pip install -r requirements.txt
+
+      # The mkdocs on_pre_build hook (docs/hooks/generate_compat_matrix.py)
+      # invokes `node scripts/generate-compat-matrix.js`, which imports
+      # `fast-glob` from node_modules. Install Node deps before `mike deploy`
+      # so the hook can resolve them.
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9.15.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+      - name: Install Node deps
+        run: pnpm install --frozen-lockfile
+
       - name: Git Config
         run: |
           git fetch --all

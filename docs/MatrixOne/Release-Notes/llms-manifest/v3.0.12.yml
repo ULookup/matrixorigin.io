@@ -12,6 +12,10 @@ docs_added:
     doc_type: reference
     mysql_compat: partial
     llms_summary: "The SET type stores a set of predefined string values as a bitmask, supporting INSERT by name or numeric index, LOAD DATA, DISTINCT, GROUP BY, and ALTER MODIFY to expand members."
+  - path: docs/MatrixOne/Reference/Data-Types/geometry-type.md
+    doc_type: reference
+    mysql_compat: partial
+    llms_summary: "MatrixOne supports spatial geometry types (POINT, LINESTRING, POLYGON, etc.) defined by the OGC standard, with subtype validation on INSERT and UPDATE enforced since v3.0.12."
 docs_updated:
   - path: docs/MatrixOne/Reference/Functions-and-Operators/Datetime/week.md
     change_summary: "Document the optional mode parameter (0-7) controlling week numbering, add mode values table, and replace legacy examples with runnable examples."
@@ -33,3 +37,5 @@ docs_updated:
     change_summary: "Note that LOAD DATA from Parquet files correctly converts all three binary decimal encodings (INT32, INT64, FixedLenByteArray) since v3.0.12."
   - path: docs/MatrixOne/Reference/Data-Types/date-time-data-types/year-type.md
     change_summary: "Add runnable SQL examples covering INSERT with 4-digit, 2-digit string, 2-digit numeric, CAST operations, and comparison queries."
+  - path: docs/MatrixOne/Reference/Data-Types/enum-type.md
+    change_summary: "Add frontmatter and TL;DR blockquote, document v3.0.12 ENUM validation improvements (stricter input validation, improved comparison semantics, better NOT NULL handling)."

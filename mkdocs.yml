@@ -341,6 +341,7 @@ nav:
               - SET Type: MatrixOne/Reference/Data-Types/set-type.md
               - UUID Type: MatrixOne/Reference/Data-Types/uuid-type.md
               - VECTOR Type: MatrixOne/Reference/Data-Types/vector-type.md
+              - Geometry Types: MatrixOne/Reference/Data-Types/geometry-type.md
               - Fixed-Point Types (Exact Value) - DECIMAL: MatrixOne/Reference/Data-Types/fixed-point-types.md
           - SQL Statements:
               - Type of SQL Statements: MatrixOne/Reference/SQL-Reference/SQL-Type.md

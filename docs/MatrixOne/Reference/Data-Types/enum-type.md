@@ -1,4 +1,17 @@
+---
+title: "ENUM Type"
+doc_type: reference
+mysql_compat: partial
+differs_from_mysql: ["ENUM values can only be compared with strings in WHERE conditions", "ENUM filtering and sorting is not supported"]
+mo_only: false
+since: unknown
+last_updated: 2026-05-19
+llms_summary: "The ENUM type stores a single value chosen from a predefined list of string constants, with improved validation and comparison semantics since v3.0.12."
+---
+
 # The ENUM Type
+
+> The ENUM type stores a single value chosen from a predefined list of string constants. Internally, only the numerical index (1, 2, 3, ...) is stored. Since v3.0.12, ENUM benefits from improved type validation and comparison semantics.
 
 "ENUM" is a list of strings used to store a set of predefined discrete values. It can define a type with discrete values, with each enumeration constant representing a specific value.
 
@@ -99,6 +112,16 @@ update orders set status= 2 where status='Processing';
 ```
 
 In this example, you must update the `status` to 2 for the row whose `status` is `Processing`. Due to the nature of the ENUM type, MatrixOne implicitly converts 2 to the string `2` in the WHERE condition, which is then compared with `Processing`.
+
+## v3.0.12 Improvements
+
+Starting from v3.0.12, ENUM type validation has been improved:
+
+- **Stricter input validation**: Invalid ENUM values are rejected earlier during binding, providing clearer error messages.
+- **Improved comparison semantics**: ENUM-to-integer and ENUM-to-string comparisons behave more consistently in WHERE clauses and JOIN conditions.
+- **Better NOT NULL handling**: Default value selection for NOT NULL ENUM columns is more reliable.
+
+These improvements are internal and do not change the SQL syntax or user-facing API. Existing queries and applications continue to work without modification.
 
 ## Constraints
 

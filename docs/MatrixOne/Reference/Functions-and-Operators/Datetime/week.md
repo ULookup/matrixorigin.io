@@ -83,7 +83,7 @@ mysql> SELECT WEEK(c1) FROM t1;
 5 rows in set (0.00 sec)
 ```
 
-## **Examples**
+- Example 3:
 
 ```sql
 DROP DATABASE IF EXISTS week_demo;

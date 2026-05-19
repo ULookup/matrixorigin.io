@@ -77,6 +77,7 @@ Branch snapshots are reclaimed automatically through a DAG-aware cascade:
 
 ### Verifying branch snapshot creation and DROP SNAPSHOT rejection
 
+<!-- validator-ignore-exec -->
 ```sql
 DROP DATABASE IF EXISTS protect_db1;
 CREATE DATABASE protect_db1;

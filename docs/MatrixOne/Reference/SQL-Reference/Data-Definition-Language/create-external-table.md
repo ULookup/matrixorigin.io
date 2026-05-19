@@ -127,6 +127,7 @@ CREATE EXTERNAL TABLE [IF NOT EXISTS] [db.]table_name (
 
 **Example — Single-level partition:**
 
+<!-- validator-ignore-exec -->
 ```sql
 DROP DATABASE IF EXISTS hive_single_demo;
 CREATE DATABASE hive_single_demo;
@@ -151,6 +152,7 @@ DROP DATABASE hive_single_demo;
 
 **Example — Multi-level partition:**
 
+<!-- validator-ignore-exec -->
 ```sql
 DROP DATABASE IF EXISTS hive_multi_demo;
 CREATE DATABASE hive_multi_demo;

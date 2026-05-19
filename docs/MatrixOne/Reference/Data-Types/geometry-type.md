@@ -4,6 +4,7 @@ doc_type: reference
 mysql_compat: partial
 differs_from_mysql: []
 mo_only: false
+since: v3.0.12
 last_updated: 2026-05-19
 llms_summary: "MatrixOne supports spatial geometry types (POINT, LINESTRING, POLYGON, etc.) defined by the OGC standard, with subtype validation on INSERT and UPDATE."
 ---
@@ -31,23 +32,20 @@ MatrixOne supports the following geometry subtypes:
 
 ```
 GEOMETRY
-GEOMETRY(POINT)
-GEOMETRY(LINESTRING)
-GEOMETRY(POLYGON)
-...
 ```
 
-A geometry column can be declared with or without a specific subtype constraint. When a subtype is specified (e.g., `GEOMETRY(POINT)`), only values of that exact subtype can be stored.
+A column declared as `GEOMETRY` can store values of any supported geometry subtype (`POINT`, `LINESTRING`, `POLYGON`, `MULTIPOINT`, `MULTILINESTRING`, `MULTIPOLYGON`, `GEOMETRYCOLLECTION`). Use `ST_GeomFromText()` to create geometry values from Well-Known Text (WKT) format, and `ST_AsText()` to convert geometry values back to WKT for display.
 
 ## Subtype Validation
 
 INSERT and UPDATE operations on geometry columns validate the geometry subtype at bind time:
 
-- When inserting into a subtype-constrained column (e.g., `GEOMETRY(POINT)`), the value is checked to ensure it matches the declared subtype.
-- When inserting into an unconstrained `GEOMETRY` column, the value is validated to be a well-formed geometry of a recognized subtype.
-- Invalid geometries are rejected with an error.
+- Each value is checked to ensure it is a well-formed geometry of a recognized subtype.
+- Invalid geometries (malformed WKT, unsupported subtypes, or non-geometry strings) are rejected with an error.
 
-### Example — Subtype validation
+## Examples
+
+### Insert and query basic geometry subtypes
 
 ```sql
 DROP DATABASE IF EXISTS geo_demo;
@@ -59,44 +57,110 @@ CREATE TABLE geo_test (
     shape GEOMETRY
 );
 
--- Insert valid geometries
-INSERT INTO geo_test VALUES (1, POINT(1, 2));
-INSERT INTO geo_test VALUES (2, LINESTRING(POINT(0, 0), POINT(1, 1)));
+INSERT INTO geo_test VALUES (1, ST_GeomFromText('POINT(1 2)'));
+INSERT INTO geo_test VALUES (2, ST_GeomFromText('LINESTRING(0 0, 1 1, 2 0)'));
+INSERT INTO geo_test VALUES (3, ST_GeomFromText('POLYGON((0 0, 1 0, 1 1, 0 0))'));
 
 SELECT id, ST_AsText(shape) FROM geo_test ORDER BY id;
-
--- Insert an invalid geometry string
--- Expected-Success: false
-INSERT INTO geo_test VALUES (3, 'not_a_geometry');
 
 DROP TABLE geo_test;
 DROP DATABASE geo_demo;
 ```
 
-### Example — Subtype-constrained column
+### Collection subtypes (MULTIPOINT, MULTILINESTRING, MULTIPOLYGON, GEOMETRYCOLLECTION)
 
 ```sql
-DROP DATABASE IF EXISTS geo_point_demo;
-CREATE DATABASE geo_point_demo;
-USE geo_point_demo;
+DROP DATABASE IF EXISTS geo_collection_demo;
+CREATE DATABASE geo_collection_demo;
+USE geo_collection_demo;
 
-CREATE TABLE locations (
+CREATE TABLE geo_col (
     id INT PRIMARY KEY,
-    name VARCHAR(100),
-    coord GEOMETRY(POINT)
+    shape GEOMETRY
 );
 
-INSERT INTO locations VALUES (1, 'Origin', POINT(0, 0));
-INSERT INTO locations VALUES (2, 'Somewhere', POINT(12.34, 56.78));
+INSERT INTO geo_col VALUES (1, ST_GeomFromText('MULTIPOINT(0 0, 1 1, 2 2)'));
+INSERT INTO geo_col VALUES (2, ST_GeomFromText('MULTILINESTRING((0 0, 1 1), (2 2, 3 3))'));
+INSERT INTO geo_col VALUES (3, ST_GeomFromText('MULTIPOLYGON(((0 0, 1 0, 1 1, 0 0)), ((2 2, 3 2, 3 3, 2 2)))'));
+INSERT INTO geo_col VALUES (4, ST_GeomFromText('GEOMETRYCOLLECTION(POINT(1 2), LINESTRING(0 0, 1 1))'));
 
-SELECT id, name, ST_AsText(coord) FROM locations ORDER BY id;
+SELECT id, ST_AsText(shape) FROM geo_col ORDER BY id;
 
-DROP TABLE locations;
-DROP DATABASE geo_point_demo;
+DROP TABLE geo_col;
+DROP DATABASE geo_collection_demo;
 ```
+
+### Empty geometry and NULL values
+
+```sql
+DROP DATABASE IF EXISTS geo_null_demo;
+CREATE DATABASE geo_null_demo;
+USE geo_null_demo;
+
+CREATE TABLE geo_null (
+    id INT PRIMARY KEY,
+    shape GEOMETRY
+);
+
+INSERT INTO geo_null VALUES (1, ST_GeomFromText('POINT EMPTY'));
+INSERT INTO geo_null VALUES (2, ST_GeomFromText('LINESTRING EMPTY'));
+INSERT INTO geo_null VALUES (3, ST_GeomFromText('POLYGON EMPTY'));
+INSERT INTO geo_null VALUES (4, ST_GeomFromText('MULTIPOINT EMPTY'));
+INSERT INTO geo_null VALUES (5, ST_GeomFromText('GEOMETRYCOLLECTION EMPTY'));
+INSERT INTO geo_null VALUES (6, NULL);
+
+SELECT id, ST_AsText(shape) FROM geo_null ORDER BY id;
+
+DROP TABLE geo_null;
+DROP DATABASE geo_null_demo;
+```
+
+### Validation: non-geometry string and malformed WKT are rejected
+
+```sql
+DROP DATABASE IF EXISTS geo_validation_demo;
+CREATE DATABASE geo_validation_demo;
+USE geo_validation_demo;
+
+CREATE TABLE geo_val (
+    id INT PRIMARY KEY,
+    shape GEOMETRY
+);
+
+-- A plain non-geometry string is rejected
+-- Expected-Success: false
+INSERT INTO geo_val VALUES (1, 'not_a_geometry');
+
+-- Malformed WKT is rejected
+-- Expected-Success: false
+INSERT INTO geo_val VALUES (2, ST_GeomFromText('POINT(1)'));
+
+-- WKT with unsupported structure is rejected
+-- Expected-Success: false
+INSERT INTO geo_val VALUES (3, ST_GeomFromText('CIRCLE(1 2, 3)'));
+
+INSERT INTO geo_val VALUES (4, ST_GeomFromText('POINT(5 6)'));
+
+SELECT id, ST_AsText(shape) FROM geo_val ORDER BY id;
+
+DROP TABLE geo_val;
+DROP DATABASE geo_validation_demo;
+```
+
+## Functions
+
+The following geometry functions are available:
+
+| Function | Description |
+|---|---|
+| `ST_GeomFromText(wkt)` | Creates a geometry value from a WKT string (e.g., `'POINT(1 2)'`) |
+| `ST_GeomFromText(wkt, srid)` | Creates a geometry value from a WKT string with a spatial reference ID |
+| `ST_AsText(geom)` | Converts a geometry value to its WKT string representation |
+
+Additional spatial analysis functions (e.g., `ST_Distance`, `ST_Area`, `ST_Contains`) are available. See the spatial functions reference for the complete list.
 
 ## Notes
 
-- Geometry functions (e.g., `ST_AsText`, `ST_GeomFromText`, `ST_Distance`) are available for working with geometry values.
-- Geometry subtype validation is enforced at bind time only for INSERT and UPDATE. SELECT and LOAD DATA may have different validation behavior.
-- For a complete list of spatial functions, see the [Functions and Operators](../Functions-and-Operators/README.md) reference.
+- Geometry subtype validation is enforced at bind time for INSERT and UPDATE. SELECT and LOAD DATA may have different validation behavior.
+- WKT coordinate values use spaces as separators between x and y (e.g., `POINT(1 2)`, not `POINT(1, 2)`). Commas separate points within multi-point geometries (e.g., `LINESTRING(0 0, 1 1)`).
+- Empty geometries use the keyword `EMPTY` (e.g., `POINT EMPTY`, `LINESTRING EMPTY`).

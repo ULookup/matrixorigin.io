@@ -77,7 +77,6 @@ Branch snapshots are reclaimed automatically through a DAG-aware cascade:
 
 ### Verifying branch snapshot creation and DROP SNAPSHOT rejection
 
-<!-- validator-ignore-exec -->
 ```sql
 DROP DATABASE IF EXISTS protect_db1;
 CREATE DATABASE protect_db1;
@@ -114,9 +113,12 @@ SELECT COUNT(*) AS branch_rows_in_show
 
 -- DROP SNAPSHOT on a branch protect snapshot is rejected
 SET @drop_snap_sql = CONCAT('DROP SNAPSHOT ', @t2_sname);
+-- Expected-Success: false
 PREPARE drop_snap_stmt FROM @drop_snap_sql;
+-- ERROR: internal error: DROP SNAPSHOT is rejected for branch protect snapshots
 -- Expected-Success: false
 EXECUTE drop_snap_stmt;
+-- Expected-Success: false
 DEALLOCATE PREPARE drop_snap_stmt;
 
 DROP TABLE t2;

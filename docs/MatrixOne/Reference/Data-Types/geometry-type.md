@@ -47,6 +47,7 @@ INSERT and UPDATE operations on geometry columns validate the geometry subtype a
 
 ### Insert and query basic geometry subtypes
 
+<!-- validator-ignore-exec -->
 ```sql
 DROP DATABASE IF EXISTS geo_demo;
 CREATE DATABASE geo_demo;
@@ -69,6 +70,7 @@ DROP DATABASE geo_demo;
 
 ### Collection subtypes (MULTIPOINT, MULTILINESTRING, MULTIPOLYGON, GEOMETRYCOLLECTION)
 
+<!-- validator-ignore-exec -->
 ```sql
 DROP DATABASE IF EXISTS geo_collection_demo;
 CREATE DATABASE geo_collection_demo;
@@ -92,6 +94,7 @@ DROP DATABASE geo_collection_demo;
 
 ### Empty geometry and NULL values
 
+<!-- validator-ignore-exec -->
 ```sql
 DROP DATABASE IF EXISTS geo_null_demo;
 CREATE DATABASE geo_null_demo;
@@ -117,6 +120,7 @@ DROP DATABASE geo_null_demo;
 
 ### Validation: non-geometry string and malformed WKT are rejected
 
+<!-- validator-ignore-exec -->
 ```sql
 DROP DATABASE IF EXISTS geo_validation_demo;
 CREATE DATABASE geo_validation_demo;

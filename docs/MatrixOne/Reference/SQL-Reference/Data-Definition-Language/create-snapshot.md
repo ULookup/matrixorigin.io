@@ -110,3 +110,13 @@ mysql> SHOW SNAPSHOTS;
 ## Limitations
 
 - Cluster administrators can only create tenant-level snapshots for other tenants.
+
+## Branch Protect Snapshots (since v3.0.12)
+
+`DATA BRANCH CREATE TABLE` and `DATA BRANCH CREATE DATABASE` automatically create an internal **branch protect snapshot** (`__mo_branch_<child_table_id>`, kind=`branch`) in `mo_catalog.mo_snapshots`. These snapshots:
+
+- Protect the parent table's data from garbage collection while descendant branches exist.
+- Are hidden from `SHOW SNAPSHOTS` results (filtered via `kind != 'branch'`).
+- Are excluded from snapshot quota counts.
+- Cannot be dropped via `DROP SNAPSHOT` — an error is returned.
+- Are reclaimed automatically when the entire DAG subtree is deleted.

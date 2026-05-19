@@ -16,7 +16,17 @@ In MatrixOne, the syntax DECIMAL(M) is equivalent to DECIMAL(M,0). Similarly, th
 
 If the scale is 0, DECIMAL values contain no decimal point or fractional part.
 
-In MatrixOne, the maximum number of digits for DECIMAL is 38, but the actual range for a given DECIMAL column can be constrained by the precision or scale for a given column. When such a column is assigned a value with more digits following the decimal point than are permitted by the specified scale, the value is converted to that scale.
+Since v3.0.12, MatrixOne supports DECIMAL256 for precisions 39 through 76, stored in 32 bytes.
+
+MatrixOne supports two internal representations for DECIMAL:
+
+| Representation | Precision Range | Storage |
+|---|---|---|
+| DECIMAL64 | 1–18 digits | 8 bytes |
+| DECIMAL128 | 19–38 digits | 16 bytes |
+| DECIMAL256 (since v3.0.12) | 39–76 digits | 32 bytes |
+
+The maximum number of digits for DECIMAL is 76, but the actual range for a given DECIMAL column can be constrained by the precision or scale for a given column. When such a column is assigned a value with more digits following the decimal point than are permitted by the specified scale, the value is converted to that scale.
 
 ## DECIMAL Data Type Characteristics
 
@@ -28,19 +38,20 @@ This section discusses the characteristics of the DECIMAL data type (and its syn
 
 The declaration syntax for a DECIMAL column is DECIMAL(M,D). The ranges of values for the arguments are as follows:
 
-M is the maximum number of digits (the precision). It has a range of 1 to 38.
+M is the maximum number of digits (the precision). It has a range of 1 to 76.
 
-D is the number of digits to the right of the decimal point (the scale). It has a range of 1 to 38 and must be no larger than M.
+D is the number of digits to the right of the decimal point (the scale). It has a range of 1 to 76 and must be no larger than M.
 
 If D is omitted, the default is 0. If M is omitted, the default is 10.
 
-The maximum value of 38 for M means that calculations on DECIMAL values are accurate up to 38 digits.
+The maximum value of 76 for M means that calculations on DECIMAL values are accurate up to 76 digits.
 
-Values for DECIMAL columns are stored using a binary format that packs decimal digits into 8 bytes or 16 bytes. The storage required for remaining digits is given by the following table.
+Values for DECIMAL columns are stored using a binary format that packs decimal digits. The storage required for remaining digits is given by the following table.
 
 |  Digits   | Number of Bytes  |
 |  ----  | ----  |
 |  0-18  | 8 bytes  |
 |  19-38  | 16 bytes  |
+|  39-76  | 32 bytes  |
 
 For a full explanation of the internal implementation of DECIMAL values, see the [Feature Design](https://github.com/matrixorigin/matrixone/issues/1867).

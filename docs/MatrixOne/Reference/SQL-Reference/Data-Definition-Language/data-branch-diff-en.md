@@ -82,6 +82,8 @@ The system automatically detects the branch relationship between two tables:
 2. **Has LCA**: Two tables have a common ancestor, calculate incremental differences based on ancestor
 3. **Self as LCA**: One table is the ancestor of the other
 
+Since v3.0.12, the LCA resolution and collect-range computation work across branches of **arbitrary DAG depth**, not just direct parent-child relationships. Multi-fork trees with complex branching histories produce correct diffs across any pair of nodes (siblings, cousins, cross-subtree).
+
 ### Supported Table Types
 
 - Tables with primary key (recommended)

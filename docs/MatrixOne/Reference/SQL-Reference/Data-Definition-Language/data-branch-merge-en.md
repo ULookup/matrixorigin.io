@@ -17,7 +17,7 @@ llms_summary: "The DATA BRANCH MERGE statement is used to merge data changes fro
 
 The `DATA BRANCH MERGE` statement is used to merge data changes from one branch table into another branch table. This feature is similar to Git's merge command and can apply insert, delete, and update operations from the source branch to the target branch.
 
-The system automatically identifies the Lowest Common Ancestor (LCA) between two tables and calculates the changes that need to be merged based on it. When two branches make different modifications to the same row of data, a conflict occurs, which can be handled using conflict handling options.
+The system automatically identifies the Lowest Common Ancestor (LCA) between two tables and calculates the changes that need to be merged based on it. The LCA resolution and collect-range computation work across branches of **arbitrary DAG depth**, not just direct parent-child relationships. When two branches make different modifications to the same row of data, a conflict occurs, which can be handled using conflict handling options.
 
 ## Syntax
 

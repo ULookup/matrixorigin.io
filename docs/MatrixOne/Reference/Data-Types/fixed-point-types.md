@@ -40,7 +40,7 @@ The declaration syntax for a DECIMAL column is DECIMAL(M,D). The ranges of value
 
 M is the maximum number of digits (the precision). It has a range of 1 to 76.
 
-D is the number of digits to the right of the decimal point (the scale). It has a range of 1 to 76 and must be no larger than M.
+D is the number of digits to the right of the decimal point (the scale). It has a range of 0 to 76 and must be no larger than M.
 
 If D is omitted, the default is 0. If M is omitted, the default is 10.
 

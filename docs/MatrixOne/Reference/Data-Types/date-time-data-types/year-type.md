@@ -84,7 +84,7 @@ INSERT INTO t_year VALUES (1, 2024), (2, 1901), (3, 2155), (4, 1970), (5, 2000);
 -- Insert 4-digit string year values
 INSERT INTO t_year VALUES (6, '2024'), (7, '1901'), (8, '2155');
 
--- Insert 2-digit string year values ('0'-'69' -> 2000-2069, '70'-'99' -> 1970-1999)
+-- Insert 2-digit string year values (prefixed with '00', yielding 0000-0099)
 INSERT INTO t_year VALUES (9, '0'), (10, '24'), (11, '69');
 INSERT INTO t_year VALUES (12, '70'), (13, '99');
 

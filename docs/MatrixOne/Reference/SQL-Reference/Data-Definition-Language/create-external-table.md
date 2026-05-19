@@ -86,7 +86,7 @@ CREATE EXTERNAL TABLE [IF NOT EXISTS] [db.]table_name (
     column1 type1,
     column2 type2,
     ...
-) INFILE{'filepath'='<path>', 'format'='parquet'};
+) infile{"filepath"='<path>', "format"='parquet'};
 ```
 
 | Parameter | Description |
@@ -104,11 +104,11 @@ CREATE EXTERNAL TABLE [IF NOT EXISTS] [db.]table_name (
     partition_col1 type_p1,
     partition_col2 type_p2,
     ...
-) INFILE{
-    'filepath'='<path>',
-    'format'='parquet',
-    'hive_partitioning'='true',
-    'hive_partition_columns'='partition_col1,partition_col2'
+) infile{
+    "filepath"='<path>',
+    "format"='parquet',
+    "hive_partitioning"='true',
+    "hive_partition_columns"='partition_col1,partition_col2'
 };
 ```
 
@@ -137,11 +137,11 @@ CREATE EXTERNAL TABLE hive_single (
     id INT,
     name VARCHAR(50),
     year INT
-) INFILE{
-    'filepath'='$resources/hive_partition/single_level/',
-    'format'='parquet',
-    'hive_partitioning'='true',
-    'hive_partition_columns'='year'
+) infile{
+    "filepath"='$resources/hive_partition/single_level/',
+    "format"='parquet',
+    "hive_partitioning"='true',
+    "hive_partition_columns"='year'
 };
 
 SELECT * FROM hive_single WHERE year = 2024;
@@ -163,11 +163,11 @@ CREATE EXTERNAL TABLE hive_multi (
     value DOUBLE,
     year INT,
     month VARCHAR(2)
-) INFILE{
-    'filepath'='$resources/hive_partition/multi_level/',
-    'format'='parquet',
-    'hive_partitioning'='true',
-    'hive_partition_columns'='year,month'
+) infile{
+    "filepath"='$resources/hive_partition/multi_level/',
+    "format"='parquet',
+    "hive_partitioning"='true',
+    "hive_partition_columns"='year,month'
 };
 
 SELECT * FROM hive_multi WHERE year = 2024 AND month = '01';

@@ -77,7 +77,7 @@ create external table ex_table_cpk(clo1 tinyint,clo2 smallint,clo3 int,clo4 bigi
 
 For more information on creating an external table with an `s3option` mapping to an S3 file, see [Import the data from S3 Compatible object storage](../../../Develop/import-data/bulk-load/load-s3.md).
 
-### INFILE Parquet syntax (since v3.0.12)
+### INFILE Parquet syntax
 
 MatrixOne also supports creating external tables on Parquet files using the `INFILE` clause:
 
@@ -94,7 +94,7 @@ CREATE EXTERNAL TABLE [IF NOT EXISTS] [db.]table_name (
 | filepath | Path to the local file or directory containing Parquet files. |
 | format | Set to `'parquet'` for Parquet-format external tables. |
 
-### Hive-Style Partitioned Parquet External Tables (since v3.0.12)
+### Hive-Style Partitioned Parquet External Tables
 
 For Parquet files organized in Hive-style directory partitions (e.g., `year=2024/month=01/data.parquet`), use the following `INFILE` options:
 

@@ -32,7 +32,7 @@ DATA BRANCH DIFF target_table [{ SNAPSHOT = 'snapshot_name' }]
     [OUTPUT output_option]
 ```
 
-### COLUMNS projection (since v3.0.10)
+### COLUMNS projection
 
 `COLUMNS (col1, col2, ...)` restricts the value columns returned per diff row to the listed subset. Primary-key columns are always present in the output because they identify the row; non-PK columns not listed in `COLUMNS` are omitted. Use this to reduce payload size on wide tables when only a few columns matter for the diff.
 
@@ -60,7 +60,7 @@ output_option:
 | `OUTPUT LIMIT number` | Limit the number of returned difference rows |
 | `OUTPUT FILE 'path'` | Export differences as SQL file to specified directory, supports local path or Stage path (e.g., `stage://stage_name/`) |
 | `OUTPUT SUMMARY` | Return an aggregated INSERT / DELETE / UPDATE breakdown instead of the row-by-row diff |
-| `COLUMNS (col1, col2, ...)` | Since v3.0.10. Restrict non-PK columns in the diff output to the listed subset. Primary-key columns are always included. |
+| `COLUMNS (col1, col2, ...)` | Restrict non-PK columns in the diff output to the listed subset. Primary-key columns are always included. |
 
 ### Output Column Description
 
@@ -82,7 +82,7 @@ The system automatically detects the branch relationship between two tables:
 2. **Has LCA**: Two tables have a common ancestor, calculate incremental differences based on ancestor
 3. **Self as LCA**: One table is the ancestor of the other
 
-Since v3.0.12, the LCA resolution and collect-range computation work across branches of **arbitrary DAG depth**, not just direct parent-child relationships. Multi-fork trees with complex branching histories produce correct diffs across any pair of nodes (siblings, cousins, cross-subtree).
+The LCA resolution and collect-range computation work across branches of **arbitrary DAG depth**, not just direct parent-child relationships. Multi-fork trees with complex branching histories produce correct diffs across any pair of nodes (siblings, cousins, cross-subtree).
 
 ### Supported Table Types
 
@@ -455,7 +455,7 @@ DROP TABLE test.orders_branch;
 DROP DATABASE test;
 ```
 
-### Example 9: COLUMNS projection (v3.0.10)
+### Example 9: COLUMNS projection
 
 `COLUMNS (col1, ..., colN)` restricts the non-PK columns returned by the diff. The primary-key column(s) are always present.
 

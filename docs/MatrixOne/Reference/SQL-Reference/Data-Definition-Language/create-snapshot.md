@@ -111,7 +111,7 @@ mysql> SHOW SNAPSHOTS;
 
 - Cluster administrators can only create tenant-level snapshots for other tenants.
 
-## Branch Protect Snapshots (since v3.0.12)
+## Branch Protect Snapshots
 
 `DATA BRANCH CREATE TABLE` and `DATA BRANCH CREATE DATABASE` automatically create an internal **branch protect snapshot** (`__mo_branch_<child_table_id>`, kind=`branch`) in `mo_catalog.mo_snapshots`. These snapshots:
 

@@ -4,14 +4,13 @@ doc_type: reference
 mysql_compat: partial
 differs_from_mysql: []
 mo_only: false
-since: v3.0.12
 last_updated: 2026-05-19
-llms_summary: "MatrixOne supports spatial geometry types (POINT, LINESTRING, POLYGON, etc.) defined by the OGC standard, with subtype validation on INSERT and UPDATE enforced since v3.0.12."
+llms_summary: "MatrixOne supports spatial geometry types (POINT, LINESTRING, POLYGON, etc.) defined by the OGC standard, with subtype validation on INSERT and UPDATE."
 ---
 
 # Geometry Types
 
-> MatrixOne supports spatial geometry types defined by the Open Geospatial Consortium (OGC) standard. Since v3.0.12, INSERT and UPDATE operations on geometry columns validate the geometry subtype at bind time, rejecting invalid geometries with an error instead of storing them silently.
+> MatrixOne supports spatial geometry types defined by the Open Geospatial Consortium (OGC) standard. INSERT and UPDATE operations on geometry columns validate the geometry subtype at bind time, rejecting invalid geometries with an error.
 
 ## Supported Geometry Subtypes
 
@@ -40,13 +39,13 @@ GEOMETRY(POLYGON)
 
 A geometry column can be declared with or without a specific subtype constraint. When a subtype is specified (e.g., `GEOMETRY(POINT)`), only values of that exact subtype can be stored.
 
-## Subtype Validation (since v3.0.12)
+## Subtype Validation
 
-Starting from v3.0.12, INSERT and UPDATE operations on geometry columns validate the geometry subtype at bind time:
+INSERT and UPDATE operations on geometry columns validate the geometry subtype at bind time:
 
 - When inserting into a subtype-constrained column (e.g., `GEOMETRY(POINT)`), the value is checked to ensure it matches the declared subtype.
 - When inserting into an unconstrained `GEOMETRY` column, the value is validated to be a well-formed geometry of a recognized subtype.
-- Invalid geometries are rejected with an error, rather than being stored silently as in previous versions.
+- Invalid geometries are rejected with an error.
 
 ### Example — Subtype validation
 

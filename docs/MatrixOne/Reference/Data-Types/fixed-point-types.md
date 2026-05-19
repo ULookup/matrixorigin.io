@@ -16,7 +16,7 @@ In MatrixOne, the syntax DECIMAL(M) is equivalent to DECIMAL(M,0). Similarly, th
 
 If the scale is 0, DECIMAL values contain no decimal point or fractional part.
 
-Since v3.0.12, MatrixOne supports DECIMAL256 for precisions 39 through 76, stored in 32 bytes.
+MatrixOne supports DECIMAL256 for precisions 39 through 76, stored in 32 bytes.
 
 MatrixOne supports two internal representations for DECIMAL:
 
@@ -24,7 +24,7 @@ MatrixOne supports two internal representations for DECIMAL:
 |---|---|---|
 | DECIMAL64 | 1–18 digits | 8 bytes |
 | DECIMAL128 | 19–38 digits | 16 bytes |
-| DECIMAL256 (since v3.0.12) | 39–76 digits | 32 bytes |
+| DECIMAL256 | 39–76 digits | 32 bytes |
 
 The maximum number of digits for DECIMAL is 76, but the actual range for a given DECIMAL column can be constrained by the precision or scale for a given column. When such a column is assigned a value with more digits following the decimal point than are permitted by the specified scale, the value is converted to that scale.
 

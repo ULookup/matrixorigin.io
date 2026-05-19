@@ -15,7 +15,7 @@ llms_summary: "DROP SNAPSHOT is used to delete snapshots created under the curre
 
 ## Syntax Description
 
-`DROP SNAPSHOT` is used to delete snapshots created under the current tenant. Since v3.0.12, branch protect snapshots (kind=`branch`, created automatically by `DATA BRANCH CREATE`) cannot be dropped via this command — an error is returned.
+`DROP SNAPSHOT` is used to delete snapshots created under the current tenant. Branch protect snapshots (kind=`branch`, created automatically by `DATA BRANCH CREATE`) cannot be dropped via this command — an error is returned.
 
 ## Syntax structure
 

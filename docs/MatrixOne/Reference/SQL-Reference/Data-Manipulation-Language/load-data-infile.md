@@ -381,7 +381,7 @@ load data infile 'file_name' into table tbl_name PARALLEL 'TRUE' STRICT 'FALSE';
 In MatrixOne's current release, `LOAD DATA` supports CSV(comma-separated values) format, JSONLines format, and Parquet format files.
 See full tutorials for loading [csv](../../../Develop/import-data/bulk-load/load-csv.md) and [jsonline](../../../Develop/import-data/bulk-load/load-jsonline.md).
 
-Since v3.0.12, LOAD DATA from Parquet files correctly converts all three Parquet binary decimal encodings (INT32, INT64, FixedLenByteArray) to the native DECIMAL type.
+LOAD DATA from Parquet files correctly converts all three Parquet binary decimal encodings (INT32, INT64, FixedLenByteArray) to the native DECIMAL type.
 
 !!! note
     `LOAD DATA` supports importing `lz4`, `gz`, `bz2`, `zlib`, `flate`, and does not support importing compressed files ending with `.tar` or `.tar.xx`.

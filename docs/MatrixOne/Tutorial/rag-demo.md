@@ -312,7 +312,7 @@ client.disconnect()
 Console output related answer:
 
 ```
-Based on the provided data, the latest version of MatrixOne is v26.3.0.11, which was released on 2025/04/01.
+Based on the provided data, the latest version of MatrixOne is v26.3.0.12, which was released on 2026/05/19.
 ```
 
 After enhancement, the model generates the correct answer.

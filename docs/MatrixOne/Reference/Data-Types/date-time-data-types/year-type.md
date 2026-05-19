@@ -8,7 +8,7 @@ YEAR accepts input values in various formats:
 
 - As 4-digit strings in the range '0001' to '9999'.
 - As 4-digit numbers in the range 0001 to 9999.
-- As 1- or 2-digit strings in the range '0' to '99'. For values in the range '0' to '00' and '00' to '99', MatrixOne automatically adds '00' as the prefix, resulting in values from '0000' to '0099'.
+- As 1- or 2-digit strings in the range '0' to '99'. Values in the range '1' to '69' are converted to 2001–2069, values in the range '70' to '99' are converted to 1970–1999, and '0' or '00' yields 0000.
 - The result of functions that return a value acceptable in the context of YEAR, such as the `NOW()` function.
 
 ## Two-Digit Years in Dates
@@ -84,7 +84,7 @@ INSERT INTO t_year VALUES (1, 2024), (2, 1901), (3, 2155), (4, 1970), (5, 2000);
 -- Insert 4-digit string year values
 INSERT INTO t_year VALUES (6, '2024'), (7, '1901'), (8, '2155');
 
--- Insert 2-digit string year values (prefixed with '00', yielding 0000-0099)
+-- Insert 2-digit string year values ('1'-'69' -> 2001-2069, '70'-'99' -> 1970-1999)
 INSERT INTO t_year VALUES (9, '0'), (10, '24'), (11, '69');
 INSERT INTO t_year VALUES (12, '70'), (13, '99');
 

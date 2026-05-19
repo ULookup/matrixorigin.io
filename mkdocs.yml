@@ -338,6 +338,7 @@ nav:
               - BLOB and TEXT Type: MatrixOne/Reference/Data-Types/blob-text-type.md
               - DATALINK Type: MatrixOne/Reference/Data-Types/datalink-type.md
               - ENUM Type: MatrixOne/Reference/Data-Types/enum-type.md
+              - SET Type: MatrixOne/Reference/Data-Types/set-type.md
               - UUID Type: MatrixOne/Reference/Data-Types/uuid-type.md
               - VECTOR Type: MatrixOne/Reference/Data-Types/vector-type.md
               - Fixed-Point Types (Exact Value) - DECIMAL: MatrixOne/Reference/Data-Types/fixed-point-types.md
@@ -372,6 +373,7 @@ nav:
                   - DIFF BRANCH: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/data-branch-diff-en.md
                   - MERGE BRANCH: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/data-branch-merge-en.md
                   - DATA BRANCH PICK: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/data-branch-pick.md
+                  - Branch Protect Snapshots: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/branch-protect-snapshots.md
                   - CREATE TASK (SQL Task): MatrixOne/Reference/SQL-Reference/Data-Definition-Language/sql-task.md
                   - ALTER TABLE: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/alter-table.md
                   - ALTER TABLE ... ALTER REINDEX: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/alter-reindex.md
@@ -608,6 +610,7 @@ nav:
                       - UTC_TIMESTAMP(): MatrixOne/Reference/Functions-and-Operators/Datetime/utc-timestamp.md
                       - WEEK(): MatrixOne/Reference/Functions-and-Operators/Datetime/week.md
                       - WEEKDAY(): MatrixOne/Reference/Functions-and-Operators/Datetime/weekday.md
+                      - YEARWEEK(): MatrixOne/Reference/Functions-and-Operators/Datetime/yearweek.md
                       - YEAR(): MatrixOne/Reference/Functions-and-Operators/Datetime/year.md
                   - Mathematical:
                       - ABS(): MatrixOne/Reference/Functions-and-Operators/Mathematical/abs.md

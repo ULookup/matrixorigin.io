@@ -8,7 +8,7 @@ YEAR accepts input values in various formats:
 
 - As 4-digit strings in the range '0001' to '9999'.
 - As 4-digit numbers in the range 0001 to 9999.
-- As 1- or 2-digit strings in the range '0' to '99'. For values in the range '0' to '00' and '00' to '99', MatrixOne automatically adds '00' as the prefix, resulting in values from '0000' to '0099'.
+- As 1- or 2-digit strings in the range '0' to '99'. Values in the range '1' to '69' are converted to 2001–2069, values in the range '70' to '99' are converted to 1970–1999, and '0' or '00' yields 0000.
 - The result of functions that return a value acceptable in the context of YEAR, such as the `NOW()` function.
 
 ## Two-Digit Years in Dates
@@ -67,3 +67,52 @@ According to the rules, the two-digit year values in these dates are interpreted
 - 65 is interpreted as the year 0065.
 - 78 is interpreted as the year 0078.
 - 03 is interpreted as the year 0003.
+
+## Examples
+
+```
+DROP DATABASE IF EXISTS year_demo_db;
+CREATE DATABASE year_demo_db;
+USE year_demo_db;
+
+-- Create a table with a YEAR column
+CREATE TABLE t_year (id INT, y YEAR);
+
+-- Insert 4-digit year values
+INSERT INTO t_year VALUES (1, 2024), (2, 1901), (3, 2155), (4, 1970), (5, 2000);
+
+-- Insert 4-digit string year values
+INSERT INTO t_year VALUES (6, '2024'), (7, '1901'), (8, '2155');
+
+-- Insert 2-digit string year values ('1'-'69' -> 2001-2069, '70'-'99' -> 1970-1999)
+INSERT INTO t_year VALUES (9, '0'), (10, '24'), (11, '69');
+INSERT INTO t_year VALUES (12, '70'), (13, '99');
+
+-- Special value 0 -> 0000
+INSERT INTO t_year VALUES (14, 0);
+
+-- NULL value
+INSERT INTO t_year VALUES (15, NULL);
+
+SELECT * FROM t_year ORDER BY id;
+
+-- CAST operations
+SELECT CAST(y AS SIGNED) FROM t_year WHERE id = 1;
+SELECT CAST(2024 AS YEAR);
+SELECT CAST(0 AS YEAR);
+SELECT CAST('24' AS YEAR);
+SELECT CAST('70' AS YEAR);
+SELECT CAST(y AS CHAR(4)) FROM t_year WHERE id = 1;
+
+-- Comparison and range queries
+SELECT * FROM t_year WHERE y = 2024 ORDER BY id;
+SELECT * FROM t_year WHERE y > 2000 ORDER BY id;
+SELECT * FROM t_year WHERE y IS NULL;
+
+-- YEAR(4) syntax (supported for compatibility)
+CREATE TABLE t_year4 (a YEAR(4) NOT NULL);
+DROP TABLE t_year4;
+
+DROP TABLE t_year;
+DROP DATABASE year_demo_db;
+```

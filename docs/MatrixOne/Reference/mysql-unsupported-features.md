@@ -22,9 +22,9 @@ description: "Comprehensive list of MySQL features and syntax that MatrixOne doe
 
 | Source | Count |
 |---|---|
-| Completely Missing (curated) | 82 |
+| Completely Missing (curated) | 94 |
 | Partial Support (auto-extracted) | 91 |
-| **Total** | **173** |
+| **Total** | **185** |
 
 ## Completely Missing
 
@@ -47,6 +47,8 @@ These MySQL features have no MatrixOne counterpart and are not available in any 
 | CREATE TABLE with CHECK constraints | CHECK constraints are not enforced |
 | CREATE VIEW ... WITH CHECK OPTION | WITH CHECK OPTION is not supported for views |
 | CREATE VIEW ... DEFINER / SQL SECURITY | DEFINER and SQL SECURITY clauses are not supported |
+| Materialized Views | CREATE MATERIALIZED VIEW is not supported |
+| Character sets and collations beyond utf8mb4/utf8mb4_bin | Only the utf8mb4 character set and utf8mb4_bin collation are supported; other charsets (latin1, gbk, utf8, utf8mb3) and collations are not available |
 
 ### DML — Data Manipulation Language
 
@@ -56,6 +58,7 @@ These MySQL features have no MatrixOne counterpart and are not available in any 
 | LOAD XML | LOAD XML INFILE is not supported; use LOAD DATA for CSV/JSONL |
 | CALL procedure_name() | Stored procedure execution is not supported |
 | DO statement | DO expr [, expr] ... is not supported |
+| SET NAMES / SET CHARACTER SET | Not supported; only utf8mb4 charset is available so charset switching is unnecessary |
 
 ### DCL — Data Control Language
 
@@ -64,6 +67,9 @@ These MySQL features have no MatrixOne counterpart and are not available in any 
 | GRANT with PROXY | PROXY user grants are not supported |
 | RENAME USER | RENAME USER is not supported; use ALTER USER instead |
 | SET PASSWORD | SET PASSWORD syntax is not supported; use ALTER USER instead |
+| SQL modes beyond ONLY_FULL_GROUP_BY | Only ONLY_FULL_GROUP_BY has actual effect; other SQL modes (STRICT_TRANS_TABLES, NO_ZERO_DATE, NO_ENGINE_SUBSTITUTION, etc.) are syntax-only with no behavioral impact |
+| Connection limit clauses (MAX_USER_CONNECTIONS, MAX_QUERIES_PER_HOUR, etc.) | ALTER USER account resource limit clauses are not honored |
+| IP whitelisting for user accounts | Connection IP whitelisting / host-based access control is not supported |
 
 ### Data Types
 
@@ -74,6 +80,7 @@ These MySQL features have no MatrixOne counterpart and are not available in any 
 | Year type (with 2-digit format) | YEAR(2) is not supported; only YEAR(4) / YEAR is available |
 | BIT(M) with M > 64 | BIT type is supported but length limits may differ |
 | ENUM sorting and filtering | ENUM values can only be compared with strings in WHERE conditions; ENUM filtering and sorting are not supported |
+| DECIMAL max precision 38 vs MySQL 65 | DECIMAL(P, D) max precision P is 38 (MySQL: 65); critical for financial applications requiring high precision |
 
 ### Indexes & Constraints
 
@@ -111,6 +118,7 @@ These MySQL features have no MatrixOne counterpart and are not available in any 
 | XA transactions (distributed transactions) | XA START / XA END / XA PREPARE / XA COMMIT are not supported; MatrixOne uses its own distributed transaction model |
 | LOCK TABLES / UNLOCK TABLES | Explicit table-level locking is not supported |
 | FLUSH TABLES WITH READ LOCK | Global read locks are not supported |
+| SET operations within transactions | SET variable assignments are not allowed within an active transaction block |
 
 ### Replication & Binary Log
 
@@ -153,6 +161,7 @@ These MySQL features have no MatrixOne counterpart and are not available in any 
 | RESET / RESET PERSIST | System variable persistence management is not supported |
 | RESTART | RESTART server statement is not supported |
 | SHUTDOWN | Server shutdown statement is not supported |
+| HELP statement | HELP command for SQL syntax reference is not supported |
 
 ### Functions & Operators
 
@@ -164,6 +173,9 @@ These MySQL features have no MatrixOne counterpart and are not available in any 
 | XML functions (ExtractValue, UpdateXML) | XML processing functions are not supported |
 | Performance Schema functions | FORMAT_BYTES, FORMAT_PICO_TIME, PS_THREAD_ID, etc. are not available |
 | GROUPING() | GROUPING function for ROLLUP identification may behave differently |
+| JSON functions (bulk missing) | Only ~8 JSON functions supported (JSON_UNQUOTE, JSON_QUOTE, JSON_EXTRACT, JSON_SET, JSON_ROW, etc.) vs MySQL 30+. Missing: JSON_OBJECT, JSON_ARRAY, JSON_MERGE, JSON_SEARCH, JSON_CONTAINS, JSON_KEYS, JSON_LENGTH, JSON_TYPE, JSON_VALID, JSON_TABLE, JSON_ARRAYAGG, JSON_OBJECTAGG, and more |
+| GET_LOCK() / RELEASE_LOCK() | Advisory (user-level) locks are not supported |
+| BENCHMARK() | BENCHMARK(count, expr) function for measuring SQL execution speed is not supported |
 
 ### Peripheral Tools
 

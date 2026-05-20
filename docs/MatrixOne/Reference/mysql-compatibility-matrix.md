@@ -17,9 +17,9 @@ mysql_compat: full
 | ✅ Full | 30 |
 | ⚠️ Partial | 43 |
 | ❌ None | 0 |
-| 🟣 MatrixOne-only | 56 |
+| 🟣 MatrixOne-only | 57 |
 | ❓ Unknown | 0 |
-| **Total** | **129** |
+| **Total** | **130** |
 
 ## Data Definition Language (DDL)
 
@@ -32,6 +32,7 @@ mysql_compat: full
 | [ALTER STAGE](./SQL-Reference/Data-Definition-Language/alter-stage.md) | 🟣 MatrixOne-only | — | ALTER STAGE |
 | [ALTER TABLE](./SQL-Reference/Data-Definition-Language/alter-table.md) | ⚠️ Partial | CHANGE [COLUMN], MODIFY [COLUMN], RENAME COLUMN, ADD/DROP PRIMARY KEY, ALTER COLUMN ORDER BY cannot be combined with other clauses in the same ALTER TABLE<br/>Temporary tables cannot be altered<br/>Tables created with CLUSTER BY cannot be altered<br/>ALTER TABLE does not support PARTITION operations | — |
 | [ALTER VIEW](./SQL-Reference/Data-Definition-Language/alter-view.md) | ⚠️ Partial | Inherits CREATE VIEW limitations: no WITH CHECK OPTION, no DEFINER = user clause | — |
+| [Branch Protect Snapshots](./SQL-Reference/Data-Definition-Language/branch-protect-snapshots.md) | 🟣 MatrixOne-only | — | — |
 | [CREATE CLONE](./SQL-Reference/Data-Definition-Language/create-clone.md) | 🟣 MatrixOne-only | — | CREATE TABLE … CLONE db.table [TO ACCOUNT …] |
 | [CREATE CLUSTER TABLE](./SQL-Reference/Data-Definition-Language/create-cluster-table.md) | 🟣 MatrixOne-only | — | CREATE CLUSTER TABLE |
 | [CREATE DATABASE](./SQL-Reference/Data-Definition-Language/create-database.md) | ⚠️ Partial | Chinese database names not supported<br/>Only utf8mb4 / utf8mb4_bin are supported and cannot be changed<br/>ENCRYPTION clause accepted but inert | — |

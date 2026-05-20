@@ -37,17 +37,23 @@ const CURATED = [
   { category: 'DDL', feature: 'CREATE TABLE with CHECK constraints', note: 'CHECK constraints are not enforced' },
   { category: 'DDL', feature: 'CREATE VIEW ... WITH CHECK OPTION', note: 'WITH CHECK OPTION is not supported for views' },
   { category: 'DDL', feature: 'CREATE VIEW ... DEFINER / SQL SECURITY', note: 'DEFINER and SQL SECURITY clauses are not supported' },
+  { category: 'DDL', feature: 'Materialized Views', note: 'CREATE MATERIALIZED VIEW is not supported' },
+  { category: 'DDL', feature: 'Character sets and collations beyond utf8mb4/utf8mb4_bin', note: 'Only the utf8mb4 character set and utf8mb4_bin collation are supported; other charsets (latin1, gbk, utf8, utf8mb3) and collations are not available' },
 
   // DML
   { category: 'DML', feature: 'HANDLER statements', note: 'HANDLER OPEN / READ / CLOSE are not supported' },
   { category: 'DML', feature: 'LOAD XML', note: 'LOAD XML INFILE is not supported; use LOAD DATA for CSV/JSONL' },
   { category: 'DML', feature: 'CALL procedure_name()', note: 'Stored procedure execution is not supported' },
   { category: 'DML', feature: 'DO statement', note: 'DO expr [, expr] ... is not supported' },
+  { category: 'DML', feature: 'SET NAMES / SET CHARACTER SET', note: 'Not supported; only utf8mb4 charset is available so charset switching is unnecessary' },
 
   // DCL
   { category: 'DCL', feature: 'GRANT with PROXY', note: 'PROXY user grants are not supported' },
   { category: 'DCL', feature: 'RENAME USER', note: 'RENAME USER is not supported; use ALTER USER instead' },
   { category: 'DCL', feature: 'SET PASSWORD', note: 'SET PASSWORD syntax is not supported; use ALTER USER instead' },
+  { category: 'DCL', feature: 'SQL modes beyond ONLY_FULL_GROUP_BY', note: 'Only ONLY_FULL_GROUP_BY has actual effect; other SQL modes (STRICT_TRANS_TABLES, NO_ZERO_DATE, NO_ENGINE_SUBSTITUTION, etc.) are syntax-only with no behavioral impact' },
+  { category: 'DCL', feature: 'Connection limit clauses (MAX_USER_CONNECTIONS, MAX_QUERIES_PER_HOUR, etc.)', note: 'ALTER USER account resource limit clauses are not honored' },
+  { category: 'DCL', feature: 'IP whitelisting for user accounts', note: 'Connection IP whitelisting / host-based access control is not supported' },
 
   // Data Types
   { category: 'Data Types', feature: 'Spatial types (GEOMETRY, POINT, LINESTRING, POLYGON, etc.)', note: 'Spatial data types and GIS functions are not supported' },
@@ -55,6 +61,7 @@ const CURATED = [
   { category: 'Data Types', feature: 'Year type (with 2-digit format)', note: 'YEAR(2) is not supported; only YEAR(4) / YEAR is available' },
   { category: 'Data Types', feature: 'BIT(M) with M > 64', note: 'BIT type is supported but length limits may differ' },
   { category: 'Data Types', feature: 'ENUM sorting and filtering', note: 'ENUM values can only be compared with strings in WHERE conditions; ENUM filtering and sorting are not supported' },
+  { category: 'Data Types', feature: 'DECIMAL max precision 38 vs MySQL 65', note: 'DECIMAL(P, D) max precision P is 38 (MySQL: 65); critical for financial applications requiring high precision' },
 
   // Indexes and Constraints
   { category: 'Indexes & Constraints', feature: 'SPATIAL INDEX', note: 'Spatial indexes are not supported' },
@@ -80,6 +87,7 @@ const CURATED = [
   { category: 'Transactions', feature: 'XA transactions (distributed transactions)', note: 'XA START / XA END / XA PREPARE / XA COMMIT are not supported; MatrixOne uses its own distributed transaction model' },
   { category: 'Transactions', feature: 'LOCK TABLES / UNLOCK TABLES', note: 'Explicit table-level locking is not supported' },
   { category: 'Transactions', feature: 'FLUSH TABLES WITH READ LOCK', note: 'Global read locks are not supported' },
+  { category: 'Transactions', feature: 'SET operations within transactions', note: 'SET variable assignments are not allowed within an active transaction block' },
 
   // Replication & Binary Log
   { category: 'Replication', feature: 'Binary log (binlog)', note: 'MySQL binary log and related statements (SHOW BINARY LOGS, SHOW MASTER STATUS, PURGE BINARY LOGS, etc.) are not supported; MatrixOne uses its own CDC mechanism' },
@@ -113,6 +121,7 @@ const CURATED = [
   { category: 'Administration', feature: 'RESET / RESET PERSIST', note: 'System variable persistence management is not supported' },
   { category: 'Administration', feature: 'RESTART', note: 'RESTART server statement is not supported' },
   { category: 'Administration', feature: 'SHUTDOWN', note: 'Server shutdown statement is not supported' },
+  { category: 'Administration', feature: 'HELP statement', note: 'HELP command for SQL syntax reference is not supported' },
 
   // Functions & Operators
   { category: 'Functions', feature: 'MySQL native full-text search functions (MATCH ... AGAINST)', note: 'MatrixOne full-text search uses different syntax; MySQL MATCH AGAINST is not available' },
@@ -121,6 +130,9 @@ const CURATED = [
   { category: 'Functions', feature: 'XML functions (ExtractValue, UpdateXML)', note: 'XML processing functions are not supported' },
   { category: 'Functions', feature: 'Performance Schema functions', note: 'FORMAT_BYTES, FORMAT_PICO_TIME, PS_THREAD_ID, etc. are not available' },
   { category: 'Functions', feature: 'GROUPING()', note: 'GROUPING function for ROLLUP identification may behave differently' },
+  { category: 'Functions', feature: 'JSON functions (bulk missing)', note: 'Only ~8 JSON functions supported (JSON_UNQUOTE, JSON_QUOTE, JSON_EXTRACT, JSON_SET, JSON_ROW, etc.) vs MySQL 30+. Missing: JSON_OBJECT, JSON_ARRAY, JSON_MERGE, JSON_SEARCH, JSON_CONTAINS, JSON_KEYS, JSON_LENGTH, JSON_TYPE, JSON_VALID, JSON_TABLE, JSON_ARRAYAGG, JSON_OBJECTAGG, and more' },
+  { category: 'Functions', feature: 'GET_LOCK() / RELEASE_LOCK()', note: 'Advisory (user-level) locks are not supported' },
+  { category: 'Functions', feature: 'BENCHMARK()', note: 'BENCHMARK(count, expr) function for measuring SQL execution speed is not supported' },
 
   // Tools
   { category: 'Tools', feature: 'mysql_upgrade', note: 'Database upgrade tool is not available; MatrixOne has its own upgrade procedure' },

@@ -35,6 +35,7 @@ from typing import Iterable
 BASE_URL_DEFAULT = "https://docs.matrixorigin.cn"
 DOC_ROOT_REL = Path("MatrixOne")
 COMPAT_MATRIX_REL = "MatrixOne/Reference/mysql-compatibility-matrix.md"
+UNSUPPORTED_FEATURES_REL = "MatrixOne/Reference/mysql-unsupported-features.md"
 SQL_REF_ROOT_REL = Path("MatrixOne/Reference/SQL-Reference")
 MAX_AUTO_DESC_CHARS = 160
 
@@ -146,9 +147,10 @@ SYSTEM_PROMPT_BLOCK = (
 # artifact to pull for which kind of question.
 AGENT_ROUTING = (
     "Agent routing: writing or debugging SQL → pull `llms-sql.txt` for the "
-    "flat per-statement catalogue; broad conceptual questions → this file; "
-    "long-context offline reading → `llms-full.txt`; authoritative diffs "
-    "from MySQL → the MySQL Compatibility Matrix linked above."
+    "flat per-statement catalogue; checking MySQL compatibility → MySQL "
+    "Compatibility Matrix and Unsupported Features pages linked above; "
+    "broad conceptual questions → this file; "
+    "long-context offline reading → `llms-full.txt`."
 )
 
 # Behavioural directives kept here so they survive prompt-review sweeps.
@@ -208,11 +210,13 @@ def on_post_build(config, **_kwargs):
     # 2. llms.txt
     base = _base_url()
     compat_url = _doc_url(base, COMPAT_MATRIX_REL)
+    unsupported_url = _doc_url(base, UNSUPPORTED_FEATURES_REL)
     built_at = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     llms: list[str] = ["# MatrixOne", ""]
     llms.append(f"> {SYSTEM_PROMPT_BLOCK}")
     llms.append("")
     llms.append(f"- **MySQL Compatibility Matrix**: {compat_url}")
+    llms.append(f"- **MySQL Features Not Supported by MatrixOne**: {unsupported_url}")
     llms.append(f"- **Per-page markdown mirror**: append `.md` to any doc URL under {base}/")
     llms.append(f"- **Full SQL reference (flat index, all statements)**: {base}/llms-sql.txt")
     llms.append(f"- **Full corpus**: {base}/llms-full.txt")

@@ -22,9 +22,9 @@ description: "Comprehensive list of MySQL features and syntax that MatrixOne doe
 
 | Source | Count |
 |---|---|
-| Completely Missing (curated) | 89 |
+| Completely Missing (curated) | 82 |
 | Partial Support (auto-extracted) | 91 |
-| **Total** | **180** |
+| **Total** | **173** |
 
 ## Completely Missing
 
@@ -100,7 +100,6 @@ These MySQL features have no MatrixOne counterpart and are not available in any 
 
 | Feature | Note |
 |---|---|
-| RANGE / LIST / HASH / KEY partitioning (MySQL syntax) | MatrixOne uses its own partition syntax and semantics; MySQL-style PARTITION BY is not available |
 | Subpartitioning | Subpartitioning is not supported |
 | Partition management (REORGANIZE, COALESCE, EXCHANGE, etc.) | MySQL partition management operations are not supported |
 
@@ -128,7 +127,6 @@ These MySQL features have no MatrixOne counterpart and are not available in any 
 | SHOW TRIGGER | Not supported (no triggers in MatrixOne) |
 | SHOW EVENTS | Not supported (no event scheduler) |
 | SHOW PROCEDURE STATUS | Not supported (no stored procedures) |
-| SHOW FUNCTION STATUS | Partially supported — only shows Python UDFs, not traditional MySQL functions |
 | SHOW ENGINE | Not supported; MatrixOne does not expose storage engine internals |
 | SHOW STATUS | Accepted syntactically but produces empty output |
 | SHOW PRIVILEGES | Accepted syntactically but produces empty output |
@@ -141,10 +139,8 @@ These MySQL features have no MatrixOne counterpart and are not available in any 
 
 | Feature | Note |
 |---|---|
-| FLUSH statements (FLUSH LOGS, FLUSH TABLES, FLUSH PRIVILEGES, etc.) | FLUSH operations are not supported |
-| FLUSH PRIVILEGES | Not supported; privilege changes take effect immediately |
+| FLUSH statements (FLUSH LOGS, FLUSH TABLES, FLUSH PRIVILEGES, etc.) | FLUSH operations are not supported; privilege changes take effect without FLUSH PRIVILEGES |
 | CACHE INDEX / LOAD INDEX INTO CACHE | Key cache management is not supported |
-| ANALYZE TABLE | ANALYZE TABLE is accepted but behavior differs from MySQL |
 | CHECKSUM TABLE | Not supported |
 | OPTIMIZE TABLE | Not supported; MatrixOne handles storage optimization automatically |
 | REPAIR TABLE | Not supported |
@@ -154,7 +150,6 @@ These MySQL features have no MatrixOne counterpart and are not available in any 
 | PERFORMANCE_SCHEMA | Performance Schema is not available |
 | INSTALL PLUGIN / UNINSTALL PLUGIN | Plugin system is not supported |
 | INSTALL COMPONENT / UNINSTALL COMPONENT | Component system is not supported |
-| KILL THREAD | KILL is supported but with different semantics from MySQL |
 | RESET / RESET PERSIST | System variable persistence management is not supported |
 | RESTART | RESTART server statement is not supported |
 | SHUTDOWN | Server shutdown statement is not supported |
@@ -168,8 +163,6 @@ These MySQL features have no MatrixOne counterpart and are not available in any 
 | GIS / spatial functions | ST_* spatial functions are not supported (no spatial data types) |
 | XML functions (ExtractValue, UpdateXML) | XML processing functions are not supported |
 | Performance Schema functions | FORMAT_BYTES, FORMAT_PICO_TIME, PS_THREAD_ID, etc. are not available |
-| VERSION() | Returns MatrixOne version string, not MySQL-compatible format |
-| CONNECTION_ID() | Behavior may differ from MySQL due to different connection handling |
 | GROUPING() | GROUPING function for ROLLUP identification may behave differently |
 
 ### Peripheral Tools

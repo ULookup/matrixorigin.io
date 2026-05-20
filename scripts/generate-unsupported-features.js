@@ -72,7 +72,6 @@ const CURATED = [
   { category: 'Storage Engine', feature: 'MyISAM / MEMORY / ARCHIVE / CSV engines', note: 'Only the TAE engine is available; alternative storage engines are not supported' },
 
   // Partitioning
-  { category: 'Partitioning', feature: 'RANGE / LIST / HASH / KEY partitioning (MySQL syntax)', note: 'MatrixOne uses its own partition syntax and semantics; MySQL-style PARTITION BY is not available' },
   { category: 'Partitioning', feature: 'Subpartitioning', note: 'Subpartitioning is not supported' },
   { category: 'Partitioning', feature: 'Partition management (REORGANIZE, COALESCE, EXCHANGE, etc.)', note: 'MySQL partition management operations are not supported' },
 
@@ -91,7 +90,6 @@ const CURATED = [
   { category: 'SHOW Statements', feature: 'SHOW TRIGGER', note: 'Not supported (no triggers in MatrixOne)' },
   { category: 'SHOW Statements', feature: 'SHOW EVENTS', note: 'Not supported (no event scheduler)' },
   { category: 'SHOW Statements', feature: 'SHOW PROCEDURE STATUS', note: 'Not supported (no stored procedures)' },
-  { category: 'SHOW Statements', feature: 'SHOW FUNCTION STATUS', note: 'Partially supported — only shows Python UDFs, not traditional MySQL functions' },
   { category: 'SHOW Statements', feature: 'SHOW ENGINE', note: 'Not supported; MatrixOne does not expose storage engine internals' },
   { category: 'SHOW Statements', feature: 'SHOW STATUS', note: 'Accepted syntactically but produces empty output' },
   { category: 'SHOW Statements', feature: 'SHOW PRIVILEGES', note: 'Accepted syntactically but produces empty output' },
@@ -101,10 +99,8 @@ const CURATED = [
   { category: 'SHOW Statements', feature: 'SHOW ERRORS / SHOW WARNINGS', note: 'Results differ significantly from MySQL due to different implementation' },
 
   // System & Administration
-  { category: 'Administration', feature: 'FLUSH statements (FLUSH LOGS, FLUSH TABLES, FLUSH PRIVILEGES, etc.)', note: 'FLUSH operations are not supported' },
-  { category: 'Administration', feature: 'FLUSH PRIVILEGES', note: 'Not supported; privilege changes take effect immediately' },
+  { category: 'Administration', feature: 'FLUSH statements (FLUSH LOGS, FLUSH TABLES, FLUSH PRIVILEGES, etc.)', note: 'FLUSH operations are not supported; privilege changes take effect without FLUSH PRIVILEGES' },
   { category: 'Administration', feature: 'CACHE INDEX / LOAD INDEX INTO CACHE', note: 'Key cache management is not supported' },
-  { category: 'Administration', feature: 'ANALYZE TABLE', note: 'ANALYZE TABLE is accepted but behavior differs from MySQL' },
   { category: 'Administration', feature: 'CHECKSUM TABLE', note: 'Not supported' },
   { category: 'Administration', feature: 'OPTIMIZE TABLE', note: 'Not supported; MatrixOne handles storage optimization automatically' },
   { category: 'Administration', feature: 'REPAIR TABLE', note: 'Not supported' },
@@ -114,7 +110,6 @@ const CURATED = [
   { category: 'Administration', feature: 'PERFORMANCE_SCHEMA', note: 'Performance Schema is not available' },
   { category: 'Administration', feature: 'INSTALL PLUGIN / UNINSTALL PLUGIN', note: 'Plugin system is not supported' },
   { category: 'Administration', feature: 'INSTALL COMPONENT / UNINSTALL COMPONENT', note: 'Component system is not supported' },
-  { category: 'Administration', feature: 'KILL THREAD', note: 'KILL is supported but with different semantics from MySQL' },
   { category: 'Administration', feature: 'RESET / RESET PERSIST', note: 'System variable persistence management is not supported' },
   { category: 'Administration', feature: 'RESTART', note: 'RESTART server statement is not supported' },
   { category: 'Administration', feature: 'SHUTDOWN', note: 'Server shutdown statement is not supported' },
@@ -125,8 +120,6 @@ const CURATED = [
   { category: 'Functions', feature: 'GIS / spatial functions', note: 'ST_* spatial functions are not supported (no spatial data types)' },
   { category: 'Functions', feature: 'XML functions (ExtractValue, UpdateXML)', note: 'XML processing functions are not supported' },
   { category: 'Functions', feature: 'Performance Schema functions', note: 'FORMAT_BYTES, FORMAT_PICO_TIME, PS_THREAD_ID, etc. are not available' },
-  { category: 'Functions', feature: 'VERSION()', note: 'Returns MatrixOne version string, not MySQL-compatible format' },
-  { category: 'Functions', feature: 'CONNECTION_ID()', note: 'Behavior may differ from MySQL due to different connection handling' },
   { category: 'Functions', feature: 'GROUPING()', note: 'GROUPING function for ROLLUP identification may behave differently' },
 
   // Tools

@@ -14,8 +14,8 @@ mysql_compat: full
 
 | Status | Count |
 |---|---|
-| ✅ Full | 30 |
-| ⚠️ Partial | 46 |
+| ✅ Full | 32 |
+| ⚠️ Partial | 44 |
 | ❌ None | 0 |
 | 🟣 MatrixOne-only | 57 |
 | ❓ Unknown | 0 |
@@ -30,18 +30,18 @@ mysql_compat: full
 | [ALTER REINDEX](./SQL-Reference/Data-Definition-Language/alter-reindex.md) | 🟣 MatrixOne-only | — | ALTER … REINDEX (rebuild vector index) |
 | [ALTER SEQUENCE](./SQL-Reference/Data-Definition-Language/alter-sequence.md) | 🟣 MatrixOne-only | — | ALTER SEQUENCE |
 | [ALTER STAGE](./SQL-Reference/Data-Definition-Language/alter-stage.md) | 🟣 MatrixOne-only | — | ALTER STAGE |
-| [ALTER TABLE](./SQL-Reference/Data-Definition-Language/alter-table.md) | ⚠️ Partial | CHANGE [COLUMN], MODIFY [COLUMN], RENAME COLUMN, ADD/DROP PRIMARY KEY, ALTER COLUMN ORDER BY cannot be combined with other clauses in the same ALTER TABLE<br/>Temporary tables cannot be altered<br/>Tables created with CLUSTER BY cannot be altered<br/>ALTER TABLE does not support PARTITION operations | — |
-| [ALTER VIEW](./SQL-Reference/Data-Definition-Language/alter-view.md) | ⚠️ Partial | Inherits CREATE VIEW limitations: no WITH CHECK OPTION, no DEFINER = user clause | — |
+| [ALTER TABLE](./SQL-Reference/Data-Definition-Language/alter-table.md) | ⚠️ Partial | ADD/DROP PRIMARY KEY and ALTER COLUMN ORDER BY may not combine with other clauses in the same ALTER TABLE; column-level operations (CHANGE, MODIFY, RENAME, ADD, DROP COLUMN) can be combined<br/>Temporary tables cannot be altered<br/>Tables created with CLUSTER BY cannot be altered<br/>ALTER TABLE does not support PARTITION operations | — |
+| [ALTER VIEW](./SQL-Reference/Data-Definition-Language/alter-view.md) | ⚠️ Partial | Inherits CREATE VIEW limitations: WITH CHECK OPTION is syntactically accepted but not enforced; no DEFINER = user clause | — |
 | [Branch Protect Snapshots](./SQL-Reference/Data-Definition-Language/branch-protect-snapshots.md) | 🟣 MatrixOne-only | — | — |
 | [CREATE CLONE](./SQL-Reference/Data-Definition-Language/create-clone.md) | 🟣 MatrixOne-only | — | CREATE TABLE … CLONE db.table [TO ACCOUNT …] |
 | [CREATE CLUSTER TABLE](./SQL-Reference/Data-Definition-Language/create-cluster-table.md) | 🟣 MatrixOne-only | — | CREATE CLUSTER TABLE |
-| [CREATE DATABASE](./SQL-Reference/Data-Definition-Language/create-database.md) | ⚠️ Partial | Chinese database names not supported<br/>Only utf8mb4 / utf8mb4_bin are supported and cannot be changed<br/>ENCRYPTION clause accepted but inert | — |
+| [CREATE DATABASE](./SQL-Reference/Data-Definition-Language/create-database.md) | ⚠️ Partial | Chinese database names not supported<br/>Only utf8mb4 / utf8mb4_bin are functional; other charsets/collations are syntactically accepted but have no effect<br/>ENCRYPTION clause accepted but inert | — |
 | [CREATE DYNAMIC TABLE](./SQL-Reference/Data-Definition-Language/create-dynamic-table.md) | 🟣 MatrixOne-only | — | CREATE DYNAMIC TABLE |
 | [CREATE EXTERNAL TABLE](./SQL-Reference/Data-Definition-Language/create-external-table.md) | 🟣 MatrixOne-only | — | CREATE EXTERNAL TABLE |
 | [Create Fulltext Index](./SQL-Reference/Data-Definition-Language/create-fulltext-index.md) | ⚠️ Partial | MatrixOne full-text index is implemented on TAE storage with CJK/English optimizations; MySQL implements it on InnoDB/MyISAM with different stopword and parser semantics. | — |
 | [CREATE FUNCTION...LANGUAGE PYTHON AS](./SQL-Reference/Data-Definition-Language/create-function-python.md) | 🟣 MatrixOne-only | — | CREATE FUNCTION … LANGUAGE PYTHON AS … |
 | [CREATE FUNCTION...LANGUAGE SQL AS](./SQL-Reference/Data-Definition-Language/create-function-sql.md) | ⚠️ Partial | Only LANGUAGE SQL and LANGUAGE PYTHON are supported; usage differs significantly from MySQL stored functions | — |
-| [CREATE INDEX](./SQL-Reference/Data-Definition-Language/create-index.md) | ⚠️ Partial | Secondary indexes are syntactically accepted but do not yet provide query speed-up<br/>Foreign keys do not support ON CASCADE DELETE | USING IVFFLAT — vector index for approximate nearest neighbour<br/>USING HNSW — vector index for approximate nearest neighbour<br/>USING MASTER — composite master index |
+| [CREATE INDEX](./SQL-Reference/Data-Definition-Language/create-index.md) | ⚠️ Partial | Secondary indexes are syntactically accepted but do not yet provide query speed-up | USING IVFFLAT — vector index for approximate nearest neighbour<br/>USING HNSW — vector index for approximate nearest neighbour<br/>USING MASTER — composite master index |
 | [CREATE INDEX USING HNSW](./SQL-Reference/Data-Definition-Language/create-index-hnsw.md) | 🟣 MatrixOne-only | — | CREATE INDEX … USING HNSW |
 | [CREATE INDEX USING IVFFLAT](./SQL-Reference/Data-Definition-Language/create-index-ivfflat.md) | 🟣 MatrixOne-only | — | CREATE INDEX … USING IVFFLAT |
 | [CREATE PITR](./SQL-Reference/Data-Definition-Language/create-pitr.md) | 🟣 MatrixOne-only | — | CREATE PITR … RANGE N {h\|d\|mo\|y} |
@@ -50,11 +50,11 @@ mysql_compat: full
 | [CREATE SNAPSHOT](./SQL-Reference/Data-Definition-Language/create-snapshot.md) | 🟣 MatrixOne-only | — | CREATE SNAPSHOT FOR {ACCOUNT\|DATABASE\|TABLE\|CLUSTER} |
 | [CREATE SOURCE](./SQL-Reference/Data-Definition-Language/create-source.md) | 🟣 MatrixOne-only | — | CREATE SOURCE (stream/Kafka connector) |
 | [CREATE STAGE](./SQL-Reference/Data-Definition-Language/create-stage.md) | 🟣 MatrixOne-only | — | CREATE STAGE (external file-system binding) |
-| [CREATE TABLE](./SQL-Reference/Data-Definition-Language/create-table.md) | ⚠️ Partial | ENGINE= clause in table definition not supported (MatrixOne has a single TAE engine)<br/>Spatial and SET types not supported; MEDIUMINT not supported<br/>BOOL is a native boolean type, not an INT alias as in MySQL<br/>AUTO_INCREMENT step is always 1; @@auto_increment_increment / @@auto_increment_offset are syntactically accepted but inert<br/>Partitioning accepts syntax but only HASH and KEY participate in partition pruning (RANGE/LIST/RANGE COLUMNS/LIST COLUMNS are syntax-only); subpartitioning is syntax-only; ADD/DROP/TRUNCATE PARTITION not supported | CLUSTER BY (col, …) — pre-sort columns to accelerate queries |
+| [CREATE TABLE](./SQL-Reference/Data-Definition-Language/create-table.md) | ⚠️ Partial | ENGINE= clause is syntactically accepted but ignored; MatrixOne uses TAE exclusively<br/>Spatial type names (GEOMETRY, POINT, etc.) are syntactically accepted but non-functional; SET type is not supported; MEDIUMINT is syntactically accepted but treated as INT<br/>BOOL is a native boolean type, not an INT alias as in MySQL<br/>AUTO_INCREMENT step is always 1; @@auto_increment_increment is syntactically accepted but inert<br/>Partitioning accepts syntax but only HASH and KEY participate in partition pruning (RANGE/LIST/RANGE COLUMNS/LIST COLUMNS are syntax-only); subpartitioning is syntax-only; ADD/DROP/TRUNCATE PARTITION not supported | CLUSTER BY (col, …) — pre-sort columns to accelerate queries |
 | [CREATE TABLE ... LIKE](./SQL-Reference/Data-Definition-Language/create-table-like.md) | ✅ Full | — | — |
 | [CREATE TABLE AS SELECT](./SQL-Reference/Data-Definition-Language/create-table-as-select.md) | ✅ Full | — | — |
 | [CREATE TASK (SQL Task)](./SQL-Reference/Data-Definition-Language/sql-task.md) | 🟣 MatrixOne-only | — | — |
-| [CREATE VIEW](./SQL-Reference/Data-Definition-Language/create-view.md) | ⚠️ Partial | WITH CHECK OPTION clause not supported<br/>DEFINER = user clause not supported; SQL SECURITY {DEFINER \| INVOKER} is supported<br/>ALGORITHM = {UNDEFINED \| MERGE \| TEMPTABLE} clause not supported | — |
+| [CREATE VIEW](./SQL-Reference/Data-Definition-Language/create-view.md) | ⚠️ Partial | WITH CHECK OPTION is syntactically accepted but not enforced<br/>DEFINER = user clause not supported; SQL SECURITY {DEFINER \| INVOKER} is supported<br/>ALGORITHM = {UNDEFINED \| MERGE \| TEMPTABLE} clause not supported | — |
 | [CREATE...FROM...PUBLICATION...](./SQL-Reference/Data-Definition-Language/create-subscription.md) | 🟣 MatrixOne-only | — | CREATE DATABASE … FROM … PUBLICATION … |
 | [DATA BRANCH CREATE](./SQL-Reference/Data-Definition-Language/data-branch-create-en.md) | 🟣 MatrixOne-only | — | DATA BRANCH CREATE (Git-for-Data) |
 | [DATA BRANCH DELETE](./SQL-Reference/Data-Definition-Language/data-branch-delete-en.md) | 🟣 MatrixOne-only | — | DATA BRANCH DELETE |
@@ -82,7 +82,7 @@ mysql_compat: full
 |---|---|---|---|
 | [CASE](./SQL-Reference/Data-Manipulation-Language/case.md) | ✅ Full | — | — |
 | [CURRENT_ROLE()](./SQL-Reference/Data-Manipulation-Language/information-functions/current_role.md) | ⚠️ Partial | Returns a single active role name; MySQL 8.0 can return multiple comma-separated active roles or 'NONE'. | — |
-| [DELETE](./SQL-Reference/Data-Manipulation-Language/delete.md) | ⚠️ Partial | LOW_PRIORITY, QUICK, IGNORE modifiers not supported | — |
+| [DELETE](./SQL-Reference/Data-Manipulation-Language/delete.md) | ⚠️ Partial | LOW_PRIORITY, QUICK, IGNORE modifiers are syntactically accepted but have no effect | — |
 | [INSERT](./SQL-Reference/Data-Manipulation-Language/insert.md) | ⚠️ Partial | Modifiers LOW_PRIORITY / DELAYED / HIGH_PRIORITY not supported | — |
 | [INSERT ... ON DUPLICATE KEY UPDATE](./SQL-Reference/Data-Manipulation-Language/upsert/insert-on-duplicate.md) | ✅ Full | — | — |
 | [INSERT IGNORE](./SQL-Reference/Data-Manipulation-Language/upsert/insert-ignore.md) | ⚠️ Partial | LOW_PRIORITY / DELAYED / HIGH_PRIORITY modifiers not supported<br/>Duplicates are silently ignored; MySQL emits a warning for each skipped row.<br/>Does not ignore NULL-into-NOT-NULL, type-conversion, or partition-mismatch errors as MySQL does. | — |
@@ -120,8 +120,8 @@ mysql_compat: full
 | [Subqueries with ALL](./SQL-Reference/Data-Query-Language/subqueries/subquery-with-all.md) | ✅ Full | — | — |
 | [Subqueries with ANY or SOME](./SQL-Reference/Data-Query-Language/subqueries/subquery-with-any-some.md) | ✅ Full | — | — |
 | [Subqueries with EXISTS or NOT EXISTS](./SQL-Reference/Data-Query-Language/subqueries/subquery-with-exists.md) | ✅ Full | — | — |
-| [Subqueries with IN](./SQL-Reference/Data-Query-Language/subqueries/subquery-with-in.md) | ⚠️ Partial | Multi-level correlated subqueries inside IN() are not supported | — |
-| [SUBQUERY](./SQL-Reference/Data-Query-Language/subqueries/subquery.md) | ⚠️ Partial | Multi-level correlated subqueries inside IN() are not supported | — |
+| [Subqueries with IN](./SQL-Reference/Data-Query-Language/subqueries/subquery-with-in.md) | ✅ Full | — | — |
+| [SUBQUERY](./SQL-Reference/Data-Query-Language/subqueries/subquery.md) | ✅ Full | — | — |
 | [UNION](./SQL-Reference/Data-Query-Language/union.md) | ✅ Full | — | — |
 | [WITH (Common Table Expressions)](./SQL-Reference/Data-Query-Language/with-cte.md) | ✅ Full | — | — |
 
@@ -133,7 +133,7 @@ mysql_compat: full
 | [ALTER USER](./SQL-Reference/Data-Control-Language/alter-user.md) | ⚠️ Partial | Only ALTER USER can change passwords; account-limit clauses not honoured | — |
 | [CREATE ACCOUNT](./SQL-Reference/Data-Control-Language/create-account.md) | 🟣 MatrixOne-only | — | CREATE ACCOUNT … ADMIN_NAME … |
 | [CREATE ROLE](./SQL-Reference/Data-Control-Language/create-role.md) | ⚠️ Partial | Role exists inside MatrixOne's multi-account model; roles are account-scoped, not server-global as in MySQL. | — |
-| [CREATE USER](./SQL-Reference/Data-Control-Language/create-user.md) | ⚠️ Partial | IDENTIFIED BY is the only supported password form; IDENTIFIED WITH plugins not supported<br/>Connection-IP whitelists and connection-limit clauses not supported<br/>COMMENT and ATTRIBUTE clauses are accepted syntactically but not honoured<br/>User identifier is a bare username scoped to the current account; MySQL uses 'user'@'host' tuples | — |
+| [CREATE USER](./SQL-Reference/Data-Control-Language/create-user.md) | ⚠️ Partial | IDENTIFIED BY is the only supported password form; IDENTIFIED WITH plugins not supported<br/>Connection-IP whitelists and connection-limit clauses not supported<br/>COMMENT and ATTRIBUTE clauses are accepted syntactically but not honoured<br/>'user'@'host' syntax is accepted and host is stored in mo_catalog.mo_user.user_host but may not restrict connections; users are scoped to the current account, not server-global as in MySQL | — |
 | [DROP ACCOUNT](./SQL-Reference/Data-Control-Language/drop-account.md) | 🟣 MatrixOne-only | — | DROP ACCOUNT |
 | [DROP ROLE](./SQL-Reference/Data-Control-Language/drop-role.md) | ⚠️ Partial | Role exists inside MatrixOne's multi-account model; roles are account-scoped, not server-global as in MySQL. | — |
 | [DROP USER](./SQL-Reference/Data-Control-Language/drop-user.md) | ⚠️ Partial | User identifier is a bare username scoped to the current account; MySQL uses 'user'@'host' tuples. | — |

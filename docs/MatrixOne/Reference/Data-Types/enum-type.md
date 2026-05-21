@@ -2,7 +2,7 @@
 title: "ENUM Type"
 doc_type: reference
 mysql_compat: partial
-differs_from_mysql: ["ENUM range comparisons (>, <, >=, <=) with string values are not supported; equality (=, !=) and IN (…) filtering work as expected"]
+differs_from_mysql: ["Range comparisons (>, <, >=, <=, BETWEEN) use string (lexicographic) semantics rather than MySQL's ENUM index semantics; ORDER BY sorts by string value, not index; ENUM-to-integer comparisons in WHERE clauses are not supported (use string values instead)"]
 mo_only: false
 since: unknown
 last_updated: 2026-05-19

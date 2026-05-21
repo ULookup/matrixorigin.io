@@ -22,9 +22,9 @@ description: "Comprehensive list of MySQL features and syntax that MatrixOne doe
 
 | Source | Count |
 |---|---|
-| Completely Missing (curated) | 130 |
+| Completely Missing (curated) | 132 |
 | Partial Support (auto-extracted) | 91 |
-| **Total** | **221** |
+| **Total** | **223** |
 
 ## Completely Missing
 
@@ -73,7 +73,6 @@ These MySQL features have no MatrixOne counterpart and are not available in any 
 | LOAD XML | LOAD XML INFILE is not supported; use LOAD DATA for CSV/JSONL |
 | CALL procedure_name() | Stored procedure execution is not supported |
 | DO statement | DO expr [, expr] ... is not supported |
-| SET NAMES / SET CHARACTER SET | Not supported; only utf8mb4 charset is available so charset switching is unnecessary |
 | IMPORT TABLE | MySQL 8.0 IMPORT TABLE (import InnoDB .ibd tablespace files) is not supported |
 | Parenthesized Query Expressions | MySQL 8.0.19+ parenthesized query blocks with per-block ORDER BY / LIMIT are not supported |
 | TABLE statement | MySQL 8.0.19+ TABLE tablename (equivalent to SELECT * FROM) is not supported |
@@ -166,12 +165,15 @@ These MySQL features have no MatrixOne counterpart and are not available in any 
 | SHOW EVENTS | Not supported (no event scheduler) |
 | SHOW PROCEDURE STATUS | Not supported (no stored procedures) |
 | SHOW ENGINE | Not supported; MatrixOne does not expose storage engine internals |
+| SHOW ENGINES | Accepted syntactically but produces empty result set; MatrixOne uses TAE exclusively |
 | SHOW STATUS | Accepted syntactically but produces empty output |
 | SHOW PRIVILEGES | Accepted syntactically but produces empty output |
+| SHOW CHARACTER SET | Accepted syntactically but returns empty result set; only utf8mb4 charset is available |
 | SHOW PROFILE / SHOW PROFILES | Query profiling via SHOW PROFILE is not supported |
 | SHOW OPEN TABLES | Not supported |
 | SHOW PLUGINS | Not supported |
 | SHOW ERRORS / SHOW WARNINGS | Results differ significantly from MySQL due to different implementation |
+| SHOW CREATE USER | Not supported; returns a parser error |
 | SHOW CREATE EVENT | Not supported (no event scheduler) |
 | SHOW CREATE PROCEDURE | Not supported (no stored procedures) |
 | SHOW CREATE TRIGGER | Not supported (no triggers) |

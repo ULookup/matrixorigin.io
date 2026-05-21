@@ -1,9 +1,8 @@
 ---
 title: "DESCRIBE / DESC"
 doc_type: reference
-mysql_compat: partial
-differs_from_mysql:
-  - "Uses PostgreSQL-style output format instead of MySQL's tabular format"
+mysql_compat: full
+differs_from_mysql: []
 mo_only: []
 since: unknown
 last_updated: 2026-05-20
@@ -15,7 +14,7 @@ llms_summary: "DESCRIBE and DESC provide information about columns in a table."
 
 ## **Description**
 
-The `DESCRIBE` statement provides information about the columns in a table. `DESC` is a synonym for `DESCRIBE`. The output format differs from MySQL — MatrixOne uses a PostgreSQL-style format.
+The `DESCRIBE` statement provides information about the columns in a table. `DESC` is a synonym for `DESCRIBE`.
 
 ## **Syntax**
 

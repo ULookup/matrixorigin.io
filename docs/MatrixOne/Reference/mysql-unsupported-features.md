@@ -23,8 +23,8 @@ description: "Comprehensive list of MySQL features and syntax that MatrixOne doe
 | Source | Count |
 |---|---|
 | Completely Missing (curated) | 132 |
-| Partial Support (auto-extracted) | 91 |
-| **Total** | **223** |
+| Partial Support (auto-extracted) | 95 |
+| **Total** | **227** |
 
 ## Completely Missing
 
@@ -311,6 +311,7 @@ Each row links to the relevant MatrixOne documentation page for full details.
 
 | Statement | Difference from MySQL |
 |---|---|
+| [DESCRIBE / DESC](./SQL-Reference/Other/describe.md) | Uses PostgreSQL-style output format instead of MySQL's tabular format |
 | [EXPLAIN](./SQL-Reference/Other/Explain/explain.md) | Output format mirrors PostgreSQL, not MySQL |
 | [EXPLAIN](./SQL-Reference/Other/Explain/explain.md) | JSON output not supported |
 | [EXPLAIN Output Format](./SQL-Reference/Other/Explain/explain-workflow.md) | Output format mirrors PostgreSQL; JSON output not supported |
@@ -318,12 +319,15 @@ Each row links to the relevant MatrixOne documentation page for full details.
 | [PREPARE](./SQL-Reference/Other/Prepared-Statements/prepare.md) | MatrixOne cannot PREPARE SET statements |
 | [SET ROLE](./SQL-Reference/Other/Set/set-role.md) | Accepts a single role name only; MySQL 8.0 also supports NONE, DEFAULT, ALL, ALL EXCEPT role_list, and role lists. |
 | [SHOW COLLATION](./SQL-Reference/Other/SHOW-Statements/show-collation.md) | Only utf8mb4_bin is effective; other collations appear but are inert |
+| [SHOW CREATE DATABASE](./SQL-Reference/Other/SHOW-Statements/show-create-database.md) | Output format may differ from MySQL; MatrixOne uses its own SQL dialect in generated CREATE statements |
 | [SHOW CREATE TABLE](./SQL-Reference/Other/SHOW-Statements/show-create-table.md) | Output reflects MatrixOne-specific extensions (CLUSTER BY, USING IVFFLAT/HNSW, etc.) |
 | [SHOW CREATE VIEW](./SQL-Reference/Other/SHOW-Statements/show-create-view.md) | DEFINER = user clause absent from output; SQL SECURITY {DEFINER\|INVOKER} is emitted |
 | [SHOW FUNCTION STATUS](./SQL-Reference/Other/SHOW-Statements/show-function-status.md) | Lists MatrixOne SQL/Python functions, not MySQL stored routines |
 | [SHOW GRANTS](./SQL-Reference/Other/SHOW-Statements/show-grants.md) | Results reflect MatrixOne role/account graph and differ from MySQL significantly |
 | [SHOW INDEX](./SQL-Reference/Other/SHOW-Statements/show-index.md) | Reflects MatrixOne index model — secondary index rows appear but may not accelerate queries |
 | [SHOW PROCESSLIST](./SQL-Reference/Other/SHOW-Statements/show-processlist.md) | Output differs significantly from MySQL due to different implementation |
+| [SHOW TABLE STATUS](./SQL-Reference/Other/SHOW-Statements/show-table-status.md) | Result columns differ from MySQL; MatrixOne uses TAE storage engine metadata instead of InnoDB statistics |
+| [SHOW TABLE STATUS](./SQL-Reference/Other/SHOW-Statements/show-table-status.md) | Engine column always shows TAE instead of InnoDB |
 | [SHOW TABLES](./SQL-Reference/Other/SHOW-Statements/show-tables.md) | Result column is named 'name' rather than MySQL's 'Tables_in_<dbname>'. |
 | [SHOW VARIABLES](./SQL-Reference/Other/SHOW-Statements/show-variables.md) | System variables are mostly syntactic stubs; actual behaviour differs from MySQL |
 

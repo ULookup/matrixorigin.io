@@ -2,7 +2,7 @@
 title: "ENUM Type"
 doc_type: reference
 mysql_compat: partial
-differs_from_mysql: ["ENUM values can only be compared with strings in WHERE conditions", "ENUM filtering and sorting is not supported"]
+differs_from_mysql: ["ENUM range comparisons (>, <, >=, <=) with string values are not supported; equality (=, !=) and IN (…) filtering work as expected"]
 mo_only: false
 since: unknown
 last_updated: 2026-05-19
@@ -126,4 +126,4 @@ These behaviors are internal and do not change the SQL syntax or user-facing API
 ## Constraints
 
 1. Modifying ENUM enumeration members requires rebuilding the table using the `ALTER TABLE` statement.
-2. MatrixOne does not support **Filtering ENUM values** and **Sorting ENUM values**.
+2. ENUM range comparisons (`>`, `<`, `>=`, `<=`) with string values are not supported; equality (=, !=) and IN filtering work as expected. ORDER BY on ENUM columns works correctly.

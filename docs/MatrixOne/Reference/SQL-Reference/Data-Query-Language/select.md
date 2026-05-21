@@ -6,8 +6,9 @@ differs_from_mysql:
   - "SELECT … FOR UPDATE only supports single-table queries"
   - "SELECT INTO OUTFILE is only partially supported"
   - "Unqualified SELECT ... FROM DUAL requires explicit database name (SELECT ... FROM dbname.DUAL)"
+  - "AS OF TIMESTAMP time-travel queries require PITR/snapshot to be enabled on the database; without PITR the syntax produces an error"
 mo_only:
-  - "{ AS OF TIMESTAMP 'YYYY-MM-DD HH:MM:SS' } — time-travel query against snapshot/PITR"
+  - "{ AS OF TIMESTAMP 'YYYY-MM-DD HH:MM:SS' } — time-travel query against enabled snapshot/PITR"
   - "ORDER BY ... NULLS { FIRST | LAST } — PostgreSQL-style NULL ordering not available in MySQL"
 since: unknown
 last_updated: 2026-05-08
@@ -38,6 +39,11 @@ SELECT
     [LIMIT {[offset,] row_count | row_count OFFSET offset}]
     [FOR {UPDATE}]
 ```
+
+!!! note
+    `AS OF TIMESTAMP` time-travel queries require the database to have
+    PITR (Point-In-Time Recovery) or snapshot enabled. On a database
+    without PITR configured, the syntax produces `ERROR 1064: SQL parser error`.
 
 ### Syntax Explanation
 

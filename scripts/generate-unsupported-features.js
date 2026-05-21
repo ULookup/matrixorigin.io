@@ -65,6 +65,9 @@ const CURATED = [
   { category: 'DML', feature: 'TABLE statement', note: 'MySQL 8.0.19+ TABLE tablename (equivalent to SELECT * FROM) is not supported' },
   { category: 'DML', feature: 'VALUES statement (DML)', note: 'MySQL 8.0.19+ VALUES row_constructor_list as standalone DML is not supported' },
 
+  // DQL
+  { category: 'DQL', feature: 'FULL JOIN / FULL OUTER JOIN', note: 'FULL JOIN is not supported; emulate with LEFT JOIN UNION RIGHT JOIN' },
+
   // DCL
   { category: 'DCL', feature: 'GRANT with PROXY', note: 'PROXY user grants are not supported' },
   { category: 'DCL', feature: 'RENAME USER', note: 'RENAME USER is not supported; use ALTER USER instead' },

@@ -135,6 +135,11 @@ const CURATED = [
   { category: 'SHOW Statements', feature: 'SHOW OPEN TABLES', note: 'Not supported' },
   { category: 'SHOW Statements', feature: 'SHOW PLUGINS', note: 'Not supported' },
   { category: 'SHOW Statements', feature: 'SHOW ERRORS / SHOW WARNINGS', note: 'Results differ significantly from MySQL due to different implementation' },
+  { category: 'SHOW Statements', feature: 'SHOW CREATE EVENT', note: 'Not supported (no event scheduler)' },
+  { category: 'SHOW Statements', feature: 'SHOW CREATE PROCEDURE', note: 'Not supported (no stored procedures)' },
+  { category: 'SHOW Statements', feature: 'SHOW CREATE TRIGGER', note: 'Not supported (no triggers)' },
+  { category: 'SHOW Statements', feature: 'SHOW FUNCTION CODE', note: 'Not supported (no stored function internals to display)' },
+  { category: 'SHOW Statements', feature: 'SHOW PROCEDURE CODE', note: 'Not supported (no stored procedure internals to display)' },
 
   // System & Administration
   { category: 'Administration', feature: 'FLUSH statements (FLUSH LOGS, FLUSH TABLES, FLUSH PRIVILEGES, etc.)', note: 'FLUSH operations are not supported; privilege changes take effect without FLUSH PRIVILEGES' },
@@ -151,6 +156,7 @@ const CURATED = [
   { category: 'Administration', feature: 'RESET / RESET PERSIST', note: 'System variable persistence management is not supported' },
   { category: 'Administration', feature: 'RESTART', note: 'RESTART server statement is not supported' },
   { category: 'Administration', feature: 'SHUTDOWN', note: 'Server shutdown statement is not supported' },
+  { category: 'Administration', feature: 'BINLOG statement', note: 'The BINLOG statement for executing events decoded from a binary log is not supported' },
   { category: 'Administration', feature: 'HELP statement', note: 'HELP command for SQL syntax reference is not supported' },
 
   // Functions & Operators

@@ -4,8 +4,6 @@ doc_type: reference
 mysql_compat: partial
 differs_from_mysql:
   - "WITH CHECK OPTION is syntactically accepted but not enforced"
-  - "DEFINER = user clause not supported; SQL SECURITY {DEFINER | INVOKER} is supported"
-  - "ALGORITHM = {UNDEFINED | MERGE | TEMPTABLE} clause not supported"
 mo_only: []
 since: unknown
 last_updated: 2026-05-08

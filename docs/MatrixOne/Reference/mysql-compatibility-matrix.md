@@ -16,8 +16,8 @@ mysql_compat: full
 |---|---|
 | ✅ Full | 32 |
 | ⚠️ Partial | 44 |
-| ❌ None | 0 |
-| 🟣 MatrixOne-only | 57 |
+| ❌ None | 1 |
+| 🟣 MatrixOne-only | 56 |
 | ❓ Unknown | 0 |
 | **Total** | **133** |
 
@@ -30,12 +30,12 @@ mysql_compat: full
 | [ALTER REINDEX](./SQL-Reference/Data-Definition-Language/alter-reindex.md) | 🟣 MatrixOne-only | — | ALTER … REINDEX (rebuild vector index) |
 | [ALTER SEQUENCE](./SQL-Reference/Data-Definition-Language/alter-sequence.md) | 🟣 MatrixOne-only | — | ALTER SEQUENCE |
 | [ALTER STAGE](./SQL-Reference/Data-Definition-Language/alter-stage.md) | 🟣 MatrixOne-only | — | ALTER STAGE |
-| [ALTER TABLE](./SQL-Reference/Data-Definition-Language/alter-table.md) | ⚠️ Partial | ADD/DROP PRIMARY KEY and ALTER COLUMN ORDER BY may not combine with other clauses in the same ALTER TABLE; column-level operations (CHANGE, MODIFY, RENAME, ADD, DROP COLUMN) can be combined<br/>Temporary tables cannot be altered<br/>Tables created with CLUSTER BY cannot be altered<br/>ALTER TABLE does not support PARTITION operations | — |
-| [ALTER VIEW](./SQL-Reference/Data-Definition-Language/alter-view.md) | ⚠️ Partial | Inherits CREATE VIEW limitations: WITH CHECK OPTION is syntactically accepted but not enforced; no DEFINER = user clause | — |
+| [ALTER TABLE](./SQL-Reference/Data-Definition-Language/alter-table.md) | ⚠️ Partial | ADD/DROP PRIMARY KEY and ALTER COLUMN ORDER BY may not combine with other clauses in the same ALTER TABLE; column-level operations (CHANGE, MODIFY, RENAME, ADD, DROP COLUMN) can be combined<br/>Temporary tables cannot be altered<br/>ALTER TABLE does not support PARTITION operations | — |
+| [ALTER VIEW](./SQL-Reference/Data-Definition-Language/alter-view.md) | ⚠️ Partial | WITH CHECK OPTION is syntactically accepted but not enforced | — |
 | [Branch Protect Snapshots](./SQL-Reference/Data-Definition-Language/branch-protect-snapshots.md) | 🟣 MatrixOne-only | — | — |
 | [CREATE CLONE](./SQL-Reference/Data-Definition-Language/create-clone.md) | 🟣 MatrixOne-only | — | CREATE TABLE … CLONE db.table [TO ACCOUNT …] |
 | [CREATE CLUSTER TABLE](./SQL-Reference/Data-Definition-Language/create-cluster-table.md) | 🟣 MatrixOne-only | — | CREATE CLUSTER TABLE |
-| [CREATE DATABASE](./SQL-Reference/Data-Definition-Language/create-database.md) | ⚠️ Partial | Chinese database names not supported<br/>Only utf8mb4 / utf8mb4_bin are functional; other charsets/collations are syntactically accepted but have no effect<br/>ENCRYPTION clause accepted but inert | — |
+| [CREATE DATABASE](./SQL-Reference/Data-Definition-Language/create-database.md) | ⚠️ Partial | Only utf8mb4 / utf8mb4_bin are functional; other charsets/collations are syntactically accepted but have no effect<br/>ENCRYPTION clause accepted but inert | — |
 | [CREATE DYNAMIC TABLE](./SQL-Reference/Data-Definition-Language/create-dynamic-table.md) | 🟣 MatrixOne-only | — | CREATE DYNAMIC TABLE |
 | [CREATE EXTERNAL TABLE](./SQL-Reference/Data-Definition-Language/create-external-table.md) | 🟣 MatrixOne-only | — | CREATE EXTERNAL TABLE |
 | [Create Fulltext Index](./SQL-Reference/Data-Definition-Language/create-fulltext-index.md) | ⚠️ Partial | MatrixOne full-text index is implemented on TAE storage with CJK/English optimizations; MySQL implements it on InnoDB/MyISAM with different stopword and parser semantics. | — |
@@ -54,7 +54,7 @@ mysql_compat: full
 | [CREATE TABLE ... LIKE](./SQL-Reference/Data-Definition-Language/create-table-like.md) | ✅ Full | — | — |
 | [CREATE TABLE AS SELECT](./SQL-Reference/Data-Definition-Language/create-table-as-select.md) | ✅ Full | — | — |
 | [CREATE TASK (SQL Task)](./SQL-Reference/Data-Definition-Language/sql-task.md) | 🟣 MatrixOne-only | — | — |
-| [CREATE VIEW](./SQL-Reference/Data-Definition-Language/create-view.md) | ⚠️ Partial | WITH CHECK OPTION is syntactically accepted but not enforced<br/>DEFINER = user clause not supported; SQL SECURITY {DEFINER \| INVOKER} is supported<br/>ALGORITHM = {UNDEFINED \| MERGE \| TEMPTABLE} clause not supported | — |
+| [CREATE VIEW](./SQL-Reference/Data-Definition-Language/create-view.md) | ⚠️ Partial | WITH CHECK OPTION is syntactically accepted but not enforced | — |
 | [CREATE...FROM...PUBLICATION...](./SQL-Reference/Data-Definition-Language/create-subscription.md) | 🟣 MatrixOne-only | — | CREATE DATABASE … FROM … PUBLICATION … |
 | [DATA BRANCH CREATE](./SQL-Reference/Data-Definition-Language/data-branch-create-en.md) | 🟣 MatrixOne-only | — | DATA BRANCH CREATE (Git-for-Data) |
 | [DATA BRANCH DELETE](./SQL-Reference/Data-Definition-Language/data-branch-delete-en.md) | 🟣 MatrixOne-only | — | DATA BRANCH DELETE |
@@ -93,7 +93,7 @@ mysql_compat: full
 | [LOAD DATA INLINE](./SQL-Reference/Data-Manipulation-Language/load-data-inline.md) | 🟣 MatrixOne-only | — | LOAD DATA INLINE (stage-sourced import) |
 | [REPLACE](./SQL-Reference/Data-Manipulation-Language/replace.md) | ⚠️ Partial | REPLACE does not support VALUES row_constructor_list<br/>node-sql-parser rejects REPLACE … WHERE (parser bug, not MatrixOne) | — |
 | [REPLACE](./SQL-Reference/Data-Manipulation-Language/upsert/replace.md) | ⚠️ Partial | REPLACE does not support VALUES row_constructor_list<br/>node-sql-parser rejects REPLACE … WHERE (parser bug, not MatrixOne) | — |
-| [UPDATE](./SQL-Reference/Data-Manipulation-Language/update.md) | ⚠️ Partial | LOW_PRIORITY and IGNORE modifiers not supported | — |
+| [UPDATE](./SQL-Reference/Data-Manipulation-Language/update.md) | ⚠️ Partial | LOW_PRIORITY and IGNORE modifiers are syntactically accepted but have no effect | — |
 | [UPSERT](./SQL-Reference/Data-Manipulation-Language/upsert/upsert.md) | 🟣 MatrixOne-only | — | UPSERT (convenience alias over INSERT … ON DUPLICATE KEY UPDATE) |
 
 ## Data Query Language (DQL)
@@ -106,7 +106,7 @@ mysql_compat: full
 | [CROSS APPLY](./SQL-Reference/Data-Query-Language/apply/cross-apply.md) | 🟣 MatrixOne-only | — | CROSS APPLY (SQL Server-style, not in MySQL) |
 | [CROSS JOIN](./SQL-Reference/Data-Query-Language/join/cross-join.md) | ✅ Full | — | — |
 | [Derived Tables](./SQL-Reference/Data-Query-Language/subqueries/derived-tables.md) | ✅ Full | — | — |
-| [FULL JOIN](./SQL-Reference/Data-Query-Language/join/full-join.md) | 🟣 MatrixOne-only | — | FULL JOIN / FULL OUTER JOIN is not supported in MySQL 8.0 (users must emulate it with LEFT JOIN UNION RIGHT JOIN). |
+| [FULL JOIN](./SQL-Reference/Data-Query-Language/join/full-join.md) | ❌ None | FULL JOIN / FULL OUTER JOIN is not supported. Emulate with LEFT JOIN UNION RIGHT JOIN. | — |
 | [INNER JOIN](./SQL-Reference/Data-Query-Language/join/inner-join.md) | ✅ Full | — | — |
 | [INTERSECT](./SQL-Reference/Data-Query-Language/intersect.md) | 🟣 MatrixOne-only | — | INTERSECT set operator is not available in MySQL 8.0. |
 | [JOIN](./SQL-Reference/Data-Query-Language/join/join.md) | ✅ Full | — | — |
@@ -116,12 +116,12 @@ mysql_compat: full
 | [OUTER APPLY](./SQL-Reference/Data-Query-Language/apply/outer-apply.md) | 🟣 MatrixOne-only | — | OUTER APPLY (SQL Server-style, not in MySQL) |
 | [OUTER JOIN](./SQL-Reference/Data-Query-Language/join/outer-join.md) | ⚠️ Partial | Overview page that includes FULL OUTER JOIN, which MySQL 8.0 does not support. | — |
 | [RIGHT JOIN](./SQL-Reference/Data-Query-Language/join/right-join.md) | ✅ Full | — | — |
-| [SELECT](./SQL-Reference/Data-Query-Language/select.md) | ⚠️ Partial | SELECT … FOR UPDATE only supports single-table queries<br/>SELECT INTO OUTFILE is only partially supported<br/>Unqualified SELECT ... FROM DUAL requires explicit database name (SELECT ... FROM dbname.DUAL) | { AS OF TIMESTAMP 'YYYY-MM-DD HH:MM:SS' } — time-travel query against snapshot/PITR<br/>ORDER BY ... NULLS { FIRST \| LAST } — PostgreSQL-style NULL ordering not available in MySQL |
+| [SELECT](./SQL-Reference/Data-Query-Language/select.md) | ⚠️ Partial | SELECT … FOR UPDATE only supports single-table queries<br/>SELECT INTO OUTFILE is only partially supported<br/>Unqualified SELECT ... FROM DUAL requires explicit database name (SELECT ... FROM dbname.DUAL)<br/>AS OF TIMESTAMP time-travel queries require PITR/snapshot to be enabled on the database; without PITR the syntax produces an error | { AS OF TIMESTAMP 'YYYY-MM-DD HH:MM:SS' } — time-travel query against enabled snapshot/PITR<br/>ORDER BY ... NULLS { FIRST \| LAST } — PostgreSQL-style NULL ordering not available in MySQL |
 | [Subqueries with ALL](./SQL-Reference/Data-Query-Language/subqueries/subquery-with-all.md) | ✅ Full | — | — |
 | [Subqueries with ANY or SOME](./SQL-Reference/Data-Query-Language/subqueries/subquery-with-any-some.md) | ✅ Full | — | — |
 | [Subqueries with EXISTS or NOT EXISTS](./SQL-Reference/Data-Query-Language/subqueries/subquery-with-exists.md) | ✅ Full | — | — |
 | [Subqueries with IN](./SQL-Reference/Data-Query-Language/subqueries/subquery-with-in.md) | ✅ Full | — | — |
-| [SUBQUERY](./SQL-Reference/Data-Query-Language/subqueries/subquery.md) | ✅ Full | — | — |
+| [SUBQUERY](./SQL-Reference/Data-Query-Language/subqueries/subquery.md) | ⚠️ Partial | Multi-column scalar subquery comparisons (e.g., WHERE (a,b) = (SELECT ...)) are not supported; use multi-column IN instead | — |
 | [UNION](./SQL-Reference/Data-Query-Language/union.md) | ✅ Full | — | — |
 | [WITH (Common Table Expressions)](./SQL-Reference/Data-Query-Language/with-cte.md) | ✅ Full | — | — |
 
@@ -146,7 +146,7 @@ mysql_compat: full
 | Statement | MySQL Compat | Differences from MySQL | MatrixOne-only |
 |---|---|---|---|
 | [DEALLOCATE PREPARE](./SQL-Reference/Other/Prepared-Statements/deallocate.md) | ✅ Full | — | — |
-| [DESCRIBE / DESC](./SQL-Reference/Other/describe.md) | ⚠️ Partial | Uses PostgreSQL-style output format instead of MySQL's tabular format | — |
+| [DESCRIBE / DESC](./SQL-Reference/Other/describe.md) | ✅ Full | — | — |
 | [EXECUTE](./SQL-Reference/Other/Prepared-Statements/execute.md) | ✅ Full | — | — |
 | [EXPLAIN](./SQL-Reference/Other/Explain/explain.md) | ⚠️ Partial | Output format mirrors PostgreSQL, not MySQL<br/>JSON output not supported | — |
 | [EXPLAIN Output Format](./SQL-Reference/Other/Explain/explain-workflow.md) | ⚠️ Partial | Output format mirrors PostgreSQL; JSON output not supported | — |

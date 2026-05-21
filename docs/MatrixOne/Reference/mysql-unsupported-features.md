@@ -22,9 +22,9 @@ description: "Comprehensive list of MySQL features and syntax that MatrixOne doe
 
 | Source | Count |
 |---|---|
-| Completely Missing (curated) | 130 |
-| Partial Support (auto-extracted) | 92 |
-| **Total** | **222** |
+| Completely Missing (curated) | 131 |
+| Partial Support (auto-extracted) | 93 |
+| **Total** | **224** |
 
 ## Completely Missing
 
@@ -225,6 +225,12 @@ These MySQL features have no MatrixOne counterpart and are not available in any 
 | mysql_config_editor | Login path configuration is not available |
 | xtrabackup | Physical backup uses mo_br instead; xtrabackup / mariabackup are not compatible |
 
+### DQL
+
+| Feature | Note |
+|---|---|
+| FULL JOIN / FULL OUTER JOIN | FULL JOIN is not supported; emulate with LEFT JOIN UNION RIGHT JOIN |
+
 ## Partial Support
 
 These MySQL features are partially supported by MatrixOne with documented differences.
@@ -236,10 +242,8 @@ Each row links to the relevant MatrixOne documentation page for full details.
 |---|---|
 | [ALTER TABLE](./SQL-Reference/Data-Definition-Language/alter-table.md) | ADD/DROP PRIMARY KEY and ALTER COLUMN ORDER BY may not combine with other clauses in the same ALTER TABLE; column-level operations (CHANGE, MODIFY, RENAME, ADD, DROP COLUMN) can be combined |
 | [ALTER TABLE](./SQL-Reference/Data-Definition-Language/alter-table.md) | Temporary tables cannot be altered |
-| [ALTER TABLE](./SQL-Reference/Data-Definition-Language/alter-table.md) | Tables created with CLUSTER BY cannot be altered |
 | [ALTER TABLE](./SQL-Reference/Data-Definition-Language/alter-table.md) | ALTER TABLE does not support PARTITION operations |
-| [ALTER VIEW](./SQL-Reference/Data-Definition-Language/alter-view.md) | Inherits CREATE VIEW limitations: WITH CHECK OPTION is syntactically accepted but not enforced; no DEFINER = user clause |
-| [CREATE DATABASE](./SQL-Reference/Data-Definition-Language/create-database.md) | Chinese database names not supported |
+| [ALTER VIEW](./SQL-Reference/Data-Definition-Language/alter-view.md) | WITH CHECK OPTION is syntactically accepted but not enforced |
 | [CREATE DATABASE](./SQL-Reference/Data-Definition-Language/create-database.md) | Only utf8mb4 / utf8mb4_bin are functional; other charsets/collations are syntactically accepted but have no effect |
 | [CREATE DATABASE](./SQL-Reference/Data-Definition-Language/create-database.md) | ENCRYPTION clause accepted but inert |
 | [Create Fulltext Index](./SQL-Reference/Data-Definition-Language/create-fulltext-index.md) | MatrixOne full-text index is implemented on TAE storage with CJK/English optimizations; MySQL implements it on InnoDB/MyISAM with different stopword and parser semantics. |
@@ -251,8 +255,6 @@ Each row links to the relevant MatrixOne documentation page for full details.
 | [CREATE TABLE](./SQL-Reference/Data-Definition-Language/create-table.md) | AUTO_INCREMENT step is always 1; @@auto_increment_increment is syntactically accepted but inert |
 | [CREATE TABLE](./SQL-Reference/Data-Definition-Language/create-table.md) | Partitioning accepts syntax but only HASH and KEY participate in partition pruning (RANGE/LIST/RANGE COLUMNS/LIST COLUMNS are syntax-only); subpartitioning is syntax-only; ADD/DROP/TRUNCATE PARTITION not supported |
 | [CREATE VIEW](./SQL-Reference/Data-Definition-Language/create-view.md) | WITH CHECK OPTION is syntactically accepted but not enforced |
-| [CREATE VIEW](./SQL-Reference/Data-Definition-Language/create-view.md) | DEFINER = user clause not supported; SQL SECURITY {DEFINER \| INVOKER} is supported |
-| [CREATE VIEW](./SQL-Reference/Data-Definition-Language/create-view.md) | ALGORITHM = {UNDEFINED \| MERGE \| TEMPTABLE} clause not supported |
 | [DROP FUNCTION](./SQL-Reference/Data-Definition-Language/drop-function.md) | Drops MatrixOne-style SQL / Python functions, not MySQL stored procedures/functions |
 
 ### DML — Data Manipulation Language
@@ -274,16 +276,19 @@ Each row links to the relevant MatrixOne documentation page for full details.
 | [REPLACE](./SQL-Reference/Data-Manipulation-Language/replace.md) | node-sql-parser rejects REPLACE … WHERE (parser bug, not MatrixOne) |
 | [REPLACE](./SQL-Reference/Data-Manipulation-Language/upsert/replace.md) | REPLACE does not support VALUES row_constructor_list |
 | [REPLACE](./SQL-Reference/Data-Manipulation-Language/upsert/replace.md) | node-sql-parser rejects REPLACE … WHERE (parser bug, not MatrixOne) |
-| [UPDATE](./SQL-Reference/Data-Manipulation-Language/update.md) | LOW_PRIORITY and IGNORE modifiers not supported |
+| [UPDATE](./SQL-Reference/Data-Manipulation-Language/update.md) | LOW_PRIORITY and IGNORE modifiers are syntactically accepted but have no effect |
 
 ### DQL
 
 | Statement | Difference from MySQL |
 |---|---|
+| [FULL JOIN](./SQL-Reference/Data-Query-Language/join/full-join.md) | FULL JOIN / FULL OUTER JOIN is not supported. Emulate with LEFT JOIN UNION RIGHT JOIN. |
 | [OUTER JOIN](./SQL-Reference/Data-Query-Language/join/outer-join.md) | Overview page that includes FULL OUTER JOIN, which MySQL 8.0 does not support. |
 | [SELECT](./SQL-Reference/Data-Query-Language/select.md) | SELECT … FOR UPDATE only supports single-table queries |
 | [SELECT](./SQL-Reference/Data-Query-Language/select.md) | SELECT INTO OUTFILE is only partially supported |
 | [SELECT](./SQL-Reference/Data-Query-Language/select.md) | Unqualified SELECT ... FROM DUAL requires explicit database name (SELECT ... FROM dbname.DUAL) |
+| [SELECT](./SQL-Reference/Data-Query-Language/select.md) | AS OF TIMESTAMP time-travel queries require PITR/snapshot to be enabled on the database; without PITR the syntax produces an error |
+| [SUBQUERY](./SQL-Reference/Data-Query-Language/subqueries/subquery.md) | Multi-column scalar subquery comparisons (e.g., WHERE (a,b) = (SELECT ...)) are not supported; use multi-column IN instead |
 
 ### DCL — Data Control Language
 
@@ -306,7 +311,6 @@ Each row links to the relevant MatrixOne documentation page for full details.
 
 | Statement | Difference from MySQL |
 |---|---|
-| [DESCRIBE / DESC](./SQL-Reference/Other/describe.md) | Uses PostgreSQL-style output format instead of MySQL's tabular format |
 | [EXPLAIN](./SQL-Reference/Other/Explain/explain.md) | Output format mirrors PostgreSQL, not MySQL |
 | [EXPLAIN](./SQL-Reference/Other/Explain/explain.md) | JSON output not supported |
 | [EXPLAIN Output Format](./SQL-Reference/Other/Explain/explain-workflow.md) | Output format mirrors PostgreSQL; JSON output not supported |
@@ -326,6 +330,12 @@ Each row links to the relevant MatrixOne documentation page for full details.
 | [SHOW TABLES](./SQL-Reference/Other/SHOW-Statements/show-tables.md) | Result column is named 'name' rather than MySQL's 'Tables_in_<dbname>'. |
 | [SHOW VARIABLES](./SQL-Reference/Other/SHOW-Statements/show-variables.md) | System variables are mostly syntactic stubs; actual behaviour differs from MySQL |
 
+### Data Types
+
+| Statement | Difference from MySQL |
+|---|---|
+| [Data Type Conversion](./Data-Types/data-type-conversion.md) | BOOLEAN → DECIMAL cast is not supported; other common conversions are supported |
+
 ### Functions & Operators
 
 | Statement | Difference from MySQL |
@@ -334,16 +344,18 @@ Each row links to the relevant MatrixOne documentation page for full details.
 | [AES_DECRYPT()](./Functions-and-Operators/String/aes_decrypt.md) | MatrixOne AES_DECRYPT does not accept the optional kdf_name / salt / info KDF arguments present in MySQL 8.0. |
 | [AES_ENCRYPT()](./Functions-and-Operators/String/aes_encrypt.md) | MatrixOne supports only aes-128-ecb and aes-256-cbc block modes; MySQL 8.0 also supports the full set of ECB/CBC/CFB/OFB variants at multiple key sizes. |
 | [AES_ENCRYPT()](./Functions-and-Operators/String/aes_encrypt.md) | MatrixOne AES_ENCRYPT does not accept the optional kdf_name / salt / info KDF arguments present in MySQL 8.0. |
+| [CLUSTER_CENTERS](./Functions-and-Operators/Vector/cluster_centers.md) | CLUSTER_CENTERS() is planned but not yet implemented (ERROR 20102 on MO 3.0.12) |
 | [CURDATE()](./Functions-and-Operators/Datetime/curdate.md) | curdate()+int returns days since 1970-01-01 rather than coercing both sides to integer and adding like MySQL. |
 | [CURRENT_ROLE()](./Functions-and-Operators/system-ops/current_role.md) | Returns a single active role name; MySQL 8.0 can return multiple comma-separated active roles or 'NONE'. |
-| [CURRENT_USER, CURRENT_USER()](./Functions-and-Operators/system-ops/current_user.md) | Return format is 'username@0.0.0.0' rather than MySQL's 'username@host' with a resolved client host. |
+| [CURRENT_USER, CURRENT_USER()](./Functions-and-Operators/system-ops/current_user.md) | The host part may be returned as 'localhost' or the resolved client host rather than MySQL's explicit 'username@host' format. |
 | [DATE_ADD()](./Functions-and-Operators/Datetime/date-add.md) | Date literals accept only 'yyyy-mm-dd' and 'yyyymmdd' formats; MySQL accepts wider variants. |
 | [DATE_FORMAT()](./Functions-and-Operators/Datetime/date-format.md) | Date literals accept only 'yyyy-mm-dd' and 'yyyymmdd' formats; MySQL accepts wider variants. |
 | [DATE_SUB()](./Functions-and-Operators/Datetime/date-sub.md) | Date literals accept only 'yyyy-mm-dd' and 'yyyymmdd' formats; MySQL accepts wider variants. |
 | [DATE()](./Functions-and-Operators/Datetime/date.md) | Date literals accept only 'yyyy-mm-dd' and 'yyyymmdd' formats; MySQL accepts wider variants (yy-mm-dd, yy/mm/dd, yymmdd, etc.). |
-| [DAYOFYEAR()](./Functions-and-Operators/Datetime/dayofyear.md) | Date literals accept only 'yyyy-mm-dd' and 'yyyymmdd' formats; MySQL accepts wider variants. |
 | [EXTRACT()](./Functions-and-Operators/Datetime/extract.md) | Date literals accept only 'yyyy-mm-dd' and 'yyyymmdd' formats; MySQL accepts wider variants. |
+| [FROM_BASE64()](./Functions-and-Operators/String/from_base64.md) | FROM_BASE64() may include trailing null bytes in decoded output; MySQL strips them (e.g., FROM_BASE64('YQ==') returns 'a\\0\\0' instead of 'a') |
 | [FROM_UNIXTIME()](./Functions-and-Operators/Datetime/from-unixtime.md) | Date literals accept only 'yyyy-mm-dd' and 'yyyymmdd' formats; MySQL accepts wider variants. |
+| [STAGE_LIST()](./Functions-and-Operators/Other/stage_list.md) | STAGE_LIST() function is not available in this version (ERROR 20105) |
 | [TIMESTAMP()](./Functions-and-Operators/Datetime/timestamp.md) | MatrixOne TIMESTAMP range is '0001-01-01'–'9999-12-31' vs MySQL '1970-01-01'–'2038-01-19' (compat doc: Data Types). |
 | [TO_DAYS()](./Functions-and-Operators/Datetime/to-days.md) | Two-digit year handling differs: MatrixOne completes '08-10-07' to year 0008; MySQL interprets it as 2008. |
 | [TO_DAYS()](./Functions-and-Operators/Datetime/to-days.md) | Dates '0000-00-00' and '0000-01-01' raise an error in MatrixOne rather than being accepted as MySQL does. |

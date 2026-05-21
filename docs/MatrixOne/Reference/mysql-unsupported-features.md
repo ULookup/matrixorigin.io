@@ -22,9 +22,9 @@ description: "Comprehensive list of MySQL features and syntax that MatrixOne doe
 
 | Source | Count |
 |---|---|
-| Completely Missing (curated) | 94 |
+| Completely Missing (curated) | 130 |
 | Partial Support (auto-extracted) | 91 |
-| **Total** | **185** |
+| **Total** | **221** |
 
 ## Completely Missing
 
@@ -49,6 +49,21 @@ These MySQL features have no MatrixOne counterpart and are not available in any 
 | CREATE VIEW ... DEFINER / SQL SECURITY | DEFINER and SQL SECURITY clauses are not supported |
 | Materialized Views | CREATE MATERIALIZED VIEW is not supported |
 | Character sets and collations beyond utf8mb4/utf8mb4_bin | Only the utf8mb4 character set and utf8mb4_bin collation are supported; other charsets (latin1, gbk, utf8, utf8mb3) and collations are not available |
+| ALTER EVENT | Event body/schedule/status modification not supported (no event scheduler) |
+| ALTER FUNCTION (MySQL stored function) | Modifying MySQL-style stored function characteristics is not supported; ALTER FUNCTION in MatrixOne serves a different purpose |
+| ALTER INSTANCE | MySQL 8.0 instance reconfiguration (e.g. InnoDB redo log rotation) is not supported |
+| ALTER PROCEDURE | Modifying stored procedure characteristics is not supported (no stored procedures) |
+| ALTER RESOURCE GROUP | Resource group VCPU/thread priority management is not supported |
+| ALTER SERVER | FEDERATED engine server connection options are not supported |
+| ALTER TABLESPACE | Tablespace data file add/drop/rename is not supported |
+| CREATE RESOURCE GROUP | Resource group creation (VCPU affinity, thread priority) is not supported |
+| CREATE SERVER | FEDERATED engine remote server definitions are not supported |
+| CREATE SPATIAL REFERENCE SYSTEM | Custom spatial reference systems for GIS are not supported |
+| CREATE TABLESPACE | General/undo tablespace creation is not supported; MatrixOne manages storage automatically |
+| DROP RESOURCE GROUP | Resource group removal is not supported |
+| DROP SERVER | FEDERATED server definition removal is not supported |
+| DROP SPATIAL REFERENCE SYSTEM | SRS definition removal is not supported |
+| DROP TABLESPACE | Tablespace removal is not supported; MatrixOne manages storage automatically |
 
 ### DML — Data Manipulation Language
 
@@ -59,6 +74,10 @@ These MySQL features have no MatrixOne counterpart and are not available in any 
 | CALL procedure_name() | Stored procedure execution is not supported |
 | DO statement | DO expr [, expr] ... is not supported |
 | SET NAMES / SET CHARACTER SET | Not supported; only utf8mb4 charset is available so charset switching is unnecessary |
+| IMPORT TABLE | MySQL 8.0 IMPORT TABLE (import InnoDB .ibd tablespace files) is not supported |
+| Parenthesized Query Expressions | MySQL 8.0.19+ parenthesized query blocks with per-block ORDER BY / LIMIT are not supported |
+| TABLE statement | MySQL 8.0.19+ TABLE tablename (equivalent to SELECT * FROM) is not supported |
+| VALUES statement (DML) | MySQL 8.0.19+ VALUES row_constructor_list as standalone DML is not supported |
 
 ### DCL — Data Control Language
 
@@ -115,8 +134,10 @@ These MySQL features have no MatrixOne counterpart and are not available in any 
 | Feature | Note |
 |---|---|
 | SAVEPOINT / ROLLBACK TO SAVEPOINT | Savepoints within transactions are not supported |
+| RELEASE SAVEPOINT | Releasing a transaction savepoint is not supported (no savepoints) |
 | XA transactions (distributed transactions) | XA START / XA END / XA PREPARE / XA COMMIT are not supported; MatrixOne uses its own distributed transaction model |
 | LOCK TABLES / UNLOCK TABLES | Explicit table-level locking is not supported |
+| LOCK INSTANCE FOR BACKUP / UNLOCK INSTANCE | MySQL 8.0 backup-oriented global instance locks are not supported |
 | FLUSH TABLES WITH READ LOCK | Global read locks are not supported |
 | SET operations within transactions | SET variable assignments are not allowed within an active transaction block |
 
@@ -124,9 +145,18 @@ These MySQL features have no MatrixOne counterpart and are not available in any 
 
 | Feature | Note |
 |---|---|
-| Binary log (binlog) | MySQL binary log and related statements (SHOW BINARY LOGS, SHOW MASTER STATUS, PURGE BINARY LOGS, etc.) are not supported; MatrixOne uses its own CDC mechanism |
-| CHANGE MASTER / START SLAVE / STOP SLAVE | MySQL replication protocol is not supported; MatrixOne has mo_cdc and pub/sub instead |
-| RESET MASTER / RESET SLAVE | MySQL replication management is not supported |
+| Binary log (binlog) | MySQL binary log and related statements are not supported; MatrixOne uses its own CDC mechanism |
+| SHOW BINARY LOGS / SHOW MASTER LOGS | Listing binary log files on the server is not supported |
+| SHOW BINLOG EVENTS | Displaying events in a binary log is not supported |
+| SHOW MASTER STATUS | Showing source server binary log position is not supported |
+| PURGE BINARY LOGS | Deleting binary log files is not supported |
+| SHOW REPLICA STATUS / SHOW SLAVE STATUS | Showing replica server status is not supported |
+| SHOW REPLICAS / SHOW SLAVE HOSTS | Listing registered replicas is not supported |
+| SHOW RELAYLOG EVENTS | Displaying relay log events is not supported |
+| CHANGE MASTER TO / START SLAVE / STOP SLAVE | MySQL replication protocol (source/replica management) is not supported; MatrixOne has mo_cdc and pub/sub instead |
+| RESET MASTER / RESET SLAVE | MySQL replication management commands are not supported |
+| CLONE LOCAL DATA DIRECTORY | MySQL 8.0 clone plugin local cloning is not supported |
+| CLONE INSTANCE | MySQL 8.0 clone plugin remote cloning is not supported |
 
 ### SHOW Statements
 
@@ -142,6 +172,11 @@ These MySQL features have no MatrixOne counterpart and are not available in any 
 | SHOW OPEN TABLES | Not supported |
 | SHOW PLUGINS | Not supported |
 | SHOW ERRORS / SHOW WARNINGS | Results differ significantly from MySQL due to different implementation |
+| SHOW CREATE EVENT | Not supported (no event scheduler) |
+| SHOW CREATE PROCEDURE | Not supported (no stored procedures) |
+| SHOW CREATE TRIGGER | Not supported (no triggers) |
+| SHOW FUNCTION CODE | Not supported (no stored function internals to display) |
+| SHOW PROCEDURE CODE | Not supported (no stored procedure internals to display) |
 
 ### System & Administration
 
@@ -161,6 +196,7 @@ These MySQL features have no MatrixOne counterpart and are not available in any 
 | RESET / RESET PERSIST | System variable persistence management is not supported |
 | RESTART | RESTART server statement is not supported |
 | SHUTDOWN | Server shutdown statement is not supported |
+| BINLOG statement | The BINLOG statement for executing events decoded from a binary log is not supported |
 | HELP statement | HELP command for SQL syntax reference is not supported |
 
 ### Functions & Operators

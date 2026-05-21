@@ -61,6 +61,10 @@ const CURATED = [
   { category: 'DML', feature: 'CALL procedure_name()', note: 'Stored procedure execution is not supported' },
   { category: 'DML', feature: 'DO statement', note: 'DO expr [, expr] ... is not supported' },
   { category: 'DML', feature: 'SET NAMES / SET CHARACTER SET', note: 'Not supported; only utf8mb4 charset is available so charset switching is unnecessary' },
+  { category: 'DML', feature: 'IMPORT TABLE', note: 'MySQL 8.0 IMPORT TABLE (import InnoDB .ibd tablespace files) is not supported' },
+  { category: 'DML', feature: 'Parenthesized Query Expressions', note: 'MySQL 8.0.19+ parenthesized query blocks with per-block ORDER BY / LIMIT are not supported' },
+  { category: 'DML', feature: 'TABLE statement', note: 'MySQL 8.0.19+ TABLE tablename (equivalent to SELECT * FROM) is not supported' },
+  { category: 'DML', feature: 'VALUES statement (DML)', note: 'MySQL 8.0.19+ VALUES row_constructor_list as standalone DML is not supported' },
 
   // DCL
   { category: 'DCL', feature: 'GRANT with PROXY', note: 'PROXY user grants are not supported' },
@@ -99,8 +103,10 @@ const CURATED = [
 
   // Transactions
   { category: 'Transactions', feature: 'SAVEPOINT / ROLLBACK TO SAVEPOINT', note: 'Savepoints within transactions are not supported' },
+  { category: 'Transactions', feature: 'RELEASE SAVEPOINT', note: 'Releasing a transaction savepoint is not supported (no savepoints)' },
   { category: 'Transactions', feature: 'XA transactions (distributed transactions)', note: 'XA START / XA END / XA PREPARE / XA COMMIT are not supported; MatrixOne uses its own distributed transaction model' },
   { category: 'Transactions', feature: 'LOCK TABLES / UNLOCK TABLES', note: 'Explicit table-level locking is not supported' },
+  { category: 'Transactions', feature: 'LOCK INSTANCE FOR BACKUP / UNLOCK INSTANCE', note: 'MySQL 8.0 backup-oriented global instance locks are not supported' },
   { category: 'Transactions', feature: 'FLUSH TABLES WITH READ LOCK', note: 'Global read locks are not supported' },
   { category: 'Transactions', feature: 'SET operations within transactions', note: 'SET variable assignments are not allowed within an active transaction block' },
 

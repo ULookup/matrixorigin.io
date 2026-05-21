@@ -111,9 +111,18 @@ const CURATED = [
   { category: 'Transactions', feature: 'SET operations within transactions', note: 'SET variable assignments are not allowed within an active transaction block' },
 
   // Replication & Binary Log
-  { category: 'Replication', feature: 'Binary log (binlog)', note: 'MySQL binary log and related statements (SHOW BINARY LOGS, SHOW MASTER STATUS, PURGE BINARY LOGS, etc.) are not supported; MatrixOne uses its own CDC mechanism' },
-  { category: 'Replication', feature: 'CHANGE MASTER / START SLAVE / STOP SLAVE', note: 'MySQL replication protocol is not supported; MatrixOne has mo_cdc and pub/sub instead' },
-  { category: 'Replication', feature: 'RESET MASTER / RESET SLAVE', note: 'MySQL replication management is not supported' },
+  { category: 'Replication', feature: 'Binary log (binlog)', note: 'MySQL binary log and related statements are not supported; MatrixOne uses its own CDC mechanism' },
+  { category: 'Replication', feature: 'SHOW BINARY LOGS / SHOW MASTER LOGS', note: 'Listing binary log files on the server is not supported' },
+  { category: 'Replication', feature: 'SHOW BINLOG EVENTS', note: 'Displaying events in a binary log is not supported' },
+  { category: 'Replication', feature: 'SHOW MASTER STATUS', note: 'Showing source server binary log position is not supported' },
+  { category: 'Replication', feature: 'PURGE BINARY LOGS', note: 'Deleting binary log files is not supported' },
+  { category: 'Replication', feature: 'SHOW REPLICA STATUS / SHOW SLAVE STATUS', note: 'Showing replica server status is not supported' },
+  { category: 'Replication', feature: 'SHOW REPLICAS / SHOW SLAVE HOSTS', note: 'Listing registered replicas is not supported' },
+  { category: 'Replication', feature: 'SHOW RELAYLOG EVENTS', note: 'Displaying relay log events is not supported' },
+  { category: 'Replication', feature: 'CHANGE MASTER TO / START SLAVE / STOP SLAVE', note: 'MySQL replication protocol (source/replica management) is not supported; MatrixOne has mo_cdc and pub/sub instead' },
+  { category: 'Replication', feature: 'RESET MASTER / RESET SLAVE', note: 'MySQL replication management commands are not supported' },
+  { category: 'Replication', feature: 'CLONE LOCAL DATA DIRECTORY', note: 'MySQL 8.0 clone plugin local cloning is not supported' },
+  { category: 'Replication', feature: 'CLONE INSTANCE', note: 'MySQL 8.0 clone plugin remote cloning is not supported' },
 
   // SHOW Statements
   { category: 'SHOW Statements', feature: 'SHOW TRIGGER', note: 'Not supported (no triggers in MatrixOne)' },

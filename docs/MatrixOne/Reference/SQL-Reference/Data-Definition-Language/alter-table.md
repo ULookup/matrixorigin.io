@@ -3,7 +3,7 @@ title: "ALTER TABLE"
 doc_type: reference
 mysql_compat: partial
 differs_from_mysql:
-  - "CHANGE [COLUMN], MODIFY [COLUMN], RENAME COLUMN, ADD/DROP PRIMARY KEY, ALTER COLUMN ORDER BY cannot be combined with other clauses in the same ALTER TABLE"
+  - "ADD/DROP PRIMARY KEY and ALTER COLUMN ORDER BY may not combine with other clauses in the same ALTER TABLE; column-level operations (CHANGE, MODIFY, RENAME, ADD, DROP COLUMN) can be combined"
   - "Temporary tables cannot be altered"
   - "Tables created with CLUSTER BY cannot be altered"
   - "ALTER TABLE does not support PARTITION operations"

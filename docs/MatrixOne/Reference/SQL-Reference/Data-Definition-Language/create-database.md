@@ -4,7 +4,7 @@ doc_type: reference
 mysql_compat: partial
 differs_from_mysql:
   - "Chinese database names not supported"
-  - "Only utf8mb4 / utf8mb4_bin are supported and cannot be changed"
+  - "Only utf8mb4 / utf8mb4_bin are functional; other charsets/collations are syntactically accepted but have no effect"
   - "ENCRYPTION clause accepted but inert"
 mo_only: []
 since: unknown

@@ -2,12 +2,15 @@
 
 ## 1. The partition type supported by MatrixOne
 
-MatrixOne DDL statements support six partition types, which are the same as the MySQL official website:
+MatrixOne accepts KEY and HASH partition syntax in DDL statements, but partitioning
+is not yet enforced at the storage/plan level — tables are created without actual
+partitioning. The following MySQL partition types are also accepted syntactically
+but ignored:
 
-- KEY Partitioning
-- HASH Partitioning
+- RANGE Partitioning
+- LIST Partitioning
 
-Subpartitioning syntax is currently supported, but plan builds are not.
+Subpartitioning syntax is also accepted but not enforced.
 
 ## 2. About Partition Keys
 

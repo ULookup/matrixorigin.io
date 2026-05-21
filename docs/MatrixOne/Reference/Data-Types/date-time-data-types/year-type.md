@@ -104,9 +104,9 @@ SELECT CAST('24' AS YEAR);
 SELECT CAST('70' AS YEAR);
 SELECT CAST(y AS CHAR(4)) FROM t_year WHERE id = 1;
 
--- Comparison and range queries
-SELECT * FROM t_year WHERE y = 2024 ORDER BY id;
-SELECT * FROM t_year WHERE y > 2000 ORDER BY id;
+-- Comparison and range queries (NOTE: YEAR columns require CAST to SIGNED for WHERE comparisons)
+SELECT * FROM t_year WHERE CAST(y AS SIGNED) = 2024 ORDER BY id;
+SELECT * FROM t_year WHERE CAST(y AS SIGNED) > 2000 ORDER BY id;
 SELECT * FROM t_year WHERE y IS NULL;
 
 -- YEAR(4) syntax (supported for compatibility)

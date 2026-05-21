@@ -240,10 +240,10 @@ Each row links to the relevant MatrixOne documentation page for full details.
 
 | Statement | Difference from MySQL |
 |---|---|
-| [ALTER TABLE](./SQL-Reference/Data-Definition-Language/alter-table.md) | ADD/DROP PRIMARY KEY and ALTER COLUMN ORDER BY may not combine with other clauses in the same ALTER TABLE; column-level operations (CHANGE, MODIFY, RENAME, ADD, DROP COLUMN) can be combined |
+| [ALTER TABLE](./SQL-Reference/Data-Definition-Language/alter-table.md) | ALTER COLUMN ORDER BY may not combine with other clauses in the same ALTER TABLE; ADD/DROP PRIMARY KEY, CHANGE, MODIFY, RENAME, ADD COLUMN, and DROP COLUMN can be freely combined |
 | [ALTER TABLE](./SQL-Reference/Data-Definition-Language/alter-table.md) | Temporary tables cannot be altered |
 | [ALTER TABLE](./SQL-Reference/Data-Definition-Language/alter-table.md) | ALTER TABLE does not support PARTITION operations |
-| [ALTER VIEW](./SQL-Reference/Data-Definition-Language/alter-view.md) | WITH CHECK OPTION is syntactically accepted but not enforced |
+| [ALTER VIEW](./SQL-Reference/Data-Definition-Language/alter-view.md) | WITH CHECK OPTION is accepted in CREATE VIEW (syntax only, views are read-only) but rejected as a syntax error in ALTER VIEW |
 | [CREATE DATABASE](./SQL-Reference/Data-Definition-Language/create-database.md) | Only utf8mb4 / utf8mb4_bin are functional; other charsets/collations are syntactically accepted but have no effect |
 | [CREATE DATABASE](./SQL-Reference/Data-Definition-Language/create-database.md) | ENCRYPTION clause accepted but inert |
 | [Create Fulltext Index](./SQL-Reference/Data-Definition-Language/create-fulltext-index.md) | MatrixOne full-text index is implemented on TAE storage with CJK/English optimizations; MySQL implements it on InnoDB/MyISAM with different stopword and parser semantics. |

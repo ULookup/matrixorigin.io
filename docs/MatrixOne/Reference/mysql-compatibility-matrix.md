@@ -15,11 +15,11 @@ mysql_compat: full
 | Status | Count |
 |---|---|
 | ✅ Full | 30 |
-| ⚠️ Partial | 43 |
+| ⚠️ Partial | 46 |
 | ❌ None | 0 |
 | 🟣 MatrixOne-only | 57 |
 | ❓ Unknown | 0 |
-| **Total** | **130** |
+| **Total** | **133** |
 
 ## Data Definition Language (DDL)
 
@@ -146,6 +146,7 @@ mysql_compat: full
 | Statement | MySQL Compat | Differences from MySQL | MatrixOne-only |
 |---|---|---|---|
 | [DEALLOCATE PREPARE](./SQL-Reference/Other/Prepared-Statements/deallocate.md) | ✅ Full | — | — |
+| [DESCRIBE / DESC](./SQL-Reference/Other/describe.md) | ⚠️ Partial | Uses PostgreSQL-style output format instead of MySQL's tabular format | — |
 | [EXECUTE](./SQL-Reference/Other/Prepared-Statements/execute.md) | ✅ Full | — | — |
 | [EXPLAIN](./SQL-Reference/Other/Explain/explain.md) | ⚠️ Partial | Output format mirrors PostgreSQL, not MySQL<br/>JSON output not supported | — |
 | [EXPLAIN Output Format](./SQL-Reference/Other/Explain/explain-workflow.md) | ⚠️ Partial | Output format mirrors PostgreSQL; JSON output not supported | — |
@@ -157,6 +158,7 @@ mysql_compat: full
 | [SHOW ACCOUNTS](./SQL-Reference/Other/SHOW-Statements/show-account.md) | 🟣 MatrixOne-only | — | SHOW ACCOUNTS |
 | [SHOW COLLATION](./SQL-Reference/Other/SHOW-Statements/show-collation.md) | ⚠️ Partial | Only utf8mb4_bin is effective; other collations appear but are inert | — |
 | [SHOW COLUMNS](./SQL-Reference/Other/SHOW-Statements/show-columns.md) | ✅ Full | — | — |
+| [SHOW CREATE DATABASE](./SQL-Reference/Other/SHOW-Statements/show-create-database.md) | ⚠️ Partial | Output format may differ from MySQL; MatrixOne uses its own SQL dialect in generated CREATE statements | — |
 | [SHOW CREATE PUBLICATION](./SQL-Reference/Other/SHOW-Statements/show-create-publication.md) | 🟣 MatrixOne-only | — | SHOW CREATE PUBLICATION |
 | [SHOW CREATE TABLE](./SQL-Reference/Other/SHOW-Statements/show-create-table.md) | ⚠️ Partial | Output reflects MatrixOne-specific extensions (CLUSTER BY, USING IVFFLAT/HNSW, etc.) | — |
 | [SHOW CREATE VIEW](./SQL-Reference/Other/SHOW-Statements/show-create-view.md) | ⚠️ Partial | DEFINER = user clause absent from output; SQL SECURITY {DEFINER\|INVOKER} is emitted | — |
@@ -171,6 +173,7 @@ mysql_compat: full
 | [SHOW SEQUENCES](./SQL-Reference/Other/SHOW-Statements/show-sequences.md) | 🟣 MatrixOne-only | — | SHOW SEQUENCES |
 | [SHOW STAGES](./SQL-Reference/Other/SHOW-Statements/show-stage.md) | 🟣 MatrixOne-only | — | SHOW STAGES |
 | [SHOW SUBSCRIPTIONS](./SQL-Reference/Other/SHOW-Statements/show-subscriptions.md) | 🟣 MatrixOne-only | — | SHOW SUBSCRIPTIONS |
+| [SHOW TABLE STATUS](./SQL-Reference/Other/SHOW-Statements/show-table-status.md) | ⚠️ Partial | Result columns differ from MySQL; MatrixOne uses TAE storage engine metadata instead of InnoDB statistics<br/>Engine column always shows TAE instead of InnoDB | — |
 | [SHOW TABLES](./SQL-Reference/Other/SHOW-Statements/show-tables.md) | ⚠️ Partial | Result column is named 'name' rather than MySQL's 'Tables_in_<dbname>'. | — |
 | [SHOW VARIABLES](./SQL-Reference/Other/SHOW-Statements/show-variables.md) | ⚠️ Partial | System variables are mostly syntactic stubs; actual behaviour differs from MySQL | — |
 | [USE](./SQL-Reference/Other/use-database.md) | ✅ Full | — | — |

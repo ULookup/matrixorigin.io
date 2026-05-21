@@ -3,7 +3,7 @@ title: "CURRENT_USER, CURRENT_USER()"
 doc_type: reference
 mysql_compat: partial
 differs_from_mysql:
-  - "Return format is 'username@0.0.0.0' rather than MySQL's 'username@host' with a resolved client host."
+  - "The host part may be returned as 'localhost' or the resolved client host rather than MySQL's explicit 'username@host' format."
 mo_only: []
 since: unknown
 last_updated: 2026-05-08
@@ -31,7 +31,7 @@ mysql> select current_user();
 +----------------+
 | current_user() |
 +----------------+
-| root@0.0.0.0   |
+| root@localhost  |
 +----------------+
 1 row in set (0.00 sec)
 ```

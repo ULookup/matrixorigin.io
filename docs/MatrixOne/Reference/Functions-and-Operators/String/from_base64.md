@@ -1,8 +1,9 @@
 ---
 title: "FROM_BASE64()"
 doc_type: reference
-mysql_compat: full
-differs_from_mysql: []
+mysql_compat: partial
+differs_from_mysql:
+  - "FROM_BASE64() may include trailing null bytes in decoded output; MySQL strips them (e.g., FROM_BASE64('YQ==') returns 'a\\0\\0' instead of 'a')"
 mo_only: []
 since: unknown
 last_updated: 2026-05-08
@@ -55,3 +56,7 @@ mysql> select from_base64(null);
 +-------------------+
 1 row in set (0.01 sec)
 ```
+
+## **Known Issues**
+
+Decoded output from `FROM_BASE64()` may include trailing null bytes (`\0`) that are not present in the original input. For example, `FROM_BASE64('YQ==')` returns `'a\0\0'` (length 3) instead of `'a'` (length 1). MySQL strips these bytes automatically; MatrixOne currently retains them.

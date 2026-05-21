@@ -19,9 +19,9 @@ The `LOAD DATA INLINE` syntax imports strings organized in *csv* format into a d
 
 ## Syntax structure
 
-```mysql
-mysql> LOAD DATA INLINE 
-FORMAT='csv' ,
+```sql
+LOAD DATA INLINE 
+FORMAT='csv',
 DATA=$XXX$
 csv_string $XXX$
 INTO TABLE tbl_name;
@@ -40,7 +40,7 @@ INTO TABLE tbl_name;
 
 1. Start the MySQL client and connect to MatrixOne:
 
-    ```mysql
+    ```bash
     mysql -h 127.0.0.1 -P 6001 -uroot -p111
     ```
 
@@ -60,8 +60,8 @@ INTO TABLE tbl_name;
 
 3. Perform a `LOAD DATA INLINE` on the MySQL client for data import, importing data in *csv* format:
 
-    ```mysql
-    mysql> LOAD DATA INLINE 
+    ```sql
+    LOAD DATA INLINE 
     FORMAT='csv',
     DATA=$XXX$
     Lihua,23,Shanghai

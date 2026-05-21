@@ -30,7 +30,7 @@ The LOAD DATA statement reads rows from a text file into a table at a very high 
     [{FIELDS | COLUMNS}
         [TERMINATED BY 'string']
         [[OPTIONALLY] ENCLOSED BY 'char']
-        [ENCASPED BY 'char']
+        [ESCAPED BY 'char']
     ]
     [LINES
         [STARTING BY 'string']

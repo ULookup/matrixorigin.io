@@ -1,15 +1,17 @@
 ---
 title: "STAGE_LIST()"
 doc_type: reference
-mysql_compat: mo_only
-differs_from_mysql: []
-mo_only:
-  - "STAGE_LIST() lists MatrixOne stage contents."
+mysql_compat: none
+differs_from_mysql:
+  - "STAGE_LIST() function is not available in this version (ERROR 20105)"
+mo_only: []
 since: unknown
-last_updated: 2026-05-08
-llms_summary: "The STAGE_LIST() function is used to view the directories and files in the stage."
+last_updated: 2026-05-21
+llms_summary: "STAGE_LIST() is not available on MO 3.0.12; other STAGE operations (CREATE/ALTER/DROP/SHOW STAGE) work as documented."
 ---
 # **STAGE_LIST()**
+
+> **Note:** `STAGE_LIST()` is not available on MO 3.0.12. Calling it produces `ERROR 20105: not supported: function or operator 'stage_list'`. Other stage operations (`CREATE STAGE`, `ALTER STAGE`, `DROP STAGE`, `SHOW STAGES`) work as documented.
 
 > The STAGE_LIST() function is used to view the directories and files in the stage.
 

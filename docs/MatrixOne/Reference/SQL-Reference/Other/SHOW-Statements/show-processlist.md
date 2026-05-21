@@ -49,6 +49,9 @@ The explanations for the queried table structure are as follows:
 | query_type     | varchar   |           | Query type, e.g., DDL, DML, etc.                              |
 | sql_source_type| varchar   |           | SQL source type, e.g., external_sql, internal_sql, etc.       |
 | query_start    | varchar   |           | Query start time                                              |
+| client_host    | varchar   |           | Client host address and port                                  |
+| role           | varchar   |           | User role, e.g., moadmin                                      |
+| proxy_host     | varchar   |           | Proxy host address (if applicable)                            |
 
 ## **Examples**
 

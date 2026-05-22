@@ -1,3 +1,15 @@
+---
+title: "Illegal Login Restrictions"
+doc_type: reference
+mysql_compat: partial
+differs_from_mysql:
+  - "connection_control_failed_connections_threshold and connection_control_max_connection_delay require the Connection-Control plugin in MySQL 8.0 but are built-in in MatrixOne"
+mo_only: []
+since: unknown
+last_updated: 2026-05-21
+llms_summary: "Connection control variables and password policy variables. Built-in in MO; require plugins in MySQL 8.0."
+---
+
 # Illegal login restrictions
 
 Today, when data security is increasingly important, reasonable connection control and password management strategies are the key to database protection. MatrixOne provides a series of global parameters designed to enhance connection security and password management to prevent malicious attacks and unauthorized access.

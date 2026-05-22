@@ -1,3 +1,17 @@
+---
+title: "Vector Type"
+doc_type: reference
+mysql_compat: mo_only
+differs_from_mysql: []
+mo_only:
+  - "vecf32 and vecf64 vector data types for embedding storage and similarity search"
+  - "Binary vector insert via hex encoding"
+  - "Dimension specification syntax in column definition"
+since: unknown
+last_updated: 2026-05-21
+llms_summary: "MatrixOne-specific vector data types (vecf32, vecf64) for storing embeddings. MySQL 8.0 has no native vector type."
+---
+
 # Vector Type
 
 In a database, vectors are usually a set of numbers that are arranged in a particular way to represent some data or feature. These vectors can be one-dimensional arrays, multi-dimensional arrays, or data structures with higher dimensions. MatrixOne support vector data type.

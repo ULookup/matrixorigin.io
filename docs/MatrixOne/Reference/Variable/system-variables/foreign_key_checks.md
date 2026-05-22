@@ -1,3 +1,15 @@
+---
+title: "Foreign Key Checks"
+doc_type: reference
+mysql_compat: partial
+differs_from_mysql:
+  - "With foreign_key_checks=0, dropping a parent table deletes and re-establishes the foreign key relationship when the parent table is rebuilt; MySQL 8.0 preserves FK metadata"
+mo_only: []
+since: unknown
+last_updated: 2026-05-21
+llms_summary: "foreign_key_checks system variable. FK metadata behavior differs from MySQL when dropping parent tables with foreign_key_checks disabled."
+---
+
 # Foreign key constraint checking
 
 In MatrixOne, `foreign_key_checks` is a system variable that controls the checking of foreign key constraints. This variable can be global or session level. When set to 1 (the default), MatrixOne checks the integrity of the foreign key constraint, ensuring the referential integrity of the data. If set to 0, these checks are skipped.

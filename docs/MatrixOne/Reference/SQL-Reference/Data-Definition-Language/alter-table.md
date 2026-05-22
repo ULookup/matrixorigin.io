@@ -6,7 +6,8 @@ differs_from_mysql:
   - "ALTER COLUMN ORDER BY may not combine with other clauses in the same ALTER TABLE; ADD/DROP PRIMARY KEY, CHANGE, MODIFY, RENAME, ADD COLUMN, and DROP COLUMN can be freely combined"
   - "Temporary tables cannot be altered"
   - "ALTER TABLE does not support PARTITION operations"
-mo_only: []
+mo_only:
+  - "ALTER COLUMN ORDER BY — reorder columns (non-standard, no MySQL 8.0 equivalent)"
 since: unknown
 last_updated: 2026-05-08
 llms_summary: "ALTER TABLE is used to modify the structure of an existing table."

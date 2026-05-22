@@ -1,10 +1,9 @@
 ---
 title: "UPSERT"
 doc_type: reference
-mysql_compat: mo_only
+mysql_compat: full
 differs_from_mysql: []
-mo_only:
-  - "UPSERT (convenience alias over INSERT … ON DUPLICATE KEY UPDATE)"
+mo_only: []
 since: unknown
 last_updated: 2026-05-08
 llms_summary: "UPSERT is one of the basic functions of a database management system to manage a database."

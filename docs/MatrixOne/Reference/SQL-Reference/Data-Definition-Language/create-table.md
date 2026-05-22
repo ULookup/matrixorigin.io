@@ -10,6 +10,7 @@ differs_from_mysql:
   - "Partitioning accepts syntax but only HASH and KEY participate in partition pruning (RANGE/LIST/RANGE COLUMNS/LIST COLUMNS are syntax-only); subpartitioning is syntax-only; ADD/DROP/TRUNCATE PARTITION not supported"
 mo_only:
   - "CLUSTER BY (col, …) — pre-sort columns to accelerate queries"
+  - "START TRANSACTION table option — non-standard table option with no MySQL 8.0 equivalent"
 since: unknown
 last_updated: 2026-05-08
 llms_summary: "Create a new table."

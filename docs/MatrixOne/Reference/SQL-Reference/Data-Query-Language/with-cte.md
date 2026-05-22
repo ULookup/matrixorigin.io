@@ -1,8 +1,9 @@
 ---
 title: "WITH (Common Table Expressions)"
 doc_type: reference
-mysql_compat: full
-differs_from_mysql: []
+mysql_compat: partial
+differs_from_mysql:
+  - "Outer joins (LEFT JOIN, RIGHT JOIN, OUTER JOIN) are not allowed in recursive CTE members; MySQL 8.0 permits them"
 mo_only: []
 since: unknown
 last_updated: 2026-05-08

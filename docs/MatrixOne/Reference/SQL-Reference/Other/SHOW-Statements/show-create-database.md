@@ -3,7 +3,7 @@ title: "SHOW CREATE DATABASE"
 doc_type: reference
 mysql_compat: partial
 differs_from_mysql:
-  - "Output format may differ from MySQL; MatrixOne uses its own SQL dialect in generated CREATE statements"
+  - "Output omits CHARACTER SET, COLLATE, and ENCRYPTION clauses present in MySQL 8.0 SHOW CREATE DATABASE output"
 mo_only: []
 since: unknown
 last_updated: 2026-05-20

@@ -7,6 +7,9 @@ differs_from_mysql:
   - "SELECT INTO OUTFILE is only partially supported"
   - "Unqualified SELECT ... FROM DUAL requires explicit database name (SELECT ... FROM dbname.DUAL)"
   - "AS OF TIMESTAMP time-travel queries require PITR/snapshot to be enabled on the database; without PITR the syntax produces an error"
+  - "SELECT ... FOR SHARE is not supported"
+  - "FOR UPDATE NOWAIT and SKIP LOCKED modifiers are not supported"
+  - "GROUP BY ... WITH ROLLUP is not supported"
 mo_only:
   - "{ AS OF TIMESTAMP 'YYYY-MM-DD HH:MM:SS' } — time-travel query against enabled snapshot/PITR"
   - "ORDER BY ... NULLS { FIRST | LAST } — PostgreSQL-style NULL ordering not available in MySQL"

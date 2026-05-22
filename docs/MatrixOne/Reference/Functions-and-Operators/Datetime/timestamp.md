@@ -4,6 +4,7 @@ doc_type: reference
 mysql_compat: partial
 differs_from_mysql:
   - "MatrixOne TIMESTAMP range is '0001-01-01'–'9999-12-31' vs MySQL '1970-01-01'–'2038-01-19' (compat doc: Data Types)."
+  - "Two-argument form TIMESTAMP(expr1, expr2) is not supported; MO only supports single-argument TIMESTAMP(expr)"
 mo_only: []
 since: unknown
 last_updated: 2026-05-08

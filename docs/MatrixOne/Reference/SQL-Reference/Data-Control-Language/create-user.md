@@ -5,8 +5,11 @@ mysql_compat: partial
 differs_from_mysql:
   - "IDENTIFIED BY is the only supported password form; IDENTIFIED WITH plugins not supported"
   - "Connection-IP whitelists and connection-limit clauses not supported"
-  - "COMMENT and ATTRIBUTE clauses are accepted syntactically but not honoured"
+  - "COMMENT and ATTRIBUTE clauses not supported"
   - "'user'@'host' syntax is accepted and host is stored in mo_catalog.mo_user.user_host but may not restrict connections; users are scoped to the current account, not server-global as in MySQL"
+  - "Password management options (PASSWORD EXPIRE, PASSWORD HISTORY, PASSWORD REUSE INTERVAL, PASSWORD REQUIRE CURRENT) not supported"
+  - "Account locking (ACCOUNT LOCK/UNLOCK) not supported"
+  - "REQUIRE clause (TLS/SSL enforcement) not supported"
 mo_only: []
 since: unknown
 last_updated: 2026-05-08

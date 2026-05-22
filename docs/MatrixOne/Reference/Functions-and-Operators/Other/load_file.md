@@ -1,10 +1,10 @@
 ---
 title: "LOAD_FILE()"
 doc_type: reference
-mysql_compat: mo_only
-differs_from_mysql: []
-mo_only:
-  - "LOAD_FILE() takes a DATALINK value (file:// or stage:// URL) rather than MySQL's plain filesystem path argument; semantics differ."
+mysql_compat: partial
+differs_from_mysql:
+  - "LOAD_FILE() takes a DATALINK value (file:// or stage:// URL) rather than MySQL's plain filesystem path argument"
+mo_only: []
 since: unknown
 last_updated: 2026-05-08
 llms_summary: "The LOAD_FILE() function is used to read the contents of the file pointed to by the datalink type."

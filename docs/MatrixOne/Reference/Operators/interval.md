@@ -1,3 +1,14 @@
+---
+title: "INTERVAL"
+doc_type: reference
+mysql_compat: partial
+differs_from_mysql:
+  - "INTERVAL is internally implemented as a two-argument function rather than as a true SQL keyword; documented syntax INTERVAL(expr,unit) differs from MySQL's INTERVAL expr unit keyword-style notation"
+mo_only: []
+since: unknown
+last_updated: 2026-05-21
+llms_summary: "The INTERVAL values are used mainly for date and time calculations in expressions such as DATE_ADD() and DATE_SUB()."
+---
 # **INTERVAL**
 
 ## **Description**

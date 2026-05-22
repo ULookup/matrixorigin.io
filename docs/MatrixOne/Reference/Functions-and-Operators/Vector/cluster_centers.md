@@ -1,10 +1,10 @@
 ---
 title: "CLUSTER_CENTERS"
 doc_type: reference
-mysql_compat: none
-differs_from_mysql:
-  - "CLUSTER_CENTERS() is planned but not yet implemented (ERROR 20102 on MO 3.0.12)"
-mo_only: []
+mysql_compat: mo_only
+differs_from_mysql: []
+mo_only:
+  - "CLUSTER_CENTERS() — MO-specific vector clustering function (currently unimplemented, returns ERROR 20102)"
 since: unknown
 last_updated: 2026-05-21
 llms_summary: "CLUSTER_CENTERS() is planned but not yet implemented on MO 3.0.12."

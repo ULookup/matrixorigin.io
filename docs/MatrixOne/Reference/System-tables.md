@@ -1,3 +1,14 @@
+---
+title: "MatrixOne System Databases and Tables"
+doc_type: reference
+mysql_compat: mo_only
+differs_from_mysql: []
+mo_only:
+  - "MatrixOne-specific system databases (mo_catalog, mo_task) and tables with a unique schema distinct from MySQL's information_schema/mysql databases"
+since: unknown
+last_updated: 2026-05-21
+llms_summary: "Describes MatrixOne's system databases and tables where system metadata is stored, including mo_catalog, information_schema, system_metrics, and mo_task."
+---
 # MatrixOne System Databases and Tables
 
 MatrixOne system databases and tables are where MatrixOne stores the system information that you can access through them.MatrixOne creates six system databases at initialization: `mo_catalog`, `information_schema`, `system_metrcis`, `system`, `mysql`, and `mo_task`. system`,`mysql`and`mo_task`.`mo_task` is currently under development and will not have a direct impact on the operations you perform for the time being. Other system database and table functions are described in this document.

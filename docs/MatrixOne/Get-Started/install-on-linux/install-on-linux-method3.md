@@ -112,7 +112,7 @@ If you need to mount data directories or customize configure files, see [Mount t
 
 ### Mo_ctl Deployment
 
-[mo_ctl](https://github.com/matrixorigin/mo_ctl_standalone) is a command-line tool for deploying, installing, and managing MatrixOne. It is very convenient to perform various operations on MatrixOne. See [mo_ctl Tool](../../Maintain/mo_ctl.md) for complete usage details.
+[mo_ctl](https://github.com/matrixorigin/mo_ctl_standalone) is a command-line tool for deploying, installing, and managing MatrixOne. It is very convenient to perform various operations on MatrixOne. See [mo_ctl Tool](../../Reference/mo-tools/mo_ctl.md) for complete usage details.
 
 - Install the mo_ctl tool
 
@@ -128,7 +128,7 @@ The parameters that need to be adjusted are as follows:
 
 ```
 mo_ctl set_conf MO_CONTAINER_DATA_HOST_PATH="/yourpath/mo/" # Set the data directory for host
-mo_ctl set_conf MO_CONTAINER_IMAGE="matrixorigin/matrixone:1.1.2" # Set image
+mo_ctl set_conf MO_CONTAINER_IMAGE="matrixorigin/matrixone:3.0.12" # Set image
 mo_ctl set_conf MO_DEPLOY_MODE=docker # Deployment Configuration
 ```
 
@@ -213,4 +213,4 @@ mysql>
 ```
 
 !!! note
-    The above connection and login account is the initial accounts `root` and the password `111`; please change the initial password after logging in to MatrixOne; see [MatrixOne Password Management](../../Security/password-mgmt.md). After changing the login username or password, you must set a new username and password through `mo_ctl set_conf`. For details, please refer to [mo_ctl Tool](../../Maintain/mo_ctl.md).
+    The above connection and login account is the initial accounts `root` and the password `111`; please change the initial password after logging in to MatrixOne; see [MatrixOne Password Management](../../Security/password-mgmt.md). After changing the login username or password, you must set a new username and password through `mo_ctl set_conf`. For details, please refer to [mo_ctl Tool](../../Reference/mo-tools/mo_ctl.md).

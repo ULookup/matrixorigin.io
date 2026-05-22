@@ -3,7 +3,7 @@ title: "OCT(N)"
 doc_type: reference
 mysql_compat: partial
 differs_from_mysql:
-  - "OCT(N) returns a DECIMAL value with trailing zeros (e.g., 14.0000) instead of a plain string representation (e.g., '14') as MySQL 8.0 does"
+  - "OCT(N) returns a numeric value rather than MySQL's plain string representation"
 mo_only: []
 since: unknown
 last_updated: 2026-05-08
@@ -36,7 +36,7 @@ SELECT OCT(12);
 +---------+
 | oct(12) |
 +---------+
-| 14.0000 |
+| 14       |
 +---------+
 1 row in set (0.00 sec)
 ```

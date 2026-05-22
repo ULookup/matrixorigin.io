@@ -47,7 +47,7 @@ Currently, `convert` can support following conversion:
 
 <!-- validator-ignore-exec -->
 ```sql
-mysql> select convert(150,char);
+mysql> select convert(150,char(5));
 +-------------------+
 | cast(150 as char) |
 +-------------------+

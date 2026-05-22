@@ -92,7 +92,7 @@ git version 2.40.0
 
 ## Step 2: Install the mo_ctl tool
 
-[mo_ctl](https://github.com/matrixorigin/mo_ctl_standalone) is a command-line tool for deploying, installing, and managing MatrixOne. It is very convenient to perform various operations on MatrixOne. See [mo_ctl Tool](../../Maintain/mo_ctl.md) for complete usage details.
+[mo_ctl](https://github.com/matrixorigin/mo_ctl_standalone) is a command-line tool for deploying, installing, and managing MatrixOne. It is very convenient to perform various operations on MatrixOne. See [mo_ctl Tool](../../Reference/mo-tools/mo_ctl.md) for complete usage details.
 
 1. First, install the `wget` download tool: Go to the <a href="https://brew.sh/" target="_blank">Homebrew</a> page and follow the steps to install **Homebrew** first, then install `wget`. To verify whether `wget` is installed successfully, you can use the following command line:
 
@@ -186,7 +186,7 @@ Generally, the parameters that need to be adjusted are as follows:
 ````
 mo_ctl set_conf MO_PATH="yourpath" # Set custom MatrixOne download path
 mo_ctl set_conf MO_GIT_URL="https://githubfast.com/matrixorigin/matrixone.git" # For the problem of slow downloading from the original GitHub address, set image download address
-mo_ctl set_conf MO_DEFAULT_VERSION="v" # Set the version of MatrixOne downloaded
+mo_ctl set_conf MO_DEFAULT_VERSION="v3.0.12" # Set the version of MatrixOne downloaded
 mo_ctl set_conf MO_DEPLOY_MODE=git  # Deployment Configuration
 ````
 
@@ -256,4 +256,4 @@ mysql>
 ```
 
 !!! note
-    The above connection and login account is the initial accounts `root` and the password `111`; please change the initial password after logging in to MatrixOne; see [MatrixOne Password Management](../../Security/password-mgmt.md). After changing the login username or password, you must set a new username and password through `mo_ctl set_conf`. For details, please refer to [mo_ctl Tool](../../Maintain/mo_ctl.md).
+    The above connection and login account is the initial accounts `root` and the password `111`; please change the initial password after logging in to MatrixOne; see [MatrixOne Password Management](../../Security/password-mgmt.md). After changing the login username or password, you must set a new username and password through `mo_ctl set_conf`. For details, please refer to [mo_ctl Tool](../../Reference/mo-tools/mo_ctl.md).

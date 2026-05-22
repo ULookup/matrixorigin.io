@@ -2,8 +2,7 @@
 title: "CONCAT()"
 doc_type: reference
 mysql_compat: partial
-differs_from_mysql:
-  - "CONCAT() does not support numeric arguments; MySQL 8.0 auto-converts numeric arguments"
+differs_from_mysql: []
 mo_only: []
 since: unknown
 last_updated: 2026-05-08
@@ -54,4 +53,4 @@ mysql> SELECT CONCAT('My', NULL, 'QL');
 
 ## **Constraints**
 
-Currently, CONCAT() doesn't support quoted strings and numeric argument.
+Currently, CONCAT() doesn't support quoted strings.

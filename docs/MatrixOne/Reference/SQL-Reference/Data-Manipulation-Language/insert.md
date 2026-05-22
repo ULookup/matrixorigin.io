@@ -5,7 +5,6 @@ mysql_compat: partial
 differs_from_mysql:
   - "Modifiers LOW_PRIORITY / DELAYED / HIGH_PRIORITY not supported"
   - "PARTITION clause not supported"
-  - "INSERT ... SET syntax not supported (MySQL 8.0 does)"
 mo_only: []
 since: unknown
 last_updated: 2026-05-08

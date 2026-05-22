@@ -4,9 +4,10 @@ doc_type: reference
 mysql_compat: partial
 differs_from_mysql:
   - "INTERVAL is internally implemented as a two-argument function rather than as a true SQL keyword; documented syntax INTERVAL(expr,unit) differs from MySQL's INTERVAL expr unit keyword-style notation"
+  - "Malformed dates in DATE_ADD/DATE_SUB raise errors rather than returning NULL (MySQL 8.0 returns NULL)"
 mo_only: []
 since: unknown
-last_updated: 2026-05-21
+last_updated: 2026-05-22
 llms_summary: "The INTERVAL values are used mainly for date and time calculations in expressions such as DATE_ADD() and DATE_SUB()."
 ---
 # **INTERVAL**
@@ -209,23 +210,13 @@ mysql> SELECT DATE_ADD('2019-01-30', INTERVAL 1 MONTH);
 
 ### Example 5
 
-Date arithmetic operations require complete dates and do not work with incomplete dates such as '2016-07-00' or badly malformed dates:
+Date arithmetic operations require complete dates and do not work with incomplete dates such as '2016-07-00' or badly malformed dates. Unlike MySQL 8.0, which returns NULL for malformed dates, MatrixOne raises an error:
 
 <!-- validator-ignore-exec -->
 ```sql
 mysql> SELECT DATE_ADD('2016-07-00', INTERVAL 1 DAY);
-+----------------------------------------+
-| date_add(2016-07-00, interval(1, day)) |
-+----------------------------------------+
-| NULL                                   |
-+----------------------------------------+
-1 row in set (0.00 sec)
+ERROR 20301 (HY000): invalid input: invalid datetime value 2016-07-00
 
 mysql> SELECT '2005-03-32' + INTERVAL 1 MONTH;
-+---------------------------------+
-| 2005-03-32 + interval(1, month) |
-+---------------------------------+
-| NULL                            |
-+---------------------------------+
-1 row in set (0.00 sec)
+ERROR 20301 (HY000): invalid input: invalid datetime value 2005-03-32
 ```

@@ -17,7 +17,7 @@ llms_summary: "INSERT ... ON DUPLICATE KEY UPDATE When inserting data into a dat
 
 `INSERT ... ON` DUPLICATE KEY UPDATE When inserting data into a database table, update the data if it already exists, otherwise insert new data.
 
-The `INSERT INTO` statement is the standard statement used to insert data into a database table; the `ON DUPLICATE KEY UPDATE` statement is used to update when there are duplicate records in the table. If a record with the same unique index or primary key exists in the table, use the `UPDATE` clause to update the corresponding column value, otherwise use the `INSERT` clause to insert a new record.
+The `INSERT INTO` statement is the standard statement used to insert data into a database table; the `ON DUPLICATE KEY UPDATE` statement is used to update when there are duplicate records in the table. If a record with the same primary key exists in the table, use the `UPDATE` clause to update the corresponding column value, otherwise use the `INSERT` clause to insert a new record.
 
 It is important to note that using this syntax presupposes that a primary key constraint needs to be established in the table to determine if there are duplicate records. At the same time, both update and insert operations need to have the corresponding column values set, otherwise syntax errors will result.
 

@@ -4,7 +4,6 @@ doc_type: reference
 mysql_compat: partial
 differs_from_mysql:
   - "AVG() returns DOUBLE for all input types (MySQL returns DECIMAL for exact-value types)"
-  - "AVG() returns NaN for empty result sets (MySQL returns NULL)"
 mo_only: []
 since: unknown
 last_updated: 2026-05-08
@@ -36,7 +35,7 @@ The AVG() function calculates the average value of the argument.
 
 The arithmetic mean, always as Double.
 
-NaN if the input parameter is empty.
+NULL if the input parameter is empty.
 
 ## **Examples**
 

@@ -1,12 +1,13 @@
 ---
 title: "IF()"
 doc_type: reference
-mysql_compat: full
-differs_from_mysql: []
+mysql_compat: partial
+differs_from_mysql:
+  - "IF(NULL, expr2, expr3) raises an error instead of returning expr3 (MySQL 8.0 returns expr3)"
 mo_only: []
 since: unknown
 last_updated: 2026-05-21
-llms_summary: "IF(expr1, expr2, expr3) flow control function. Supports all data types including BIGINT and VARCHAR. Fully compatible with MySQL 8.0."
+llms_summary: "IF(expr1, expr2, expr3) flow control function. Supports all data types including BIGINT and VARCHAR. Partially compatible with MySQL 8.0 — IF(NULL, expr2, expr3) raises an error instead of returning expr3."
 ---
 # **IF**
 

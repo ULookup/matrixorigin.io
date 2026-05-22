@@ -6,10 +6,15 @@ differs_from_mysql: []
 mo_only:
   - "Controls whether query result set column names preserve the case specified by the user; no direct MySQL equivalent"
 since: unknown
-last_updated: 2026-05-21
-llms_summary: "A global parameter that controls whether query result set column names match the case specified by the user."
+last_updated: 2026-05-22
+llms_summary: "A deprecated global parameter for controlling query result set column name casing. This variable was removed in a previous version and does not exist in MO 3.0.12."
+removed: true
+removal_note: "This variable was removed in a previous version and does not exist in MO 3.0.12."
 ---
 # keep_user_target_list_in_result Keep query result set column names consistent with user specified case
+
+!!! warning
+    This variable was removed in a previous version and **does not exist in MO 3.0.12**. This page is retained for historical reference only.
 
 In a MatrixOne query, keep the result set column names the same size as the name specified by the user, except by using aliases, or by setting parameters.
 

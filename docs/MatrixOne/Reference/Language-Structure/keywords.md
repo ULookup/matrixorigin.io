@@ -1,3 +1,14 @@
+---
+title: "Keywords"
+doc_type: reference
+mysql_compat: partial
+differs_from_mysql:
+  - "MatrixOne-specific keywords marked with (M) in the keyword list"
+mo_only: []
+since: unknown
+last_updated: 2026-05-22
+llms_summary: "Comprehensive list of reserved and non-reserved keywords in MatrixOne, with (M) markers for MO-specific keywords."
+---
 # Keywords
 
 This chapter describes the keywords for MatrixOne. Reserved and non-reserved keywords are categorized in MatrixOne. When you use SQL statements, you can consult both reserved and non-reserved keywords.

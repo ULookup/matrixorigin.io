@@ -5,7 +5,7 @@ mysql_compat: partial
 differs_from_mysql:
   - "Output format mirrors PostgreSQL, not MySQL"
   - "JSON output not supported"
-  - "FORMAT=TRADITIONAL, FORMAT=JSON, and FORMAT=TREE not supported (MO uses FORMAT=TEXT)"
+  - "FORMAT=TRADITIONAL, FORMAT=JSON, and FORMAT=TREE not supported (MO uses text output by default; parenthesized FORMAT=TEXT syntax not supported)"
   - "EXPLAIN FOR CONNECTION not supported"
 mo_only: []
 since: unknown
@@ -21,13 +21,12 @@ EXPLAIN - Shows the execution plan for a statement.
 ## Syntax structure
 
 ```
-EXPLAIN [ ( option [, ...] ) ] statement
-
-where option can be one of:
-    ANALYZE [ boolean ]
-    VERBOSE [ boolean ]
-    (FORMAT=TEXT)
+EXPLAIN [ ANALYZE ] [ VERBOSE ] statement
 ```
+
+!!! note
+    The parenthesized option syntax (e.g., `EXPLAIN (FORMAT=TEXT)`, `EXPLAIN (ANALYZE TRUE)`) is not yet supported.
+    Only bare keyword forms (`EXPLAIN`, `EXPLAIN ANALYZE`, `EXPLAIN VERBOSE`) are available.
 
 ## Syntax Description
 
@@ -49,11 +48,11 @@ Executes the command and displays actual runtime and other statistics. This para
 
 * FORMAT:
 
-`FORMAT` is used as the specified output format, the syntax is `explain (format xx)`, only `TEXT` format is supported for now. Non-text output contains information in the same format as text output and is easily parsed by the program. This parameter defaults to `TEXT`.
+`FORMAT=TEXT` output is the only supported format. The parenthesized option syntax (e.g., `EXPLAIN (FORMAT=TEXT)`) is not yet implemented; only bare keyword forms are available.
 
 * BOOLEAN:
 
-`BOOLEAN` Specifies whether the selected option is on or off. You can write `TRUE` to enable this option, or `FALSE` to disable it. This parameter defaults to `TRUE`.
+The `ANALYZE` and `VERBOSE` options accept an optional boolean value (`TRUE` or `FALSE`). However, the parenthesized option syntax (e.g., `EXPLAIN (ANALYZE TRUE)`) is not yet supported. Use bare keyword forms (`EXPLAIN ANALYZE`, `EXPLAIN VERBOSE`) instead, which defaults to `TRUE`.
 
 * STATEMENT
 

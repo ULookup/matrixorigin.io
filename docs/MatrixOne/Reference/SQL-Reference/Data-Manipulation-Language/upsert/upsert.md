@@ -1,8 +1,11 @@
 ---
 title: "UPSERT"
 doc_type: reference
-mysql_compat: full
-differs_from_mysql: []
+mysql_compat: partial
+differs_from_mysql:
+  - "INSERT IGNORE does not suppress NOT NULL or type-conversion errors (MySQL 8.0 does)"
+  - "INSERT ON DUPLICATE KEY UPDATE only triggers on PRIMARY KEY conflicts; UNIQUE index conflicts are not detected"
+  - "REPLACE does not support REPLACE ... WHERE (parser bug)"
 mo_only: []
 since: unknown
 last_updated: 2026-05-08
@@ -61,4 +64,4 @@ In a `REPLACE` statement, updating data is done in two steps: deleting the origi
 
 We've looked at two `UPSERT` commands so far, but both have some limitations. `INSERT ON DUPLICATE KEY IGNORE` simply ignores the `duplicate error`. `REPLACE` detects `INSERT errors`, but it deletes the old data before adding it. So we still need a better solution.
 
-`INSERT ON DUPLICATE KEY UPDATE` is a better solution. It doesn't remove duplicate rows. When we use the `ON DUPLICATE KEY UPDATE` clause in a SQL statement and one row of data produces a `duplicate error` on the primary key or unique index, we update the existing data.
+`INSERT ON DUPLICATE KEY UPDATE` is a better solution. It doesn't remove duplicate rows. When we use the `ON DUPLICATE KEY UPDATE` clause in a SQL statement and one row of data produces a `duplicate error` on the primary key, we update the existing data.

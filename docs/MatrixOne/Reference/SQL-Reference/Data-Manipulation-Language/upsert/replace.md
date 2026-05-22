@@ -3,7 +3,6 @@ title: "REPLACE"
 doc_type: reference
 mysql_compat: partial
 differs_from_mysql:
-  - "REPLACE does not support VALUES row_constructor_list"
   - "node-sql-parser rejects REPLACE … WHERE (parser bug, not MatrixOne)"
   - "PARTITION clause not supported"
   - "LOW_PRIORITY and DELAYED modifiers not supported"
@@ -72,7 +71,7 @@ The following is an explanation of each parameter:
 
 5. `value_list`: Represents a set of values to insert. Multiple values are separated by commas.
 
-6. (Not yet supported) `row_constructor_list`: Represents a row consisting of a set of values used for insertion. The values for each line are enclosed in parentheses and separated by commas.
+6. `row_constructor_list`: Represents a row consisting of a set of values used for insertion. The values for each line are enclosed in parentheses and separated by commas.
 
 7. `assignment`: Represents the association of a column name with its corresponding value for updating the form.
 
@@ -167,4 +166,5 @@ mysql> select * from names;
 
 ## **Restrictions**
 
-MatrixOne does not currently support rows consisting of a set of values inserted using the `VALUES row_constructor_list` parameter.
+- The `REPLACE` statement requires that a primary key or unique index exist in the table to determine whether the same record exists.
+- When using the `REPLACE` statement to insert a new record, the old record will be deleted if a record with the same primary key or unique index already exists, then a new record will be inserted, which may cause the value of the auto-increment column to change.

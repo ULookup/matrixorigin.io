@@ -5,7 +5,6 @@ mysql_compat: partial
 differs_from_mysql:
   - "SELECT … FOR UPDATE only supports single-table queries"
   - "SELECT INTO OUTFILE is only partially supported"
-  - "Unqualified SELECT ... FROM DUAL requires explicit database name (SELECT ... FROM dbname.DUAL)"
   - "AS OF TIMESTAMP time-travel queries require PITR/snapshot to be enabled on the database; without PITR the syntax produces an error"
   - "SELECT ... FOR SHARE is not supported"
   - "FOR UPDATE NOWAIT and SKIP LOCKED modifiers are not supported"
@@ -223,4 +222,3 @@ mysql> SELECT * FROM t1 ORDER BY spID ASC NULLS LAST;
 
 - `SELECT...FOR UPDATE` currently only supports single-table queries.
 - Partial support for `INTO OUTFILE`.
-- When the table name is `DUAL`, directly querying it in the default database (`USE DBNAME`) with `SELECT xx FROM DUAL` is not supported. You must specify the database name as `SELECT xx FROM DBNAME.DUAL`.

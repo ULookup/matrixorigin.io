@@ -3,11 +3,11 @@ title: "ALTER TABLE"
 doc_type: reference
 mysql_compat: partial
 differs_from_mysql:
-  - "ALTER COLUMN ORDER BY may not combine with other clauses in the same ALTER TABLE; ADD/DROP PRIMARY KEY, CHANGE, MODIFY, RENAME, ADD COLUMN, and DROP COLUMN can be freely combined"
+  - "ADD/DROP PRIMARY KEY, CHANGE, MODIFY, RENAME, ADD COLUMN, and DROP COLUMN can be freely combined"
   - "Temporary tables cannot be altered"
   - "ALTER TABLE does not support PARTITION operations"
 mo_only:
-  - "ALTER COLUMN ORDER BY — reorder columns (non-standard, no MySQL 8.0 equivalent)"
+  - "Column reordering is done through standard MODIFY COLUMN ... FIRST/AFTER syntax"
 since: unknown
 last_updated: 2026-05-08
 llms_summary: "ALTER TABLE is used to modify the structure of an existing table."
@@ -276,6 +276,5 @@ mysql> show tables;
 
 ## Limitations
 
-1. The following clauses: `CHANGE [COLUMN]`, `MODIFY [COLUMN]`, `RENAME COLUMN`, `ADD [CONSTRAINT [symbol]] PRIMARY KEY`, `DROP PRIMARY KEY`, and `ALTER COLUMN ORDER BY` can be freely combined in an `ALTER TABLE` statement but are currently not supported with other clauses.
+1. `CHANGE [COLUMN]`, `MODIFY [COLUMN]`, `RENAME COLUMN`, `ADD [CONSTRAINT [symbol]] PRIMARY KEY`, `DROP PRIMARY KEY`, `ADD COLUMN`, and `DROP COLUMN` can be freely combined in an `ALTER TABLE` statement.
 2. Temporary tables do not currently support structural modifications via `ALTER TABLE`.
-3. Tables created with `CREATE TABLE ... CLUSTER BY...` cannot be modified using `ALTER TABLE`.

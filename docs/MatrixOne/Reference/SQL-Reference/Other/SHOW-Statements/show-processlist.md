@@ -4,7 +4,6 @@ doc_type: reference
 mysql_compat: partial
 differs_from_mysql:
   - "Output differs significantly from MySQL due to different implementation"
-  - "FULL keyword not supported (MySQL 8.0 SHOW FULL PROCESSLIST shows full statement text)"
 mo_only: []
 since: unknown
 last_updated: 2026-05-08

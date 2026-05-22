@@ -4,6 +4,9 @@ doc_type: reference
 mysql_compat: partial
 differs_from_mysql:
   - "TIMESTAMP range is 0001-9999 (MySQL 8.0: 1970-2038); auto-initialization behavior near range boundaries may differ"
+  - "DATETIME DEFAULT 0 is not supported (MySQL 8.0 supports it)"
+  - "TIMESTAMP ON UPDATE CURRENT_TIMESTAMP without explicit DEFAULT defaults to NULL (MySQL 8.0 defaults to 0)"
+  - "DATETIME NOT NULL ON UPDATE CURRENT_TIMESTAMP without explicit DEFAULT rejects NULL insert (MySQL 8.0 defaults to 0)"
 mo_only: []
 since: unknown
 last_updated: 2026-05-21
@@ -50,8 +53,9 @@ CREATE TABLE t1 (
 
 ```
 CREATE TABLE t1 (
-  ts TIMESTAMP DEFAULT 0,
-  dt DATETIME DEFAULT 0
+  ts TIMESTAMP DEFAULT 0
+  -- Note: DATETIME DEFAULT 0 is not supported in MatrixOne (MySQL 8.0 supports it).
+  -- Use DATETIME DEFAULT '1970-01-01 00:00:00' instead.
 );
 ```
 
@@ -59,27 +63,28 @@ CREATE TABLE t1 (
 
 ```
 CREATE TABLE t1 (
-  ts TIMESTAMP DEFAULT 0 ON UPDATE CURRENT_TIMESTAMP,
-  dt DATETIME DEFAULT 0 ON UPDATE CURRENT_TIMESTAMP
+  ts TIMESTAMP DEFAULT 0 ON UPDATE CURRENT_TIMESTAMP
+  -- Note: DATETIME DEFAULT 0 ON UPDATE CURRENT_TIMESTAMP is not supported in MatrixOne.
+  -- Use DATETIME DEFAULT '1970-01-01 00:00:00' ON UPDATE CURRENT_TIMESTAMP instead.
 );
 ```
 
 - With an `ON UPDATE CURRENT_TIMESTAMP` clause but no DEFAULT clause, the column is automatically updated to the current timestamp but does not have the current timestamp for its default value.
 
-   The default in this case is type dependent. TIMESTAMP has a default of 0 unless defined with the NULL attribute, in which case the default is NULL.
+   The default in this case is type dependent. TIMESTAMP has a default of NULL regardless of the NULL attribute.
 
 ```
 CREATE TABLE t1 (
-  ts1 TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,     -- default 0
+  ts1 TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,     -- default NULL
   ts2 TIMESTAMP NULL ON UPDATE CURRENT_TIMESTAMP -- default NULL
 );
 ```
 
-`DATETIME` has a default of NULL unless defined with the NOT NULL attribute, in which case the default is 0.
+`DATETIME` has a default of NULL. When declared with the NOT NULL attribute but no explicit DEFAULT, inserting NULL raises an error (ERROR 3819) rather than defaulting to 0.
 
 ```
 CREATE TABLE t1 (
   dt1 DATETIME ON UPDATE CURRENT_TIMESTAMP,         -- default NULL
-  dt2 DATETIME NOT NULL ON UPDATE CURRENT_TIMESTAMP -- default 0
+  dt2 DATETIME NOT NULL ON UPDATE CURRENT_TIMESTAMP -- rejects NULL insert; no implicit default
 );
 ```

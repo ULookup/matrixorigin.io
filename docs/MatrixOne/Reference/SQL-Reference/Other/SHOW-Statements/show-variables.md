@@ -5,7 +5,6 @@ mysql_compat: partial
 differs_from_mysql:
   - "System variables are mostly syntactic stubs; actual behaviour differs from MySQL"
   - "GLOBAL and SESSION scope modifiers not supported"
-  - "WHERE expr clause not supported (only LIKE)"
 mo_only: []
 since: unknown
 last_updated: 2026-05-08

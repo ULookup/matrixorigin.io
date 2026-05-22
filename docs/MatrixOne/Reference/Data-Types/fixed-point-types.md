@@ -1,3 +1,15 @@
+---
+title: "Fixed-Point Types (Exact Value) - DECIMAL"
+doc_type: reference
+mysql_compat: partial
+differs_from_mysql:
+  - "DECIMAL precision supports up to 65 digits via DECIMAL256"
+mo_only: []
+since: unknown
+last_updated: 2026-05-22
+llms_summary: "Fixed-point exact-value DECIMAL type with precision up to 65 digits."
+---
+
 # Fixed-Point Types (Exact Value) - DECIMAL
 
 The DECIMAL type store exact numeric data values. These types are used when it is important to preserve exact precision, for example with monetary data, or with scientific calculations.

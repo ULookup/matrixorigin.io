@@ -1,12 +1,12 @@
 ---
 title: "YEAR Type"
 doc_type: reference
-mysql_compat: full
-differs_from_mysql: []
+mysql_compat: partial
+differs_from_mysql: ["WHERE comparisons on YEAR columns require explicit CAST to SIGNED (MySQL converts implicitly)"]
 mo_only: []
 since: unknown
 last_updated: 2026-05-21
-llms_summary: "YEAR data type with 1901-2155 range and MySQL-compatible 2-digit year mapping (00-69→2000-2069, 70-99→1970-1999). Fully compatible with MySQL 8.0 YEAR type."
+llms_summary: "YEAR data type with 1901-2155 range and MySQL-compatible 2-digit year mapping (00-69→2000-2069, 70-99→1970-1999). WHERE comparisons require explicit CAST to SIGNED."
 ---
 # YEAR Type
 

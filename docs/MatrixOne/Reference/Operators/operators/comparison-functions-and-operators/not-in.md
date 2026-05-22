@@ -1,3 +1,13 @@
+---
+title: "NOT IN"
+doc_type: reference
+mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-21
+llms_summary: "NOT IN operator for checking non-membership in a list of values. Fully compatible with MySQL 8.0."
+---
 # **NOT IN**
 
 ## **Description**
@@ -48,8 +58,4 @@ a	b	c	d	e
 4	d	4.0010	2022-02-11	2022-02-11 12:00:00
 ```
 
-## **Constraints**
 
-* Currently, only constant lists are supported on the left side of `NOT IN`.  
-* There can only be a single column to the left of `NOT IN`, not a tuple of multiple columns.
-* `NULL` values couldn't appear in the list to the right of `NOT IN`.  

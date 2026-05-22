@@ -1,3 +1,14 @@
+---
+title: "Time Zone Support"
+doc_type: reference
+mysql_compat: partial
+differs_from_mysql:
+  - "Named time zones (e.g., 'America/New_York') are not supported; only (+/-)HH:MM offset format and UTC are accepted for time_zone"
+mo_only: []
+since: unknown
+last_updated: 2026-05-21
+llms_summary: "Timezone configuration via time_zone system variables. Supports (+/-)HH:MM offset and UTC only; named time zones not supported (MySQL 8.0 supports named zones when mysql.time_zone_name is populated)."
+---
 # Time Zone Support
 
 The time zone in MatrixOne is decided by three `time_zone` system variables: `global.time_zone`, `session.time_zone`, `global.system_time_zone`.

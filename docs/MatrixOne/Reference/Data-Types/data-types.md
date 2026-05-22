@@ -1,3 +1,16 @@
+---
+title: "Data Types Overview"
+doc_type: reference
+mysql_compat: partial
+differs_from_mysql:
+  - "TIMESTAMP range is 0001-01-01 to 9999-12-31 (MySQL: 1970-01-01 to 2038-01-19)"
+  - "DATETIME lower bound is 0001-01-01 (MySQL: 1000-01-01)"
+  - "Non-standard type names FLOAT32/FLOAT64 in addition to MySQL's FLOAT/DOUBLE"
+mo_only: []
+since: unknown
+last_updated: 2026-05-21
+llms_summary: "Overview of MatrixOne data types covering integer, fixed-point, floating-point, string, date/time, JSON, ENUM, SET, BOOL, vector, UUID, and DATALINK types. Mostly MySQL-compatible with notable differences in TIMESTAMP range, DATETIME lower bound, and FLOAT naming."
+---
 # **Data Types Overview**
 
 MatrixOne Data types conforms with MySQL Data types definition.

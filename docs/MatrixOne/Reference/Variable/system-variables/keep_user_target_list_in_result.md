@@ -1,3 +1,14 @@
+---
+title: "keep_user_target_list_in_result"
+doc_type: reference
+mysql_compat: mo_only
+differs_from_mysql: []
+mo_only:
+  - "Controls whether query result set column names preserve the case specified by the user; no direct MySQL equivalent"
+since: unknown
+last_updated: 2026-05-21
+llms_summary: "A global parameter that controls whether query result set column names match the case specified by the user."
+---
 # keep_user_target_list_in_result Keep query result set column names consistent with user specified case
 
 In a MatrixOne query, keep the result set column names the same size as the name specified by the user, except by using aliases, or by setting parameters.

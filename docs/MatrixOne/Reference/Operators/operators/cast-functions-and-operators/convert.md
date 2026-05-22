@@ -1,3 +1,15 @@
+---
+title: "CONVERT"
+doc_type: reference
+mysql_compat: partial
+differs_from_mysql:
+  - "CONVERT('non-numeric', SIGNED) raises an error instead of returning 0 or NULL"
+  - "CONVERT(datetime_typed_value, CHAR) may fail in some cases (MySQL 8.0 supports it universally)"
+mo_only: []
+since: unknown
+last_updated: 2026-05-21
+llms_summary: "CONVERT() function for type conversion. Same limitations as CAST: non-numeric strings cannot be converted to numeric types, and some DATETIME-to-CHAR conversions may fail."
+---
 # **CONVERT**
 
 ## **Description**
@@ -61,6 +73,4 @@ mysql> SELECT 1 FROM
 ## **Constraints**
 
 * Non-numeric character types cannot be converted to numeric types.
-* Numeric and character types with formats of Data cannot be converted to Date.
-* Date and Datetime types cannot be converted to character types.
-* Date and Datetime cannot be converted to each other.
+* Converting a DATETIME type value to CHAR may fail in some cases (CONVERT(NOW(), CHAR) works but CONVERT(a_datetime_column, CHAR) may not).

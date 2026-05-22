@@ -1,3 +1,15 @@
+---
+title: "Partition Support"
+doc_type: reference
+mysql_compat: none
+differs_from_mysql:
+  - "All partition types (KEY, HASH, RANGE, LIST) are accepted syntactically but not enforced at storage or plan level; tables are created without actual partitioning"
+mo_only: []
+since: unknown
+last_updated: 2026-05-21
+llms_summary: "Partition syntax is accepted but not enforced at storage level. All partition types are syntax-only."
+---
+
 # MatrixOne DDL statement partitioning supported
 
 ## 1. The partition type supported by MatrixOne

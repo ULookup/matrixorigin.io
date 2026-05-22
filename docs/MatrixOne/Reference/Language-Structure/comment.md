@@ -1,3 +1,16 @@
+---
+title: "Comments"
+doc_type: reference
+mysql_compat: partial
+differs_from_mysql:
+  - "Supports // single-line comments (C++ style); MySQL 8.0 does not support // comments"
+  - "Does not support /*!...*/ conditional/executable comments (MySQL 8.0 does)"
+mo_only: []
+since: unknown
+last_updated: 2026-05-21
+llms_summary: "Comment syntax in MatrixOne. Supports // single-line comments (MySQL does not); does not support /*!...*/ conditional comments."
+---
+
 # Comments
 
 This document describes the comment syntax supported by MatrixOne.

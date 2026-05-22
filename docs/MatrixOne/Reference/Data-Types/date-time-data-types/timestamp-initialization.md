@@ -1,3 +1,15 @@
+---
+title: "TIMESTAMP Initialization"
+doc_type: reference
+mysql_compat: partial
+differs_from_mysql:
+  - "TIMESTAMP range is 0001-9999 (MySQL 8.0: 1970-2038); auto-initialization behavior near range boundaries may differ"
+mo_only: []
+since: unknown
+last_updated: 2026-05-21
+llms_summary: "Automatic TIMESTAMP initialization and update using DEFAULT CURRENT_TIMESTAMP and ON UPDATE CURRENT_TIMESTAMP. MO TIMESTAMP range (0001-9999) differs from MySQL (1970-2038)."
+---
+
 # Automatic Initialization and Updating for TIMESTAMP and DATETIME
 
 `TIMESTAMP` and `DATETIME` columns can be automatically initialized and updated to the current date and time (that is, the current timestamp).

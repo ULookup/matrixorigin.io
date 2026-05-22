@@ -1,8 +1,9 @@
 ---
 title: "CONCAT()"
 doc_type: reference
-mysql_compat: full
-differs_from_mysql: []
+mysql_compat: partial
+differs_from_mysql:
+  - "CONCAT() does not support numeric arguments; MySQL 8.0 auto-converts numeric arguments"
 mo_only: []
 since: unknown
 last_updated: 2026-05-08

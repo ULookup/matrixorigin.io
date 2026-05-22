@@ -1,8 +1,9 @@
 ---
 title: "INSERT ... ON DUPLICATE KEY UPDATE"
 doc_type: reference
-mysql_compat: full
-differs_from_mysql: []
+mysql_compat: partial
+differs_from_mysql:
+  - "ON DUPLICATE KEY UPDATE only triggers on PRIMARY KEY conflicts; UNIQUE index conflicts are not detected"
 mo_only: []
 since: unknown
 last_updated: 2026-05-08

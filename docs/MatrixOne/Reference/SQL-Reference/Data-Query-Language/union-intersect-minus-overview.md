@@ -4,7 +4,7 @@ doc_type: reference
 mysql_compat: mo_only
 differs_from_mysql: []
 mo_only:
-  - "MINUS, INTERSECT set operators"
+  - "MINUS set operator"
 since: unknown
 last_updated: 2026-05-08
 llms_summary: "The results of the two queries can be combined using the set operations UNION, INTERSECT, and MINUS."

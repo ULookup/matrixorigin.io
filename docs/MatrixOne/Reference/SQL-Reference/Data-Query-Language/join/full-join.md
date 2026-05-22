@@ -3,7 +3,7 @@ title: "FULL JOIN"
 doc_type: reference
 mysql_compat: none
 differs_from_mysql:
-  - "FULL JOIN / FULL OUTER JOIN is not supported. Emulate with LEFT JOIN UNION RIGHT JOIN."
+  - "FULL JOIN is not natively supported by either MatrixOne or MySQL 8.0; use LEFT JOIN UNION RIGHT JOIN to emulate."
 mo_only: []
 since: unknown
 last_updated: 2026-05-08

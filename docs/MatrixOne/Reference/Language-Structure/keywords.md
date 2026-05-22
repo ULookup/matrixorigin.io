@@ -112,7 +112,7 @@ The following list shows reserved and non-reserved keywords in Matrixone, where 
 
 ### F
 
-- FALSE **(M)**
+- FALSE
 - FOR
 - FORCE
 - FOREIGN
@@ -254,7 +254,7 @@ The following list shows reserved and non-reserved keywords in Matrixone, where 
 - THEN
 - TO
 - TRAILING
-- TRUE **(M)**
+- TRUE
 
 ### U
 
@@ -354,7 +354,7 @@ The following list shows reserved and non-reserved keywords in Matrixone, where 
 - COPY **(M)**
 - CREDENTIALS **(M)**
 - CURRENT
-- CYCLE **(M)**
+- CYCLE
 
 ### D
 
@@ -598,7 +598,7 @@ The following list shows reserved and non-reserved keywords in Matrixone, where 
 - SECONDARY
 - SECONDARY_ENGINE_ATTRIBUTE
 - SECURITY
-- SEQUENCE **(M)**
+- SEQUENCE
 - SEQUENCES **(M)**
 - SERIALIZABLE
 - SERVERS **(M)**

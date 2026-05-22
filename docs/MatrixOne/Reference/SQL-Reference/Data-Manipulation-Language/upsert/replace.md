@@ -5,6 +5,8 @@ mysql_compat: partial
 differs_from_mysql:
   - "REPLACE does not support VALUES row_constructor_list"
   - "node-sql-parser rejects REPLACE … WHERE (parser bug, not MatrixOne)"
+  - "PARTITION clause not supported"
+  - "LOW_PRIORITY and DELAYED modifiers not supported"
 mo_only: []
 since: unknown
 last_updated: 2026-05-08

@@ -1,8 +1,10 @@
 ---
 title: "AVG"
 doc_type: reference
-mysql_compat: full
-differs_from_mysql: []
+mysql_compat: partial
+differs_from_mysql:
+  - "AVG() returns DOUBLE for all input types (MySQL returns DECIMAL for exact-value types)"
+  - "AVG() returns NaN for empty result sets (MySQL returns NULL)"
 mo_only: []
 since: unknown
 last_updated: 2026-05-08

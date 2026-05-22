@@ -126,4 +126,4 @@ These behaviors are internal and do not change the SQL syntax or user-facing API
 ## Constraints
 
 1. Modifying ENUM enumeration members requires rebuilding the table using the `ALTER TABLE` statement.
-2. ENUM range comparisons (`>`, `<`, `>=`, `<=`) with string values are not supported; equality (=, !=) and IN filtering work as expected. ORDER BY on ENUM columns works correctly.
+2. ENUM range comparisons (`>`, `<`, `>=`, `<=`) use string (lexicographic) semantics rather than MySQL's index semantics. Equality (=, !=) and IN filtering work as expected. ORDER BY on ENUM columns sorts by string value.

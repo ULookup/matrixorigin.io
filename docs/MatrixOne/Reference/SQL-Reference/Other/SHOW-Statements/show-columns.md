@@ -1,8 +1,10 @@
 ---
 title: "SHOW COLUMNS"
 doc_type: reference
-mysql_compat: full
-differs_from_mysql: []
+mysql_compat: partial
+differs_from_mysql:
+  - "FIELDS synonym not supported"
+  - "EXTENDED keyword not supported"
 mo_only: []
 since: unknown
 last_updated: 2026-05-08

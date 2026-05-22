@@ -4,6 +4,7 @@ doc_type: reference
 mysql_compat: partial
 differs_from_mysql:
   - "Drops MatrixOne-style SQL / Python functions, not MySQL stored procedures/functions"
+  - "Requires argument type list on DROP (e.g. DROP FUNCTION py_add(int, int)); MySQL 8.0 accepts only the function name"
 mo_only: []
 since: unknown
 last_updated: 2026-05-08

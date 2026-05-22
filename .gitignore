@@ -27,3 +27,4 @@ scripts/doc-validator/syntax-checker/syntax-checker
 scripts/mdast-words-count/mdast-words-count
 scripts/mdast-words-count/mdast-words-count.exe
 scripts/mdast-words-count/mdast-words-count_*
+docs/superpowers/

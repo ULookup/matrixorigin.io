@@ -4,6 +4,8 @@ doc_type: reference
 mysql_compat: partial
 differs_from_mysql:
   - "Results reflect MatrixOne role/account graph and differ from MySQL significantly"
+  - "Bare SHOW GRANTS (without FOR clause, to show grants for current user) not supported"
+  - "USING role_list clause not supported"
 mo_only: []
 since: unknown
 last_updated: 2026-05-08

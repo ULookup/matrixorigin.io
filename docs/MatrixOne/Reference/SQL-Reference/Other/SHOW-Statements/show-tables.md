@@ -4,6 +4,8 @@ doc_type: reference
 mysql_compat: partial
 differs_from_mysql:
   - "Result column is named 'name' rather than MySQL's 'Tables_in_<dbname>'."
+  - "FULL keyword not supported (MySQL 8.0 supports SHOW FULL TABLES with Table_type column)"
+  - "FROM/IN clause semantics differ — MySQL uses FROM/IN to specify a database name, not a pattern"
 mo_only: []
 since: unknown
 last_updated: 2026-05-08

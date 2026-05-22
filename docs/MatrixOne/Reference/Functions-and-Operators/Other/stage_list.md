@@ -1,10 +1,10 @@
 ---
 title: "STAGE_LIST()"
 doc_type: reference
-mysql_compat: none
-differs_from_mysql:
-  - "STAGE_LIST() function is not available in this version (ERROR 20105)"
-mo_only: []
+mysql_compat: mo_only
+differs_from_mysql: []
+mo_only:
+  - "STAGE_LIST() — MO-specific stage management function (currently unimplemented, returns ERROR 20105)"
 since: unknown
 last_updated: 2026-05-21
 llms_summary: "STAGE_LIST() is not available on MO 3.0.12; other STAGE operations (CREATE/ALTER/DROP/SHOW STAGE) work as documented."

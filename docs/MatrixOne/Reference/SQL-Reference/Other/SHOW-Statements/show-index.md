@@ -4,6 +4,9 @@ doc_type: reference
 mysql_compat: partial
 differs_from_mysql:
   - "Reflects MatrixOne index model — secondary index rows appear but may not accelerate queries"
+  - "EXTENDED keyword not supported"
+  - "KEYS synonym not supported (MySQL accepts SHOW KEYS)"
+  - "WHERE expr clause not supported"
 mo_only: []
 since: unknown
 last_updated: 2026-05-08

@@ -5,6 +5,8 @@ mysql_compat: partial
 differs_from_mysql:
   - "Output format mirrors PostgreSQL, not MySQL"
   - "JSON output not supported"
+  - "FORMAT=TRADITIONAL, FORMAT=JSON, and FORMAT=TREE not supported (MO uses FORMAT=TEXT)"
+  - "EXPLAIN FOR CONNECTION not supported"
 mo_only: []
 since: unknown
 last_updated: 2026-05-08

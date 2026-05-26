@@ -6,6 +6,7 @@ differs_from_mysql:
   - "node-sql-parser rejects REPLACE … WHERE (parser bug, not MatrixOne)"
   - "PARTITION clause not supported"
   - "LOW_PRIORITY and DELAYED modifiers not supported"
+  - "REPLACE only detects conflicts on PRIMARY KEY; secondary UNIQUE index conflicts throw ERROR 1062 (MySQL 8.0 handles both)"
 mo_only: []
 since: unknown
 last_updated: 2026-05-08
@@ -21,8 +22,8 @@ llms_summary: "REPLACE is not only a string function, but also a data manipulati
 
 `REPLACE` is typically used in tables with unique constraints.
 
-- The `REPLACE` statement requires that a primary key or unique index must be present in the table to determine if the same record already exists.
-- When inserting a new record using the `REPLACE` statement, if a record with the same primary key or unique index already exists, the old record is deleted and the new record is inserted, which may cause the value to change since it was added.
+- The `REPLACE` statement requires a primary key to determine if the same record already exists. REPLACE only detects conflicts on PRIMARY KEY; secondary UNIQUE index conflicts throw ERROR 1062.
+- When inserting a new record using the `REPLACE` statement, if a record with the same primary key already exists, the old record is deleted and the new record is inserted, which may cause the value to change since it was added.
 
 ## **Grammar structure**
 

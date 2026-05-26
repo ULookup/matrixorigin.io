@@ -36,7 +36,7 @@ drop table if exists t1;
 create table t1(a date, b datetime,c varchar(30));
 insert into t1 values('2022-01-01','2022-01-01 01:01:01','2022-01-01 01:01:01');
 insert into t1 values('2022-01-01','2022-01-01 01:01:01','2022-01-01 01:01:01');
-insert into t1 values(20220101,'2022-01-01 01:01:01','2022-13-13 01:01:01');
+insert into t1 values('20220101','2022-01-01 01:01:01','2022-13-13 01:01:01');
 insert into t1 values('2022-01-02','2022-01-02 23:01:01','2022-01-01 23:01:01');
 insert into t1 values('2021-12-31','2021-12-30 23:59:59','2021-12-30 23:59:59');
 insert into t1 values('2022-06-30','2021-12-30 23:59:59','2021-12-30 23:59:59');
@@ -76,4 +76,4 @@ mysql> select * from t1 where dayofyear(a) between 1 and 184;
 
 ## **Constraints**
 
-The date type supports `yyyy-mm-dd`, `yyyymmdd`, and `yyyy-mm-dd HH:MM:SS` formats.
+The date type supports `yyyy-mm-dd` and `yyyy-mm-dd HH:MM:SS` formats as string literals. The `yyyymmdd` format is also supported when passed as a string (e.g., `'20220101'`), not as an unquoted integer.

@@ -3,7 +3,7 @@ title: "FULL JOIN"
 doc_type: reference
 mysql_compat: none
 differs_from_mysql:
-  - "FULL JOIN is not natively supported by either MatrixOne or MySQL 8.0; use LEFT JOIN UNION RIGHT JOIN to emulate."
+  - "FULL JOIN is partially parsed (returns INNER JOIN results, not a true full outer join); FULL OUTER JOIN produces a syntax error. MySQL 8.0 does not support either."
 mo_only: []
 since: unknown
 last_updated: 2026-05-08
@@ -18,22 +18,19 @@ llms_summary: "The `FULL JOIN` keyword returns all records when there is a match
 The ``FULL JOIN``  keyword returns all records when there is a match in left (table1) or right (table2) table records.
 
 !!! warning
-    FULL JOIN / FULL OUTER JOIN is not currently supported in MatrixOne. To emulate, use:
+    `FULL JOIN` is partially parsed but behaves as `INNER JOIN` (does not return unmatched rows from either side). `FULL OUTER JOIN` produces a syntax error. To emulate a true full outer join, use:
     ```sql
     SELECT * FROM t1 LEFT JOIN t2 ON t1.a = t2.a
     UNION
     SELECT * FROM t1 RIGHT JOIN t2 ON t1.a = t2.a;
     ```
 
-!!! note  "<font size=4>note</font>"
-    <font size=3>``FULL OUTER JOIN`` and ``FULL JOIN`` are the same.</font>
-
 ## **Syntax**
 
 ```
 > SELECT column_name(s)
 FROM table1
-FULL OUTER JOIN table2
+FULL JOIN table2
 ON table1.column_name=table2.column_name;
 
 ```

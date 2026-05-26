@@ -37,7 +37,9 @@ The following figure shows seven usages of ``LEFT JOIN``, ``RIGHT JOIN``, ``INNE
 |---|---|
 
 - ``FULL JOIN``
-<!-- audit: HIGH — FULL OUTER JOIN produces a syntax error on MO (not a working feature). FULL JOIN with USING returns INNER JOIN results. To emulate a true full outer join, use LEFT JOIN + UNION + RIGHT JOIN. -->
+
+!!! note
+    `FULL OUTER JOIN` is not supported in MatrixOne and produces a syntax error. `FULL JOIN` with `USING` returns `INNER JOIN` results instead of a true full outer join. To emulate a true full outer join, use the `LEFT JOIN` + `UNION` + `RIGHT JOIN` pattern. For details, see [FULL JOIN](full-join.md).
 
 |SELECT [select_list] FROM TableA A FULL OUTER JOIN TableB B ON A.Key=B.Key|![leftjoin](https://github.com/matrixorigin/artwork/blob/main/docs/reference/full_join.png?raw=true)|
 |---|---|

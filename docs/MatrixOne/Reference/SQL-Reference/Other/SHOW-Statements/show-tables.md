@@ -21,8 +21,7 @@ Shows the list of tables in the currently selected database.
 ## **Syntax**
 
 ```
-<!-- audit: HIGH -- doc syntax incorrectly labels FROM/IN as taking 'pattern'; they take db_name, same as MySQL -->
-> SHOW TABLES  [LIKE 'pattern' | WHERE expr | FROM 'pattern' | IN 'pattern']
+> SHOW TABLES  [LIKE 'pattern' | WHERE expr | FROM db_name | IN db_name]
 ```
 
 ## **Examples**

@@ -13,7 +13,6 @@ llms_summary: "SHOW CREATE DATABASE shows the CREATE DATABASE statement that cre
 
 > SHOW CREATE DATABASE shows the `CREATE DATABASE` statement that creates the named database.
 
-<!-- audit: LOW -- MO lowercases the database name in the output (e.g. 'audit_d' instead of 'audit_D'); output also lacks CHARACTER SET, COLLATE, and ENCRYPTION clauses -->
 ## **Description**
 
 `SHOW CREATE DATABASE` shows the `CREATE DATABASE` statement that creates the named database. If the `SHOW` statement includes an `IF NOT EXISTS` clause, the output too includes such a clause.

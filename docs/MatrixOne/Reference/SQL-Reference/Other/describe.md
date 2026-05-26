@@ -19,7 +19,7 @@ llms_summary: "DESCRIBE and DESC provide information about columns in a table."
 
 ## **Description**
 
-The `DESCRIBE` statement provides information about the columns in a table. `DESC` is a synonym for `DESCRIBE`. <!-- audit: MEDIUM — MO's DESCRIBE output includes a 7th column "Comment" that MySQL does not have. Type names are uppercase with display widths (e.g., INT(32)) vs MySQL's lowercase without widths (e.g., int). -->
+The `DESCRIBE` statement provides information about the columns in a table. `DESC` is a synonym for `DESCRIBE`. In MatrixOne, the output includes a 7th column `Comment` (which MySQL does not have), and type names are displayed in uppercase with display widths (e.g., `INT(32)`, `FLOAT(0)`) instead of MySQL's lowercase format without widths (e.g., `int`, `float`).
 
 ## **Syntax**
 
@@ -38,23 +38,26 @@ create table t1(
     col3 varchar(100)
 );
 
-<!-- audit: MEDIUM — This example output shows only 6 columns and uses a `mysql>` prompt, but MO's actual DESCRIBE output contains a 7th "Comment" column and type names with display widths (e.g., INT(32), FLOAT(0)). The example should be updated to reflect MO's actual output format. -->
-mysql> desc t1;
-+-------+--------------+------+------+---------+---------+
-| Field | Type         | Null | Key  | Default | Extra   |
-+-------+--------------+------+------+---------+---------+
-| col1  | INT          | YES  |      | NULL    |         |
-| col2  | FLOAT        | YES  |      | NULL    |         |
-| col3  | VARCHAR(100) | YES  |      | NULL    |         |
-+-------+--------------+------+------+---------+---------+
+> desc t1;
++-------+--------------+------+------+---------+-------+---------------+
+| Field | Type         | Null | Key  | Default | Extra | Comment       |
++-------+--------------+------+------+---------+-------+---------------+
+| col1  | INT(32)      | YES  |      | NULL    |       | First column  |
+| col2  | FLOAT(0)     | YES  |      | NULL    |       |               |
+| col3  | VARCHAR(100) | YES  |      | NULL    |       |               |
++-------+--------------+------+------+---------+-------+---------------+
 3 rows in set (0.00 sec)
 
-<!-- audit: MEDIUM — Column filter is non-functional in MO; `DESC t1 col1` still returns all columns. This example shows MySQL behavior (single row returned for col1), not MO behavior. -->
-mysql> desc t1 col1;
-+-------+------+------+------+---------+---------+
-| Field | Type | Null | Key  | Default | Extra   |
-+-------+------+------+------+---------+---------+
-| col1  | INT  | YES  |      | NULL    |         |
-+-------+------+------+------+---------+---------+
-1 row in set (0.00 sec)
+!!! note
+    Column name filtering (e.g., `DESC t1 col1`) is not supported in MatrixOne; specifying a column name still returns all columns.
+
+> desc t1 col1;
++-------+--------------+------+------+---------+-------+---------------+
+| Field | Type         | Null | Key  | Default | Extra | Comment       |
++-------+--------------+------+------+---------+-------+---------------+
+| col1  | INT(32)      | YES  |      | NULL    |       | First column  |
+| col2  | FLOAT(0)     | YES  |      | NULL    |       |               |
+| col3  | VARCHAR(100) | YES  |      | NULL    |       |               |
++-------+--------------+------+------+---------+-------+---------------+
+3 rows in set (0.00 sec)
 ```

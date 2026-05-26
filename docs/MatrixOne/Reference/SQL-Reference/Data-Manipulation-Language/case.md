@@ -9,15 +9,13 @@ since: unknown
 last_updated: 2026-05-08
 llms_summary: "The CASE statement for stored programs implements a complex conditional construct."
 ---
-# **CASE**
+# **CASE Operator**
 
-<!-- audit: HIGH -- Title and description say "CASE statement for stored programs" but MatrixOne does not support stored programs. This page actually documents the CASE operator (expression), not the stored-program CASE statement. Examples use the CASE operator. Recommend retitling to "CASE Operator" and updating description accordingly. -->
-
-> The CASE statement for stored programs implements a complex conditional construct.
+> The CASE operator evaluates conditions and returns a value, similar to an if-then-else construct in expressions.
 
 ## **Description**
 
-The CASE statement for stored programs implements a complex conditional construct.
+The CASE operator evaluates a set of conditions and returns a result. It can be used in SELECT, WHERE, ORDER BY, and other SQL clauses. MatrixOne does not support stored programs, so the stored-program `CASE` statement (which uses `END CASE` syntax) is not available; this page documents the CASE operator (expression).
 
 Note: There is also a CASE operator, which differs from the `CASE` statement described here. See [Flow Control Functions](../../Operators/operators/flow-control-functions/case-when.md). The `CASE` statement cannot have an `ELSE NULL` clause, and it is terminated with `END CASE` instead of `END`.
 

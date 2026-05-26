@@ -19,8 +19,7 @@ When performing an ``INNER JOIN``, rows from either table that are unmatched in 
 
 - ``LEFT JOIN`` returns only unmatched rows from the left table. For more information, see [LEFT JOIN](left-join.md).
 - ``RIGHT JOIN`` returns only unmatched rows from the right table.For more information, see [RIGHT JOIN](right-join.md).
-- ``FULL OUTER JOIN`` returns unmatched rows from both tables.For more information, see [FULL JOIN](full-join.md).
-<!-- audit: MEDIUM — FULL OUTER JOIN produces a syntax error on both MO and MySQL 8.0. To emulate a true full outer join, use LEFT JOIN + UNION + RIGHT JOIN as documented in full-join.md. -->
+- ``FULL OUTER JOIN`` returns unmatched rows from both tables. Neither MatrixOne nor MySQL 8.0 natively supports `FULL OUTER JOIN` syntax (both produce a syntax error). To emulate a true full outer join, use the `LEFT JOIN` + `UNION` + `RIGHT JOIN` pattern. For details, see [FULL JOIN](full-join.md).
 
 # **Examples**
 

@@ -20,7 +20,8 @@ llms_summary: "SHOW COLUMNS displays information about the columns in a given ta
 
 `SHOW COLUMNS` displays information about the columns in a given table.
 
-<!-- audit: HIGH -- doc says SHOW [FULL] {COLUMNS} but doesn't explain that MO always includes Comment (unlike MySQL which only includes Comment with FULL). Also omits SHOW EXTENDED COLUMNS and SHOW FIELDS synonym support. -->
+In MatrixOne, the `Comment` column is always included in the output, even without the `FULL` keyword. (In MySQL, `Comment` is only shown with `FULL`.) MatrixOne also supports `SHOW EXTENDED COLUMNS` and the `SHOW FIELDS` synonym, both of which return the same columns as `SHOW COLUMNS`.
+
 ## **Syntax**
 
 ```

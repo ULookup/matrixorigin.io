@@ -77,5 +77,4 @@ mysql> select * from user;
 
 ## **Restrictions**
 
-<!-- audit: MEDIUM -- The error behavior when UNIQUE index conflicts occur is specific: ERROR 1062 (Duplicate entry). Not "unknown errors". Also, the NULL reference is unclear — ON DUPLICATE KEY UPDATE only triggers on PRIMARY KEY; UNIQUE index conflicts always fail with ERROR 1062, regardless of NULL values. -->
-`INSERT ... ON` DUPLICATE KEY UPDATE does not currently support Unique keys, which may cause some unknown errors because they can be `NULL`.
+`INSERT ... ON DUPLICATE KEY UPDATE` only detects conflicts on the PRIMARY KEY. If a table has secondary UNIQUE indexes, conflicts on those indexes are not handled by `ON DUPLICATE KEY UPDATE`; instead they throw ERROR 1062 (Duplicate entry), regardless of whether the value is `NULL`. Ensure the target table has a primary key and verify that secondary UNIQUE index columns do not produce duplicate values.

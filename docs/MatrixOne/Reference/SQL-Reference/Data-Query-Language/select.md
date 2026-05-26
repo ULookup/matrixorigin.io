@@ -36,7 +36,6 @@ SELECT
     [WHERE where_condition]
     [GROUP BY {col_name | expr | position}
       [ASC | DESC] [WITH ROLLUP]]
-<!-- audit: MEDIUM — WITH ROLLUP row ordering: MO places rollup summary rows at the top (first), MySQL 8.0 places them at the bottom (last). The aggregated values are identical, but consumers relying on row ordering will see different results. -->
     [HAVING where_condition]
     [ORDER BY {col_name | expr | position}
       [ASC | DESC]] [ NULLS { FIRST | LAST } ]
@@ -96,6 +95,7 @@ Column names, column aliases, or column positions can be used in the `ORDER BY` 
     - In `GROUP BY` or `HAVING` clauses, the system first attempts to group or filter using column names. If no matching column name is found, it checks for aliases and uses them if available.
     - Avoid ambiguous column references when using aliases in `GROUP BY` or `HAVING` clauses. If multiple matching columns are found, an error will occur.
     - The `ORDER BY` clause first attempts to sort by aliases. If no alias is found, it then tries to sort by column names.
+    - **WITH ROLLUP**: MatrixOne places ROLLUP summary rows at the top of the result set, while MySQL 8.0 places them at the bottom. The aggregated values are identical; only the row ordering differs.
 
 #### `HAVING`
 

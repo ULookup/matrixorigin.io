@@ -30,8 +30,7 @@ __Tips:__ Where *query1* and *query2* are queries that can use any of the featur
 
 `INTERSECT` returns all rows in both the result of *query1* and *query2*. Duplicate rows are eliminated unless `INTERSECT ALL` is used.
 
-`MINUS` returns all rows in the result of *query1* but not in *query2*. (This is sometimes called the difference between two queries.) Duplicates are eliminated. `MINUS ALL` is not yet implemented.
-<!-- audit: LOW — MySQL 8.0.31+ supports equivalent EXCEPT and EXCEPT ALL functionality with matching semantics. -->
+`MINUS` returns all rows in the result of *query1* but not in *query2*. (This is sometimes called the difference between two queries.) Duplicates are eliminated. `MINUS ALL` is not yet implemented in MatrixOne. MySQL 8.0.31+ supports equivalent functionality via `EXCEPT` and `EXCEPT ALL` with matching semantics.
 
 To calculate the union, intersection, or difference of two queries, the two queries must be "union compatible", which means that they return the same number of columns and the corresponding columns have compatible data types.
 

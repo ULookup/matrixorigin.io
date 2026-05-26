@@ -25,10 +25,8 @@ EXPLAIN - Shows the execution plan for a statement.
 EXPLAIN [ ANALYZE ] [ VERBOSE ] statement
 ```
 
-<!-- audit: CRITICAL -- doc claims 'parenthesized option syntax is not yet supported' but EXPLAIN (ANALYZE TRUE), EXPLAIN (ANALYZE FALSE), EXPLAIN (VERBOSE TRUE), and EXPLAIN (VERBOSE FALSE) all WORK in MO 3.0.12. Only FORMAT parenthesized syntax is unsupported. -->
 !!! note
-    The parenthesized option syntax (e.g., `EXPLAIN (FORMAT=TEXT)`, `EXPLAIN (ANALYZE TRUE)`) is not yet supported.
-    Only bare keyword forms (`EXPLAIN`, `EXPLAIN ANALYZE`, `EXPLAIN VERBOSE`) are available.
+    The parenthesized option syntax is supported for `ANALYZE` and `VERBOSE` options (e.g., `EXPLAIN (ANALYZE TRUE)`, `EXPLAIN (ANALYZE FALSE)`, `EXPLAIN (VERBOSE TRUE)`, `EXPLAIN (VERBOSE FALSE)`), but is not yet supported for the `FORMAT` option (e.g., `EXPLAIN (FORMAT=TEXT)`). Bare keyword forms (`EXPLAIN`, `EXPLAIN ANALYZE`, `EXPLAIN VERBOSE`) are also available.
 
 ## Syntax Description
 
@@ -54,7 +52,7 @@ Executes the command and displays actual runtime and other statistics. This para
 
 * BOOLEAN:
 
-The `ANALYZE` and `VERBOSE` options accept an optional boolean value (`TRUE` or `FALSE`). However, the parenthesized option syntax (e.g., `EXPLAIN (ANALYZE TRUE)`) is not yet supported. Use bare keyword forms (`EXPLAIN ANALYZE`, `EXPLAIN VERBOSE`) instead, which defaults to `TRUE`.
+The `ANALYZE` and `VERBOSE` options accept an optional boolean value (`TRUE` or `FALSE`). The parenthesized option syntax is supported for these options (e.g., `EXPLAIN (ANALYZE TRUE)`, `EXPLAIN (VERBOSE FALSE)`). Bare keyword forms (`EXPLAIN ANALYZE`, `EXPLAIN VERBOSE`) are also available and default to `TRUE`.
 
 * STATEMENT
 

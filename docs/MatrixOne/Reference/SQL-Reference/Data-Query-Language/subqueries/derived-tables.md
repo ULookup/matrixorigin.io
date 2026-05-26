@@ -21,7 +21,8 @@ This topic describes subqueries that occur as nested SELECT statements in the FR
 
 Every table in a FROM clause must have a name, therefore the [AS] name clause is mandatory. Any columns in the subquery select list must have unique names.
 
-<!-- audit: MEDIUM — LATERAL derived tables are not supported in MO. MySQL 8.0.14+ allows `FROM t1, LATERAL (SELECT ... FROM t2 WHERE t2.a = t1.a) dt` for correlated subqueries in the FROM clause; MO produces a syntax error. Use CROSS APPLY or OUTER APPLY as an alternative. -->
+!!! note
+    `LATERAL` derived tables are not supported in MatrixOne. MySQL 8.0.14+ allows `FROM t1, LATERAL (SELECT ... FROM t2 WHERE t2.a = t1.a) dt` for correlated subqueries in the `FROM` clause; MatrixOne produces a syntax error. Use `CROSS APPLY` or `OUTER APPLY` as an alternative.
 
 ```
 > SELECT ... FROM (subquery) [AS] name ...

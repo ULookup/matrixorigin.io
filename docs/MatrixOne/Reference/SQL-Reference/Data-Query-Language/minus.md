@@ -19,9 +19,10 @@ llms_summary: "MINUS compares the result of two queries and returns the differen
 
 `MINUS` compares the result of two queries and returns the different rows in the first query that are not output by the second query.
 
-## **Syntax**
+!!! note
+    `MINUS ALL` (and `EXCEPT ALL`) are not yet implemented in MatrixOne. Using them produces the error "EXCEPT/MINUS ALL clause is not yet implemented". MySQL 8.0.31+ supports `EXCEPT ALL` with full duplicate-preserving semantics.
 
-<!-- audit: MEDIUM — MINUS ALL is not yet implemented in MO (errors with "EXCEPT/MINUS ALL clause is not yet implemented"). MySQL 8.0.31+ supports EXCEPT ALL with full duplicate-preserving semantics. -->
+## **Syntax**
 
 ```
 SELECT column_list_1 FROM table_1

@@ -168,6 +168,5 @@ mysql> select * from names;
 
 ## **Constraints**
 
-<!-- audit: HIGH -- "or unique index" in both bullet points is incorrect. MO 3.0.12 REPLACE only detects conflicts on PRIMARY KEY; secondary UNIQUE index conflicts throw ERROR 1062 (tested). MySQL 8.0 handles both PK and UNIQUE index conflicts. -->
-- The `REPLACE` statement requires that a primary key or unique index exist in the table to determine whether the same record exists.
-- When using the `REPLACE` statement to insert a new record, the old record will be deleted if a record with the same primary key or unique index already exists, then a new record will be inserted, which may cause the value of the auto-increment column to change.
+- The `REPLACE` statement requires that a primary key exist in the table to determine whether the same record exists. MatrixOne only detects conflicts on PRIMARY KEY; secondary UNIQUE index conflicts throw ERROR 1062 and do not trigger the REPLACE behavior. MySQL 8.0 handles both PRIMARY KEY and UNIQUE index conflicts.
+- When using the `REPLACE` statement to insert a new record, the old record will be deleted if a record with the same primary key already exists, then a new record will be inserted, which may cause the value of the auto-increment column to change.

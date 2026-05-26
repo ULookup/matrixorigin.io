@@ -28,30 +28,32 @@ This statement lists collations supported by MatrixOne. By default, the output f
 
 ## **Examples**
 
-<!-- audit: MEDIUM -- doc example shows 5 columns (Collation,Charset,Id,Compiled,Sortlen) and only 1 row; MO 3.0.12 shows 7 columns with `Default` and `Pad_attribute` and 11 rows for LIKE 'utf8%' -->
 <!-- validator-ignore-exec -->
 ```sql
 mysql> show collation;
-+-------------+---------+------+----------+---------+
-| Collation   | Charset | Id   | Compiled | Sortlen |
-+-------------+---------+------+----------+---------+
-| utf8mb4_bin | utf8mb4 |   46 | Yes      |       1 |
-+-------------+---------+------+----------+---------+
-1 row in set (0.00 sec)
++-------------------+---------+------+---------+----------+---------+---------------+
+| Collation         | Charset | Id   | Default | Compiled | Sortlen | Pad_attribute |
++-------------------+---------+------+---------+----------+---------+---------------+
+| armscii8_bin      | armscii8|   64 |         | Yes      |       1 | PAD SPACE     |
+| armscii8_general_ci| armscii8|   32 |         | Yes      |       1 | PAD SPACE     |
+| ascii_bin         | ascii   |   65 |         | Yes      |       1 | PAD SPACE     |
+| ascii_general_ci  | ascii   |   11 |         | Yes      |       1 | PAD SPACE     |
+| binary            | binary  |   63 |         | Yes      |       1 | PAD SPACE     |
+| gbk_bin           | gbk     |   87 |         | Yes      |       1 | PAD SPACE     |
+| gbk_chinese_ci    | gbk     |   28 |         | Yes      |       1 | PAD SPACE     |
+| latin1_bin        | latin1  |   47 |         | Yes      |       1 | PAD SPACE     |
+| latin1_swedish_ci | latin1  |    8 |         | Yes      |       1 | PAD SPACE     |
+| utf8mb4_bin       | utf8mb4 |   46 |         | Yes      |       1 | NO PAD       |
+| utf8mb4_general_ci| utf8mb4 |   45 |         | Yes      |       1 | NO PAD       |
++-------------------+---------+------+---------+----------+---------+---------------+
+11 rows in set (0.00 sec)
 
-mysql> show collation like '%';
-+-------------+---------+------+----------+---------+
-| Collation   | Charset | Id   | Compiled | Sortlen |
-+-------------+---------+------+----------+---------+
-| utf8mb4_bin | utf8mb4 |   46 | Yes      |       1 |
-+-------------+---------+------+----------+---------+
-1 row in set (0.00 sec)
-
-mysql> show collation where 'Charset'='utf8mb4';
-+-------------+---------+------+----------+---------+
-| Collation   | Charset | Id   | Compiled | Sortlen |
-+-------------+---------+------+----------+---------+
-| utf8mb4_bin | utf8mb4 |   46 | Yes      |       1 |
-+-------------+---------+------+----------+---------+
-1 row in set (0.00 sec)
+mysql> show collation like 'utf8%';
++--------------------+---------+------+---------+----------+---------+---------------+
+| Collation          | Charset | Id   | Default | Compiled | Sortlen | Pad_attribute |
++--------------------+---------+------+---------+----------+---------+---------------+
+| utf8mb4_bin        | utf8mb4 |   46 |         | Yes      |       1 | NO PAD       |
+| utf8mb4_general_ci | utf8mb4 |   45 |         | Yes      |       1 | NO PAD       |
++--------------------+---------+------+---------+----------+---------+---------------+
+2 rows in set (0.00 sec)
 ```

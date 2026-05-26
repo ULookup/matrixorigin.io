@@ -80,5 +80,4 @@ mysql> select * from t3 where a = any (select b from t2);
 
 mysql> select a,b from t6 where a >  any ( select a ,b from t4 where a>3);
 ERROR 20301 (HY000): invalid input: subquery should return 1 column
-<!-- audit: LOW — Error code changed from 1105 to 20301 in MO 3.0.12. Behavior unchanged. -->
 ```

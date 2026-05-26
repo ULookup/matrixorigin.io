@@ -11,12 +11,11 @@ llms_summary: "DROP VIEW removes one or more views."
 ---
 # **DROP VIEW**
 
-> DROP VIEW removes one or more views.
+> DROP VIEW removes a single view. Dropping multiple views in one statement is not supported in MatrixOne.
 
 ## **Description**
 
-<!-- audit: HIGH -- MO supports only single-view DROP VIEW; multiple views cause error 20105 "not supported: drop multiple (N) view". MySQL 8.0 supports multi-view DROP. -->
-`DROP VIEW` removes one or more views.
+`DROP VIEW` removes a single view. MatrixOne does not support dropping multiple views in one statement; attempting to do so causes error 20105 ("not supported: drop multiple (N) view"). MySQL 8.0 supports dropping multiple views in a single `DROP VIEW` statement.
 
 If any views named in the argument list do not exist, the statement fails with an error indicating by name which nonexisting views it was unable to drop, and no changes are made.
 

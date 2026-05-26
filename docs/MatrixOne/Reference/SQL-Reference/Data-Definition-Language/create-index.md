@@ -26,9 +26,8 @@ Updating a table with an index takes longer than updating a table without an ind
 
 There are two common types of indexes, namely:
 
-<!-- audit: MEDIUM -- Secondary indexes in MO 3.0.12 DO participate in query optimization. EXPLAIN shows Index Table Scan for queries that match indexed columns. The claim that they "do not yet provide query speed-up" is outdated. -->
 - Primary Key: The primary key index, that is, the index identified on the primary key column.
-- Secondary Index: the secondary index, that is, the index identified on the non-primary key.
+- Secondary Index: the secondary index, that is, the index identified on the non-primary key. Secondary indexes participate in query optimization; `EXPLAIN` shows Index Table Scan for queries that match indexed columns.
 
 ## **Syntax**
 

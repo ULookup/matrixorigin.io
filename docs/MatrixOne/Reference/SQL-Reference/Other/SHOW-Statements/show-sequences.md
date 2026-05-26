@@ -20,8 +20,7 @@ llms_summary: "SHOW SEQUENCES is used to view the name and list type of the curr
 ## **Syntax**
 
 ```
-<!-- audit: MEDIUM -- doc syntax has typo 'SHOW SQUENCES' (missing H); correct is 'SHOW SEQUENCES' -->
-> SHOW SQUENCES
+> SHOW SEQUENCES
        [WHERE expr]
 ```
 

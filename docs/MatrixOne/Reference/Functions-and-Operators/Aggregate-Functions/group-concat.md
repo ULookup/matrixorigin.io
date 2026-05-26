@@ -5,7 +5,7 @@ mysql_compat: full
 differs_from_mysql: []
 mo_only: []
 since: unknown
-last_updated: 2026-05-08
+last_updated: 2026-05-26
 llms_summary: "This function returns a string result with the concatenated non-NULL values from a group."
 ---
 # **GROUP_CONCAT**
@@ -78,4 +78,41 @@ mysql> select group_concat(distinct b,c separator '|') from t1;
 | abc|abc|aabb                   |
 +--------------------------------+
 1 row in set (0.01 sec)
+```
+
+### Multi-Argument GROUP_CONCAT with ORDER BY
+
+```sql
+DROP DATABASE IF EXISTS group_concat_demo;
+CREATE DATABASE group_concat_demo;
+USE group_concat_demo;
+
+CREATE TABLE t1 (g INT, k INT, a VARCHAR(10), b VARCHAR(10));
+INSERT INTO t1 VALUES (1, 2, 'a2', 'b2'), (1, 1, 'a1', 'b1');
+
+-- Multi-argument GROUP_CONCAT with ORDER BY sorts by the specified column.
+SELECT g, GROUP_CONCAT(a, ':', b ORDER BY k) AS gc FROM t1 GROUP BY g;
+
+DROP DATABASE group_concat_demo;
+```
+
+### Multiple GROUP_CONCAT with Independent ORDER BY
+
+```sql
+DROP DATABASE IF EXISTS group_concat_multi_demo;
+CREATE DATABASE group_concat_multi_demo;
+USE group_concat_multi_demo;
+
+CREATE TABLE t1 (g INT, a VARCHAR(10), b VARCHAR(10), x INT, y INT);
+INSERT INTO t1 VALUES (1, 'a1', 'b1', 1, 2), (1, 'a2', 'b2', 2, 1);
+
+-- Each GROUP_CONCAT uses its own ORDER BY independently.
+SELECT
+  g,
+  GROUP_CONCAT(a ORDER BY x) AS by_x,
+  GROUP_CONCAT(b ORDER BY y) AS by_y
+FROM t1
+GROUP BY g;
+
+DROP DATABASE group_concat_multi_demo;
 ```

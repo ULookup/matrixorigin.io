@@ -6,7 +6,7 @@ differs_from_mysql:
   - "MatrixOne-specific keywords marked with (M) in the keyword list"
 mo_only: []
 since: unknown
-last_updated: 2026-05-22
+last_updated: 2026-05-26
 llms_summary: "Comprehensive list of reserved and non-reserved keywords in MatrixOne, with (M) markers for MO-specific keywords."
 ---
 # Keywords
@@ -662,6 +662,7 @@ The following list shows reserved and non-reserved keywords in Matrixone, where 
 - TABLES
 - TABLESPACE
 - TASK **(M)**
+- TASKS **(M)**
 - TEMPTABLE
 - TEXT
 - THAN

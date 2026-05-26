@@ -62,5 +62,3 @@ mysql> select not a and not b from t1;
 +-----------------+
 5 rows in set (0.00 sec)
 ```
-
-

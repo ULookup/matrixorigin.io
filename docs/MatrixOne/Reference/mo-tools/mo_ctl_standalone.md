@@ -88,7 +88,7 @@ bash +x ./install.sh mo_ctl.zip
 
 ## Get started quickly
 
-The Deployment Standalone Edition of MatrixOne can be quickly installed by following these steps, and the detailed guide provides a view of the [Standalone Deployment MatrixOne](../Get-Started/install-standalone-matrixone.md).
+The Deployment Standalone Edition of MatrixOne can be quickly installed by following these steps, and the detailed guide provides a view of the [Standalone Deployment MatrixOne](../../Get-Started/install-standalone-matrixone.md).
 
 1. Use the command `mo_ctl help` to view the tool guide.
 

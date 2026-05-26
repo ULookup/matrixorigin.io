@@ -39,7 +39,7 @@ To install and use the stand-alone MatrixOne through source code, you need to de
 
     As shown in the code, the version of GCC is not displayed, the **GCC/Clang** environment needs to be installed.
 
-2. Click <a href="https://gcc.gnu.org/install/" target="_blank">GCC Download and install</a> to enter its official documentation, and follow the installation steps to complete the **GCC** installation. Or you can install Clang through Apple's official [Xcode](https://www.ics.uci.edu/~pattis/common/handouts/macclion/clang.html).
+2. Click <a href="https://gcc.gnu.org/install/" target="_blank">GCC Download and install</a> to enter its official documentation, and follow the installation steps to complete the **GCC** installation. Or you can install Clang through Apple's official [Xcode](https://developer.apple.com/xcode/).
 
 3. To verify whether **GCC/Clang** is installed, please execute the code `gcc -v`. When **GCC** is installed successfully, the example code line is as follows:
 

@@ -35,9 +35,6 @@ llms_summary: "REGEXP_INSTR() returns the starting position in the string of the
 
 - `return_option`: This is an optional parameter specifying whether the returned position is where the pattern starts or ends. If 0 or omitted, the function returns the position at which the pattern begins. If 1, the function returns the position after the position where the pattern ends.
 
-
-
-
 ## **Examples**
 
 ```SQL

@@ -33,9 +33,6 @@ llms_summary: "REGEXP_SUBSTR() is used to return the substring of the string exp
 
 - `occurrence`: Which occurrence of a match to search for. If omitted, the default is 1 (returns the first match).
 
-
-
-
 ## **Examples**
 
 ```SQL

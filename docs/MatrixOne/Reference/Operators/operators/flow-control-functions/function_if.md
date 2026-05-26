@@ -83,5 +83,3 @@ mysql> select if(u=1,st,st) s from t1 where st like "%a%" order by s;
 +------+
 4 rows in set (0.00 sec)
 ```
-
-

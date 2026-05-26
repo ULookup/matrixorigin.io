@@ -34,9 +34,6 @@ CASE WHEN condition THEN result [WHEN condition THEN result ...] [ELSE result] E
 
 This `CASE` syntax returns the result for the first condition that is true. If no comparison or condition is true, the result after ELSE is returned, or NULL if there is no ELSE part.
 
-
-
-
 ## **Examples**
 
 ```sql

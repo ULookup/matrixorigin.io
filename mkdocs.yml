@@ -345,6 +345,7 @@ nav:
           - SQL Statements:
               - Type of SQL Statements: MatrixOne/Reference/SQL-Reference/SQL-Type.md
               - MySQL Compatibility Matrix: MatrixOne/Reference/mysql-compatibility-matrix.md
+              - MySQL Unsupported Features: MatrixOne/Reference/mysql-unsupported-features.md
               - Data Definition Language:
                   - CREATE DATABASE: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/create-database.md
                   - CREATE INDEX: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/create-index.md

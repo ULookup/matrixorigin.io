@@ -125,7 +125,7 @@ __Tips__: It is recommended that you download and install one of these two tools
      ```bash
      mkdir -p /User/username/mo/matrixone & cd /User/username/mo
      curl -OL https://github.com/matrixorigin/matrixone/releases/download/v3.0.13/mo-v3.0.13-darwin-arm64.zip
-     unzip -d matrixone/ mo-v-darwin-arm64.zip
+     unzip -d matrixone/ mo-v3.0.13-darwin-arm64.zip
      ```
 
 === "**Downloading method 3: Go to the page and download**"
@@ -134,7 +134,7 @@ __Tips__: It is recommended that you download and install one of these two tools
 
 ## Step 3: Install the mo_ctl tool
 
-[mo_ctl](https://github.com/matrixorigin/mo_ctl_standalone) is a command-line tool for deploying, installing, and managing MatrixOne. It is very convenient to perform various operations on MatrixOne. See [mo_ctl Tool](../../Maintain/mo_ctl.md) for complete usage details.
+[mo_ctl](https://github.com/matrixorigin/mo_ctl_standalone) is a command-line tool for deploying, installing, and managing MatrixOne. It is very convenient to perform various operations on MatrixOne. See [mo_ctl Tool](../../Reference/mo-tools/mo_ctl.md) for complete usage details.
 
 ### 1. Install the mo_ctl tool
 
@@ -204,4 +204,4 @@ mysql>
 ```
 
 !!! note
-    The above connection and login account is the initial accounts `root` and the password `111`; please change the initial password after logging in to MatrixOne; see [MatrixOne Password Management](../../Security/password-mgmt.md). After changing the login username or password, you must set a new username and password through `mo_ctl set_conf`. For details, please refer to [mo_ctl Tool](../../Maintain/mo_ctl.md).
+    The above connection and login account is the initial accounts `root` and the password `111`; please change the initial password after logging in to MatrixOne; see [MatrixOne Password Management](../../Security/password-mgmt.md). After changing the login username or password, you must set a new username and password through `mo_ctl set_conf`. For details, please refer to [mo_ctl Tool](../../Reference/mo-tools/mo_ctl.md).

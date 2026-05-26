@@ -3,7 +3,8 @@ title: "PREPARE"
 doc_type: reference
 mysql_compat: partial
 differs_from_mysql:
-  - "MatrixOne cannot PREPARE SET statements"
+  - "MatrixOne cannot PREPARE SET, DO, or other TCL/DCL statements"
+  - "Repreparation on parameter type change may throw a cast error instead of silently converting the value (e.g., passing a string to an integer parameter)."
 mo_only: []
 since: unknown
 last_updated: 2026-05-08
@@ -15,7 +16,7 @@ llms_summary: "The PREPARE statement prepares a SQL statement and assigns it a n
 
 ## **Description**
 
-The `PREPARE` statement prepares a SQL statement and assigns it a name, The prepared statement is executed with EXECUTE and released with `DEALLOCATE PREPARE`.
+The `PREPARE` statement prepares a SQL statement and assigns it a name, The prepared statement is executed with EXECUTE and released with `DEALLOCATE PREPARE`. In MatrixOne, statements that cannot be prepared include `SET`, `DO`, and other TCL/DCL statements. Attempting to prepare `DO` results in the error `not supported: do ...`.
 
 Statement names are not case-sensitive.
 
@@ -82,7 +83,10 @@ For some combinations of actual type and derived type, an automatic repreparatio
 
 - A parameter is an operand of a CAST(). (Instead, a cast to the derived type is attempted, and an exception raised if the cast fails.)
 
-- A parameter is a string. (In this case, an implicit CAST(? AS derived_type) is performed.)
+- A parameter is a string. (In this case, an implicit `CAST(? AS derived_type)` is performed.)
+
+!!! note
+    In MatrixOne, casting a non-numeric string to an integer derived type throws an error (e.g., `invalid argument cast to int, bad value hello`), while MySQL silently converts the value to 0.
 
 - The derived type and actual type of the parameter are both INTEGER and have the same sign.
 

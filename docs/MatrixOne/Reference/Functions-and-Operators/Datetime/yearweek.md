@@ -3,7 +3,7 @@ title: "YEARWEEK()"
 doc_type: reference
 mysql_compat: full
 differs_from_mysql: []
-mo_only: false
+mo_only: []
 since: v3.0.12
 last_updated: 2026-05-19
 llms_summary: "YEARWEEK(date, [mode]) returns year and week number for a given date as YYYYWW format, with an optional mode parameter (0-7) controlling week numbering."

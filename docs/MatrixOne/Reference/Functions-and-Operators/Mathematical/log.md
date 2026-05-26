@@ -20,12 +20,16 @@ LOG(X) returns the natural logarithm of X.
 
 ```
 > LOG(X)
+> LOG(B, X)
 ```
+
+If called with one parameter, this function returns the natural logarithm of X. If called with two parameters, it returns the logarithm of X to the base B.
 
 ## **Arguments**
 
 |  Arguments   | Description  |
 |  ----  | ----  |
+| B | Optional. The base of the logarithm. |
 | X | Required. Any numeric data type supported now. |
 
 ## **Examples**
@@ -42,8 +46,12 @@ mysql> select log(a), log(b) from t1;
 | 0.6931471805599453 | 2.0794415416798357 |
 +--------------------+--------------------+
 1 row in set (0.00 sec)
+
+mysql> select log(2, 8), log(10, 100);
++-----------+--------------+
+| log(2, 8) | log(10, 100) |
++-----------+--------------+
+|         3 |            2 |
++-----------+--------------+
+1 row in set (0.00 sec)
 ```
-
-## **Constraints**
-
-LOG(X) only support one parameter input for now.

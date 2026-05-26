@@ -58,10 +58,14 @@ jobs:
 
       - name: Mike dev Version Snapshot
         if: ${{ inputs.branch == 'main' }}
+        env:
+          MATRIXONE_DOCS_BASE_URL: https://docs.matrixorigin.cn/en/dev
         run: |
           mike deploy --push dev
       - name: Mike ${{ inputs.branch }} Version Snapshot
         if: ${{ inputs.branch != 'main' }}
+        env:
+          MATRIXONE_DOCS_BASE_URL: https://docs.matrixorigin.cn/en/${{ inputs.branch }}
         run: |
           mike deploy --push ${{ inputs.branch }}
 

@@ -1,8 +1,9 @@
 ---
 title: "OCT(N)"
 doc_type: reference
-mysql_compat: full
-differs_from_mysql: []
+mysql_compat: partial
+differs_from_mysql:
+  - "OCT(N) returns a numeric value rather than MySQL's plain string representation"
 mo_only: []
 since: unknown
 last_updated: 2026-05-08
@@ -35,7 +36,7 @@ SELECT OCT(12);
 +---------+
 | oct(12) |
 +---------+
-| 14.0000 |
+| 14       |
 +---------+
 1 row in set (0.00 sec)
 ```

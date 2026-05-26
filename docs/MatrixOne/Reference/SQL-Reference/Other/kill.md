@@ -27,7 +27,7 @@ The `KILL` statement terminates a running query or process.
 
 ### Explanations
 
-`process_id` refers to the identifier of the process or query to be terminated. `process_id` is the connection identifier if the `CONNECTION` keyword is used, and `process_id` is the query identifier if the `QUERY` keyword is used.
+`processlist_id` refers to the identifier of the process or query to be terminated. `processlist_id` is the connection identifier if the `CONNECTION` keyword is used, and `processlist_id` is the query identifier if the `QUERY` keyword is used. In MatrixOne, `SHOW PROCESSLIST` displays the connection ID in the `conn_id` column.
 
 ## **Examples**
 
@@ -42,17 +42,16 @@ select connection_id();
 1 row in set (0.00 sec)
 
 -- Terminate query process
-mysql> kill query 1008;
+> kill query 1008;
 Query OK, 0 rows affected (0.00 sec)
 
 -- Terminate the connection process
-mysql> kill connection 1008;
+> kill connection 1008;
 Query OK, 0 rows affected (0.00 sec)
 
--- Test for disconnection
-mysql> show databases;
+-- After KILL CONNECTION, the connection is terminated.
+-- Auto-reconnect behavior after disconnection is client-specific
+-- and may differ from the MySQL client's behavior shown below.
+> show databases;
 ERROR 2013 (HY000): Lost connection to MySQL server during query
-No connection. Trying to reconnect...
-Connection id:    1180
--- The connection has been disconnected, and the service has started to reconnect
 ```

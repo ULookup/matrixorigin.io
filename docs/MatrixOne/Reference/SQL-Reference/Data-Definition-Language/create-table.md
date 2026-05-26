@@ -3,13 +3,15 @@ title: "CREATE TABLE"
 doc_type: reference
 mysql_compat: partial
 differs_from_mysql:
-  - "ENGINE= clause in table definition not supported (MatrixOne has a single TAE engine)"
-  - "Spatial and SET types not supported; MEDIUMINT not supported"
+  - "ENGINE= clause is syntactically accepted but ignored; MatrixOne uses TAE exclusively"
+  - "Spatial type names (GEOMETRY, POINT, etc.) are syntactically accepted but non-functional; MEDIUMINT is syntactically accepted but treated as INT"
   - "BOOL is a native boolean type, not an INT alias as in MySQL"
-  - "AUTO_INCREMENT step is always 1; @@auto_increment_increment / @@auto_increment_offset are syntactically accepted but inert"
-  - "Partitioning accepts syntax but only HASH and KEY participate in partition pruning (RANGE/LIST/RANGE COLUMNS/LIST COLUMNS are syntax-only); subpartitioning is syntax-only; ADD/DROP/TRUNCATE PARTITION not supported"
+  - "AUTO_INCREMENT step is always 1; @@auto_increment_increment is syntactically accepted but inert"
+  - "Partitioning accepts syntax but only HASH and KEY participate in partition pruning (RANGE/LIST/RANGE COLUMNS/LIST COLUMNS are syntax-only); subpartitioning causes an internal error; ADD/DROP/TRUNCATE PARTITION not supported"
+  - "CHECK constraints are syntactically accepted but not enforced; MySQL 8.0.16+ enforces them"
 mo_only:
   - "CLUSTER BY (col, …) — pre-sort columns to accelerate queries"
+  - "START TRANSACTION table option — non-standard table option with no MySQL 8.0 equivalent"
 since: unknown
 last_updated: 2026-05-08
 llms_summary: "Create a new table."
@@ -685,6 +687,5 @@ mysql> select * from t1 order by a;
 
 ## **Constraints**
 
-1. Currently, it is not supported to use the `ALTER TABLE table_name DROP PRIMARY KEY` statement to drop the primary key from a table.
-2. The `ALTER TABLE table_name AUTO_INCREMENT = n;` statement is not supported to modify the initial value of the auto-increment column.
-3. In MatrixOne, only syntax supports using the system variable `set @@auto_increment_increment=n` to set the incremental step size, and only syntax supports using the system variable `set @@auto_increment_offset=n` to set the default auto-increment column initial value, but it does not take effect; currently supports setting the initial value `AUTO_INCREMENT=n` of the auto-increment column, but the step size is still 1 by default.
+1. The `ALTER TABLE table_name AUTO_INCREMENT = n;` statement is not supported to modify the initial value of the auto-increment column.
+2. In MatrixOne, only syntax supports using the system variable `set @@auto_increment_increment=n` to set the incremental step size, and only syntax supports using the system variable `set @@auto_increment_offset=n` to set the default auto-increment column initial value, but it does not take effect; currently supports setting the initial value `AUTO_INCREMENT=n` of the auto-increment column, but the step size is still 1 by default.

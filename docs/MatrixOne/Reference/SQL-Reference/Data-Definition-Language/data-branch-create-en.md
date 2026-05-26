@@ -310,4 +310,4 @@ SELECT COUNT(*) FROM test.branch_level2;
 
 5. **Cross-tenant Restrictions**: Cross-tenant branch creation is limited to sys tenant operations and requires pre-created snapshots.
 
-6. **Branch Protect Snapshot**: `DATA BRANCH CREATE TABLE` and `DATA BRANCH CREATE DATABASE` automatically create an internal branch-protect snapshot (`__mo_branch_<child_table_id>`, kind=`branch`) in `mo_catalog.mo_snapshots`. This snapshot protects the parent's data from garbage collection while any descendant branch remains alive. Branch snapshots are not visible in `SHOW SNAPSHOTS` and cannot be dropped via `DROP SNAPSHOT`. They are reclaimed automatically when the entire DAG subtree is deleted.
+6. **Branch Protect Snapshot**: `DATA BRANCH CREATE TABLE` and `DATA BRANCH CREATE DATABASE` automatically create an internal branch-protect snapshot (`__mo_branch_<child_table_id>`) in `mo_catalog.mo_snapshots`. This snapshot protects the parent's data from garbage collection while any descendant branch remains alive. Branch snapshots are not visible in `SHOW SNAPSHOTS` and cannot be dropped via `DROP SNAPSHOT`. They are reclaimed automatically when the entire DAG subtree is deleted.

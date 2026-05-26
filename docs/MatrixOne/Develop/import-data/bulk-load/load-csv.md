@@ -14,7 +14,7 @@ This document will guide you on how to import large amounts of *.csv* format dat
     [{FIELDS | COLUMNS}
         [TERMINATED BY 'string']
         [[OPTIONALLY] ENCLOSED BY 'char']
-        [ENCASPED BY 'char']
+        [ESCAPED BY 'char']
     ]
     [LINES
         [STARTING BY 'string']
@@ -36,7 +36,7 @@ This document will guide you on how to import large amounts of *.csv* format dat
     [{FIELDS | COLUMNS}
         [TERMINATED BY 'string']
         [[OPTIONALLY] ENCLOSED BY 'char']
-        [ENCASPED BY 'char']
+        [ESCAPED BY 'char']
     ]
     [LINES
         [STARTING BY 'string']

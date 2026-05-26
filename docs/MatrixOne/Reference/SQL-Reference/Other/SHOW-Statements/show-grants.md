@@ -3,7 +3,10 @@ title: "SHOW GRANTS"
 doc_type: reference
 mysql_compat: partial
 differs_from_mysql:
-  - "Results reflect MatrixOne role/account graph and differ from MySQL significantly"
+  - "Grant syntax output is completely different: MO uses MO-specific format (GRANT create account ON account, GRANT table all ON table) instead of MySQL standard format (GRANT SELECT, INSERT, UPDATE, DELETE ON *.*)"
+  - "MO output includes backtick-quoted user@host inside grant statements; MySQL uses quoted user@host format with TO clause"
+  - "USING role_list clause not supported"
+  - "MO does not support SHOW GRANTS FOR CURRENT_USER (or CURRENT_USER()) as a shorthand for the current user"
 mo_only: []
 since: unknown
 last_updated: 2026-05-08

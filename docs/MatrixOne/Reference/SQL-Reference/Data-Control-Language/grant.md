@@ -5,9 +5,13 @@ mysql_compat: partial
 differs_from_mysql:
   - "Authorization logic differs from MySQL — MatrixOne evaluates via its role/account model"
   - "User identifier is a bare username scoped to the current account; MySQL uses 'user'@'host' tuples"
+  - "AS user [WITH ROLE ...] clause (MySQL 8.0 privilege restriction) not supported"
+  - "GRANT privilege ... TO only accepts roles; users receive privileges indirectly through role membership (GRANT role TO user)"
+  - "WITH ADMIN OPTION for role grants is not supported"
 mo_only:
   - "`GRANT ... ON ACCOUNT *` — account-level privileges have no MySQL counterpart"
   - "`GRANT ... ON DATABASE *` — MatrixOne-specific database-level grant target"
+  - "GRANT ... ON VIEW db_name.view_name (separate VIEW object_type; MySQL 8.0 only supports TABLE, FUNCTION, PROCEDURE)"
 since: unknown
 last_updated: 2026-05-08
 llms_summary: "The GRANT statement assigns privileges and roles to MatrixOne users and roles."
@@ -39,11 +43,10 @@ Normally, a cluster has one root by default, the root first uses `CREATE ACCOUNT
     priv_type [(column_list)]
       [, priv_type [(column_list)]] ...
     ON [object_type] priv_level
-    TO user_or_role [, user_or_role] ...
+    TO role [, role] ...
 
 GRANT role [, role] ...
     TO user_or_role [, user_or_role] ...
-    [WITH ADMIN OPTION]
 
 object_type: {
     TABLE
@@ -64,7 +67,7 @@ priv_level: {
 
 ### Explanations
 
-The `GRANT` statement enables *account* to grant privileges and roles, which can be granted to users and roles. These syntax restrictions apply:
+The `GRANT` statement enables *account* to grant privileges (to roles) and roles (to users and roles). These syntax restrictions apply:
 
 - `GRANT` cannot mix granting both privileges and roles in the same statement. A given `GRANT` statement must grant either privileges or roles.
 

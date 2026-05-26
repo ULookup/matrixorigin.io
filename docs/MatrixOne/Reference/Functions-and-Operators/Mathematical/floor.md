@@ -1,9 +1,11 @@
 ---
 title: "FLOOR()"
 doc_type: reference
-mysql_compat: full
-differs_from_mysql: []
-mo_only: []
+mysql_compat: partial
+differs_from_mysql:
+  - "MatrixOne supports an optional second decimals argument (FLOOR(number, decimals)) to specify decimal places; MySQL 8.0 only supports the single-argument form FLOOR(X)"
+mo_only:
+  - "Two-argument form FLOOR(number, decimals) to specify decimal places"
 since: unknown
 last_updated: 2026-05-08
 llms_summary: "The FLOOR() function returns the largest round number that is less than or equal to the number."

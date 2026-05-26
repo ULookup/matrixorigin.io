@@ -5,9 +5,11 @@ mysql_compat: partial
 differs_from_mysql:
   - "Recovery logic differs from MySQL — privileges return to the role/account graph"
   - "User identifier is a bare username scoped to the current account; MySQL uses 'user'@'host' tuples"
+  - "IGNORE UNKNOWN USER clause (MySQL 8.0.30+) not supported"
 mo_only:
   - "`REVOKE ... ON ACCOUNT *` — account-level privileges have no MySQL counterpart"
   - "`REVOKE ... ON DATABASE *` — MatrixOne-specific database-level revoke target"
+  - "REVOKE ... ON VIEW db_name.view_name (separate VIEW object_type)"
 since: unknown
 last_updated: 2026-05-08
 llms_summary: "Removes one or more privileges on a securable object from a role."

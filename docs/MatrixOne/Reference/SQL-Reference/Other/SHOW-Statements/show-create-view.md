@@ -4,6 +4,10 @@ doc_type: reference
 mysql_compat: partial
 differs_from_mysql:
   - "DEFINER = user clause absent from output; SQL SECURITY {DEFINER|INVOKER} is emitted"
+  - "MO output lacks ALGORITHM=UNDEFINED clause that MySQL always includes"
+  - "MO does not fully qualify column references (MySQL outputs db.table.col AS alias)"
+  - "MO uses unquoted identifiers; MySQL backtick-quotes database, table, and column names"
+  - "The rendered Create View output shows `CREATE SQL SECURITY DEFINER VIEW` (not `CREATE ALGORITHM=UNDEFINED DEFINER=user SQL SECURITY DEFINER VIEW` as MySQL does)"
 mo_only: []
 since: unknown
 last_updated: 2026-05-08

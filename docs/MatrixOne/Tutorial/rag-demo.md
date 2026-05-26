@@ -34,17 +34,17 @@ As you can see, the retrieval link plays a crucial role in the RAG architecture,
 
 ## Role of Matrixone in RAG
 
-As a hyperconverged database, Matrxione comes with its own vector capabilities, which play an important role in RAG applications in the following ways:
+As a hyperconverged database, MatrixOne comes with its own vector capabilities, which play an important role in RAG applications in the following ways:
 
-- Efficient information retrieval: Matrxione has vector data types specifically designed to process and store high-dimensional vector data. It uses special data structures and indexing strategies, such as KNN queries, to quickly find data items that most closely resemble query vectors.
+- Efficient information retrieval: MatrixOne has vector data types specifically designed to process and store high-dimensional vector data. It uses special data structures and indexing strategies, such as KNN queries, to quickly find data items that most closely resemble query vectors.
 
-- Support for large-scale data processing: Matrxione's ability to effectively manage and process large-scale vector data is a core feature of the retrieval component of the RAG system, which enables the RAG system to quickly retrieve the information most relevant to user queries from vast amounts of data.
+- Support for large-scale data processing: MatrixOne's ability to effectively manage and process large-scale vector data is a core feature of the retrieval component of the RAG system, which enables the RAG system to quickly retrieve the information most relevant to user queries from vast amounts of data.
 
-- Improved generation quality: Through the retrieval capabilities of Matrxione's vector capabilities, RAG technology can introduce information from an external knowledge base to produce more accurate, rich, and contextualized text that improves the quality of generated text.
+- Improved generation quality: Through the retrieval capabilities of MatrixOne's vector capabilities, RAG technology can introduce information from an external knowledge base to produce more accurate, rich, and contextualized text that improves the quality of generated text.
 
-- Security and privacy protection: Matrxione can also protect data with data security measures such as encrypted storage and access control, which is particularly important for RAG applications that handle sensitive data.
+- Security and privacy protection: MatrixOne can also protect data with data security measures such as encrypted storage and access control, which is particularly important for RAG applications that handle sensitive data.
 
-- Simplify the development process: Using Matrxione simplifies the development process for RAG applications because it provides an efficient mechanism for storing and retrieving vectorized data, reducing the burden on developers in data management.
+- Simplify the development process: Using MatrixOne simplifies the development process for RAG applications because it provides an efficient mechanism for storing and retrieving vectorized data, reducing the burden on developers in data management.
 
 Based on Ollama, this paper combines Llama2 and Mxbai-embed-large to quickly build a Native RAG application using Matrixone's vector capabilities.
 
@@ -140,7 +140,7 @@ documents = [
     "MatrixOne touts significant features, including real-time HTAP, multi-tenancy, stream computation, extreme scalability, cost-effectiveness, enterprise-grade availability, and extensive MySQL compatibility. MatrixOne unifies tasks traditionally performed by multiple databases into one system by offering a comprehensive ultra-hybrid data solution. This consolidation simplifies development and operations, minimizes data fragmentation, and boosts development agility.",
     "MatrixOne is optimally suited for scenarios requiring real-time data input, large data scales, frequent load fluctuations, and a mix of procedural and analytical business operations. It caters to use cases such as mobile internet apps, IoT data applications, real-time data warehouses, SaaS platforms, and more.",
     "Matrix is a collection of complex or real numbers arranged in a rectangular array.",
-    "The lastest version of MatrixOne is v25.3.0.2,released on 2025/10/15.",
+    "The lastest version of MatrixOne is v26.3.0.13,released on 2026/05/25.",
     "We are excited to announce MatrixOne v22.0.8.0 release on 2023/6/30."
 ]
 

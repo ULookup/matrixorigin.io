@@ -1,10 +1,10 @@
 ---
 title: "INTERSECT"
 doc_type: reference
-mysql_compat: mo_only
-differs_from_mysql: []
-mo_only:
-  - "INTERSECT set operator is not available in MySQL 8.0."
+mysql_compat: partial
+differs_from_mysql:
+  - "INTERSECT was added in MySQL 8.0.31; MO INTERSECT and INTERSECT ALL semantics match MySQL 8.0 (both return identical results for common test cases including duplicate handling)"
+mo_only: []
 since: unknown
 last_updated: 2026-05-08
 llms_summary: "INTERSECT returns only the different rows of two or more queries."

@@ -1,3 +1,14 @@
+---
+title: "Keywords"
+doc_type: reference
+mysql_compat: partial
+differs_from_mysql:
+  - "MatrixOne-specific keywords marked with (M) in the keyword list"
+mo_only: []
+since: unknown
+last_updated: 2026-05-26
+llms_summary: "Comprehensive list of reserved and non-reserved keywords in MatrixOne, with (M) markers for MO-specific keywords."
+---
 # Keywords
 
 This chapter describes the keywords for MatrixOne. Reserved and non-reserved keywords are categorized in MatrixOne. When you use SQL statements, you can consult both reserved and non-reserved keywords.
@@ -112,7 +123,7 @@ The following list shows reserved and non-reserved keywords in Matrixone, where 
 
 ### F
 
-- FALSE **(M)**
+- FALSE
 - FOR
 - FORCE
 - FOREIGN
@@ -254,7 +265,7 @@ The following list shows reserved and non-reserved keywords in Matrixone, where 
 - THEN
 - TO
 - TRAILING
-- TRUE **(M)**
+- TRUE
 
 ### U
 
@@ -354,7 +365,7 @@ The following list shows reserved and non-reserved keywords in Matrixone, where 
 - COPY **(M)**
 - CREDENTIALS **(M)**
 - CURRENT
-- CYCLE **(M)**
+- CYCLE
 
 ### D
 
@@ -598,7 +609,7 @@ The following list shows reserved and non-reserved keywords in Matrixone, where 
 - SECONDARY
 - SECONDARY_ENGINE_ATTRIBUTE
 - SECURITY
-- SEQUENCE **(M)**
+- SEQUENCE
 - SEQUENCES **(M)**
 - SERIALIZABLE
 - SERVERS **(M)**
@@ -651,6 +662,7 @@ The following list shows reserved and non-reserved keywords in Matrixone, where 
 - TABLES
 - TABLESPACE
 - TASK **(M)**
+- TASKS **(M)**
 - TEMPTABLE
 - TEXT
 - THAN

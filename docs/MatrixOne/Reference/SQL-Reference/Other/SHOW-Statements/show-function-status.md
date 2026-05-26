@@ -3,7 +3,8 @@ title: "SHOW FUNCTION STATUS"
 doc_type: reference
 mysql_compat: partial
 differs_from_mysql:
-  - "Lists MatrixOne SQL/Python functions, not MySQL stored routines"
+  - "Lists MatrixOne SQL/Python functions; MySQL shows stored routines AND built-in sys schema functions (e.g. extract_schema_from_file_name, format_bytes)"
+  - "MO only shows user-defined functions; MySQL shows all functions including built-in ones"
 mo_only: []
 since: unknown
 last_updated: 2026-05-08

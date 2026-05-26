@@ -1,3 +1,14 @@
+---
+title: "save_query_result"
+doc_type: reference
+mysql_compat: mo_only
+differs_from_mysql: []
+mo_only:
+  - "MatrixOne-specific feature that saves query results for reuse, with configurable timeout and max size; no MySQL equivalent"
+since: unknown
+last_updated: 2026-05-21
+llms_summary: "When enabled, MatrixOne saves query results for reuse, controlled by save_query_result, query_result_timeout, and query_result_maxsize parameters."
+---
 # save_query_result Save query result support
 
 When `save_query_result` is turned on, MatrixOne saves the query results.

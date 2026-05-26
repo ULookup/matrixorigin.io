@@ -3,9 +3,8 @@ title: "CREATE VIEW"
 doc_type: reference
 mysql_compat: partial
 differs_from_mysql:
-  - "WITH CHECK OPTION clause not supported"
-  - "DEFINER = user clause not supported; SQL SECURITY {DEFINER | INVOKER} is supported"
-  - "ALGORITHM = {UNDEFINED | MERGE | TEMPTABLE} clause not supported"
+  - "WITH CHECK OPTION is syntactically accepted but not enforced"
+  - "Views are read-only; MySQL 8.0 supports INSERT/UPDATE/DELETE through views that meet updatability criteria"
 mo_only: []
 since: unknown
 last_updated: 2026-05-08

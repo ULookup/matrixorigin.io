@@ -3,7 +3,8 @@ title: "DATA BRANCH PICK"
 doc_type: reference
 mysql_compat: mo_only
 differs_from_mysql: []
-mo_only: []
+mo_only:
+  - "DATA BRANCH PICK (cherry-pick specific rows between branch tables, Git-for-Data feature)"
 since: v3.0.10
 last_updated: 2026-05-08
 llms_summary: "Cherry-pick specific rows from a source table into a target table by primary key or snapshot range inside a MatrixOne data branch, with configurable conflict handling."

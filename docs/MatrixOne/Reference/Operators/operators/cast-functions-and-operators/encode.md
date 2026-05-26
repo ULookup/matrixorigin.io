@@ -1,3 +1,15 @@
+---
+title: "ENCODE()"
+doc_type: reference
+mysql_compat: mo_only
+differs_from_mysql: []
+mo_only:
+  - "ENCODE() was deprecated in MySQL 5.7 and removed in MySQL 8.0; MatrixOne continues to support it"
+since: unknown
+last_updated: 2026-05-21
+llms_summary: "ENCODE() encryption function. Deprecated in MySQL 5.7, removed in MySQL 8.0, still available in MatrixOne."
+---
+
 # **ENCODE()**
 
 ## **Function description**

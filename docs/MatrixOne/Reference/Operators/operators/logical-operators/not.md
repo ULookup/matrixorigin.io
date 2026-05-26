@@ -1,3 +1,13 @@
+---
+title: "NOT / !"
+doc_type: reference
+mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-21
+llms_summary: "Logical NOT operator. Both NOT and `!` syntaxes are supported, consistent with MySQL 8.0."
+---
 # **NOT,!**
 
 ## **Description**
@@ -52,7 +62,3 @@ mysql> select not a and not b from t1;
 +-----------------+
 5 rows in set (0.00 sec)
 ```
-
-## **Constraints**
-
-`!` is not supported for now.

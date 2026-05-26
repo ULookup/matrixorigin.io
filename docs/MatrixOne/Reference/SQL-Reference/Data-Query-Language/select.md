@@ -5,9 +5,13 @@ mysql_compat: partial
 differs_from_mysql:
   - "SELECT … FOR UPDATE only supports single-table queries"
   - "SELECT INTO OUTFILE is only partially supported"
-  - "Unqualified SELECT ... FROM DUAL requires explicit database name (SELECT ... FROM dbname.DUAL)"
+  - "AS OF TIMESTAMP time-travel queries require PITR/snapshot to be enabled on the database; without PITR the syntax produces an error"
+  - "SELECT ... FOR SHARE is not supported"
+  - "FOR UPDATE NOWAIT and SKIP LOCKED modifiers are not supported"
+  - "GROUP BY ... WITH ROLLUP row ordering differs: MO places rollup summary rows at the top of the result set, while MySQL 8.0 places them at the bottom (standard MySQL grouping order)"
+
 mo_only:
-  - "{ AS OF TIMESTAMP 'YYYY-MM-DD HH:MM:SS' } — time-travel query against snapshot/PITR"
+  - "{ AS OF TIMESTAMP 'YYYY-MM-DD HH:MM:SS' } — time-travel query against enabled snapshot/PITR"
   - "ORDER BY ... NULLS { FIRST | LAST } — PostgreSQL-style NULL ordering not available in MySQL"
 since: unknown
 last_updated: 2026-05-08
@@ -31,13 +35,18 @@ SELECT
     [FROM table_references[{as of timestamp 'YYYY-MM-DD HH:MM:SS'}]]
     [WHERE where_condition]
     [GROUP BY {col_name | expr | position}
-      [ASC | DESC]]
+      [ASC | DESC] [WITH ROLLUP]]
     [HAVING where_condition]
     [ORDER BY {col_name | expr | position}
       [ASC | DESC]] [ NULLS { FIRST | LAST } ]
     [LIMIT {[offset,] row_count | row_count OFFSET offset}]
     [FOR {UPDATE}]
 ```
+
+!!! note
+    `AS OF TIMESTAMP` time-travel queries require the database to have
+    PITR (Point-In-Time Recovery) or snapshot enabled. On a database
+    without PITR configured, the syntax produces `ERROR 1064: SQL parser error`.
 
 ### Syntax Explanation
 
@@ -86,6 +95,7 @@ Column names, column aliases, or column positions can be used in the `ORDER BY` 
     - In `GROUP BY` or `HAVING` clauses, the system first attempts to group or filter using column names. If no matching column name is found, it checks for aliases and uses them if available.
     - Avoid ambiguous column references when using aliases in `GROUP BY` or `HAVING` clauses. If multiple matching columns are found, an error will occur.
     - The `ORDER BY` clause first attempts to sort by aliases. If no alias is found, it then tries to sort by column names.
+    - **WITH ROLLUP**: MatrixOne places ROLLUP summary rows at the top of the result set, while MySQL 8.0 places them at the bottom. The aggregated values are identical; only the row ordering differs.
 
 #### `HAVING`
 
@@ -214,4 +224,3 @@ mysql> SELECT * FROM t1 ORDER BY spID ASC NULLS LAST;
 
 - `SELECT...FOR UPDATE` currently only supports single-table queries.
 - Partial support for `INTO OUTFILE`.
-- When the table name is `DUAL`, directly querying it in the default database (`USE DBNAME`) with `SELECT xx FROM DUAL` is not supported. You must specify the database name as `SELECT xx FROM DBNAME.DUAL`.

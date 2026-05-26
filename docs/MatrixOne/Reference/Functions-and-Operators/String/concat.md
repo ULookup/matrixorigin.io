@@ -51,6 +51,5 @@ mysql> SELECT CONCAT('My', NULL, 'QL');
 1 row in set (0.00 sec)
 ```
 
-## **Constraints**
 
-Currently, CONCAT() doesn't support quoted strings.
+

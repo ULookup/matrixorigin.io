@@ -4,7 +4,7 @@ doc_type: reference
 mysql_compat: partial
 differs_from_mysql:
   - "INSERT IGNORE does not suppress NOT NULL or type-conversion errors (MySQL 8.0 does)"
-  - "INSERT ON DUPLICATE KEY UPDATE only triggers on PRIMARY KEY conflicts; UNIQUE index conflicts are not detected"
+  - "INSERT ON DUPLICATE KEY UPDATE only triggers on PRIMARY KEY conflicts; UNIQUE index conflicts are detected but result in errors (ERROR 1062 or ERROR 20102) rather than triggering ON DUPLICATE KEY UPDATE"
   - "REPLACE does not support REPLACE ... WHERE (parser bug)"
 mo_only: []
 since: unknown

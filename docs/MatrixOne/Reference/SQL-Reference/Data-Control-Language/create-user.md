@@ -44,7 +44,7 @@ auth_option: {
 
 An user when first created has no privileges and a default role of NONE. To assign privileges or roles, use the [GRANT](grant.md) statement.
 
-The basic SQL statement of `CREAT USER` is as follows:
+The basic SQL statement of `CREATE USER` is as follows:
 
 ```
 create user user_name identified by 'password';
@@ -75,4 +75,4 @@ Query OK, 0 rows affected (0.04 sec)
 
 ## **Constraints**
 
-MatrixOne does not supports `CREATE USER COMMENT` and `CREATE USER ATTRIBUTE` now.
+MatrixOne does not support `CREATE USER COMMENT` and `CREATE USER ATTRIBUTE`. These clauses are syntactically accepted for MySQL compatibility but have no effect — no comment or attribute data is stored.

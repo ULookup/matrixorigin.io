@@ -3,7 +3,7 @@ title: "INSERT ... ON DUPLICATE KEY UPDATE"
 doc_type: reference
 mysql_compat: partial
 differs_from_mysql:
-  - "ON DUPLICATE KEY UPDATE only triggers on PRIMARY KEY conflicts; UNIQUE index conflicts are not detected"
+  - "ON DUPLICATE KEY UPDATE only triggers on PRIMARY KEY conflicts; UNIQUE index conflicts are detected but result in errors (ERROR 1062 or ERROR 20102) rather than triggering ON DUPLICATE KEY UPDATE"
 mo_only: []
 since: unknown
 last_updated: 2026-05-08

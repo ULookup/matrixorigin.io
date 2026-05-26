@@ -3,11 +3,11 @@ title: "Time Zone Support"
 doc_type: reference
 mysql_compat: partial
 differs_from_mysql:
-  - "Named time zones (e.g., 'America/New_York') are not supported; only (+/-)HH:MM offset format and UTC are accepted for time_zone"
+  - "Named time zones (e.g., 'America/New_York', 'UTC') are not supported; only (+/-)HH:MM offset format is accepted for time_zone"
 mo_only: []
 since: unknown
 last_updated: 2026-05-21
-llms_summary: "Timezone configuration via time_zone system variables. Supports (+/-)HH:MM offset and UTC only; named time zones not supported (MySQL 8.0 supports named zones when mysql.time_zone_name is populated)."
+llms_summary: "Timezone configuration via time_zone system variables. Supports (+/-)HH:MM offset only; named time zones (including 'UTC') not supported (MySQL 8.0 supports named zones when mysql.time_zone_name is populated)."
 ---
 # Time Zone Support
 
@@ -46,7 +46,7 @@ To set the format of the value of the time_zone:
 
 - The value `SYSTEM` indicates that the time zone should be the same as the server system time zone.
 
-- The value `UTC` indicates that the time zone is set to Coordinated Universal Time. Only `UTC` as time zone abbreviation is supported.
+- MatrixOne does not support named time zone abbreviations such as `UTC`. Use offset format instead, e.g., `'+00:00'`.
 
 - The value can be given as a string indicating an offset from UTC of the form `HH:MM` with a + or -, such as `+10:00` or `-06:00`. The permitted range is `-13:59` to `+14:00`, inclusive.
 
@@ -70,7 +70,7 @@ The session time zone setting does not affect values displayed by functions such
 > create table t (ts timestamp, dt datetime);
 Query OK, 0 rows affected (0.02 sec)
 
-mysql> set @@time_zone = 'UTC';
+mysql> set @@time_zone = '+00:00';
 Query OK, 0 rows affected (0.00 sec)
 
 mysql> insert into t values ('2017-09-30 11:11:11', '2017-09-30 11:11:11');
@@ -133,4 +133,4 @@ set time_zone = '+08:00';
 
 ## Constraints
 
-Only `(+/-)HH:MM` form and `UTC` is supported for setting `time_zone` values.  
+Only `(+/-)HH:MM` offset form is supported for setting `time_zone` values.  

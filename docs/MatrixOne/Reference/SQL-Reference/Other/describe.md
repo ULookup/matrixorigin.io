@@ -1,8 +1,10 @@
 ---
 title: "DESCRIBE / DESC"
 doc_type: reference
-mysql_compat: full
-differs_from_mysql: []
+mysql_compat: partial
+differs_from_mysql:
+  - "Column name filter (`DESC tbl_name col_name`) is non-functional; all columns are returned"
+  - "Wild pattern (`DESC tbl_name 'pattern'`) not supported; produces syntax error"
 mo_only: []
 since: unknown
 last_updated: 2026-05-20

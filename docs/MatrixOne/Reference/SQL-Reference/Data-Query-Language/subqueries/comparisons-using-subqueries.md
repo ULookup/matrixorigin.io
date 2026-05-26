@@ -46,7 +46,8 @@ insert into t4 values (4,8),(3,8),(5,9);
 insert into t3 values (6),(7),(3);
 
 mysql> select * from t3 where a = (select b from t2);
-ERROR 1105 (HY000): scalar subquery returns more than 1 row
+ERROR 20101 (HY000): internal error: scalar subquery returns more than 1 row
+<!-- audit: LOW — Error code changed from 1105 (older MO versions) to 20101 in MO 3.0.12. Behavior is the same: scalar subquery returning multiple rows is rejected. -->
 mysql> select * from t3 where a = (select distinct b from t2);
 +------+
 | a    |
@@ -56,5 +57,6 @@ mysql> select * from t3 where a = (select distinct b from t2);
 1 rows in set (0.01 sec)
 
 mysql> select a,b from t4 where a > ( select a ,b from t2 where a>1);
-ERROR 1105 (HY000): Internal error: Unknow type TUPLE
+ERROR 20203 (HY000): invalid argument operator >, bad value [INT TUPLE]
+<!-- audit: LOW — Error code changed from 1105 to 20203 in MO 3.0.12. Behavior unchanged: multi-column subquery in scalar comparison is rejected. -->
 ```

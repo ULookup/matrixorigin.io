@@ -4,7 +4,9 @@ doc_type: reference
 mysql_compat: partial
 differs_from_mysql:
   - "System variables are mostly syntactic stubs; actual behaviour differs from MySQL"
-  - "GLOBAL and SESSION scope modifiers are syntactically accepted; SESSION scope SET works, but GLOBAL/SESSION scope for SHOW VARIABLES return identical results"
+  - "GLOBAL and SESSION scope modifiers are syntactically accepted for both SET and SHOW; SHOW GLOBAL vs SHOW SESSION return different values when SESSION has been overridden, same as MySQL"
+  - "MO has a completely different set of variable names (e.g. testbotchvar_nodyn, testbothvar_dyn) alongside MySQL-compatible ones (autocommit, sql_mode)"
+  - "Variable values use lowercase ('on'/'off') while MySQL uses uppercase ('ON'/'OFF')"
 mo_only: []
 since: unknown
 last_updated: 2026-05-08

@@ -3,8 +3,10 @@ title: "SHOW TABLE STATUS"
 doc_type: reference
 mysql_compat: partial
 differs_from_mysql:
-  - "Result columns differ from MySQL; MatrixOne uses Tae storage engine metadata instead of InnoDB statistics"
+  - "Result columns differ from MySQL: MO has 19 cols (adds Role_id, Role_name; omits Version); MySQL has 18 cols (includes Version; no Role_id/Role_name)"
   - "Engine column always shows Tae instead of InnoDB"
+  - "MO's Auto_increment defaults to 0 (MySQL shows NULL for tables without auto-increment)"
+  - "MO shows views in SHOW TABLE STATUS with Engine=NULL and Comment=VIEW (same as MySQL behavior)"
 mo_only: []
 since: unknown
 last_updated: 2026-05-20

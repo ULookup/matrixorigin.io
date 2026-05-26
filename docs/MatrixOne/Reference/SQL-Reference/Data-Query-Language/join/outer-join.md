@@ -3,7 +3,7 @@ title: "OUTER JOIN"
 doc_type: reference
 mysql_compat: partial
 differs_from_mysql:
-  - "Overview page that includes FULL OUTER JOIN, which MySQL 8.0 does not support."
+  - "Overview page that includes FULL OUTER JOIN; neither MO nor MySQL 8.0 natively support FULL OUTER JOIN (MO produces syntax error, same as MySQL)"
 mo_only: []
 since: unknown
 last_updated: 2026-05-08
@@ -20,6 +20,7 @@ When performing an ``INNER JOIN``, rows from either table that are unmatched in 
 - ``LEFT JOIN`` returns only unmatched rows from the left table. For more information, see [LEFT JOIN](left-join.md).
 - ``RIGHT JOIN`` returns only unmatched rows from the right table.For more information, see [RIGHT JOIN](right-join.md).
 - ``FULL OUTER JOIN`` returns unmatched rows from both tables.For more information, see [FULL JOIN](full-join.md).
+<!-- audit: MEDIUM — FULL OUTER JOIN produces a syntax error on both MO and MySQL 8.0. To emulate a true full outer join, use LEFT JOIN + UNION + RIGHT JOIN as documented in full-join.md. -->
 
 # **Examples**
 

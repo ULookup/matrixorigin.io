@@ -3,7 +3,7 @@ title: "INTERSECT"
 doc_type: reference
 mysql_compat: partial
 differs_from_mysql:
-  - "INTERSECT was added in MySQL 8.0.31; MO compatibility with MySQL INTERSECT semantics should be verified"
+  - "INTERSECT was added in MySQL 8.0.31; MO INTERSECT and INTERSECT ALL semantics match MySQL 8.0 (both return identical results for common test cases including duplicate handling)"
 mo_only: []
 since: unknown
 last_updated: 2026-05-08

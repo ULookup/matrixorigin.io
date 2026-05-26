@@ -14,6 +14,7 @@ llms_summary: "SHOW DATABASES lists the databases on the MatrixOne."
 
 ## **Description**
 
+<!-- audit: LOW -- MO system databases (mo_catalog, mo_debug, mo_task, system, system_metrics) differ from MySQL (information_schema, mysql, performance_schema, sys) but output format is identical -->
 `SHOW DATABASES` lists the databases on the MatrixOne. `SHOW SCHEMAS` is a synonym for `SHOW DATABASES`. The LIKE clause, if present, indicates which database names to match. The WHERE clause can be given to select rows using more general conditions.
 
 MatrixOne implements databases as directories in the data directory, so this statement simply lists directories in that location.

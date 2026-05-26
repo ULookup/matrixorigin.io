@@ -4,6 +4,8 @@ doc_type: reference
 mysql_compat: partial
 differs_from_mysql:
   - "Only utf8mb4_bin is effective; other collations appear but are inert"
+  - "MO 3.0.12 returns 11 collations (with `Default` and `Pad_attribute` columns); older doc examples show only 1 row with 5 columns"
+  - "Output columns (Collation, Charset, Id, Default, Compiled, Sortlen, Pad_attribute) differ slightly from MySQL which also includes Pad_attribute"
 mo_only: []
 since: unknown
 last_updated: 2026-05-08
@@ -26,6 +28,7 @@ This statement lists collations supported by MatrixOne. By default, the output f
 
 ## **Examples**
 
+<!-- audit: MEDIUM -- doc example shows 5 columns (Collation,Charset,Id,Compiled,Sortlen) and only 1 row; MO 3.0.12 shows 7 columns with `Default` and `Pad_attribute` and 11 rows for LIKE 'utf8%' -->
 <!-- validator-ignore-exec -->
 ```sql
 mysql> show collation;

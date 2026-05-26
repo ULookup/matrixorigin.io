@@ -1,8 +1,9 @@
 ---
 title: "DROP INDEX"
 doc_type: reference
-mysql_compat: full
-differs_from_mysql: []
+mysql_compat: partial
+differs_from_mysql:
+  - "MO accepts DROP INDEX IF EXISTS syntax (MySQL 8.0 does not), but IF EXISTS does not suppress errors for missing indexes; it returns internal error 20101 instead of a silent skip"
 mo_only: []
 since: unknown
 last_updated: 2026-05-08
@@ -16,10 +17,11 @@ llms_summary: "This statement deletes the index from the currently selected tabl
 
 This statement deletes the index from the currently selected table and will report an error if the index does not exist unless the `IF EXISTS` modifier is used.
 
+<!-- audit: HIGH -- MO accepts DROP INDEX IF EXISTS syntax but IF EXISTS does not suppress errors for missing indexes (returns internal error 20101). MySQL 8.0 does not support IF EXISTS for DROP INDEX at all. -->
 ## **Syntax**
 
 ```
-> DROP INDEX index_name ON tbl_name
+> DROP INDEX [IF EXISTS] index_name ON tbl_name
 ```
 
 ## **Examples**

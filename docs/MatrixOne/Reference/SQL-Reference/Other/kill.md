@@ -27,11 +27,13 @@ The `KILL` statement terminates a running query or process.
 
 ### Explanations
 
+<!-- audit: LOW — The syntax uses `processlist_id` but the description uses `process_id`. These should be consistent. In MO, SHOW PROCESSLIST shows the connection ID in the `conn_id` column (not a numeric `Id` column like MySQL's `SHOW PROCESSLIST`). -->
 `process_id` refers to the identifier of the process or query to be terminated. `process_id` is the connection identifier if the `CONNECTION` keyword is used, and `process_id` is the query identifier if the `QUERY` keyword is used.
 
 ## **Examples**
 
 <!-- validator-ignore-exec -->
+<!-- audit: LOW — Examples use the `mysql>` prompt and MySQL client reconnection behavior. MO's client may behave differently after KILL CONNECTION (auto-reconnect behavior is client-specific). -->
 ```sql
 select connection_id();
 +-----------------+

@@ -3,10 +3,11 @@ title: "EXPLAIN"
 doc_type: reference
 mysql_compat: partial
 differs_from_mysql:
-  - "Output format mirrors PostgreSQL, not MySQL"
-  - "JSON output not supported"
-  - "FORMAT=TRADITIONAL, FORMAT=JSON, and FORMAT=TREE not supported (MO uses text output by default; parenthesized FORMAT=TEXT syntax not supported)"
-  - "EXPLAIN FOR CONNECTION not supported"
+  - "Output format is a single QUERY PLAN column with tree-structured text (PostgreSQL-style); MySQL uses a multi-column tabular format with id, select_type, table, partitions, type, possible_keys, key, key_len, ref, rows, filtered, Extra"
+  - "JSON output (FORMAT=JSON) not supported; MO returns syntax error"
+  - "FORMAT=TREE and FORMAT=TRADITIONAL not supported; FORMAT=TEXT bare keyword also errors; only bare keyword forms (EXPLAIN, EXPLAIN ANALYZE, EXPLAIN VERBOSE) work"
+  - "EXPLAIN FOR CONNECTION not supported (returns internal error)"
+  - "EXPLAIN (ANALYZE TRUE/FALSE) and EXPLAIN (VERBOSE TRUE/FALSE) parenthesized boolean syntax WORKS in MO 3.0.12, contrary to doc claims; only parenthesized FORMAT syntax is unsupported"
 mo_only: []
 since: unknown
 last_updated: 2026-05-08
@@ -24,6 +25,7 @@ EXPLAIN - Shows the execution plan for a statement.
 EXPLAIN [ ANALYZE ] [ VERBOSE ] statement
 ```
 
+<!-- audit: CRITICAL -- doc claims 'parenthesized option syntax is not yet supported' but EXPLAIN (ANALYZE TRUE), EXPLAIN (ANALYZE FALSE), EXPLAIN (VERBOSE TRUE), and EXPLAIN (VERBOSE FALSE) all WORK in MO 3.0.12. Only FORMAT parenthesized syntax is unsupported. -->
 !!! note
     The parenthesized option syntax (e.g., `EXPLAIN (FORMAT=TEXT)`, `EXPLAIN (ANALYZE TRUE)`) is not yet supported.
     Only bare keyword forms (`EXPLAIN`, `EXPLAIN ANALYZE`, `EXPLAIN VERBOSE`) are available.

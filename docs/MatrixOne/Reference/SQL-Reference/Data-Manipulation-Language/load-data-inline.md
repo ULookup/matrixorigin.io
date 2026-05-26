@@ -19,7 +19,7 @@ The `LOAD DATA INLINE` syntax imports strings organized in *csv* format into a d
 
 ## Syntax structure
 
-```sql
+```sql <!-- validator-ignore -->
 LOAD DATA INLINE 
 FORMAT='csv',
 DATA=$XXX$
@@ -49,13 +49,12 @@ INTO TABLE tbl_name;
 
 2. Before executing `LOAD DATA INLINE` in MatrixOne, you need to create the completion data table `user` in MatrixOne in advance:
 
-    ```mysql
-
+    ```sql
     CREATE TABLE `user` (
     `name` VARCHAR(255) DEFAULT null,
     `age` INT DEFAULT null,
     `city` VARCHAR(255) DEFAULT null
-    )
+    );
     ```
 
 3. Perform a `LOAD DATA INLINE` on the MySQL client for data import, importing data in *csv* format:

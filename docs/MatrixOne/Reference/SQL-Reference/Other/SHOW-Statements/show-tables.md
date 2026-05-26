@@ -3,7 +3,8 @@ title: "SHOW TABLES"
 doc_type: reference
 mysql_compat: partial
 differs_from_mysql:
-  - "FROM/IN clause semantics differ — MySQL uses FROM/IN to specify a database name, not a pattern"
+  - "Output column header uses lowercase database name (Tables_in_<db> vs MySQL's Tables_in_<DB>)"
+  - "MO does not display a parenthesized LIKE pattern in the column header unlike MySQL"
 mo_only: []
 since: unknown
 last_updated: 2026-05-08
@@ -20,6 +21,7 @@ Shows the list of tables in the currently selected database.
 ## **Syntax**
 
 ```
+<!-- audit: HIGH -- doc syntax incorrectly labels FROM/IN as taking 'pattern'; they take db_name, same as MySQL -->
 > SHOW TABLES  [LIKE 'pattern' | WHERE expr | FROM 'pattern' | IN 'pattern']
 ```
 

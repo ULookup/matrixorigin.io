@@ -3,8 +3,11 @@ title: "DESCRIBE / DESC"
 doc_type: reference
 mysql_compat: partial
 differs_from_mysql:
-  - "Column name filter (`DESC tbl_name col_name`) is non-functional; all columns are returned"
-  - "Wild pattern (`DESC tbl_name 'pattern'`) not supported; produces syntax error"
+  - "DESCRIBE/DESC output includes an extra `Comment` column (7 columns total vs MySQL's 6)."
+  - "Type names are displayed in uppercase with display widths (e.g., `INT(32)`, `FLOAT(0)`, `TIMESTAMP(0)`) instead of MySQL's lowercase without widths (e.g., `int`, `float`, `timestamp`)."
+  - "Column name filter (`DESC tbl_name col_name`) is non-functional; all columns are returned."
+  - "Wild pattern (`DESC tbl_name 'pattern'`) not supported; produces syntax error."
+  - "For TIMESTAMP columns with DEFAULT CURRENT_TIMESTAMP, MO does not show `DEFAULT_GENERATED` in the Extra column as MySQL does."
 mo_only: []
 since: unknown
 last_updated: 2026-05-20
@@ -16,7 +19,7 @@ llms_summary: "DESCRIBE and DESC provide information about columns in a table."
 
 ## **Description**
 
-The `DESCRIBE` statement provides information about the columns in a table. `DESC` is a synonym for `DESCRIBE`.
+The `DESCRIBE` statement provides information about the columns in a table. `DESC` is a synonym for `DESCRIBE`. <!-- audit: MEDIUM — MO's DESCRIBE output includes a 7th column "Comment" that MySQL does not have. Type names are uppercase with display widths (e.g., INT(32)) vs MySQL's lowercase without widths (e.g., int). -->
 
 ## **Syntax**
 
@@ -35,6 +38,7 @@ create table t1(
     col3 varchar(100)
 );
 
+<!-- audit: MEDIUM — This example output shows only 6 columns and uses a `mysql>` prompt, but MO's actual DESCRIBE output contains a 7th "Comment" column and type names with display widths (e.g., INT(32), FLOAT(0)). The example should be updated to reflect MO's actual output format. -->
 mysql> desc t1;
 +-------+--------------+------+------+---------+---------+
 | Field | Type         | Null | Key  | Default | Extra   |
@@ -45,6 +49,7 @@ mysql> desc t1;
 +-------+--------------+------+------+---------+---------+
 3 rows in set (0.00 sec)
 
+<!-- audit: MEDIUM — Column filter is non-functional in MO; `DESC t1 col1` still returns all columns. This example shows MySQL behavior (single row returned for col1), not MO behavior. -->
 mysql> desc t1 col1;
 +-------+------+------+------+---------+---------+
 | Field | Type | Null | Key  | Default | Extra   |

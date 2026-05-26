@@ -3,9 +3,11 @@ title: "Combining Queries (UNION, INTERSECT, MINUS)"
 doc_type: reference
 mysql_compat: partial
 differs_from_mysql:
-  - "MINUS set operator (including MINUS ALL) is MO-only; MySQL does not support MINUS/EXCEPT. INTERSECT is available in MySQL 8.0.31+ and UNION is standard across both."
+  - "MINUS keyword is MO-specific; MySQL 8.0.31+ uses EXCEPT for the same set-difference semantics. MINUS ALL is not yet implemented in MO while MySQL 8.0.31+ supports EXCEPT ALL."
+  - "INTERSECT was added in MySQL 8.0.31; both MO and MySQL support INTERSECT and INTERSECT ALL with matching semantics."
+  - "UNION is standard across both, but MO's type coercion in UNION columns is stricter (errors on incompatible types where MySQL silently coerces)."
 mo_only:
-  - "MINUS set operator"
+  - "MINUS keyword (MO-specific syntax; MySQL 8.0.31+ offers equivalent EXCEPT)"
 since: unknown
 last_updated: 2026-05-08
 llms_summary: "The results of the two queries can be combined using the set operations UNION, INTERSECT, and MINUS."
@@ -29,6 +31,7 @@ __Tips:__ Where *query1* and *query2* are queries that can use any of the featur
 `INTERSECT` returns all rows in both the result of *query1* and *query2*. Duplicate rows are eliminated unless `INTERSECT ALL` is used.
 
 `MINUS` returns all rows in the result of *query1* but not in *query2*. (This is sometimes called the difference between two queries.) Duplicates are eliminated. `MINUS ALL` is not yet implemented.
+<!-- audit: LOW — MySQL 8.0.31+ supports equivalent EXCEPT and EXCEPT ALL functionality with matching semantics. -->
 
 To calculate the union, intersection, or difference of two queries, the two queries must be "union compatible", which means that they return the same number of columns and the corresponding columns have compatible data types.
 

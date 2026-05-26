@@ -2,13 +2,16 @@
 title: "CASE"
 doc_type: reference
 mysql_compat: full
-differs_from_mysql: []
+differs_from_mysql:
+  - "This page describes the CASE operator (expression), not the stored-program CASE statement. MatrixOne does not support stored programs, so the stored-program CASE STATEMENT is unavailable; the CASE OPERATOR behaves compatibly."
 mo_only: []
 since: unknown
 last_updated: 2026-05-08
 llms_summary: "The CASE statement for stored programs implements a complex conditional construct."
 ---
 # **CASE**
+
+<!-- audit: HIGH -- Title and description say "CASE statement for stored programs" but MatrixOne does not support stored programs. This page actually documents the CASE operator (expression), not the stored-program CASE statement. Examples use the CASE operator. Recommend retitling to "CASE Operator" and updating description accordingly. -->
 
 > The CASE statement for stored programs implements a complex conditional construct.
 

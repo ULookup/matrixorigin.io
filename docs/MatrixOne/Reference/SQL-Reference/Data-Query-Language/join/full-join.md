@@ -3,7 +3,7 @@ title: "FULL JOIN"
 doc_type: reference
 mysql_compat: none
 differs_from_mysql:
-  - "FULL JOIN is partially parsed (returns INNER JOIN results, not a true full outer join); FULL OUTER JOIN produces a syntax error. MySQL 8.0 does not support either."
+  - "FULL JOIN with ON clause produces different errors on MO (missing FROM-clause entry) vs MySQL 8.0 (Unknown column in ON clause). FULL JOIN with USING returns INNER JOIN results on both (neither returns unmatched rows). FULL OUTER JOIN produces a syntax error on both. MySQL 8.0 does not natively support either FULL JOIN or FULL OUTER JOIN."
 mo_only: []
 since: unknown
 last_updated: 2026-05-08
@@ -19,6 +19,7 @@ The ``FULL JOIN``  keyword returns all records when there is a match in left (ta
 
 !!! warning
     `FULL JOIN` is partially parsed but behaves as `INNER JOIN` (does not return unmatched rows from either side). `FULL OUTER JOIN` produces a syntax error. To emulate a true full outer join, use:
+
     ```sql
     SELECT * FROM t1 LEFT JOIN t2 ON t1.a = t2.a
     UNION

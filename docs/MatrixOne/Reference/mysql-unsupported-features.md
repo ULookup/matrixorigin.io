@@ -23,8 +23,8 @@ description: "Comprehensive list of MySQL features and syntax that MatrixOne doe
 | Source | Count |
 |---|---|
 | Completely Missing (curated) | 131 |
-| Partial Support (auto-extracted) | 93 |
-| **Total** | **224** |
+| Partial Support (auto-extracted) | 209 |
+| **Total** | **340** |
 
 ## Completely Missing
 
@@ -240,7 +240,7 @@ Each row links to the relevant MatrixOne documentation page for full details.
 
 | Statement | Difference from MySQL |
 |---|---|
-| [ALTER TABLE](./SQL-Reference/Data-Definition-Language/alter-table.md) | ALTER COLUMN ORDER BY may not combine with other clauses in the same ALTER TABLE; ADD/DROP PRIMARY KEY, CHANGE, MODIFY, RENAME, ADD COLUMN, and DROP COLUMN can be freely combined |
+| [ALTER TABLE](./SQL-Reference/Data-Definition-Language/alter-table.md) | Multiple ALTER TABLE operations can be combined in one statement, with limitation: DROP PRIMARY KEY cannot be combined with RENAME COLUMN, CHANGE COLUMN, or DROP COLUMN (causes server panic); DROP PK + ADD COLUMN and DROP PK + MODIFY COLUMN work correctly |
 | [ALTER TABLE](./SQL-Reference/Data-Definition-Language/alter-table.md) | Temporary tables cannot be altered |
 | [ALTER TABLE](./SQL-Reference/Data-Definition-Language/alter-table.md) | ALTER TABLE does not support PARTITION operations |
 | [ALTER VIEW](./SQL-Reference/Data-Definition-Language/alter-view.md) | WITH CHECK OPTION is accepted in CREATE VIEW (syntax only, views are read-only) but rejected as a syntax error in ALTER VIEW |
@@ -248,14 +248,21 @@ Each row links to the relevant MatrixOne documentation page for full details.
 | [CREATE DATABASE](./SQL-Reference/Data-Definition-Language/create-database.md) | ENCRYPTION clause accepted but inert |
 | [Create Fulltext Index](./SQL-Reference/Data-Definition-Language/create-fulltext-index.md) | MatrixOne full-text index is implemented on TAE storage with CJK/English optimizations; MySQL implements it on InnoDB/MyISAM with different stopword and parser semantics. |
 | [CREATE FUNCTION...LANGUAGE SQL AS](./SQL-Reference/Data-Definition-Language/create-function-sql.md) | Only LANGUAGE SQL and LANGUAGE PYTHON are supported; usage differs significantly from MySQL stored functions |
-| [CREATE INDEX](./SQL-Reference/Data-Definition-Language/create-index.md) | Secondary indexes are syntactically accepted but do not yet provide query speed-up |
+| [CREATE FUNCTION...LANGUAGE SQL AS](./SQL-Reference/Data-Definition-Language/create-function-sql.md) | CREATE OR REPLACE FUNCTION is supported; MySQL 8.0 does not support OR REPLACE for functions (only IF NOT EXISTS since 8.0.29) |
+| [CREATE INDEX](./SQL-Reference/Data-Definition-Language/create-index.md) | Secondary indexes are supported and participate in query optimization (as of MO 3.0.12, EXPLAIN shows Index Table Scan for secondary index queries). Does not support index hints (USE INDEX, FORCE INDEX, IGNORE INDEX), function-based indexes, or FULLTEXT index via CREATE INDEX syntax (use CREATE FULLTEXT INDEX instead). |
 | [CREATE TABLE](./SQL-Reference/Data-Definition-Language/create-table.md) | ENGINE= clause is syntactically accepted but ignored; MatrixOne uses TAE exclusively |
-| [CREATE TABLE](./SQL-Reference/Data-Definition-Language/create-table.md) | Spatial type names (GEOMETRY, POINT, etc.) are syntactically accepted but non-functional; SET type is not supported; MEDIUMINT is syntactically accepted but treated as INT |
+| [CREATE TABLE](./SQL-Reference/Data-Definition-Language/create-table.md) | Spatial type names (GEOMETRY, POINT, etc.) are syntactically accepted but non-functional; MEDIUMINT is syntactically accepted but treated as INT |
 | [CREATE TABLE](./SQL-Reference/Data-Definition-Language/create-table.md) | BOOL is a native boolean type, not an INT alias as in MySQL |
 | [CREATE TABLE](./SQL-Reference/Data-Definition-Language/create-table.md) | AUTO_INCREMENT step is always 1; @@auto_increment_increment is syntactically accepted but inert |
-| [CREATE TABLE](./SQL-Reference/Data-Definition-Language/create-table.md) | Partitioning accepts syntax but only HASH and KEY participate in partition pruning (RANGE/LIST/RANGE COLUMNS/LIST COLUMNS are syntax-only); subpartitioning is syntax-only; ADD/DROP/TRUNCATE PARTITION not supported |
+| [CREATE TABLE](./SQL-Reference/Data-Definition-Language/create-table.md) | Partitioning accepts syntax but only HASH and KEY participate in partition pruning (RANGE/LIST/RANGE COLUMNS/LIST COLUMNS are syntax-only); subpartitioning causes an internal error; ADD/DROP/TRUNCATE PARTITION not supported |
+| [CREATE TABLE](./SQL-Reference/Data-Definition-Language/create-table.md) | CHECK constraints are syntactically accepted but not enforced; MySQL 8.0.16+ enforces them |
 | [CREATE VIEW](./SQL-Reference/Data-Definition-Language/create-view.md) | WITH CHECK OPTION is syntactically accepted but not enforced |
+| [CREATE VIEW](./SQL-Reference/Data-Definition-Language/create-view.md) | Views are read-only; MySQL 8.0 supports INSERT/UPDATE/DELETE through views that meet updatability criteria |
 | [DROP FUNCTION](./SQL-Reference/Data-Definition-Language/drop-function.md) | Drops MatrixOne-style SQL / Python functions, not MySQL stored procedures/functions |
+| [DROP FUNCTION](./SQL-Reference/Data-Definition-Language/drop-function.md) | Requires argument type list on DROP (e.g. DROP FUNCTION py_add(int, int)); MySQL 8.0 accepts only the function name |
+| [DROP INDEX](./SQL-Reference/Data-Definition-Language/drop-index.md) | MO accepts DROP INDEX IF EXISTS syntax (MySQL 8.0 does not), but IF EXISTS does not suppress errors for missing indexes; it returns internal error 20101 instead of a silent skip |
+| [DROP VIEW](./SQL-Reference/Data-Definition-Language/drop-view.md) | MO does not support dropping multiple views in a single statement; only a single view per DROP VIEW. MySQL 8.0 supports dropping multiple views (e.g., DROP VIEW v1, v2). |
+| [Rename Table](./SQL-Reference/Data-Definition-Language/rename-table.md) | MO does not support RENAME TABLE across databases; when given cross-database syntax, MO renames the table within its current database instead of raising an error. MySQL 8.0 supports cross-database RENAME TABLE. |
 
 ### DML — Data Manipulation Language
 
@@ -263,78 +270,190 @@ Each row links to the relevant MatrixOne documentation page for full details.
 |---|---|
 | [CURRENT_ROLE()](./SQL-Reference/Data-Manipulation-Language/information-functions/current_role.md) | Returns a single active role name; MySQL 8.0 can return multiple comma-separated active roles or 'NONE'. |
 | [DELETE](./SQL-Reference/Data-Manipulation-Language/delete.md) | LOW_PRIORITY, QUICK, IGNORE modifiers are syntactically accepted but have no effect |
+| [DELETE](./SQL-Reference/Data-Manipulation-Language/delete.md) | PARTITION clause not supported |
 | [INSERT](./SQL-Reference/Data-Manipulation-Language/insert.md) | Modifiers LOW_PRIORITY / DELAYED / HIGH_PRIORITY not supported |
+| [INSERT](./SQL-Reference/Data-Manipulation-Language/insert.md) | PARTITION clause not supported |
+| [INSERT ... ON DUPLICATE KEY UPDATE](./SQL-Reference/Data-Manipulation-Language/upsert/insert-on-duplicate.md) | ON DUPLICATE KEY UPDATE only triggers on PRIMARY KEY conflicts; UNIQUE index conflicts are detected but result in errors (ERROR 1062 or ERROR 20102) rather than triggering ON DUPLICATE KEY UPDATE |
 | [INSERT IGNORE](./SQL-Reference/Data-Manipulation-Language/upsert/insert-ignore.md) | LOW_PRIORITY / DELAYED / HIGH_PRIORITY modifiers not supported |
 | [INSERT IGNORE](./SQL-Reference/Data-Manipulation-Language/upsert/insert-ignore.md) | Duplicates are silently ignored; MySQL emits a warning for each skipped row. |
 | [INSERT IGNORE](./SQL-Reference/Data-Manipulation-Language/upsert/insert-ignore.md) | Does not ignore NULL-into-NOT-NULL, type-conversion, or partition-mismatch errors as MySQL does. |
+| [INSERT IGNORE](./SQL-Reference/Data-Manipulation-Language/upsert/insert-ignore.md) | PARTITION clause not supported |
 | [LAST_INSERT_ID()](./SQL-Reference/Data-Manipulation-Language/information-functions/last-insert-id.md) | Multi-row INSERT returns the last inserted auto-increment value; MySQL returns the first inserted value. |
-| [LOAD DATA](./SQL-Reference/Data-Manipulation-Language/load-data-infile.md) | LOAD DATA LOCAL requires --local-infile on the client |
 | [LOAD DATA](./SQL-Reference/Data-Manipulation-Language/load-data-infile.md) | SET clause only accepts columns_name = nullif(expr1, expr2) |
 | [LOAD DATA](./SQL-Reference/Data-Manipulation-Language/load-data-infile.md) | JSONLines import uses MatrixOne-specific syntax |
 | [LOAD DATA](./SQL-Reference/Data-Manipulation-Language/load-data-infile.md) | Object-storage import (S3/URL) uses MatrixOne-specific syntax |
-| [REPLACE](./SQL-Reference/Data-Manipulation-Language/replace.md) | REPLACE does not support VALUES row_constructor_list |
+| [LOAD DATA](./SQL-Reference/Data-Manipulation-Language/load-data-infile.md) | LOW_PRIORITY and CONCURRENT modifiers not supported |
+| [LOAD DATA](./SQL-Reference/Data-Manipulation-Language/load-data-infile.md) | REPLACE and IGNORE modifiers not supported |
 | [REPLACE](./SQL-Reference/Data-Manipulation-Language/replace.md) | node-sql-parser rejects REPLACE … WHERE (parser bug, not MatrixOne) |
-| [REPLACE](./SQL-Reference/Data-Manipulation-Language/upsert/replace.md) | REPLACE does not support VALUES row_constructor_list |
+| [REPLACE](./SQL-Reference/Data-Manipulation-Language/replace.md) | PARTITION clause not supported |
+| [REPLACE](./SQL-Reference/Data-Manipulation-Language/replace.md) | LOW_PRIORITY and DELAYED modifiers not supported |
+| [REPLACE](./SQL-Reference/Data-Manipulation-Language/replace.md) | REPLACE only detects conflicts on PRIMARY KEY; secondary UNIQUE index conflicts throw ERROR 1062 (MySQL 8.0 handles both). Constraints section incorrectly states UNIQUE index can also trigger REPLACE; this is wrong per actual MO behavior. |
 | [REPLACE](./SQL-Reference/Data-Manipulation-Language/upsert/replace.md) | node-sql-parser rejects REPLACE … WHERE (parser bug, not MatrixOne) |
+| [REPLACE](./SQL-Reference/Data-Manipulation-Language/upsert/replace.md) | PARTITION clause not supported |
+| [REPLACE](./SQL-Reference/Data-Manipulation-Language/upsert/replace.md) | LOW_PRIORITY and DELAYED modifiers not supported |
+| [REPLACE](./SQL-Reference/Data-Manipulation-Language/upsert/replace.md) | REPLACE only detects conflicts on PRIMARY KEY; secondary UNIQUE index conflicts throw ERROR 1062 (MySQL 8.0 handles both). Constraints section incorrectly states UNIQUE index can also trigger REPLACE; this is wrong per actual MO behavior. |
 | [UPDATE](./SQL-Reference/Data-Manipulation-Language/update.md) | LOW_PRIORITY and IGNORE modifiers are syntactically accepted but have no effect |
+| [UPDATE](./SQL-Reference/Data-Manipulation-Language/update.md) | PARTITION clause not supported |
+| [UPSERT](./SQL-Reference/Data-Manipulation-Language/upsert/upsert.md) | INSERT IGNORE does not suppress NOT NULL or type-conversion errors (MySQL 8.0 does) |
+| [UPSERT](./SQL-Reference/Data-Manipulation-Language/upsert/upsert.md) | INSERT ON DUPLICATE KEY UPDATE only triggers on PRIMARY KEY conflicts; UNIQUE index conflicts are detected but result in errors (ERROR 1062 or ERROR 20102) rather than triggering ON DUPLICATE KEY UPDATE |
+| [UPSERT](./SQL-Reference/Data-Manipulation-Language/upsert/upsert.md) | REPLACE does not support REPLACE ... WHERE (parser bug) |
 
 ### DQL
 
 | Statement | Difference from MySQL |
 |---|---|
-| [FULL JOIN](./SQL-Reference/Data-Query-Language/join/full-join.md) | FULL JOIN / FULL OUTER JOIN is not supported. Emulate with LEFT JOIN UNION RIGHT JOIN. |
-| [OUTER JOIN](./SQL-Reference/Data-Query-Language/join/outer-join.md) | Overview page that includes FULL OUTER JOIN, which MySQL 8.0 does not support. |
+| [Combining Queries (UNION, INTERSECT, MINUS)](./SQL-Reference/Data-Query-Language/union-intersect-minus-overview.md) | MINUS keyword is MO-specific; MySQL 8.0.31+ uses EXCEPT for the same set-difference semantics. MINUS ALL is not yet implemented in MO while MySQL 8.0.31+ supports EXCEPT ALL. |
+| [Combining Queries (UNION, INTERSECT, MINUS)](./SQL-Reference/Data-Query-Language/union-intersect-minus-overview.md) | INTERSECT was added in MySQL 8.0.31; both MO and MySQL support INTERSECT and INTERSECT ALL with matching semantics. |
+| [Combining Queries (UNION, INTERSECT, MINUS)](./SQL-Reference/Data-Query-Language/union-intersect-minus-overview.md) | UNION is standard across both, but MO's type coercion in UNION columns is stricter (errors on incompatible types where MySQL silently coerces). |
+| [Derived Tables](./SQL-Reference/Data-Query-Language/subqueries/derived-tables.md) | LATERAL derived tables are not supported in MO (MySQL 8.0.14+ supports LATERAL for correlated subqueries in FROM clause) |
+| [FULL JOIN](./SQL-Reference/Data-Query-Language/join/full-join.md) | FULL JOIN with ON clause produces different errors on MO (missing FROM-clause entry) vs MySQL 8.0 (Unknown column in ON clause). FULL JOIN with USING returns INNER JOIN results on both (neither returns unmatched rows). FULL OUTER JOIN produces a syntax error on both. MySQL 8.0 does not natively support either FULL JOIN or FULL OUTER JOIN. |
+| [INTERSECT](./SQL-Reference/Data-Query-Language/intersect.md) | INTERSECT was added in MySQL 8.0.31; MO INTERSECT and INTERSECT ALL semantics match MySQL 8.0 (both return identical results for common test cases including duplicate handling) |
+| [JOIN](./SQL-Reference/Data-Query-Language/join/join.md) | FULL JOIN and FULL OUTER JOIN are not fully supported (FULL JOIN with ON produces errors, FULL JOIN with USING returns INNER JOIN results, FULL OUTER JOIN is a syntax error); MySQL 8.0 also does not support FULL JOIN/OUTER JOIN natively |
+| [OUTER JOIN](./SQL-Reference/Data-Query-Language/join/outer-join.md) | Overview page that includes FULL OUTER JOIN; neither MO nor MySQL 8.0 natively support FULL OUTER JOIN (MO produces syntax error, same as MySQL) |
 | [SELECT](./SQL-Reference/Data-Query-Language/select.md) | SELECT … FOR UPDATE only supports single-table queries |
 | [SELECT](./SQL-Reference/Data-Query-Language/select.md) | SELECT INTO OUTFILE is only partially supported |
-| [SELECT](./SQL-Reference/Data-Query-Language/select.md) | Unqualified SELECT ... FROM DUAL requires explicit database name (SELECT ... FROM dbname.DUAL) |
 | [SELECT](./SQL-Reference/Data-Query-Language/select.md) | AS OF TIMESTAMP time-travel queries require PITR/snapshot to be enabled on the database; without PITR the syntax produces an error |
+| [SELECT](./SQL-Reference/Data-Query-Language/select.md) | SELECT ... FOR SHARE is not supported |
+| [SELECT](./SQL-Reference/Data-Query-Language/select.md) | FOR UPDATE NOWAIT and SKIP LOCKED modifiers are not supported |
+| [SELECT](./SQL-Reference/Data-Query-Language/select.md) | GROUP BY ... WITH ROLLUP row ordering differs: MO places rollup summary rows at the top of the result set, while MySQL 8.0 places them at the bottom (standard MySQL grouping order) |
 | [SUBQUERY](./SQL-Reference/Data-Query-Language/subqueries/subquery.md) | Multi-column scalar subquery comparisons (e.g., WHERE (a,b) = (SELECT ...)) are not supported; use multi-column IN instead |
+| [UNION](./SQL-Reference/Data-Query-Language/union.md) | UNION type coercion is strict: MO errors on incompatible types in UNION columns (e.g., INT vs VARCHAR), while MySQL 8.0 silently coerces (e.g., varchar to int converts to 0) |
+| [UNION](./SQL-Reference/Data-Query-Language/union.md) | UNION ALL type coercion is similarly strict compared to MySQL 8.0's lenient coercion |
+| [WITH (Common Table Expressions)](./SQL-Reference/Data-Query-Language/with-cte.md) | Outer joins (LEFT JOIN, RIGHT JOIN, OUTER JOIN) are not allowed in recursive CTE members; MySQL 8.0 permits them except when the recursive CTE is on the right side of a LEFT JOIN (MySQL allows LEFT JOIN with CTE on the left side; MO rejects all outer joins in recursive CTEs regardless of position) |
 
 ### DCL — Data Control Language
 
 | Statement | Difference from MySQL |
 |---|---|
 | [ALTER USER](./SQL-Reference/Data-Control-Language/alter-user.md) | Only ALTER USER can change passwords; account-limit clauses not honoured |
+| [ALTER USER](./SQL-Reference/Data-Control-Language/alter-user.md) | Password management options (PASSWORD EXPIRE, PASSWORD HISTORY, PASSWORD REUSE INTERVAL, PASSWORD REQUIRE CURRENT, FAILED_LOGIN_ATTEMPTS, PASSWORD_LOCK_TIME) not supported |
+| [ALTER USER](./SQL-Reference/Data-Control-Language/alter-user.md) | Account locking (ACCOUNT LOCK/UNLOCK) not supported |
+| [ALTER USER](./SQL-Reference/Data-Control-Language/alter-user.md) | REQUIRE clause (TLS/SSL enforcement) not supported |
+| [ALTER USER](./SQL-Reference/Data-Control-Language/alter-user.md) | COMMENT and ATTRIBUTE modification not supported |
+| [ALTER USER](./SQL-Reference/Data-Control-Language/alter-user.md) | Multiple users per statement not supported (MySQL 8.0 allows user [, user] ...) |
 | [CREATE ROLE](./SQL-Reference/Data-Control-Language/create-role.md) | Role exists inside MatrixOne's multi-account model; roles are account-scoped, not server-global as in MySQL. |
 | [CREATE USER](./SQL-Reference/Data-Control-Language/create-user.md) | IDENTIFIED BY is the only supported password form; IDENTIFIED WITH plugins not supported |
 | [CREATE USER](./SQL-Reference/Data-Control-Language/create-user.md) | Connection-IP whitelists and connection-limit clauses not supported |
-| [CREATE USER](./SQL-Reference/Data-Control-Language/create-user.md) | COMMENT and ATTRIBUTE clauses are accepted syntactically but not honoured |
+| [CREATE USER](./SQL-Reference/Data-Control-Language/create-user.md) | COMMENT and ATTRIBUTE clauses not supported |
 | [CREATE USER](./SQL-Reference/Data-Control-Language/create-user.md) | 'user'@'host' syntax is accepted and host is stored in mo_catalog.mo_user.user_host but may not restrict connections; users are scoped to the current account, not server-global as in MySQL |
+| [CREATE USER](./SQL-Reference/Data-Control-Language/create-user.md) | Password management options (PASSWORD EXPIRE, PASSWORD HISTORY, PASSWORD REUSE INTERVAL, PASSWORD REQUIRE CURRENT) not supported |
+| [CREATE USER](./SQL-Reference/Data-Control-Language/create-user.md) | Account locking (ACCOUNT LOCK/UNLOCK) not supported |
+| [CREATE USER](./SQL-Reference/Data-Control-Language/create-user.md) | REQUIRE clause (TLS/SSL enforcement) not supported |
 | [DROP ROLE](./SQL-Reference/Data-Control-Language/drop-role.md) | Role exists inside MatrixOne's multi-account model; roles are account-scoped, not server-global as in MySQL. |
 | [DROP USER](./SQL-Reference/Data-Control-Language/drop-user.md) | User identifier is a bare username scoped to the current account; MySQL uses 'user'@'host' tuples. |
 | [GRANT](./SQL-Reference/Data-Control-Language/grant.md) | Authorization logic differs from MySQL — MatrixOne evaluates via its role/account model |
 | [GRANT](./SQL-Reference/Data-Control-Language/grant.md) | User identifier is a bare username scoped to the current account; MySQL uses 'user'@'host' tuples |
+| [GRANT](./SQL-Reference/Data-Control-Language/grant.md) | AS user [WITH ROLE ...] clause (MySQL 8.0 privilege restriction) not supported |
+| [GRANT](./SQL-Reference/Data-Control-Language/grant.md) | GRANT privilege ... TO only accepts roles; users receive privileges indirectly through role membership (GRANT role TO user) |
+| [GRANT](./SQL-Reference/Data-Control-Language/grant.md) | WITH ADMIN OPTION for role grants is not supported |
 | [REVOKE](./SQL-Reference/Data-Control-Language/revoke.md) | Recovery logic differs from MySQL — privileges return to the role/account graph |
 | [REVOKE](./SQL-Reference/Data-Control-Language/revoke.md) | User identifier is a bare username scoped to the current account; MySQL uses 'user'@'host' tuples |
+| [REVOKE](./SQL-Reference/Data-Control-Language/revoke.md) | IGNORE UNKNOWN USER clause (MySQL 8.0.30+) not supported |
 
 ### Other
 
 | Statement | Difference from MySQL |
 |---|---|
-| [EXPLAIN](./SQL-Reference/Other/Explain/explain.md) | Output format mirrors PostgreSQL, not MySQL |
-| [EXPLAIN](./SQL-Reference/Other/Explain/explain.md) | JSON output not supported |
-| [EXPLAIN Output Format](./SQL-Reference/Other/Explain/explain-workflow.md) | Output format mirrors PostgreSQL; JSON output not supported |
-| [Get information with EXPLAIN ANALYZE](./SQL-Reference/Other/Explain/explain-analyze.md) | Output format mirrors PostgreSQL; JSON output not supported |
-| [PREPARE](./SQL-Reference/Other/Prepared-Statements/prepare.md) | MatrixOne cannot PREPARE SET statements |
+| [DEALLOCATE PREPARE](./SQL-Reference/Other/Prepared-Statements/deallocate.md) | DEALLOCATE PREPARE on a non-existent statement silently succeeds; MySQL returns ERROR 1243 (Unknown prepared statement handler). |
+| [DESCRIBE / DESC](./SQL-Reference/Other/describe.md) | DESCRIBE/DESC output includes an extra `Comment` column (7 columns total vs MySQL's 6). |
+| [DESCRIBE / DESC](./SQL-Reference/Other/describe.md) | Type names are displayed in uppercase with display widths (e.g., `INT(32)`, `FLOAT(0)`, `TIMESTAMP(0)`) instead of MySQL's lowercase without widths (e.g., `int`, `float`, `timestamp`). |
+| [DESCRIBE / DESC](./SQL-Reference/Other/describe.md) | Column name filter (`DESC tbl_name col_name`) is non-functional; all columns are returned. |
+| [DESCRIBE / DESC](./SQL-Reference/Other/describe.md) | Wild pattern (`DESC tbl_name 'pattern'`) not supported; produces syntax error. |
+| [DESCRIBE / DESC](./SQL-Reference/Other/describe.md) | For TIMESTAMP columns with DEFAULT CURRENT_TIMESTAMP, MO does not show `DEFAULT_GENERATED` in the Extra column as MySQL does. |
+| [EXPLAIN](./SQL-Reference/Other/Explain/explain.md) | Output format is a single QUERY PLAN column with tree-structured text (PostgreSQL-style); MySQL uses a multi-column tabular format with id, select_type, table, partitions, type, possible_keys, key, key_len, ref, rows, filtered, Extra |
+| [EXPLAIN](./SQL-Reference/Other/Explain/explain.md) | JSON output (FORMAT=JSON) not supported; MO returns syntax error |
+| [EXPLAIN](./SQL-Reference/Other/Explain/explain.md) | FORMAT=TREE and FORMAT=TRADITIONAL not supported; FORMAT=TEXT bare keyword also errors; only bare keyword forms (EXPLAIN, EXPLAIN ANALYZE, EXPLAIN VERBOSE) work |
+| [EXPLAIN](./SQL-Reference/Other/Explain/explain.md) | EXPLAIN FOR CONNECTION not supported (returns internal error) |
+| [EXPLAIN](./SQL-Reference/Other/Explain/explain.md) | EXPLAIN (ANALYZE TRUE/FALSE) and EXPLAIN (VERBOSE TRUE/FALSE) parenthesized boolean syntax WORKS in MO 3.0.12, contrary to doc claims; only parenthesized FORMAT syntax is unsupported |
+| [EXPLAIN Output Format](./SQL-Reference/Other/Explain/explain-workflow.md) | Output is a single QUERY PLAN column with tree-structured text; MySQL uses multi-column tabular EXPLAIN format |
+| [EXPLAIN Output Format](./SQL-Reference/Other/Explain/explain-workflow.md) | JSON output not supported |
+| [EXPLAIN Output Format](./SQL-Reference/Other/Explain/explain-workflow.md) | Node types (Sink, Sink Scan, PreInsert, Fuzzy Filter, etc.) are MO-specific and have no MySQL equivalent |
+| [Get information with EXPLAIN ANALYZE](./SQL-Reference/Other/Explain/explain-analyze.md) | Output format mirrors PostgreSQL (QUERY PLAN tree with Analyze sub-lines showing timeConsumed, waitTime, inputRows, outputRows, InputSize, OutputSize, MemorySize); MySQL 8.0 EXPLAIN ANALYZE uses TREE format with cost estimation and actual time in a different structure |
+| [Get information with EXPLAIN ANALYZE](./SQL-Reference/Other/Explain/explain-analyze.md) | JSON output not supported |
+| [Get information with EXPLAIN ANALYZE](./SQL-Reference/Other/Explain/explain-analyze.md) | MO EXPLAIN ANALYZE produces one output row per plan tree line; MySQL produces a single row with the full plan |
+| [PREPARE](./SQL-Reference/Other/Prepared-Statements/prepare.md) | MatrixOne cannot PREPARE SET, DO, or other TCL/DCL statements |
+| [PREPARE](./SQL-Reference/Other/Prepared-Statements/prepare.md) | Repreparation on parameter type change may throw a cast error instead of silently converting the value (e.g., passing a string to an integer parameter). |
 | [SET ROLE](./SQL-Reference/Other/Set/set-role.md) | Accepts a single role name only; MySQL 8.0 also supports NONE, DEFAULT, ALL, ALL EXCEPT role_list, and role lists. |
 | [SHOW COLLATION](./SQL-Reference/Other/SHOW-Statements/show-collation.md) | Only utf8mb4_bin is effective; other collations appear but are inert |
-| [SHOW CREATE DATABASE](./SQL-Reference/Other/SHOW-Statements/show-create-database.md) | Output format may differ from MySQL; MatrixOne uses its own SQL dialect in generated CREATE statements |
+| [SHOW COLLATION](./SQL-Reference/Other/SHOW-Statements/show-collation.md) | MO 3.0.12 returns 11 collations (with `Default` and `Pad_attribute` columns); older doc examples show only 1 row with 5 columns |
+| [SHOW COLLATION](./SQL-Reference/Other/SHOW-Statements/show-collation.md) | Output columns (Collation, Charset, Id, Default, Compiled, Sortlen, Pad_attribute) differ slightly from MySQL which also includes Pad_attribute |
+| [SHOW COLUMNS](./SQL-Reference/Other/SHOW-Statements/show-columns.md) | MO SHOW COLUMNS (without FULL) already includes the `Comment` column; MySQL only shows Comment with FULL |
+| [SHOW COLUMNS](./SQL-Reference/Other/SHOW-Statements/show-columns.md) | MO SHOW FULL COLUMNS returns Collation and Privileges columns but Collation is always NULL |
+| [SHOW COLUMNS](./SQL-Reference/Other/SHOW-Statements/show-columns.md) | MO accepts EXTENDED keyword (SHOW EXTENDED COLUMNS) and FIELDS synonym (SHOW FIELDS), both returning same columns as SHOW COLUMNS |
+| [SHOW COLUMNS](./SQL-Reference/Other/SHOW-Statements/show-columns.md) | MO Type column includes display width (e.g. INT(32)) while MySQL shows just int |
+| [SHOW CREATE DATABASE](./SQL-Reference/Other/SHOW-Statements/show-create-database.md) | Output omits CHARACTER SET, COLLATE, and ENCRYPTION clauses present in MySQL 8.0 SHOW CREATE DATABASE output |
 | [SHOW CREATE TABLE](./SQL-Reference/Other/SHOW-Statements/show-create-table.md) | Output reflects MatrixOne-specific extensions (CLUSTER BY, USING IVFFLAT/HNSW, etc.) |
+| [SHOW CREATE TABLE](./SQL-Reference/Other/SHOW-Statements/show-create-table.md) | MO output omits ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci appended by MySQL |
 | [SHOW CREATE VIEW](./SQL-Reference/Other/SHOW-Statements/show-create-view.md) | DEFINER = user clause absent from output; SQL SECURITY {DEFINER\|INVOKER} is emitted |
-| [SHOW FUNCTION STATUS](./SQL-Reference/Other/SHOW-Statements/show-function-status.md) | Lists MatrixOne SQL/Python functions, not MySQL stored routines |
-| [SHOW GRANTS](./SQL-Reference/Other/SHOW-Statements/show-grants.md) | Results reflect MatrixOne role/account graph and differ from MySQL significantly |
+| [SHOW CREATE VIEW](./SQL-Reference/Other/SHOW-Statements/show-create-view.md) | MO output lacks ALGORITHM=UNDEFINED clause that MySQL always includes |
+| [SHOW CREATE VIEW](./SQL-Reference/Other/SHOW-Statements/show-create-view.md) | MO does not fully qualify column references (MySQL outputs db.table.col AS alias) |
+| [SHOW CREATE VIEW](./SQL-Reference/Other/SHOW-Statements/show-create-view.md) | MO uses unquoted identifiers; MySQL backtick-quotes database, table, and column names |
+| [SHOW CREATE VIEW](./SQL-Reference/Other/SHOW-Statements/show-create-view.md) | The rendered Create View output shows `CREATE SQL SECURITY DEFINER VIEW` (not `CREATE ALGORITHM=UNDEFINED DEFINER=user SQL SECURITY DEFINER VIEW` as MySQL does) |
+| [SHOW FUNCTION STATUS](./SQL-Reference/Other/SHOW-Statements/show-function-status.md) | Lists MatrixOne SQL/Python functions; MySQL shows stored routines AND built-in sys schema functions (e.g. extract_schema_from_file_name, format_bytes) |
+| [SHOW FUNCTION STATUS](./SQL-Reference/Other/SHOW-Statements/show-function-status.md) | MO only shows user-defined functions; MySQL shows all functions including built-in ones |
+| [SHOW GRANTS](./SQL-Reference/Other/SHOW-Statements/show-grants.md) | Grant syntax output is completely different: MO uses MO-specific format (GRANT create account ON account, GRANT table all ON table) instead of MySQL standard format (GRANT SELECT, INSERT, UPDATE, DELETE ON *.*) |
+| [SHOW GRANTS](./SQL-Reference/Other/SHOW-Statements/show-grants.md) | MO output includes backtick-quoted user@host inside grant statements; MySQL uses quoted user@host format with TO clause |
+| [SHOW GRANTS](./SQL-Reference/Other/SHOW-Statements/show-grants.md) | USING role_list clause not supported |
+| [SHOW GRANTS](./SQL-Reference/Other/SHOW-Statements/show-grants.md) | MO does not support SHOW GRANTS FOR CURRENT_USER (or CURRENT_USER()) as a shorthand for the current user |
 | [SHOW INDEX](./SQL-Reference/Other/SHOW-Statements/show-index.md) | Reflects MatrixOne index model — secondary index rows appear but may not accelerate queries |
-| [SHOW PROCESSLIST](./SQL-Reference/Other/SHOW-Statements/show-processlist.md) | Output differs significantly from MySQL due to different implementation |
-| [SHOW TABLE STATUS](./SQL-Reference/Other/SHOW-Statements/show-table-status.md) | Result columns differ from MySQL; MatrixOne uses TAE storage engine metadata instead of InnoDB statistics |
-| [SHOW TABLE STATUS](./SQL-Reference/Other/SHOW-Statements/show-table-status.md) | Engine column always shows TAE instead of InnoDB |
-| [SHOW TABLES](./SQL-Reference/Other/SHOW-Statements/show-tables.md) | Result column is named 'name' rather than MySQL's 'Tables_in_<dbname>'. |
+| [SHOW INDEX](./SQL-Reference/Other/SHOW-Statements/show-index.md) | Index_type may be empty (MySQL typically shows BTREE) |
+| [SHOW INDEX](./SQL-Reference/Other/SHOW-Statements/show-index.md) | Index_comment column is present (MySQL 8.0 also has Index_comment; difference is minor) |
+| [SHOW INDEX](./SQL-Reference/Other/SHOW-Statements/show-index.md) | Index_params column is present (MySQL does not have this column) |
+| [SHOW INDEX](./SQL-Reference/Other/SHOW-Statements/show-index.md) | Expression column shows the column name for non-functional key parts; MySQL shows NULL for non-functional key parts |
+| [SHOW INDEX](./SQL-Reference/Other/SHOW-Statements/show-index.md) | MO SHOW INDEX returns 16 columns vs MySQL 15 columns (MO adds Index_params, lacks the extra Collation behavior) |
+| [SHOW PROCESSLIST](./SQL-Reference/Other/SHOW-Statements/show-processlist.md) | MO returns 19 columns (node_id, conn_id, session_id, account, user, host, db, session_start, command, info, txn_id, statement_id, statement_type, query_type, sql_source_type, query_start, client_host, role, proxy_host) vs MySQL 8 columns (Id, User, Host, db, Command, Time, State, Info) |
+| [SHOW PROCESSLIST](./SQL-Reference/Other/SHOW-Statements/show-processlist.md) | MO column names differ completely: conn_id vs Id, session_start vs Time, no State column, MO adds txn_id/statement_id/statement_type/query_type/sql_source_type/query_start/client_host/role/proxy_host |
+| [SHOW PROCESSLIST](./SQL-Reference/Other/SHOW-Statements/show-processlist.md) | SHOW FULL PROCESSLIST is accepted by MO but returns same columns as SHOW PROCESSLIST (no behavioral difference) |
+| [SHOW TABLE STATUS](./SQL-Reference/Other/SHOW-Statements/show-table-status.md) | Result columns differ from MySQL: MO has 19 cols (adds Role_id, Role_name; omits Version); MySQL has 18 cols (includes Version; no Role_id/Role_name) |
+| [SHOW TABLE STATUS](./SQL-Reference/Other/SHOW-Statements/show-table-status.md) | Engine column always shows Tae instead of InnoDB |
+| [SHOW TABLE STATUS](./SQL-Reference/Other/SHOW-Statements/show-table-status.md) | MO's Auto_increment defaults to 0 (MySQL shows NULL for tables without auto-increment) |
+| [SHOW TABLE STATUS](./SQL-Reference/Other/SHOW-Statements/show-table-status.md) | MO shows views in SHOW TABLE STATUS with Engine=NULL and Comment=VIEW (same as MySQL behavior) |
+| [SHOW TABLES](./SQL-Reference/Other/SHOW-Statements/show-tables.md) | Output column header uses lowercase database name (Tables_in_<db> vs MySQL's Tables_in_<DB>) |
+| [SHOW TABLES](./SQL-Reference/Other/SHOW-Statements/show-tables.md) | MO does not display a parenthesized LIKE pattern in the column header unlike MySQL |
 | [SHOW VARIABLES](./SQL-Reference/Other/SHOW-Statements/show-variables.md) | System variables are mostly syntactic stubs; actual behaviour differs from MySQL |
+| [SHOW VARIABLES](./SQL-Reference/Other/SHOW-Statements/show-variables.md) | GLOBAL and SESSION scope modifiers are syntactically accepted for both SET and SHOW; SHOW GLOBAL vs SHOW SESSION return different values when SESSION has been overridden, same as MySQL |
+| [SHOW VARIABLES](./SQL-Reference/Other/SHOW-Statements/show-variables.md) | MO has a completely different set of variable names (e.g. testbotchvar_nodyn, testbothvar_dyn) alongside MySQL-compatible ones (autocommit, sql_mode) |
+| [SHOW VARIABLES](./SQL-Reference/Other/SHOW-Statements/show-variables.md) | Variable values use lowercase ('on'/'off') while MySQL uses uppercase ('ON'/'OFF') |
+
+### Language Structure
+
+| Statement | Difference from MySQL |
+|---|---|
+| [Comments](./Language-Structure/comment.md) | Supports // single-line comments (C++ style); MySQL 8.0 does not support // comments |
+| [Comments](./Language-Structure/comment.md) | Does not support /*!...*/ conditional/executable comments (MySQL 8.0 does) |
+| [Keywords](./Language-Structure/keywords.md) | MatrixOne-specific keywords marked with (M) in the keyword list |
+
+### Limitations
+
+| Statement | Difference from MySQL |
+|---|---|
+| [Partition Support](./Limitations/mo-partition-support.md) | All partition types (KEY, HASH, RANGE, LIST) are accepted syntactically but not enforced at storage or plan level; tables are created without actual partitioning |
+
+### Operators
+
+| Statement | Difference from MySQL |
+|---|---|
+| [CAST](./Operators/operators/cast-functions-and-operators/cast.md) | CAST('non-numeric' AS SIGNED) raises an error instead of returning 0 or NULL (MySQL 8.0 returns 0 with a warning) |
+| [CAST](./Operators/operators/cast-functions-and-operators/cast.md) | CAST(datetime_typed_value AS CHAR) may fail in some cases (MySQL 8.0 supports it universally) |
+| [CONVERT](./Operators/operators/cast-functions-and-operators/convert.md) | CONVERT('non-numeric', SIGNED) raises an error instead of returning 0 or NULL |
+| [CONVERT](./Operators/operators/cast-functions-and-operators/convert.md) | CONVERT(datetime_typed_value, CHAR) may fail in some cases (MySQL 8.0 supports it universally) |
+| [IF()](./Operators/operators/flow-control-functions/function_if.md) | IF(NULL, expr2, expr3) raises an error instead of returning expr3 (MySQL 8.0 returns expr3) |
+| [INTERVAL](./Operators/interval.md) | INTERVAL is internally implemented as a two-argument function rather than as a true SQL keyword; documented syntax INTERVAL(expr,unit) differs from MySQL's INTERVAL expr unit keyword-style notation |
+| [INTERVAL](./Operators/interval.md) | Malformed dates in DATE_ADD/DATE_SUB raise errors rather than returning NULL (MySQL 8.0 returns NULL) |
 
 ### Data Types
 
 | Statement | Difference from MySQL |
 |---|---|
 | [Data Type Conversion](./Data-Types/data-type-conversion.md) | BOOLEAN → DECIMAL cast is not supported; other common conversions are supported |
+| [Data Types Overview](./Data-Types/data-types.md) | TIMESTAMP range is 0001-01-01 to 9999-12-31 (MySQL: 1970-01-01 to 2038-01-19) |
+| [Data Types Overview](./Data-Types/data-types.md) | DATETIME lower bound is 0001-01-01 (MySQL: 1000-01-01) |
+| [Data Types Overview](./Data-Types/data-types.md) | Non-standard type names FLOAT32/FLOAT64 in addition to MySQL's FLOAT/DOUBLE |
+| [Fixed-Point Types (Exact Value) - DECIMAL](./Data-Types/fixed-point-types.md) | DECIMAL precision supports up to 65 digits via DECIMAL256 |
+| [TIMESTAMP Initialization](./Data-Types/date-time-data-types/timestamp-initialization.md) | TIMESTAMP range is 0001-9999 (MySQL 8.0: 1970-2038); auto-initialization behavior near range boundaries may differ |
+| [TIMESTAMP Initialization](./Data-Types/date-time-data-types/timestamp-initialization.md) | DATETIME DEFAULT 0 is not supported (MySQL 8.0 supports it) |
+| [TIMESTAMP Initialization](./Data-Types/date-time-data-types/timestamp-initialization.md) | TIMESTAMP ON UPDATE CURRENT_TIMESTAMP without explicit DEFAULT defaults to NULL (MySQL 8.0 defaults to 0) |
+| [TIMESTAMP Initialization](./Data-Types/date-time-data-types/timestamp-initialization.md) | DATETIME NOT NULL ON UPDATE CURRENT_TIMESTAMP without explicit DEFAULT rejects NULL insert (MySQL 8.0 defaults to 0) |
 
 ### Functions & Operators
 
@@ -344,7 +463,7 @@ Each row links to the relevant MatrixOne documentation page for full details.
 | [AES_DECRYPT()](./Functions-and-Operators/String/aes_decrypt.md) | MatrixOne AES_DECRYPT does not accept the optional kdf_name / salt / info KDF arguments present in MySQL 8.0. |
 | [AES_ENCRYPT()](./Functions-and-Operators/String/aes_encrypt.md) | MatrixOne supports only aes-128-ecb and aes-256-cbc block modes; MySQL 8.0 also supports the full set of ECB/CBC/CFB/OFB variants at multiple key sizes. |
 | [AES_ENCRYPT()](./Functions-and-Operators/String/aes_encrypt.md) | MatrixOne AES_ENCRYPT does not accept the optional kdf_name / salt / info KDF arguments present in MySQL 8.0. |
-| [CLUSTER_CENTERS](./Functions-and-Operators/Vector/cluster_centers.md) | CLUSTER_CENTERS() is planned but not yet implemented (ERROR 20102 on MO 3.0.12) |
+| [AVG](./Functions-and-Operators/Aggregate-Functions/avg.md) | AVG() returns DOUBLE for all input types (MySQL returns DECIMAL for exact-value types) |
 | [CURDATE()](./Functions-and-Operators/Datetime/curdate.md) | curdate()+int returns days since 1970-01-01 rather than coercing both sides to integer and adding like MySQL. |
 | [CURRENT_ROLE()](./Functions-and-Operators/system-ops/current_role.md) | Returns a single active role name; MySQL 8.0 can return multiple comma-separated active roles or 'NONE'. |
 | [CURRENT_USER, CURRENT_USER()](./Functions-and-Operators/system-ops/current_user.md) | The host part may be returned as 'localhost' or the resolved client host rather than MySQL's explicit 'username@host' format. |
@@ -353,13 +472,30 @@ Each row links to the relevant MatrixOne documentation page for full details.
 | [DATE_SUB()](./Functions-and-Operators/Datetime/date-sub.md) | Date literals accept only 'yyyy-mm-dd' and 'yyyymmdd' formats; MySQL accepts wider variants. |
 | [DATE()](./Functions-and-Operators/Datetime/date.md) | Date literals accept only 'yyyy-mm-dd' and 'yyyymmdd' formats; MySQL accepts wider variants (yy-mm-dd, yy/mm/dd, yymmdd, etc.). |
 | [EXTRACT()](./Functions-and-Operators/Datetime/extract.md) | Date literals accept only 'yyyy-mm-dd' and 'yyyymmdd' formats; MySQL accepts wider variants. |
+| [FLOOR()](./Functions-and-Operators/Mathematical/floor.md) | MatrixOne supports an optional second decimals argument (FLOOR(number, decimals)) to specify decimal places; MySQL 8.0 only supports the single-argument form FLOOR(X) |
 | [FROM_BASE64()](./Functions-and-Operators/String/from_base64.md) | FROM_BASE64() may include trailing null bytes in decoded output; MySQL strips them (e.g., FROM_BASE64('YQ==') returns 'a\\0\\0' instead of 'a') |
 | [FROM_UNIXTIME()](./Functions-and-Operators/Datetime/from-unixtime.md) | Date literals accept only 'yyyy-mm-dd' and 'yyyymmdd' formats; MySQL accepts wider variants. |
-| [STAGE_LIST()](./Functions-and-Operators/Other/stage_list.md) | STAGE_LIST() function is not available in this version (ERROR 20105) |
+| [LOAD_FILE()](./Functions-and-Operators/Other/load_file.md) | LOAD_FILE() takes a DATALINK value (file:// or stage:// URL) rather than MySQL's plain filesystem path argument |
+| [OCT(N)](./Functions-and-Operators/String/oct.md) | OCT(N) returns a numeric value rather than MySQL's plain string representation |
+| [RAND()](./Functions-and-Operators/Mathematical/rand.md) | RAND(seed) is not supported; calling RAND(N) with an integer argument produces ERROR 20203 |
+| [REGEXP_INSTR()](./Functions-and-Operators/String/Regular-Expressions/regexp-instr.md) | match_type parameter not yet supported; passing it causes ERROR 20203 |
+| [REGEXP_SUBSTR()](./Functions-and-Operators/String/Regular-Expressions/regexp-substr.md) | match_type parameter not yet supported; passing it causes ERROR 20203 |
+| [SUM](./Functions-and-Operators/Aggregate-Functions/sum.md) | SUM() returns the input integer type rather than DECIMAL for exact-value arguments (MySQL returns DECIMAL) |
 | [TIMESTAMP()](./Functions-and-Operators/Datetime/timestamp.md) | MatrixOne TIMESTAMP range is '0001-01-01'–'9999-12-31' vs MySQL '1970-01-01'–'2038-01-19' (compat doc: Data Types). |
+| [TIMESTAMP()](./Functions-and-Operators/Datetime/timestamp.md) | Two-argument form TIMESTAMP(expr1, expr2) is not supported; MO only supports single-argument TIMESTAMP(expr) |
 | [TO_DAYS()](./Functions-and-Operators/Datetime/to-days.md) | Two-digit year handling differs: MatrixOne completes '08-10-07' to year 0008; MySQL interprets it as 2008. |
 | [TO_DAYS()](./Functions-and-Operators/Datetime/to-days.md) | Dates '0000-00-00' and '0000-01-01' raise an error in MatrixOne rather than being accepted as MySQL does. |
 | [TO_SECONDS()](./Functions-and-Operators/Datetime/to-seconds.md) | Two-digit year handling differs: MatrixOne completes '08-10-07' to year 0008; MySQL interprets it as 2008. |
 | [TO_SECONDS()](./Functions-and-Operators/Datetime/to-seconds.md) | Dates '0000-00-00' and '0000-01-01' raise an error in MatrixOne rather than being accepted as MySQL does. |
 | [UNIX_TIMESTAMP()](./Functions-and-Operators/Datetime/unix-timestamp.md) | Date literals accept only 'yyyy-mm-dd' and 'yyyymmdd' formats; MySQL accepts wider variants. |
 | [YEAR()](./Functions-and-Operators/Datetime/year.md) | Date literals accept only 'yyyy-mm-dd' and 'yyyymmdd' formats; MySQL accepts wider variants. |
+
+### System Variables
+
+| Statement | Difference from MySQL |
+|---|---|
+| [Foreign Key Checks](./Variable/system-variables/foreign_key_checks.md) | With foreign_key_checks=0, dropping a parent table deletes and re-establishes the foreign key relationship when the parent table is rebuilt; MySQL 8.0 preserves FK metadata |
+| [Illegal Login Restrictions](./Variable/system-variables/illegal_login_restrictions.md) | connection_control_failed_connections_threshold and connection_control_max_connection_delay require the Connection-Control plugin in MySQL 8.0 but are built-in in MatrixOne |
+| [Server System Variables](./Variable/system-variables/system-variables-overview.md) | Many system variables are syntactic stubs that do not change actual behavior; only a subset of MySQL system variables are functional |
+| [SQL Mode](./Variable/system-variables/sql-mode.md) | Only ONLY_FULL_GROUP_BY mode is functional; all other SQL modes are accepted syntactically but have no effect |
+| [Time Zone Support](./Variable/system-variables/timezone.md) | Named time zones (e.g., 'America/New_York', 'UTC') are not supported; only (+/-)HH:MM offset format is accepted for time_zone |

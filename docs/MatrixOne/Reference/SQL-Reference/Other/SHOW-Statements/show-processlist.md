@@ -3,7 +3,9 @@ title: "SHOW PROCESSLIST"
 doc_type: reference
 mysql_compat: partial
 differs_from_mysql:
-  - "Output differs significantly from MySQL due to different implementation"
+  - "MO returns 19 columns (node_id, conn_id, session_id, account, user, host, db, session_start, command, info, txn_id, statement_id, statement_type, query_type, sql_source_type, query_start, client_host, role, proxy_host) vs MySQL 8 columns (Id, User, Host, db, Command, Time, State, Info)"
+  - "MO column names differ completely: conn_id vs Id, session_start vs Time, no State column, MO adds txn_id/statement_id/statement_type/query_type/sql_source_type/query_start/client_host/role/proxy_host"
+  - "SHOW FULL PROCESSLIST is accepted by MO but returns same columns as SHOW PROCESSLIST (no behavioral difference)"
 mo_only: []
 since: unknown
 last_updated: 2026-05-08

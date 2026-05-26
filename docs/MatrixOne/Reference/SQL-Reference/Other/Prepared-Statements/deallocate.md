@@ -1,8 +1,9 @@
 ---
 title: "DEALLOCATE PREPARE"
 doc_type: reference
-mysql_compat: full
-differs_from_mysql: []
+mysql_compat: partial
+differs_from_mysql:
+  - "DEALLOCATE PREPARE on a non-existent statement silently succeeds; MySQL returns ERROR 1243 (Unknown prepared statement handler)."
 mo_only: []
 since: unknown
 last_updated: 2026-05-08
@@ -14,7 +15,9 @@ llms_summary: "To deallocate a prepared statement produced with PREPARE, use a D
 
 ## **Description**
 
-To deallocate a prepared statement produced with PREPARE, use a `DEALLOCATE PREPARE` statement that refers to the prepared statement name. Attempting to execute a prepared statement after deallocating it results in an error. If too many prepared statements are created and not deallocated by either the DEALLOCATE PREPARE statement or the end of the session, you might encounter the upper limit enforced by the max_prepared_stmt_count system variable.
+To deallocate a prepared statement produced with PREPARE, use a `DEALLOCATE PREPARE` statement that refers to the prepared statement name. <!-- audit: MEDIUM — DEALLOCATE PREPARE on a non-existent statement name silently succeeds in MO; MySQL returns ERROR 1243 (Unknown prepared statement handler). -->
+
+Attempting to execute a prepared statement after deallocating it results in an error. If too many prepared statements are created and not deallocated by either the DEALLOCATE PREPARE statement or the end of the session, you might encounter the upper limit enforced by the max_prepared_stmt_count system variable.
 
 ## **Syntax**
 

@@ -5,7 +5,10 @@ mysql_compat: partial
 differs_from_mysql:
   - "Reflects MatrixOne index model — secondary index rows appear but may not accelerate queries"
   - "Index_type may be empty (MySQL typically shows BTREE)"
-  - "Index_comment and Index_params columns are present (not in standard MySQL)"
+  - "Index_comment column is present (MySQL 8.0 also has Index_comment; difference is minor)"
+  - "Index_params column is present (MySQL does not have this column)"
+  - "Expression column shows the column name for non-functional key parts; MySQL shows NULL for non-functional key parts"
+  - "MO SHOW INDEX returns 16 columns vs MySQL 15 columns (MO adds Index_params, lacks the extra Collation behavior)"
 mo_only: []
 since: unknown
 last_updated: 2026-05-08

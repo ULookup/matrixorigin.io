@@ -1,8 +1,10 @@
 ---
 title: "UNION"
 doc_type: reference
-mysql_compat: full
-differs_from_mysql: []
+mysql_compat: partial
+differs_from_mysql:
+  - "UNION type coercion is strict: MO errors on incompatible types in UNION columns (e.g., INT vs VARCHAR), while MySQL 8.0 silently coerces (e.g., varchar to int converts to 0)"
+  - "UNION ALL type coercion is similarly strict compared to MySQL 8.0's lenient coercion"
 mo_only: []
 since: unknown
 last_updated: 2026-05-08
@@ -34,6 +36,8 @@ Combining the result sets of two or more queries using the UNION operator requir
 
 - Data types must be same or convertible.
 
+<!-- audit: HIGH — MO's type coercion in UNION is stricter than MySQL 8.0. `SELECT 1 UNION SELECT 'a'` errors on MO ("invalid argument cast to int, bad value a") but succeeds on MySQL (coerces 'a' to 0). `SELECT 1 UNION ALL SELECT 'a'` similarly errors on MO but not MySQL. -->
+
 With `UNION ALL`, repeated lines (if available) are retained in the result.
 
 #### `ORDER BY` and `LIMIT` In `UNION`
@@ -59,7 +63,7 @@ UNION
 ORDER BY a LIMIT 10;
 ```
 
-<!--第二个例子需要确认,暂时不能生效-->
+<!-- audit: LOW — This example (parenthesized UNION with ORDER BY LIMIT on final result) works correctly on MO 3.0.12 and MySQL 8.0. The previous comment claimed it was non-functional, which is no longer accurate. -->
 
 ## **Examples**
 

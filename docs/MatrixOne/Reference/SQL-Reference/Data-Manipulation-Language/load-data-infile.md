@@ -106,6 +106,7 @@ LOAD DATA INFILE 'data.txt' INTO TABLE table1
 
 **FIELDS ENCLOSED BY**
 
+<!-- audit: LOW -- Copy-paste error: this section heading says "FIELDS ENCLOSED BY" but the description starts with "FIELDS TERMINATED BY" which is wrong. Should say "FIELDS ENCLOSED BY". -->
 `FIELDS TERMINATED BY` option specifies the character enclose the input values. `ENCLOSED BY` value must be a single character. If the input values are not necessarily enclosed within quotation marks, use `OPTIONALLY` before the `ENCLOSED BY` option.
 
  **Examples**

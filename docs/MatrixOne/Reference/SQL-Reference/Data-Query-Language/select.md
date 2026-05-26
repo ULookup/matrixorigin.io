@@ -8,6 +8,7 @@ differs_from_mysql:
   - "AS OF TIMESTAMP time-travel queries require PITR/snapshot to be enabled on the database; without PITR the syntax produces an error"
   - "SELECT ... FOR SHARE is not supported"
   - "FOR UPDATE NOWAIT and SKIP LOCKED modifiers are not supported"
+  - "GROUP BY ... WITH ROLLUP row ordering differs: MO places rollup summary rows at the top of the result set, while MySQL 8.0 places them at the bottom (standard MySQL grouping order)"
 
 mo_only:
   - "{ AS OF TIMESTAMP 'YYYY-MM-DD HH:MM:SS' } — time-travel query against enabled snapshot/PITR"
@@ -35,6 +36,7 @@ SELECT
     [WHERE where_condition]
     [GROUP BY {col_name | expr | position}
       [ASC | DESC] [WITH ROLLUP]]
+<!-- audit: MEDIUM — WITH ROLLUP row ordering: MO places rollup summary rows at the top (first), MySQL 8.0 places them at the bottom (last). The aggregated values are identical, but consumers relying on row ordering will see different results. -->
     [HAVING where_condition]
     [ORDER BY {col_name | expr | position}
       [ASC | DESC]] [ NULLS { FIRST | LAST } ]

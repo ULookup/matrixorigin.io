@@ -2,7 +2,11 @@
 title: "SHOW COLUMNS"
 doc_type: reference
 mysql_compat: partial
-differs_from_mysql: []
+differs_from_mysql:
+  - "MO SHOW COLUMNS (without FULL) already includes the `Comment` column; MySQL only shows Comment with FULL"
+  - "MO SHOW FULL COLUMNS returns Collation and Privileges columns but Collation is always NULL"
+  - "MO accepts EXTENDED keyword (SHOW EXTENDED COLUMNS) and FIELDS synonym (SHOW FIELDS), both returning same columns as SHOW COLUMNS"
+  - "MO Type column includes display width (e.g. INT(32)) while MySQL shows just int"
 mo_only: []
 since: unknown
 last_updated: 2026-05-08
@@ -16,6 +20,7 @@ llms_summary: "SHOW COLUMNS displays information about the columns in a given ta
 
 `SHOW COLUMNS` displays information about the columns in a given table.
 
+<!-- audit: HIGH -- doc says SHOW [FULL] {COLUMNS} but doesn't explain that MO always includes Comment (unlike MySQL which only includes Comment with FULL). Also omits SHOW EXTENDED COLUMNS and SHOW FIELDS synonym support. -->
 ## **Syntax**
 
 ```

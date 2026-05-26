@@ -3,7 +3,7 @@ title: "WITH (Common Table Expressions)"
 doc_type: reference
 mysql_compat: partial
 differs_from_mysql:
-  - "Outer joins (LEFT JOIN, RIGHT JOIN, OUTER JOIN) are not allowed in recursive CTE members; MySQL 8.0 permits them"
+  - "Outer joins (LEFT JOIN, RIGHT JOIN, OUTER JOIN) are not allowed in recursive CTE members; MySQL 8.0 permits them except when the recursive CTE is on the right side of a LEFT JOIN (MySQL allows LEFT JOIN with CTE on the left side; MO rejects all outer joins in recursive CTEs regardless of position)"
 mo_only: []
 since: unknown
 last_updated: 2026-05-08
@@ -140,6 +140,7 @@ Executing this query will provide information about the hierarchical relationshi
     + Using `HAVING` to filter results after grouping.
     + Scalar aggregation applies an aggregate function (like `SUM`, `AVG`, etc.) to a set of rows and returns a single value.
     + Outer join operations like `LEFT`, `RIGHT`, and `OUTER JOIN` (though `INNER JOIN` is allowed).
+<!-- audit: LOW — MO rejects ALL outer joins in recursive CTE members. MySQL 8.0 only rejects LEFT JOIN when the recursive CTE appears on the right side (e.g., `FROM t LEFT JOIN cte ON ...`); MySQL allows `FROM cte LEFT JOIN t ON ...` (CTE on left) while MO rejects both. -->
     + Subqueries.
 
 ## **Examples**

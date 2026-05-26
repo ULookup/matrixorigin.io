@@ -20,7 +20,7 @@ llms_summary: "SHOW SEQUENCES is used to view the name and list type of the curr
 ## **Syntax**
 
 ```
-> SHOW SQUENCES
+> SHOW SEQUENCES
        [WHERE expr]
 ```
 

@@ -1,3 +1,15 @@
+---
+title: "CAST"
+doc_type: reference
+mysql_compat: partial
+differs_from_mysql:
+  - "CAST('non-numeric' AS SIGNED) raises an error instead of returning 0 or NULL (MySQL 8.0 returns 0 with a warning)"
+  - "CAST(datetime_typed_value AS CHAR) may fail in some cases (MySQL 8.0 supports it universally)"
+mo_only: []
+since: unknown
+last_updated: 2026-05-21
+llms_summary: "CAST() function for type conversion. Mostly MySQL-compatible; non-numeric strings cannot be cast to numeric types, and some DATETIME-to-CHAR casts may fail."
+---
 # **CAST**
 
 ## **Description**
@@ -54,6 +66,4 @@ mysql> SELECT CAST(a AS CHAR) a_cast, CAST(b AS CHAR) b_cast,CAST(c AS DOUBLE) c
 ## **Constraints**
 
 * Non-numeric character types cannot be converted to numeric types.
-* Numeric and character types with formats of Data cannot be converted to Date.
-* Date and Datetime types cannot be converted to character types.
-* Date and Datetime cannot be converted to each other.
+* Casting a DATETIME type value to CHAR may fail in some cases (CAST(NOW() AS CHAR) works but CAST(a_datetime_column AS CHAR) may not).

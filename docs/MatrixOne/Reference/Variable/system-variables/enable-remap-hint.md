@@ -1,3 +1,14 @@
+---
+title: "enable_remap_hint"
+doc_type: reference
+mysql_compat: mo_only
+differs_from_mysql: []
+mo_only:
+  - "MatrixOne-specific query rewrite hint feature that maps virtual table names to custom queries via JSON-formatted SQL comments; no MySQL equivalent"
+since: unknown
+last_updated: 2026-05-21
+llms_summary: "A system variable that enables the Remap Hint feature for dynamic query rewriting through JSON-formatted comments before SQL statements."
+---
 # enable_remap_hint Query Rewrite Hint Support
 
 `enable_remap_hint` is a system variable that enables the Remap Hint feature in SQL queries. When enabled, you can add JSON-formatted comments before SQL statements to map table names to custom queries, achieving dynamic query rewriting.

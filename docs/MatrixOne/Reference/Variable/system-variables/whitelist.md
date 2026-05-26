@@ -1,3 +1,14 @@
+---
+title: "Connection Whitelist"
+doc_type: reference
+mysql_compat: mo_only
+differs_from_mysql: []
+mo_only:
+  - "MatrixOne-specific IP whitelist (validnode_checking + invited_nodes) for restricting database connections by IP address; no direct MySQL equivalent"
+since: unknown
+last_updated: 2026-05-21
+llms_summary: "MatrixOne supports connection whitelisting via validnode_checking and invited_nodes variables to restrict database connections by IP address."
+---
 # Connection whitelist
 
 MatrixOne supports the following variables for restricting only clients with specific IP addresses from connecting to the database:

@@ -1,3 +1,16 @@
+---
+title: "DATALINK Type"
+doc_type: reference
+mysql_compat: mo_only
+differs_from_mysql: []
+mo_only:
+  - "DATALINK data type with STAGE integration, file:// and stage:// URL schemes"
+  - "load_file() integration for reading DATALINK values"
+since: unknown
+last_updated: 2026-05-21
+llms_summary: "MatrixOne-specific DATALINK type for referencing external files via file:// or stage:// URLs. No MySQL 8.0 equivalent."
+---
+
 # DATALINK type
 
 The `DATALINK` type is a special data type used to store links to documents (such as satges) or files. Its main purpose is to store the link address of the document in the database, rather than storing the document itself. This type can be applied in various scenarios, especially when dealing with large-scale document management, providing quick access to documents without actually storing the documents in a database.

@@ -1,3 +1,15 @@
+---
+title: "SERIAL()"
+doc_type: reference
+mysql_compat: mo_only
+differs_from_mysql: []
+mo_only:
+  - "SERIAL() is a MO-specific serialization function with no MySQL 8.0 counterpart"
+since: unknown
+last_updated: 2026-05-21
+llms_summary: "MatrixOne-specific SERIAL() serialization function. No MySQL 8.0 equivalent."
+---
+
 # SERIAL()
 
 ## Function Description

@@ -1,3 +1,14 @@
+---
+title: "mo_ctl Standalone Tools Guide"
+doc_type: reference
+mysql_compat: mo_only
+differs_from_mysql: []
+mo_only:
+  - "mo_ctl is a MatrixOne-specific command-line deployment and management tool"
+since: unknown
+last_updated: 2026-05-22
+llms_summary: "Guide for using mo_ctl in standalone mode for deploying and managing MatrixOne."
+---
 # mo_ctl Standalone Tools Guide
 
 `mo_ctl` Standalone is a command-line tool that helps you with deployment installation, start-stop control, and database connectivity for Standalone MatrixOne.
@@ -77,7 +88,7 @@ bash +x ./install.sh mo_ctl.zip
 
 ## Get started quickly
 
-The Deployment Standalone Edition of MatrixOne can be quickly installed by following these steps, and the detailed guide provides a view of the [Standalone Deployment MatrixOne](../Get-Started/install-standalone-matrixone.md).
+The Deployment Standalone Edition of MatrixOne can be quickly installed by following these steps, and the detailed guide provides a view of the [Standalone Deployment MatrixOne](../../Get-Started/install-standalone-matrixone.md).
 
 1. Use the command `mo_ctl help` to view the tool guide.
 
@@ -153,9 +164,9 @@ Usage         : mo_ctl deploy [mo_version] [force] # deploy mo onto the path con
   e.g.        : mo_ctl deploy             # default, same as mo_ctl deploy 3.0.12
               : mo_ctl deploy main        # deploy development latest version
               : mo_ctl deploy d29764a     # deploy development version d29764a
-              : mo_ctl deploy 3.0.12       # deploy stable verson 3.0.12
-              : mo_ctl deploy force       # delete all under MO_PATH and deploy verson 3.0.12
-              : mo_ctl deploy 3.0.12 force # delete all under MO_PATH and deploy stable verson 3.0.12 from beginning
+              : mo_ctl deploy 3.0.12       # deploy stable version 3.0.12
+              : mo_ctl deploy force       # delete all under MO_PATH and deploy version 3.0.12
+              : mo_ctl deploy 3.0.12 force # delete all under MO_PATH and deploy stable version 3.0.12 from beginning
 ```
 
 ### start - Starts the MatrixOne service

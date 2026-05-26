@@ -289,7 +289,7 @@ github@shpc2-10-222-1-9:/data/mo/main/matrixone/etc/launch$ mo_ctl connect
 2024-08-26 17:44:10.207 UTC+0800    [INFO]    Ok, connecting for user ... 
 Welcome to the MySQL monitor.  Commands end with ; or \g.
 Your MySQL connection id is 10
-Server version: 8.0.30-MatrixOne-v287278 MatrixOne
+Server version: 8.0.30-MatrixOne-v3.0.12 MatrixOne
 
 Copyright (c) 2000, 2024, Oracle and/or its affiliates.
 
@@ -613,7 +613,7 @@ github@VM-32-6-debian:/data/mo/main$ mo_ctl connect
 2024-08-26 18:38:31.124 UTC+0800    [INFO]    Ok, connecting for user ... 
 Welcome to the MariaDB monitor.  Commands end with ; or \g.
 Your MySQL connection id is 3
-Server version: 8.0.30-MatrixOne-v287278 MatrixOne
+Server version: 8.0.30-MatrixOne-v3.0.12 MatrixOne
 
 Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
 

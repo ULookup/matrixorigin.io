@@ -27,15 +27,19 @@ jobs:
           
       - name: Mike Dev Version Snapshot
         if: ${{ github.event.inputs.version == 'main' }}
+        env:
+          MATRIXONE_DOCS_BASE_URL: https://docs.matrixorigin.cn/en/dev
         run: |
-          git fetch --all 
-          git reset --hard origin/main 
-          git pull 
+          git fetch --all
+          git reset --hard origin/main
+          git pull
           git config --global user.email ${{ secrets.GITUSEREMAIL }}
           git config --global user.name ${{ secrets.GITUSERNAME }}
           mike deploy --push dev
       - name: Mike Release Version Snapshot
         if: ${{ github.event.inputs.version != 'main' }}
+        env:
+          MATRIXONE_DOCS_BASE_URL: https://docs.matrixorigin.cn/en/${{ github.event.inputs.version }}
         run: |
           git fetch --all
           git config --global user.email ${{ secrets.GITUSEREMAIL }}

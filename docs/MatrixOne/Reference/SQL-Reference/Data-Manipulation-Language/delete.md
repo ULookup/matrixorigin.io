@@ -3,7 +3,8 @@ title: "DELETE"
 doc_type: reference
 mysql_compat: partial
 differs_from_mysql:
-  - "LOW_PRIORITY, QUICK, IGNORE modifiers not supported"
+  - "LOW_PRIORITY, QUICK, IGNORE modifiers are syntactically accepted but have no effect"
+  - "PARTITION clause not supported"
 mo_only: []
 since: unknown
 last_updated: 2026-05-08

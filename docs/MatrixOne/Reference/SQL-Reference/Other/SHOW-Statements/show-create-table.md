@@ -4,6 +4,7 @@ doc_type: reference
 mysql_compat: partial
 differs_from_mysql:
   - "Output reflects MatrixOne-specific extensions (CLUSTER BY, USING IVFFLAT/HNSW, etc.)"
+  - "MO output omits ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci appended by MySQL"
 mo_only: []
 since: unknown
 last_updated: 2026-05-08

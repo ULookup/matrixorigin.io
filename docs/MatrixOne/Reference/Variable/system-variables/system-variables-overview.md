@@ -1,3 +1,14 @@
+---
+title: "Server System Variables"
+doc_type: reference
+mysql_compat: partial
+differs_from_mysql:
+  - "Many system variables are syntactic stubs that do not change actual behavior; only a subset of MySQL system variables are functional"
+mo_only: []
+since: unknown
+last_updated: 2026-05-21
+llms_summary: "Overview of MatrixOne server system variables used to control or configure database engine behavior, divided into Global and Session variables."
+---
 # Server System Variables
 
 MatrixOne server system variables are variables used to control or configure the behavior of the database engine or other components in the MatrixOne server. The values of these variables can be set and changed using the `SET` statement.

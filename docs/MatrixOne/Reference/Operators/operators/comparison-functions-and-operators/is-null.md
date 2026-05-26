@@ -1,8 +1,18 @@
+---
+title: "IS NULL"
+doc_type: reference
+mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-22
+llms_summary: "IS NULL and IS NOT NULL operators for testing whether a value is NULL."
+---
 # **IS NULL**
 
 ## **Description**
 
-The `IS NOT NULL` function tests whether a value is `NULL`.
+The `IS NULL` operator tests whether a value is `NULL`.
 
 It returns `TRUE` if a `NULL` value is found, otherwise it returns `FALSE`. It can be used in a `SELECT`, `INSERT`, `UPDATE`, or `DELETE` statement.
 

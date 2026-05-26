@@ -3,8 +3,7 @@ title: "CREATE INDEX"
 doc_type: reference
 mysql_compat: partial
 differs_from_mysql:
-  - "Secondary indexes are syntactically accepted but do not yet provide query speed-up"
-  - "Foreign keys do not support ON CASCADE DELETE"
+  - "Secondary indexes are supported and participate in query optimization (as of MO 3.0.12, EXPLAIN shows Index Table Scan for secondary index queries). Does not support index hints (USE INDEX, FORCE INDEX, IGNORE INDEX), function-based indexes, or FULLTEXT index via CREATE INDEX syntax (use CREATE FULLTEXT INDEX instead)."
 mo_only:
   - "USING IVFFLAT — vector index for approximate nearest neighbour"
   - "USING HNSW — vector index for approximate nearest neighbour"
@@ -28,7 +27,7 @@ Updating a table with an index takes longer than updating a table without an ind
 There are two common types of indexes, namely:
 
 - Primary Key: The primary key index, that is, the index identified on the primary key column.
-- Secondary Index: the secondary index, that is, the index identified on the non-primary key.
+- Secondary Index: the secondary index, that is, the index identified on the non-primary key. Secondary indexes participate in query optimization; `EXPLAIN` shows Index Table Scan for queries that match indexed columns.
 
 ## **Syntax**
 

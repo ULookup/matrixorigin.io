@@ -3,7 +3,7 @@ title: "WEEK()"
 doc_type: reference
 mysql_compat: full
 differs_from_mysql: []
-mo_only: false
+mo_only: []
 since: unknown
 last_updated: 2026-05-19
 llms_summary: "WEEK(date, [mode]) returns the week number for a given date, with an optional mode parameter (0-7) controlling week-numbering rules."
@@ -53,7 +53,7 @@ mysql> SELECT WEEK('2008-02-20');
 +------------------+
 | week(2008-02-20) |
 +------------------+
-|                8 |
+|                7 |
 +------------------+
 1 row in set (0.01 sec)
 ```
@@ -75,10 +75,10 @@ mysql> SELECT WEEK(c1) FROM t1;
 | week(c1) |
 +----------+
 |       52 |
+|        0 |
+|        0 |
 |       52 |
-|       52 |
-|       52 |
-|        9 |
+|        8 |
 +----------+
 5 rows in set (0.00 sec)
 ```

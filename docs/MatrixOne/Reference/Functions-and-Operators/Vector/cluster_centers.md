@@ -4,12 +4,14 @@ doc_type: reference
 mysql_compat: mo_only
 differs_from_mysql: []
 mo_only:
-  - "Vector type and related distance/norm/clustering functions are MatrixOne extensions (compat doc: Data Types — \"MatrixOne supports vector types\")."
+  - "CLUSTER_CENTERS() — MO-specific vector clustering function (currently unimplemented, returns ERROR 20102)"
 since: unknown
-last_updated: 2026-05-08
-llms_summary: "The CLUSTER_CENTERS() function can be used to determine the K cluster centers of a vector column."
+last_updated: 2026-05-21
+llms_summary: "CLUSTER_CENTERS() is planned but not yet implemented on MO 3.0.12."
 ---
 # CLUSTER\_CENTERS
+
+> **Note:** `CLUSTER_CENTERS()` is planned but not yet implemented on MO 3.0.12. Calling it produces `ERROR 20102: function cluster_centers is not yet implemented`.
 
 > The CLUSTER_CENTERS() function can be used to determine the K cluster centers of a vector column.
 

@@ -101,5 +101,5 @@ mysql> select * from t3 where 10 > all (select b from t2);
 3 rows in set (0.00 sec)
 
 mysql> select a,b from t6 where a > all ( select a ,b from t4 where a>3);
-ERROR 1105 (HY000): subquery should return 1 column
+ERROR 20301 (HY000): invalid input: subquery should return 1 column
 ```

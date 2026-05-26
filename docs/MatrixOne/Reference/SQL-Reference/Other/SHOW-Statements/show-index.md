@@ -4,6 +4,11 @@ doc_type: reference
 mysql_compat: partial
 differs_from_mysql:
   - "Reflects MatrixOne index model — secondary index rows appear but may not accelerate queries"
+  - "Index_type may be empty (MySQL typically shows BTREE)"
+  - "Index_comment column is present (MySQL 8.0 also has Index_comment; difference is minor)"
+  - "Index_params column is present (MySQL does not have this column)"
+  - "Expression column shows the column name for non-functional key parts; MySQL shows NULL for non-functional key parts"
+  - "MO SHOW INDEX returns 16 columns vs MySQL 15 columns (MO adds Index_params, lacks the extra Collation behavior)"
 mo_only: []
 since: unknown
 last_updated: 2026-05-08
@@ -31,10 +36,12 @@ llms_summary: "SHOW INDEX returns table index information."
 |Sub_part|The index prefix. That is, the number of indexed characters if the column is only partly indexed, NULL if the entire column is indexed. <br> **Note:** Prefix limits are measured in bytes. However, prefix lengths for index specifications in CREATE TABLE, ALTER TABLE, and CREATE INDEX statements are interpreted as number of characters for nonbinary string types (CHAR, VARCHAR, TEXT) and number of bytes for binary string types (BINARY, VARBINARY, BLOB). Take this into account when specifying a prefix length for a nonbinary string column that uses a multibyte character set.|
 |Packed|Indicates how the key is packed. NULL if it is not.|
 |Null|Contains YES if the column may contain NULL values and '' if not.|
-|Index_type|The index method used (BTREE, FULLTEXT, HASH, RTREE).|
+|Index_type|The index method used (BTREE, FULLTEXT, HASH, RTREE). May be empty in MatrixOne.|
 |Comment|Information about the index not described in its own column, such as disabled if the index is disabled.|
+|Index_comment|The comment specified for the index when it was created (MatrixOne-specific column).|
+|Index_params|Parameters used when the index was created (MatrixOne-specific column).|
 |Visible|Whether the index is visible to the optimizer.|
-|Expression|For a nonfunctional key part, Column_name indicates the column indexed by the key part and Expression is NULL.<br>For a functional key part, Column_name column is NULL and Expression indicates the expression for the key part.|
+|Expression|For a functional key part, Column_name is NULL and Expression indicates the expression. For a nonfunctional key part, Expression shows the column name (not NULL as in MySQL).|
 
 ## **Syntax**
 
@@ -54,12 +61,12 @@ An alternative to tbl_name FROM db_name syntax is db_name.tbl_name.
 ```sql
 CREATE TABLE show_01(sname varchar(30),id int);
 mysql> show INDEX FROM show_01;
-+---------+------------+------------+--------------+-------------+-----------+-------------+----------+--------+------+------------+------------------+---------+------------+
-| Table   | Non_unique | Key_name   | Seq_in_index | Column_name | Collation | Cardinality | Sub_part | Packed | Null | Index_type | Comment          | Visible | Expression |
-+---------+------------+------------+--------------+-------------+-----------+-------------+----------+--------+------+------------+------------------+---------+------------+
-| show_01 |          0 | id         |            1 | id          | A         |           0 | NULL     | NULL   | YES  |            |                  | YES     | NULL       |
-| show_01 |          0 | sname      |            1 | sname       | A         |           0 | NULL     | NULL   | YES  |            |                  | YES     | NULL       |
-| show_01 |          0 | __mo_rowid |            1 | __mo_rowid  | A         |           0 | NULL     | NULL   | NO   |            | Physical address | NO      | NULL       |
-+---------+------------+------------+--------------+-------------+-----------+-------------+----------+--------+------+------------+------------------+---------+------------+
++---------+------------+------------+--------------+-------------+-----------+-------------+----------+--------+------+------------+------------------+---------------+--------------+---------+------------+
+| Table   | Non_unique | Key_name   | Seq_in_index | Column_name | Collation | Cardinality | Sub_part | Packed | Null | Index_type | Comment          | Index_comment | Index_params | Visible | Expression |
++---------+------------+------------+--------------+-------------+-----------+-------------+----------+--------+------+------------+------------------+---------------+--------------+---------+------------+
+| show_01 |          0 | id         |            1 | id          | A         |           0 | NULL     | NULL   | YES  |            |                  |               |              | YES     | id         |
+| show_01 |          0 | sname      |            1 | sname       | A         |           0 | NULL     | NULL   | YES  |            |                  |               |              | YES     | sname      |
+| show_01 |          0 | __mo_rowid |            1 | __mo_rowid  | A         |           0 | NULL     | NULL   | NO   |            | Physical address |               |              | NO      | __mo_rowid |
++---------+------------+------------+--------------+-------------+-----------+-------------+----------+--------+------+------------+------------------+---------------+--------------+---------+------------+
 3 rows in set (0.02 sec)
 ```

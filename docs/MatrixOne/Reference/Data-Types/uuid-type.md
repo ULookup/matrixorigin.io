@@ -1,3 +1,16 @@
+---
+title: "UUID Type"
+doc_type: reference
+mysql_compat: mo_only
+differs_from_mysql: []
+mo_only:
+  - "UUID as a native column type (MySQL 8.0 has UUID() function only, no UUID column type)"
+  - "DEFAULT uuid() on UUID columns"
+since: unknown
+last_updated: 2026-05-21
+llms_summary: "MatrixOne-specific UUID column type. MySQL 8.0 provides UUID() as a function only, not as a column data type."
+---
+
 # UUID Type
 
 A UUID is a universally unique identifier consisting of 32 hexadecimal digits followed by 4 hyphens. UUIDs are globally unique, not unique in the database, and even performing a UUID call on two unconnected, standalone devices is expected to generate two different values. UUID is often used to generate a random value for the corresponding row to ensure the uniqueness of each record. . UUIDs are suitable as unique identifiers in a cluster environment.

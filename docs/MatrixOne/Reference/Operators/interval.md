@@ -212,7 +212,7 @@ mysql> SELECT DATE_ADD('2019-01-30', INTERVAL 1 MONTH);
 
 Date arithmetic operations require complete dates and do not work with incomplete dates such as '2016-07-00' or badly malformed dates. Unlike MySQL 8.0, which returns NULL for malformed dates, MatrixOne raises an error:
 
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 mysql> SELECT DATE_ADD('2016-07-00', INTERVAL 1 DAY);
 ERROR 20301 (HY000): invalid input: invalid datetime value 2016-07-00

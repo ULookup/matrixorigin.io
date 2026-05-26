@@ -101,7 +101,7 @@ Unlike MySQL, MatrixOne's ENUM type can only be compared with the string type in
 
 For example, the following query will fail:
 
-<!-- validator-ignore -->
+<!-- validator-ignore-exec -->
 ```sql
 SELECT * FROM enumtable WHERE color = 2;
 -- ERROR 20203 (HY000): invalid argument cast to int, bad value

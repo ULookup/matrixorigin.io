@@ -8,7 +8,7 @@ differs_from_mysql:
   - "AS OF TIMESTAMP time-travel queries require PITR/snapshot to be enabled on the database; without PITR the syntax produces an error"
   - "SELECT ... FOR SHARE is not supported"
   - "FOR UPDATE NOWAIT and SKIP LOCKED modifiers are not supported"
-  - "GROUP BY ... WITH ROLLUP is not supported"
+
 mo_only:
   - "{ AS OF TIMESTAMP 'YYYY-MM-DD HH:MM:SS' } — time-travel query against enabled snapshot/PITR"
   - "ORDER BY ... NULLS { FIRST | LAST } — PostgreSQL-style NULL ordering not available in MySQL"
@@ -34,7 +34,7 @@ SELECT
     [FROM table_references[{as of timestamp 'YYYY-MM-DD HH:MM:SS'}]]
     [WHERE where_condition]
     [GROUP BY {col_name | expr | position}
-      [ASC | DESC]]
+      [ASC | DESC] [WITH ROLLUP]]
     [HAVING where_condition]
     [ORDER BY {col_name | expr | position}
       [ASC | DESC]] [ NULLS { FIRST | LAST } ]

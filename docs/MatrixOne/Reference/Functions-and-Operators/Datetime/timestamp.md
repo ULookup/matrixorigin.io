@@ -16,12 +16,12 @@ llms_summary: "With a single argument, this function returns the date or datetim
 
 ## **Description**
 
-With a single argument, this function returns the date or datetime expression expr as a datetime value. With two arguments, it adds the time expression expr2 to the date or datetime expression expr1 and returns the result as a datetime value. Returns `NULL` if expr, expr1, or expr2 is `NULL`.
+With a single argument, this function returns the date or datetime expression expr as a datetime value. Returns `NULL` if expr is `NULL`.
 
 ## **Syntax**
 
 ```
-> TIMESTAMP(expr), TIMESTAMP(expr1,expr2)
+> TIMESTAMP(expr)
 ```
 
 ## **Arguments**
@@ -37,7 +37,7 @@ mysql> SELECT TIMESTAMP('2003-12-31');
 +----------------------------+
 | timestamp(2003-12-31)      |
 +----------------------------+
-| 2003-12-31 00:00:00.000000 |
+| 2003-12-31 00:00:00 |
 +----------------------------+
 1 row in set (0.00 sec)
 ```

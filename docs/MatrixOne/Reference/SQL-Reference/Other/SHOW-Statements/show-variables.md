@@ -4,7 +4,7 @@ doc_type: reference
 mysql_compat: partial
 differs_from_mysql:
   - "System variables are mostly syntactic stubs; actual behaviour differs from MySQL"
-  - "GLOBAL and SESSION scope modifiers not supported"
+  - "GLOBAL and SESSION scope modifiers are syntactically accepted; SESSION scope SET works, but GLOBAL/SESSION scope for SHOW VARIABLES return identical results"
 mo_only: []
 since: unknown
 last_updated: 2026-05-08
@@ -21,7 +21,7 @@ llms_summary: "SHOW VARIABLES shows the values of MatrixOne system variables."
 ## **Syntax**
 
 ```
-> SHOW VARIABLES
+> SHOW [GLOBAL | SESSION] VARIABLES
     [LIKE 'pattern']
 ```
 

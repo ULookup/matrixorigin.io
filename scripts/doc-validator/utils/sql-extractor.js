@@ -277,6 +277,10 @@ function detectSqlFormat(sqlText) {
         if (/^Empty\s+set/i.test(trimmed)) {
             hasOutput = true
         }
+        // 5. MySQL error output (e.g., "ERROR 20301 (HY000): ...")
+        if (/^ERROR\s+\d+/i.test(trimmed)) {
+            hasOutput = true
+        }
         // 5. Records/Warnings stats (from LOAD DATA, etc)
         if (/^Records:\s+\d+/i.test(trimmed) || /^Rows\s+matched:/i.test(trimmed)) {
             hasOutput = true

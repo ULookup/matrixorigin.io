@@ -18,6 +18,7 @@ llms_summary: "This statement deletes the index from the currently selected tabl
 This statement deletes the index from the currently selected table.
 
 The `IF EXISTS` modifier is syntactically accepted but has a known limitation: if the specified index does not exist, `IF EXISTS` does not suppress the error; instead an internal error 20101 is returned. Use caution, as this differs from standard MySQL `IF EXISTS` behavior (which would silently ignore missing objects). Note that MySQL 8.0 does not support `IF EXISTS` for `DROP INDEX` at all.
+
 ## **Syntax**
 
 ```

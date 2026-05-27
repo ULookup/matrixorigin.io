@@ -3,8 +3,10 @@ title: "REPLACE"
 doc_type: reference
 mysql_compat: partial
 differs_from_mysql:
-  - "REPLACE does not support VALUES row_constructor_list"
   - "node-sql-parser rejects REPLACE … WHERE (parser bug, not MatrixOne)"
+  - "PARTITION clause not supported"
+  - "LOW_PRIORITY and DELAYED modifiers not supported"
+  - "REPLACE only detects conflicts on PRIMARY KEY; secondary UNIQUE index conflicts throw ERROR 1062 (MySQL 8.0 handles both). Constraints section incorrectly states UNIQUE index can also trigger REPLACE; this is wrong per actual MO behavior."
 mo_only: []
 since: unknown
 last_updated: 2026-05-08
@@ -20,8 +22,8 @@ llms_summary: "REPLACE is a string function and a data manipulation statement fo
 
 `REPLACE` is typically used on tables with unique constraints.
 
-- The `REPLACE` statement requires that a primary key or unique index exist in the table to determine whether the same record exists.
-- When using the `REPLACE` statement to insert a new record, the old record will be deleted if a record with the same primary key or unique index already exists. Then a new record will be inserted, which may cause the value of the auto-increment column to change.
+- The `REPLACE` statement requires a primary key to determine whether the same record exists. REPLACE only detects conflicts on PRIMARY KEY; secondary UNIQUE index conflicts throw ERROR 1062.
+- When using the `REPLACE` statement to insert a new record, the old record will be deleted if a record with the same primary key already exists. Then a new record will be inserted, which may cause the value of the auto-increment column to change.
 
 ## **Syntax**
 
@@ -70,7 +72,7 @@ The following is an explanation of each parameter:
 
 5. `value_list`: Indicates a set of values ​​to be inserted. Separate multiple values ​​with commas.
 
-6. (Not supported yet) `row_constructor_list`: Indicates a row consisting of a set of values ​​for insertion. Values ​​on each row are enclosed in parentheses and separated by commas.
+6. `row_constructor_list`: Indicates a row consisting of a set of values ​​for insertion. Values ​​on each row are enclosed in parentheses and separated by commas.
 
 7. `assignment`: Indicates the association between a column name and its corresponding value, which is used to update the form.
 
@@ -166,4 +168,5 @@ mysql> select * from names;
 
 ## **Constraints**
 
-MatrixOne does not currently support rows of values ​​inserted using the `VALUES row_constructor_list` parameter.
+- The `REPLACE` statement requires that a primary key exist in the table to determine whether the same record exists. MatrixOne only detects conflicts on PRIMARY KEY; secondary UNIQUE index conflicts throw ERROR 1062 and do not trigger the REPLACE behavior. MySQL 8.0 handles both PRIMARY KEY and UNIQUE index conflicts.
+- When using the `REPLACE` statement to insert a new record, the old record will be deleted if a record with the same primary key already exists, then a new record will be inserted, which may cause the value of the auto-increment column to change.

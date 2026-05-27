@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "static-report",
+  "type": "object",
+  "required": ["agent", "bucket", "mo_version", "generated_at", "files"],
+  "properties": {
+    "agent": { "const": "static" },
+    "bucket": { "type": "string", "description": "Bucket name from bucket-manifest.json" },
+    "mo_version": { "type": "string", "description": "Target MO version, e.g. 3.0.13" },
+    "generated_at": { "type": "string", "format": "date-time" },
+    "summary": {
+      "type": "object",
+      "properties": {
+        "total_files": { "type": "integer" },
+        "total_claims": { "type": "integer" },
+        "pass": { "type": "integer" },
+        "fail": { "type": "integer" },
+        "warn": { "type": "integer" },
+        "skipped": { "type": "integer" }
+      }
+    },
+    "files": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["file", "current_compat", "findings"],
+        "properties": {
+          "file": { "type": "string", "description": "Path relative to repo root" },
+          "current_compat": { "enum": ["full", "partial", "mo_only", "none", "unknown"] },
+          "suggested_compat": { "enum": ["full", "partial", "mo_only", "none", "unknown"] },
+          "findings": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["verdict", "severity", "description", "evidence"],
+              "properties": {
+                "verdict": { "enum": ["PASS", "FAIL", "WARN", "SKIPPED"] },
+                "severity": { "enum": ["CRITICAL", "HIGH", "MEDIUM", "LOW"] },
+                "field_checked": { "type": "string", "description": "Which compat aspect: compat_label, differs_list, mo_only_list, body_text, missing_from_doc" },
+                "description": { "type": "string" },
+                "evidence": {
+                  "type": "object",
+                  "required": ["mysql_ref"],
+                  "properties": {
+                    "mysql_ref": { "type": "string", "description": "MySQL 8.0 doc URL or section reference" },
+                    "mysql_behavior": { "type": "string" },
+                    "mo_doc_claim": { "type": "string" },
+                    "suggestion": { "type": "string" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "incomplete": { "type": "boolean", "description": "True if agent timed out before finishing all files" }
+  }
+}

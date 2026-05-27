@@ -3,11 +3,14 @@ title: "LOAD DATA"
 doc_type: reference
 mysql_compat: partial
 differs_from_mysql:
-  - "LOAD DATA LOCAL requires --local-infile on the client"
   - "SET clause only accepts columns_name = nullif(expr1, expr2)"
   - "JSONLines import uses MatrixOne-specific syntax"
   - "Object-storage import (S3/URL) uses MatrixOne-specific syntax"
-mo_only: []
+  - "LOW_PRIORITY and CONCURRENT modifiers not supported"
+  - "REPLACE and IGNORE modifiers not supported"
+mo_only:
+  - "PARALLEL clause (controls parallel file loading)"
+  - "STRICT clause (controls parallel splitting mode)"
 since: unknown
 last_updated: 2026-05-08
 llms_summary: "The LOAD DATA statement reads rows from a text file into a table at a very high speed."
@@ -30,7 +33,7 @@ The LOAD DATA statement reads rows from a text file into a table at a very high 
     [{FIELDS | COLUMNS}
         [TERMINATED BY 'string']
         [[OPTIONALLY] ENCLOSED BY 'char']
-        [ENCASPED BY 'char']
+        [ESCAPED BY 'char']
     ]
     [LINES
         [STARTING BY 'string']
@@ -103,7 +106,7 @@ LOAD DATA INFILE 'data.txt' INTO TABLE table1
 
 **FIELDS ENCLOSED BY**
 
-`FIELDS TERMINATED BY` option specifies the character enclose the input values. `ENCLOSED BY` value must be a single character. If the input values are not necessarily enclosed within quotation marks, use `OPTIONALLY` before the `ENCLOSED BY` option.
+`FIELDS ENCLOSED BY` option specifies the character used to enclose the input values. `ENCLOSED BY` value must be a single character. If the input values are not necessarily enclosed within quotation marks, use `OPTIONALLY` before the `ENCLOSED BY` option.
 
  **Examples**
 
@@ -378,8 +381,10 @@ load data infile 'file_name' into table tbl_name PARALLEL 'TRUE' STRICT 'FALSE';
 
 ## Supported file formats
 
-In MatrixOne's current release, `LOAD DATA` supports CSV(comma-separated values) format and JSONLines format file.
+In MatrixOne's current release, `LOAD DATA` supports CSV (comma-separated values) format, JSONLines format, and Parquet format files.
 See full tutorials for loading [csv](../../../Develop/import-data/bulk-load/load-csv.md) and [jsonline](../../../Develop/import-data/bulk-load/load-jsonline.md).
+
+LOAD DATA from Parquet files correctly converts all three Parquet binary decimal encodings (INT32, INT64, FixedLenByteArray) to the native DECIMAL type.
 
 !!! note
     `LOAD DATA` supports importing `lz4`, `gz`, `bz2`, `zlib`, `flate`, and does not support importing compressed files ending with `.tar` or `.tar.xx`.

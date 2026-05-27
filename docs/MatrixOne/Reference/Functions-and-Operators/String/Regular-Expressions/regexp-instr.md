@@ -1,8 +1,9 @@
 ---
 title: "REGEXP_INSTR()"
 doc_type: reference
-mysql_compat: full
-differs_from_mysql: []
+mysql_compat: partial
+differs_from_mysql:
+  - "match_type parameter not yet supported; passing it causes ERROR 20203"
 mo_only: []
 since: unknown
 last_updated: 2026-05-08
@@ -19,7 +20,7 @@ llms_summary: "REGEXP_INSTR() returns the starting position in the string of the
 ## **Syntax**
 
 ```
-> REGEXP_INSTR(expr, pat[, pos[, occurrence[, return_option[, match_type]]]])
+> REGEXP_INSTR(expr, pat[, pos[, occurrence[, return_option]]])
 ```
 
 ## Explanations
@@ -30,17 +31,9 @@ llms_summary: "REGEXP_INSTR() returns the starting position in the string of the
 
 - `pos`: The position in expr at which to start the search. If omitted, the default is 1.
 
-- `occurrence`: Which occurrence of a match to replace. If omitted, the default is 0 (which means *replace all occurrences*).
+- `occurrence`: Which occurrence of a match to search for. If omitted, the default is 1 (returns the first match).
 
 - `return_option`: This is an optional parameter specifying whether the returned position is where the pattern starts or ends. If 0 or omitted, the function returns the position at which the pattern begins. If 1, the function returns the position after the position where the pattern ends.
-
-- `match_type`: The optional `match_type` argument is a string that may contain any or all the following characters specifying how to perform matching:
-
-    + `'c'`: Case-sensitive matching by default.
-    + `'i'`: Case-insensitive matching.
-    + `'n'`: The `.` character matches line terminators. The default is for `.` matching to stop at the end of a line.
-    + `'m'`: Multiple-line mode. Recognize line terminators within the string. The default behavior is to match line terminators only at the start and end of the string expression.
-    + `'u'`: Unix-only line endings. Only the newline character is recognized as a line ending by the ., ^, and $ match operators.
 
 ## **Examples**
 

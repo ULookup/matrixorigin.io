@@ -3,7 +3,7 @@ title: "ALTER VIEW"
 doc_type: reference
 mysql_compat: partial
 differs_from_mysql:
-  - "Inherits CREATE VIEW limitations: no WITH CHECK OPTION, no DEFINER = user clause"
+  - "WITH CHECK OPTION is accepted in CREATE VIEW (syntax only, views are read-only) but rejected as a syntax error in ALTER VIEW"
 mo_only: []
 since: unknown
 last_updated: 2026-05-08

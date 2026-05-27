@@ -1,4 +1,17 @@
+---
+title: "ENUM Type"
+doc_type: reference
+mysql_compat: partial
+differs_from_mysql: ["Range comparisons (>, <, >=, <=, BETWEEN) use string (lexicographic) semantics rather than MySQL's ENUM index semantics; ORDER BY sorts by string value, not index; ENUM-to-integer comparisons in WHERE clauses are not supported (use string values instead)"]
+mo_only: false
+since: unknown
+last_updated: 2026-05-19
+llms_summary: "The ENUM type stores a single value chosen from a predefined list of string constants, with strict input validation and consistent comparison semantics."
+---
+
 # The ENUM Type
+
+> The ENUM type stores a single value chosen from a predefined list of string constants. Internally, only the numerical index (1, 2, 3, ...) is stored. ENUM benefits from strict input validation and consistent comparison semantics.
 
 "ENUM" is a list of strings used to store a set of predefined discrete values. It can define a type with discrete values, with each enumeration constant representing a specific value.
 
@@ -80,27 +93,31 @@ CREATE TABLE enumtable (
 );
 ```
 
-When inserting a new row without specifying a value for the color column, MatrixOne will use the first enumeration member as the default value:
-
-```sql
-INSERT INTO enumtable (id) VALUES ('05');
--- Here, the first enumeration member `red` will be assigned as the default value for the column with id 05
-```
+When inserting a new row without specifying a value for the color column, MatrixOne requires an explicit DEFAULT clause for NOT NULL ENUM columns; the first enumeration member is NOT used automatically. Inserting without specifying a value for the color column will raise an error.
 
 ## Features that are different from MySQL
 
-Unlike MySQL, MatrixOne's ENUM type can only be compared with the string type in the WHERE condition.
+Unlike MySQL, MatrixOne's ENUM type can only be compared with the string type in the WHERE condition. MatrixOne rejects ENUM-to-integer comparisons in WHERE clauses with a type cast error (ERROR 20203). Use string values for comparison.
 
-You can see this example:
+For example, the following query will fail:
 
 <!-- validator-ignore-exec -->
 ```sql
-update orders set status= 2 where status='Processing';
+SELECT * FROM enumtable WHERE color = 2;
+-- ERROR 20203 (HY000): invalid argument cast to int, bad value
 ```
 
-In this example, you must update the `status` to 2 for the row whose `status` is `Processing`. Due to the nature of the ENUM type, MatrixOne implicitly converts 2 to the string `2` in the WHERE condition, which is then compared with `Processing`.
+## Validation Improvements
+
+ENUM type validation includes the following behaviors:
+
+- **Strict input validation**: Invalid ENUM values are rejected during binding, providing clear error messages before data is stored.
+- **Consistent comparison semantics**: ENUM-to-integer and ENUM-to-string comparisons behave consistently in WHERE clauses and JOIN conditions.
+- **Reliable NOT NULL handling**: NOT NULL ENUM columns require an explicit DEFAULT clause; the first enumeration member is NOT used automatically.
+
+These behaviors are internal and do not change the SQL syntax or user-facing API.
 
 ## Constraints
 
 1. Modifying ENUM enumeration members requires rebuilding the table using the `ALTER TABLE` statement.
-2. MatrixOne does not support **Filtering ENUM values** and **Sorting ENUM values**.
+2. ENUM range comparisons (`>`, `<`, `>=`, `<=`) use string (lexicographic) semantics rather than MySQL's index semantics. Equality (=, !=) and IN filtering work as expected. ORDER BY on ENUM columns sorts by string value.

@@ -25,11 +25,11 @@ MatrixOne column storage currently uses the LZ4 compression algorithm and does n
 
 **Can I upgrade the lower version to the latest version?**
 
-Both MatrixOne 0.8.0 and above can be upgraded directly from a lower version to the latest version using `mo_ctl upgrade latest`. You can refer to the [mo_ctl tool](../Maintain/mo_ctl.md). Versions prior to 0.8.0 are recommended to back up data, reload and import if required for upgrades.
+Both MatrixOne 0.8.0 and above can be upgraded directly from a lower version to the latest version using `mo_ctl upgrade latest`. You can refer to the [mo_ctl tool](../Reference/mo-tools/mo_ctl.md). Versions prior to 0.8.0 are recommended to back up data, reload and import if required for upgrades.
 
 Is MatrixOne stable **now? Which version is recommended?**
 
-MatrixOne is now available in version v26.3.0.11. We've done a lot of optimization work on stability, and it's ready to be used in the production business.
+MatrixOne is now available in version v26.3.0.13. We've done a lot of optimization work on stability, and it's ready to be used in the production business.
 
 **Is there a cloud version of MatrixOne? Want a quick test to see**.
 
@@ -63,7 +63,7 @@ MatrixOne does not support MySQL's InnoDB, MyISAM and other engines, but can use
 
 ## Functionally related
 
-**What applications does MatrxOne support?**
+**What applications does MatrixOne support?**
 
   MatrixOne provides users with the ultimate HTAP service. MatrixOne can be used in enterprise data centers, big data analytics and other scenarios.
 

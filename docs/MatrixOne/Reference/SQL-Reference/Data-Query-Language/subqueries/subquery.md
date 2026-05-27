@@ -3,7 +3,7 @@ title: "SUBQUERY"
 doc_type: reference
 mysql_compat: partial
 differs_from_mysql:
-  - "Multi-level correlated subqueries inside IN() are not supported"
+  - "Multi-column scalar subquery comparisons (e.g., WHERE (a,b) = (SELECT ...)) are not supported; use multi-column IN instead"
 mo_only: []
 since: unknown
 last_updated: 2026-05-08
@@ -48,4 +48,4 @@ For more information, see the reference below:
 
 ## **Constraints**
 
-MatrixOne does not support selecting multiple columns for the subquery.
+MatrixOne supports multi-column subqueries with `IN` (e.g., `WHERE (a,b) IN (SELECT a,b FROM t2)`), but multi-column scalar comparison operators such as `=`, `>`, `<` with tuple subquery results are not supported.

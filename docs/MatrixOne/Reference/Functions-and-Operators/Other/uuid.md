@@ -65,4 +65,4 @@ mysql> SELECT UUID();
 
 ## **Constraints**
 
-`UUID()` does not support optional argument for now, which means it doesn't support `UUID([number])`.
+`UUID()` takes no arguments in both MatrixOne and MySQL 8.0.

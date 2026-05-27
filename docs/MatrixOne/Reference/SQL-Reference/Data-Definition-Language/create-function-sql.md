@@ -4,6 +4,7 @@ doc_type: reference
 mysql_compat: partial
 differs_from_mysql:
   - "Only LANGUAGE SQL and LANGUAGE PYTHON are supported; usage differs significantly from MySQL stored functions"
+  - "CREATE OR REPLACE FUNCTION is supported; MySQL 8.0 does not support OR REPLACE for functions (only IF NOT EXISTS since 8.0.29)"
 mo_only: []
 since: unknown
 last_updated: 2026-05-08

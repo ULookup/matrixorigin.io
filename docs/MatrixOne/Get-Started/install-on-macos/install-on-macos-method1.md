@@ -39,7 +39,7 @@ To install and use the stand-alone MatrixOne through source code, you need to de
 
     As shown in the code, the version of GCC is not displayed, the **GCC/Clang** environment needs to be installed.
 
-2. Click <a href="https://gcc.gnu.org/install/" target="_blank">GCC Download and install</a> to enter its official documentation, and follow the installation steps to complete the **GCC** installation. Or you can install Clang through Apple's official [Xcode](https://www.ics.uci.edu/~pattis/common/handouts/macclion/clang.html).
+2. Click <a href="https://gcc.gnu.org/install/" target="_blank">GCC Download and install</a> to enter its official documentation, and follow the installation steps to complete the **GCC** installation. Or you can install Clang through Apple's official [Xcode](https://developer.apple.com/xcode/).
 
 3. To verify whether **GCC/Clang** is installed, please execute the code `gcc -v`. When **GCC** is installed successfully, the example code line is as follows:
 
@@ -92,7 +92,7 @@ git version 2.40.0
 
 ## Step 2: Install the mo_ctl tool
 
-[mo_ctl](https://github.com/matrixorigin/mo_ctl_standalone) is a command-line tool for deploying, installing, and managing MatrixOne. It is very convenient to perform various operations on MatrixOne. See [mo_ctl Tool](../../Maintain/mo_ctl.md) for complete usage details.
+[mo_ctl](https://github.com/matrixorigin/mo_ctl_standalone) is a command-line tool for deploying, installing, and managing MatrixOne. It is very convenient to perform various operations on MatrixOne. See [mo_ctl Tool](../../Reference/mo-tools/mo_ctl.md) for complete usage details.
 
 1. First, install the `wget` download tool: Go to the <a href="https://brew.sh/" target="_blank">Homebrew</a> page and follow the steps to install **Homebrew** first, then install `wget`. To verify whether `wget` is installed successfully, you can use the following command line:
 
@@ -170,7 +170,7 @@ GCC_VERSION="8.5.0"
 CLANG_VERSION="13.0"
 GO_VERSION="1.22"
 MO_GIT_URL="https://github.com/matrixorigin/matrixone.git"
-MO_DEFAULT_VERSION="v3.0.11"
+MO_DEFAULT_VERSION="v3.0.13"
 GOPROXY="https://goproxy.cn,direct"
 STOP_INTERVAL="5"
 START_INTERVAL="2"
@@ -186,7 +186,7 @@ Generally, the parameters that need to be adjusted are as follows:
 ````
 mo_ctl set_conf MO_PATH="yourpath" # Set custom MatrixOne download path
 mo_ctl set_conf MO_GIT_URL="https://githubfast.com/matrixorigin/matrixone.git" # For the problem of slow downloading from the original GitHub address, set image download address
-mo_ctl set_conf MO_DEFAULT_VERSION="v" # Set the version of MatrixOne downloaded
+mo_ctl set_conf MO_DEFAULT_VERSION="v3.0.13" # Set the version of MatrixOne downloaded
 mo_ctl set_conf MO_DEPLOY_MODE=git  # Deployment Configuration
 ````
 
@@ -205,7 +205,7 @@ Depending on your needs, choose whether you want to keep your code up to date, o
 === "Get the MatrixOne(Stable Version) code to build"
 
      ```
-     mo_ctl deploy v3.0.11
+     mo_ctl deploy v3.0.13
      ```
 
 ## Step 4: Launch MatrixOne server
@@ -242,7 +242,7 @@ This command will invoke the MySQL Client tool to connect to the MatrixOne servi
 mysql: [Warning] Using a password on the command line interface can be insecure.
 Welcome to the MySQL monitor.  Commands end with ; or \g.
 Your MySQL connection id is 15
-Server version: 8.0.30-MatrixOne-v3.0.11 MatrixOne
+Server version: 8.0.30-MatrixOne-v3.0.13 MatrixOne
 
 Copyright (c) 2000, 2023, Oracle and/or its affiliates.
 
@@ -256,4 +256,4 @@ mysql>
 ```
 
 !!! note
-    The above connection and login account is the initial accounts `root` and the password `111`; please change the initial password after logging in to MatrixOne; see [MatrixOne Password Management](../../Security/password-mgmt.md). After changing the login username or password, you must set a new username and password through `mo_ctl set_conf`. For details, please refer to [mo_ctl Tool](../../Maintain/mo_ctl.md).
+    The above connection and login account is the initial accounts `root` and the password `111`; please change the initial password after logging in to MatrixOne; see [MatrixOne Password Management](../../Security/password-mgmt.md). After changing the login username or password, you must set a new username and password through `mo_ctl set_conf`. For details, please refer to [mo_ctl Tool](../../Reference/mo-tools/mo_ctl.md).

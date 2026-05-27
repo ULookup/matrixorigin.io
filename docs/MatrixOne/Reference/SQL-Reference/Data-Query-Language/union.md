@@ -1,8 +1,10 @@
 ---
 title: "UNION"
 doc_type: reference
-mysql_compat: full
-differs_from_mysql: []
+mysql_compat: partial
+differs_from_mysql:
+  - "UNION type coercion is strict: MO errors on incompatible types in UNION columns (e.g., INT vs VARCHAR), while MySQL 8.0 silently coerces (e.g., varchar to int converts to 0)"
+  - "UNION ALL type coercion is similarly strict compared to MySQL 8.0's lenient coercion"
 mo_only: []
 since: unknown
 last_updated: 2026-05-08
@@ -34,6 +36,9 @@ Combining the result sets of two or more queries using the UNION operator requir
 
 - Data types must be same or convertible.
 
+    !!! note
+        MatrixOne enforces stricter type coercion in UNION than MySQL 8.0. Incompatible types across UNION columns will raise an error on MatrixOne (e.g., `SELECT 1 UNION SELECT 'a'` fails with "invalid argument cast to int, bad value a"), while MySQL 8.0 silently coerces values (e.g., varchar `'a'` becomes `0`). This applies to both UNION and UNION ALL.
+
 With `UNION ALL`, repeated lines (if available) are retained in the result.
 
 #### `ORDER BY` and `LIMIT` In `UNION`
@@ -58,8 +63,6 @@ UNION
 (SELECT a FROM t2 WHERE a=11 AND B=2)
 ORDER BY a LIMIT 10;
 ```
-
-<!--第二个例子需要确认,暂时不能生效-->
 
 ## **Examples**
 

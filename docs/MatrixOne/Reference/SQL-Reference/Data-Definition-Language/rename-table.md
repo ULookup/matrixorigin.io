@@ -1,8 +1,9 @@
 ---
 title: "Rename Table"
 doc_type: reference
-mysql_compat: full
-differs_from_mysql: []
+mysql_compat: partial
+differs_from_mysql:
+  - "MO does not support RENAME TABLE across databases; when given cross-database syntax, MO renames the table within its current database instead of raising an error. MySQL 8.0 supports cross-database RENAME TABLE."
 mo_only: []
 since: unknown
 last_updated: 2026-05-08
@@ -19,7 +20,7 @@ In MatrixOne, the `RENAME TABLE` statement is used to change the name of a table
 Things to note:
 
 - RENAME TABLE is an atomic operation. If any rename fails, all rename operations are rolled back.
-- Tables cannot be renamed across different databases. If you want to rename a table across databases, you can first copy the table to the target database and then delete the original table.
+- Cross-database RENAME TABLE is not supported. When cross-database syntax is used (e.g., `db1.tbl TO db2.tbl`), MatrixOne silently renames the table within the current database instead of raising an error. MySQL 8.0 supports cross-database RENAME TABLE. To move a table across databases, first copy the table to the target database and then delete the original table.
 - Before renaming a table, make sure there are no active transactions or locks using the table.
 
 ## **Grammar structure**

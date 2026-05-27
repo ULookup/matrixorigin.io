@@ -1,3 +1,13 @@
+---
+title: "CASE WHEN"
+doc_type: reference
+mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-21
+llms_summary: "CASE WHEN flow control expression. Supports ELSE NULL clause. Fully compatible with MySQL 8.0."
+---
 # **CASE WHEN**
 
 ## **Description**
@@ -23,10 +33,6 @@ CASE WHEN condition THEN result [WHEN condition THEN result ...] [ELSE result] E
 ```
 
 This `CASE` syntax returns the result for the first condition that is true. If no comparison or condition is true, the result after ELSE is returned, or NULL if there is no ELSE part.
-
-!!! note  "<font size=4>note</font>"
-    <font size=3>The `CASE` statement cannot have an `ELSE NULL` clause, and it is terminated with `END CASE` instead of `END`.
-</font>
 
 ## **Examples**
 

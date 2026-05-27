@@ -1,8 +1,9 @@
 ---
 title: "REGEXP_SUBSTR()"
 doc_type: reference
-mysql_compat: full
-differs_from_mysql: []
+mysql_compat: partial
+differs_from_mysql:
+  - "match_type parameter not yet supported; passing it causes ERROR 20203"
 mo_only: []
 since: unknown
 last_updated: 2026-05-08
@@ -19,7 +20,7 @@ llms_summary: "REGEXP_SUBSTR() is used to return the substring of the string exp
 ## **Syntax**
 
 ```
-> REGEXP_SUBSTR(expr, pat[, pos[, occurrence[, match_type]]])
+> REGEXP_SUBSTR(expr, pat[, pos[, occurrence]])
 ```
 
 ## Explanations
@@ -30,15 +31,7 @@ llms_summary: "REGEXP_SUBSTR() is used to return the substring of the string exp
 
 - `pos`: The position in expr at which to start the search. If omitted, the default is 1.
 
-- `occurrence`: Which occurrence of a match to replace. If omitted, the default is 0 (which means *replace all occurrences*).
-
-- `match_type`: The optional `match_type` argument is a string that may contain any or all the following characters specifying how to perform matching:
-
-    + `'c'`: Case-sensitive matching by default.
-    + `'i'`: Case-insensitive matching.
-    + `'n'`: The `.` character matches line terminators. The default is for `.` matching to stop at the end of a line.
-    + `'m'`: Multiple-line mode. Recognize line terminators within the string. The default behavior is to match line terminators only at the start and end of the string expression.
-    + `'u'`: Unix-only line endings. Only the newline character is recognized as a line ending by the ., ^, and $ match operators.
+- `occurrence`: Which occurrence of a match to search for. If omitted, the default is 1 (returns the first match).
 
 ## **Examples**
 

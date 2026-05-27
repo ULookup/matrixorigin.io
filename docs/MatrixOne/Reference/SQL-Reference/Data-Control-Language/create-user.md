@@ -5,8 +5,11 @@ mysql_compat: partial
 differs_from_mysql:
   - "IDENTIFIED BY is the only supported password form; IDENTIFIED WITH plugins not supported"
   - "Connection-IP whitelists and connection-limit clauses not supported"
-  - "COMMENT and ATTRIBUTE clauses are accepted syntactically but not honoured"
-  - "User identifier is a bare username scoped to the current account; MySQL uses 'user'@'host' tuples"
+  - "COMMENT and ATTRIBUTE clauses not supported"
+  - "'user'@'host' syntax is accepted and host is stored in mo_catalog.mo_user.user_host but may not restrict connections; users are scoped to the current account, not server-global as in MySQL"
+  - "Password management options (PASSWORD EXPIRE, PASSWORD HISTORY, PASSWORD REUSE INTERVAL, PASSWORD REQUIRE CURRENT) not supported"
+  - "Account locking (ACCOUNT LOCK/UNLOCK) not supported"
+  - "REQUIRE clause (TLS/SSL enforcement) not supported"
 mo_only: []
 since: unknown
 last_updated: 2026-05-08
@@ -41,7 +44,7 @@ auth_option: {
 
 An user when first created has no privileges and a default role of NONE. To assign privileges or roles, use the [GRANT](grant.md) statement.
 
-The basic SQL statement of `CREAT USER` is as follows:
+The basic SQL statement of `CREATE USER` is as follows:
 
 ```
 create user user_name identified by 'password';
@@ -72,4 +75,4 @@ Query OK, 0 rows affected (0.04 sec)
 
 ## **Constraints**
 
-MatrxiOne does not supports `CREATE USER COMMENT` and `CREATE USER ATTRIBUTE` now.
+MatrixOne does not support `CREATE USER COMMENT` and `CREATE USER ATTRIBUTE`. These clauses are syntactically accepted for MySQL compatibility but have no effect — no comment or attribute data is stored.

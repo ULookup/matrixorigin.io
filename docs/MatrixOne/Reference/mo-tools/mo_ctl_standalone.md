@@ -1,3 +1,14 @@
+---
+title: "mo_ctl Standalone Tools Guide"
+doc_type: reference
+mysql_compat: mo_only
+differs_from_mysql: []
+mo_only:
+  - "mo_ctl is a MatrixOne-specific command-line deployment and management tool"
+since: unknown
+last_updated: 2026-05-22
+llms_summary: "Guide for using mo_ctl in standalone mode for deploying and managing MatrixOne."
+---
 # mo_ctl Standalone Tools Guide
 
 `mo_ctl` Standalone is a command-line tool that helps you with deployment installation, start-stop control, and database connectivity for Standalone MatrixOne.
@@ -77,7 +88,7 @@ bash +x ./install.sh mo_ctl.zip
 
 ## Get started quickly
 
-The Deployment Standalone Edition of MatrixOne can be quickly installed by following these steps, and the detailed guide provides a view of the [Standalone Deployment MatrixOne](../Get-Started/install-standalone-matrixone.md).
+The Deployment Standalone Edition of MatrixOne can be quickly installed by following these steps, and the detailed guide provides a view of the [Standalone Deployment MatrixOne](../../Get-Started/install-standalone-matrixone.md).
 
 1. Use the command `mo_ctl help` to view the tool guide.
 
@@ -150,12 +161,12 @@ mo_ctl deploy help
 Usage         : mo_ctl deploy [mo_version] [force] # deploy mo onto the path configured
   [mo_version]: optional, specify an mo version to deploy
   [force]     : optional, if specified will delete all content under MO_PATH and deploy from beginning
-  e.g.        : mo_ctl deploy             # default, same as mo_ctl deploy 3.0.11
+  e.g.        : mo_ctl deploy             # default, same as mo_ctl deploy 3.0.13
               : mo_ctl deploy main        # deploy development latest version
               : mo_ctl deploy d29764a     # deploy development version d29764a
-              : mo_ctl deploy 3.0.11       # deploy stable verson 3.0.11
-              : mo_ctl deploy force       # delete all under MO_PATH and deploy verson 3.0.11
-              : mo_ctl deploy 3.0.11 force # delete all under MO_PATH and deploy stable verson 3.0.11 from beginning
+              : mo_ctl deploy 3.0.13       # deploy stable version 3.0.13
+              : mo_ctl deploy force       # delete all under MO_PATH and deploy version 3.0.13
+              : mo_ctl deploy 3.0.13 force # delete all under MO_PATH and deploy stable version 3.0.13 from beginning
 ```
 
 ### start - Starts the MatrixOne service
@@ -295,7 +306,7 @@ Using `mo_ctl get_conf` will print a list of all parameters used by the current 
 | GCC_VERSION            | The version of gcc that precheck checks    |default 8.5.0   |
 | GO_VERSION             | The go version of the precheck check    |default 1.22.3  |
 | MO_GIT_URL             | MatrixOne source code pulling address   | default <https://github.com/matrixorigin/matrixone.git> |
-| MO_DEFAULT_VERSION     | The version of MatrixOne that is pulled by default | default 3.0.11    |
+| MO_DEFAULT_VERSION     | The version of MatrixOne that is pulled by default | default 3.0.13    |
 | GOPROXY                | GOPROXY address, generally used for domestic accelerated pull golang dependencies | default <https://goproxy.cn>,direct  |
 | STOP_INTERVAL          | Stop interval, wait time to detect service status after stopping service | default 5 seconds |
 | START_INTERVAL         | Startup interval, wait time to detect service status after starting the service | default 2 seconds   |
@@ -348,11 +359,11 @@ MatrixOne 0.8 and later can use `mo_ctl upgrade version` or `mo_ctl upgrade comm
 ```
 mo_ctl upgrade help
 Usage           : mo_ctl upgrade [version_commitid]   # upgrade or downgrade mo from current version to a target commit id or stable version
- [commitid]     : a commit id such as '38888f7', or a stable version such as '3.0.11'
+ [commitid]     : a commit id such as '38888f7', or a stable version such as '3.0.13'
                 : use 'latest' to upgrade to latest commit on main branch if you don't know the id
   e.g.          : mo_ctl upgrade 38888f7              # upgrade/downgrade to commit id 38888f7 on main branch
                 : mo_ctl upgrade latest               # upgrade/downgrade to latest commit on main branch
-                : mo_ctl upgrade 3.0.11               # upgrade/downgrade to stable version 3.0.11
+                : mo_ctl upgrade 3.0.13               # upgrade/downgrade to stable version 3.0.13
 ```
 
 ### watchdog - Keep MatrixOne alive

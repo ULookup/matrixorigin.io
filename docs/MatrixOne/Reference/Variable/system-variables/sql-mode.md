@@ -1,3 +1,14 @@
+---
+title: "SQL Mode"
+doc_type: reference
+mysql_compat: partial
+differs_from_mysql:
+  - "Only ONLY_FULL_GROUP_BY mode is functional; all other SQL modes are accepted syntactically but have no effect"
+mo_only: []
+since: unknown
+last_updated: 2026-05-21
+llms_summary: "sql_mode is a system parameter that specifies the mode in which MatrixOne performs queries and operations; currently only ONLY_FULL_GROUP_BY is functional."
+---
 # SQL Mode
 
 sql_mode is a system parameter in MatrixOne that specifies the mode in which MatrixOne performs queries and operations. sql\_mode can affect the syntax and semantic rules of MatrixOne, changing the behavior of MatrixOne queries for SQL. In this article, you will be introduced to the mode of sql\_mode, what it does, and how to set SQL mode.

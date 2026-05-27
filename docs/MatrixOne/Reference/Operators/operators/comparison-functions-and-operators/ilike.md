@@ -1,3 +1,15 @@
+---
+title: "ILIKE"
+doc_type: reference
+mysql_compat: mo_only
+differs_from_mysql: []
+mo_only:
+  - "ILIKE operator for case-insensitive LIKE matching (PostgreSQL extension)"
+since: unknown
+last_updated: 2026-05-21
+llms_summary: "MatrixOne-specific ILIKE operator for case-insensitive pattern matching. MySQL 8.0 has no ILIKE operator."
+---
+
 # **ILIKE**
 
 ## **Description**

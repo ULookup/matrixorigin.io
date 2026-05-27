@@ -2,9 +2,11 @@
 title: "MINUS"
 doc_type: reference
 mysql_compat: mo_only
-differs_from_mysql: []
+differs_from_mysql:
+  - "MINUS keyword is MO-specific; MySQL 8.0.31+ uses EXCEPT for the same set-difference semantics (MINUS is not a recognized keyword in MySQL)"
+  - "MINUS ALL is not yet implemented in MO; MySQL 8.0.31+ supports EXCEPT ALL with full duplicate-preserving semantics"
 mo_only:
-  - "MINUS (set-difference query, not in MySQL)"
+  - "MINUS keyword (MO's set-difference operator; MySQL 8.0.31+ offers equivalent functionality via EXCEPT)"
 since: unknown
 last_updated: 2026-05-08
 llms_summary: "MINUS compares the result of two queries and returns the different rows in the first query that are not output by the second query."
@@ -16,6 +18,9 @@ llms_summary: "MINUS compares the result of two queries and returns the differen
 ## **Description**
 
 `MINUS` compares the result of two queries and returns the different rows in the first query that are not output by the second query.
+
+!!! note
+    `MINUS ALL` (and `EXCEPT ALL`) are not yet implemented in MatrixOne. Using them produces the error "EXCEPT/MINUS ALL clause is not yet implemented". MySQL 8.0.31+ supports `EXCEPT ALL` with full duplicate-preserving semantics.
 
 ## **Syntax**
 

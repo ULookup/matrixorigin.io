@@ -44,10 +44,14 @@ mysql> select inner_product(b,"[1,2,3]") from vec_table;
 +---------------------------+
 | inner_product(b, [1,2,3]) |
 +---------------------------+
-|                        14 |
+|                       -14 |
 +---------------------------+
 1 row in set (0.00 sec)
 ```
+
+## **Known Issues**
+
+On MO 3.0.12, `inner_product()` returns the **negation** of the correct dot product (wrong sign). For example, `inner_product([1,2,3], [4,5,6])` returns `-32` instead of `32`. Verify results before using in production.
 
 ## **Restrictions**
 

@@ -1,3 +1,14 @@
+---
+title: "Password Complexity"
+doc_type: reference
+mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-21
+llms_summary: "Password validation variables (validate_password, validate_password.length, etc.) match MySQL 8.0 validate_password component semantics."
+---
+
 # Password complexity check
 
 MatrixOne provides a series of system variables for configuring password complexity verification to ensure password security. These variables support dynamic modification. The core variable is validate_password. The other settings only take effect when validate_password is turned on.

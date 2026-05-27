@@ -1,8 +1,9 @@
 ---
 title: "INSERT ... ON DUPLICATE KEY UPDATE"
 doc_type: reference
-mysql_compat: full
-differs_from_mysql: []
+mysql_compat: partial
+differs_from_mysql:
+  - "ON DUPLICATE KEY UPDATE only triggers on PRIMARY KEY conflicts; UNIQUE index conflicts are detected but result in errors (ERROR 1062 or ERROR 20102) rather than triggering ON DUPLICATE KEY UPDATE"
 mo_only: []
 since: unknown
 last_updated: 2026-05-08
@@ -16,7 +17,7 @@ llms_summary: "INSERT ... ON DUPLICATE KEY UPDATE When inserting data into a dat
 
 `INSERT ... ON` DUPLICATE KEY UPDATE When inserting data into a database table, update the data if it already exists, otherwise insert new data.
 
-The `INSERT INTO` statement is the standard statement used to insert data into a database table; the `ON DUPLICATE KEY UPDATE` statement is used to update when there are duplicate records in the table. If a record with the same unique index or primary key exists in the table, use the `UPDATE` clause to update the corresponding column value, otherwise use the `INSERT` clause to insert a new record.
+The `INSERT INTO` statement is the standard statement used to insert data into a database table; the `ON DUPLICATE KEY UPDATE` statement is used to update when there are duplicate records in the table. If a record with the same primary key exists in the table, use the `UPDATE` clause to update the corresponding column value, otherwise use the `INSERT` clause to insert a new record.
 
 It is important to note that using this syntax presupposes that a primary key constraint needs to be established in the table to determine if there are duplicate records. At the same time, both update and insert operations need to have the corresponding column values set, otherwise syntax errors will result.
 
@@ -76,4 +77,4 @@ mysql> select * from user;
 
 ## **Restrictions**
 
-`INSERT ... ON` DUPLICATE KEY UPDATE does not currently support Unique keys, which may cause some unknown errors because they can be `NULL`.
+`INSERT ... ON DUPLICATE KEY UPDATE` only detects conflicts on the PRIMARY KEY. If a table has secondary UNIQUE indexes, conflicts on those indexes are not handled by `ON DUPLICATE KEY UPDATE`; instead they throw ERROR 1062 (Duplicate entry), regardless of whether the value is `NULL`. Ensure the target table has a primary key and verify that secondary UNIQUE index columns do not produce duplicate values.

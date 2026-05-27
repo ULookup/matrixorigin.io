@@ -3,8 +3,11 @@ title: "EXPLAIN"
 doc_type: reference
 mysql_compat: partial
 differs_from_mysql:
-  - "Output format mirrors PostgreSQL, not MySQL"
-  - "JSON output not supported"
+  - "Output format is a single QUERY PLAN column with tree-structured text (PostgreSQL-style); MySQL uses a multi-column tabular format with id, select_type, table, partitions, type, possible_keys, key, key_len, ref, rows, filtered, Extra"
+  - "JSON output (FORMAT=JSON) not supported; MO returns syntax error"
+  - "FORMAT=TREE and FORMAT=TRADITIONAL not supported; FORMAT=TEXT bare keyword also errors; only bare keyword forms (EXPLAIN, EXPLAIN ANALYZE, EXPLAIN VERBOSE) work"
+  - "EXPLAIN FOR CONNECTION not supported (returns internal error)"
+  - "EXPLAIN (ANALYZE TRUE/FALSE) and EXPLAIN (VERBOSE TRUE/FALSE) parenthesized boolean syntax WORKS in MO 3.0.12, contrary to doc claims; only parenthesized FORMAT syntax is unsupported"
 mo_only: []
 since: unknown
 last_updated: 2026-05-08
@@ -19,13 +22,11 @@ EXPLAIN - Shows the execution plan for a statement.
 ## Syntax structure
 
 ```
-EXPLAIN [ ( option [, ...] ) ] statement
-
-where option can be one of:
-    ANALYZE [ boolean ]
-    VERBOSE [ boolean ]
-    (FORMAT=TEXT)
+EXPLAIN [ ANALYZE ] [ VERBOSE ] statement
 ```
+
+!!! note
+    The parenthesized option syntax is supported for `ANALYZE` and `VERBOSE` options (e.g., `EXPLAIN (ANALYZE TRUE)`, `EXPLAIN (ANALYZE FALSE)`, `EXPLAIN (VERBOSE TRUE)`, `EXPLAIN (VERBOSE FALSE)`), but is not yet supported for the `FORMAT` option (e.g., `EXPLAIN (FORMAT=TEXT)`). Bare keyword forms (`EXPLAIN`, `EXPLAIN ANALYZE`, `EXPLAIN VERBOSE`) are also available.
 
 ## Syntax Description
 
@@ -47,11 +48,11 @@ Executes the command and displays actual runtime and other statistics. This para
 
 * FORMAT:
 
-`FORMAT` is used as the specified output format, the syntax is `explain (format xx)`, only `TEXT` format is supported for now. Non-text output contains information in the same format as text output and is easily parsed by the program. This parameter defaults to `TEXT`.
+`FORMAT=TEXT` output is the only supported format. The parenthesized option syntax (e.g., `EXPLAIN (FORMAT=TEXT)`) is not yet implemented; only bare keyword forms are available.
 
 * BOOLEAN:
 
-`BOOLEAN` Specifies whether the selected option is on or off. You can write `TRUE` to enable this option, or `FALSE` to disable it. This parameter defaults to `TRUE`.
+The `ANALYZE` and `VERBOSE` options accept an optional boolean value (`TRUE` or `FALSE`). The parenthesized option syntax is supported for these options (e.g., `EXPLAIN (ANALYZE TRUE)`, `EXPLAIN (VERBOSE FALSE)`). Bare keyword forms (`EXPLAIN ANALYZE`, `EXPLAIN VERBOSE`) are also available and default to `TRUE`.
 
 * STATEMENT
 

@@ -2,6 +2,13 @@
 
 Verifies `mysql_compat` frontmatter accuracy for all 402 SQL Reference docs against MatrixOne 3.0.13 using 28 parallel agents (14 static + 14 live) with cross-referenced merge.
 
+## Prerequisites
+
+- Docker running locally
+- `mysql` CLI installed and on PATH
+- `python3` installed and on PATH
+- `scripts/mo-test-env.sh` helper script present
+
 ## Quick Start
 
 ```bash

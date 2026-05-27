@@ -44,7 +44,7 @@ usage() {
     echo "  dispatch   Print agent dispatch instructions (28 agents + 1 merge)"
     echo "  merge      Run the merge agent on collected reports"
     echo "  status     Check which reports exist in ${OUTPUT_DIR}"
-    echo "  cleanup    Stop MO container, remove audit databases"
+    echo "  cleanup    Stop MO container"
     echo ""
     echo "Environment:"
     echo "  MO_VERSION   Target MatrixOne version (default: 3.0.13)"
@@ -72,11 +72,15 @@ do_preflight() {
         fi
         sleep 2
     done
+    if ! mysql -h127.0.0.1 -P6001 -uroot -p111 -e "SELECT 1" >/dev/null 2>&1; then
+        print_error "MO did not become ready after 60 seconds"
+        exit 1
+    fi
 
     # 3. Create isolated databases
     print_info "Creating audit databases..."
     for bucket in "${BUCKETS[@]}"; do
-        local db_name="audit_${bucket//-/_}"
+        local db_name="audit_${bucket}"
         mysql -h127.0.0.1 -P6001 -uroot -p111 -e "DROP DATABASE IF EXISTS \`${db_name}\`; CREATE DATABASE \`${db_name}\`;" 2>/dev/null
         print_success "Database ${db_name} created"
     done
@@ -91,7 +95,7 @@ do_preflight() {
         exit 1
     fi
     local file_count
-    file_count=$(python3 -c "import json; m=json.load(open('$REPO_ROOT/bucket-manifest.json')); print(m['total_files'])")
+    file_count=$(python3 -c "import json; with open('${REPO_ROOT}/bucket-manifest.json') as f: m=json.load(f); print(m['total_files'])")
     print_success "bucket-manifest.json has ${file_count} files across ${#BUCKETS[@]} buckets"
 }
 
@@ -108,8 +112,6 @@ do_dispatch() {
     echo ""
     for bucket in "${BUCKETS[@]}"; do
         local prompt_file="${SCRIPT_DIR}/prompts/static-agent.md"
-        local prompt_content
-        prompt_content=$(sed "s/{{BUCKET_NAME}}/${bucket}/g" "$prompt_file")
         echo "### static-${bucket}"
         echo "Prompt: ${prompt_file} (with BUCKET_NAME=${bucket})"
         echo "Output: ${OUTPUT_DIR}/static-${bucket}-report.json"
@@ -120,9 +122,7 @@ do_dispatch() {
     echo ""
     for bucket in "${BUCKETS[@]}"; do
         local prompt_file="${SCRIPT_DIR}/prompts/live-agent.md"
-        local prompt_content
-        prompt_content=$(sed "s/{{BUCKET_NAME}}/${bucket}/g" "$prompt_file")
-        local db_name="audit_${bucket//-/_}"
+        local db_name="audit_${bucket}"
         echo "### live-${bucket}"
         echo "Database: ${db_name}"
         echo "Prompt: ${prompt_file} (with BUCKET_NAME=${bucket})"

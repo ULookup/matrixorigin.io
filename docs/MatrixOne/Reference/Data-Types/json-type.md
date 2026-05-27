@@ -1,3 +1,14 @@
+---
+title: "JSON Type"
+doc_type: reference
+mysql_compat: full
+differs_from_mysql: []
+mo_only: []
+since: unknown
+last_updated: 2026-05-21
+llms_summary: "JSON data type with normalization, duplicate key handling, and validation consistent with MySQL 8.0 JSON type semantics."
+---
+
 # The JSON Data Type
 
 MatrixOne supports a native JSON data type defined by RFC 7159 that enables efficient access to data in JSON (JavaScript Object Notation) documents. The JSON data type provides these advantages over storing JSON-format strings in a string column:

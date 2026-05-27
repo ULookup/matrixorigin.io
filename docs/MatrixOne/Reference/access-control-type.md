@@ -1,3 +1,14 @@
+---
+title: "Privilege Control Types"
+doc_type: reference
+mysql_compat: mo_only
+differs_from_mysql: []
+mo_only:
+  - "Dual-layer privilege model (System Permissions + Object Permissions) with account-level scoping distinct from MySQL's privilege model"
+since: unknown
+last_updated: 2026-05-21
+llms_summary: "Describes MatrixOne's privilege control system, classified into System Permissions and Object Permissions, assigned to roles."
+---
 # Privilege Control Types
 
 The privilege control of a MatrixOne is classified into **System Permission** and **Object Permission**. You can refer to the permissions granted to roles.

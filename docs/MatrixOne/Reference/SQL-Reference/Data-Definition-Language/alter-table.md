@@ -3,9 +3,8 @@ title: "ALTER TABLE"
 doc_type: reference
 mysql_compat: partial
 differs_from_mysql:
-  - "CHANGE [COLUMN], MODIFY [COLUMN], RENAME COLUMN, ADD/DROP PRIMARY KEY, ALTER COLUMN ORDER BY cannot be combined with other clauses in the same ALTER TABLE"
+  - "Multiple ALTER TABLE operations can be combined in one statement, with limitation: DROP PRIMARY KEY cannot be combined with RENAME COLUMN, CHANGE COLUMN, or DROP COLUMN (causes server panic); DROP PK + ADD COLUMN and DROP PK + MODIFY COLUMN work correctly"
   - "Temporary tables cannot be altered"
-  - "Tables created with CLUSTER BY cannot be altered"
   - "ALTER TABLE does not support PARTITION operations"
 mo_only: []
 since: unknown
@@ -276,6 +275,5 @@ mysql> show tables;
 
 ## Limitations
 
-1. The following clauses: `CHANGE [COLUMN]`, `MODIFY [COLUMN]`, `RENAME COLUMN`, `ADD [CONSTRAINT [symbol]] PRIMARY KEY`, `DROP PRIMARY KEY`, and `ALTER COLUMN ORDER BY` can be freely combined in an `ALTER TABLE` statement but are currently not supported with other clauses.
+1. `CHANGE [COLUMN]`, `MODIFY [COLUMN]`, `RENAME COLUMN`, `ADD [CONSTRAINT [symbol]] PRIMARY KEY`, `DROP PRIMARY KEY`, `ADD COLUMN`, and `DROP COLUMN` can be combined in an `ALTER TABLE` statement with the following restriction: `DROP PRIMARY KEY` cannot be combined with `RENAME COLUMN`, `CHANGE COLUMN`, or `DROP COLUMN` (causes a server panic). `DROP PRIMARY KEY` combined with `ADD COLUMN` or `MODIFY COLUMN` works correctly.
 2. Temporary tables do not currently support structural modifications via `ALTER TABLE`.
-3. Tables created with `CREATE TABLE ... CLUSTER BY...` cannot be modified using `ALTER TABLE`.

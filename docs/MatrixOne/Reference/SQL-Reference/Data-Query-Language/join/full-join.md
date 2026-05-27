@@ -1,10 +1,10 @@
 ---
 title: "FULL JOIN"
 doc_type: reference
-mysql_compat: mo_only
-differs_from_mysql: []
-mo_only:
-  - "FULL JOIN / FULL OUTER JOIN is not supported in MySQL 8.0 (users must emulate it with LEFT JOIN UNION RIGHT JOIN)."
+mysql_compat: none
+differs_from_mysql:
+  - "FULL JOIN with ON clause produces different errors on MO (missing FROM-clause entry) vs MySQL 8.0 (Unknown column in ON clause). FULL JOIN with USING returns INNER JOIN results on both (neither returns unmatched rows). FULL OUTER JOIN produces a syntax error on both. MySQL 8.0 does not natively support either FULL JOIN or FULL OUTER JOIN."
+mo_only: []
 since: unknown
 last_updated: 2026-05-08
 llms_summary: "The `FULL JOIN` keyword returns all records when there is a match in left (table1) or right (table2) table records."
@@ -17,15 +17,21 @@ llms_summary: "The `FULL JOIN` keyword returns all records when there is a match
 
 The ``FULL JOIN``  keyword returns all records when there is a match in left (table1) or right (table2) table records.
 
-!!! note  "<font size=4>note</font>"
-    <font size=3>``FULL OUTER JOIN`` and ``FULL JOIN`` are the same.</font>
+!!! warning
+    `FULL JOIN` is partially parsed but behaves as `INNER JOIN` (does not return unmatched rows from either side). `FULL OUTER JOIN` produces a syntax error. To emulate a true full outer join, use:
+
+    ```sql
+    SELECT * FROM t1 LEFT JOIN t2 ON t1.a = t2.a
+    UNION
+    SELECT * FROM t1 RIGHT JOIN t2 ON t1.a = t2.a;
+    ```
 
 ## **Syntax**
 
 ```
 > SELECT column_name(s)
 FROM table1
-FULL OUTER JOIN table2
+FULL JOIN table2
 ON table1.column_name=table2.column_name;
 
 ```

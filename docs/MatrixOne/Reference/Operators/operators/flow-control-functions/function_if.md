@@ -1,3 +1,14 @@
+---
+title: "IF()"
+doc_type: reference
+mysql_compat: partial
+differs_from_mysql:
+  - "IF(NULL, expr2, expr3) raises an error instead of returning expr3 (MySQL 8.0 returns expr3)"
+mo_only: []
+since: unknown
+last_updated: 2026-05-21
+llms_summary: "IF(expr1, expr2, expr3) flow control function. Supports all data types including BIGINT and VARCHAR. Partially compatible with MySQL 8.0 — IF(NULL, expr2, expr3) raises an error instead of returning expr3."
+---
 # **IF**
 
 ## **Description**
@@ -72,7 +83,3 @@ mysql> select if(u=1,st,st) s from t1 where st like "%a%" order by s;
 +------+
 4 rows in set (0.00 sec)
 ```
-
-## **Constraints**
-
-Parameters BIGINT and VARCHAR are not supported with the function 'if'.

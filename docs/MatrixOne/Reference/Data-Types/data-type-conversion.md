@@ -1,3 +1,15 @@
+---
+title: "Data Type Conversion"
+doc_type: reference
+mysql_compat: partial
+differs_from_mysql:
+  - "BOOLEAN → DECIMAL cast is not supported; other common conversions are supported"
+mo_only: []
+since: unknown
+last_updated: 2026-05-21
+llms_summary: "MatrixOne supports explicit CAST and implicit coercion between most data types; refer to the compatibility table for supported conversions."
+---
+
 ## **Data Type Conversion**
 
 MatrixOne supports the conversion between different data types, the supported and unsupported conversions are listed in the following table.
@@ -7,7 +19,7 @@ MatrixOne supports the conversion between different data types, the supported an
 
 | Source Data Type             | Target Data Type | **Castable** | **Coercible** |
 | ---------------------------- | ---------------- | ------------ | ------------- |
-| BOOLEAN                      | INTEGER          | ❌            | ❌             |
+| BOOLEAN                      | INTEGER          | ✔            | ✔             |
 |                              | DECIMAL          | ❌            | ❌             |
 |                              | VARCHAR          | ✔            | ✔             |
 | DATE                         | TIMESTAMP        | ✔            | ✔             |
@@ -16,10 +28,10 @@ MatrixOne supports the conversion between different data types, the supported an
 | DATETIME                     | TIMESTAMP        | ✔            | ✔             |
 |                              | DATE             | ✔            | ✔             |
 |                              | VARCHAR          | ✔            | ✔             |
-| FLOAT(Floating-point number) | INTEGER          | ❌            | ❌             |
+| FLOAT(Floating-point number) | INTEGER          | ✔            | ✔             |
 |                              | DECIMAL          | ✔            | ✔             |
 |                              | VARCHAR          | ✔            | ✔             |
-| INTEGER                      | BOOLEAN          | ❌            | ❌             |
+| INTEGER                      | BOOLEAN          | ✔            | ✔             |
 |                              | FLOAT            | ✔            | ✔             |
 |                              | TIMESTAMP        | ✔            | ✔             |
 |                              | VARCHAR          | ✔            | ✔             |

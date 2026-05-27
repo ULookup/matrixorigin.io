@@ -1,8 +1,9 @@
 ---
 title: "JOIN"
 doc_type: reference
-mysql_compat: full
-differs_from_mysql: []
+mysql_compat: partial
+differs_from_mysql:
+  - "FULL JOIN and FULL OUTER JOIN are not fully supported (FULL JOIN with ON produces errors, FULL JOIN with USING returns INNER JOIN results, FULL OUTER JOIN is a syntax error); MySQL 8.0 also does not support FULL JOIN/OUTER JOIN natively"
 mo_only: []
 since: unknown
 last_updated: 2026-05-08
@@ -36,6 +37,9 @@ The following figure shows seven usages of ``LEFT JOIN``, ``RIGHT JOIN``, ``INNE
 |---|---|
 
 - ``FULL JOIN``
+
+!!! note
+    `FULL OUTER JOIN` is not supported in MatrixOne and produces a syntax error. `FULL JOIN` with `USING` returns `INNER JOIN` results instead of a true full outer join. To emulate a true full outer join, use the `LEFT JOIN` + `UNION` + `RIGHT JOIN` pattern. For details, see [FULL JOIN](full-join.md).
 
 |SELECT [select_list] FROM TableA A FULL OUTER JOIN TableB B ON A.Key=B.Key|![leftjoin](https://github.com/matrixorigin/artwork/blob/main/docs/reference/full_join.png?raw=true)|
 |---|---|

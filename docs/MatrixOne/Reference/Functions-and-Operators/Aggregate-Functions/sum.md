@@ -1,8 +1,9 @@
 ---
 title: "SUM"
 doc_type: reference
-mysql_compat: full
-differs_from_mysql: []
+mysql_compat: partial
+differs_from_mysql:
+  - "SUM() returns the input integer type rather than DECIMAL for exact-value arguments (MySQL returns DECIMAL)"
 mo_only: []
 since: unknown
 last_updated: 2026-05-08

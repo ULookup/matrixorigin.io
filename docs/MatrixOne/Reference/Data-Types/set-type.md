@@ -2,7 +2,7 @@
 title: "SET Type"
 doc_type: reference
 mysql_compat: partial
-differs_from_mysql: ["ALTER MODIFY shrink member list is rejected"]
+differs_from_mysql: ["SELECT displays numeric bitmask values, not string representations; WHERE filtering requires numeric values (not string member names); ALTER MODIFY shrink member list is rejected"]
 mo_only: false
 since: v3.0.12
 last_updated: 2026-05-19
@@ -11,7 +11,7 @@ llms_summary: "The SET type stores a set of predefined string values as a bitmas
 
 # SET Type
 
-> The SET type stores a set of predefined string values as a compact bitmask. Each column's member list is defined at table creation time. Values can be inserted by name (e.g. `'red,blue'`) or numeric index sum. ALTER MODIFY can expand but not shrink the member list.
+> The SET type stores a set of predefined string values as a compact bitmask. Each column's member list is defined at table creation time. Values can be inserted by name (e.g. `'red,blue'`) or numeric index sum. SELECT displays the numeric bitmask value, not string member names. WHERE filtering requires numeric comparisons (e.g. `WHERE colors = 3` for red+green). ALTER MODIFY can expand but not shrink the member list.
 
 ## Syntax
 
@@ -55,9 +55,11 @@ INSERT INTO set01 VALUES (1, 'red'), (2, 'blue,red'), (3, ''), (4, NULL);
 INSERT INTO set01 VALUES (5, 3);
 
 SELECT * FROM set01 ORDER BY id;
+-- SELECT displays numeric bitmask values: (1,1), (2,5), (3,0), (4,NULL), (5,3)
 
--- Filter by set value
-SELECT * FROM set01 WHERE colors = 'red,green' ORDER BY id;
+-- Filter by set value (SET columns store as numeric bitmask; use numeric values for WHERE)
+-- red=1, green=2, blue=4, so 'red,green' = 1+2 = 3
+SELECT * FROM set01 WHERE colors = 3 ORDER BY id;
 
 -- Inserting an invalid member produces an error
 -- Expected-Success: false

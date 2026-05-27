@@ -3,7 +3,9 @@ title: "Get information with EXPLAIN ANALYZE"
 doc_type: reference
 mysql_compat: partial
 differs_from_mysql:
-  - "Output format mirrors PostgreSQL; JSON output not supported"
+  - "Output format mirrors PostgreSQL (QUERY PLAN tree with Analyze sub-lines showing timeConsumed, waitTime, inputRows, outputRows, InputSize, OutputSize, MemorySize); MySQL 8.0 EXPLAIN ANALYZE uses TREE format with cost estimation and actual time in a different structure"
+  - "JSON output not supported"
+  - "MO EXPLAIN ANALYZE produces one output row per plan tree line; MySQL produces a single row with the full plan"
 mo_only: []
 since: unknown
 last_updated: 2026-05-08

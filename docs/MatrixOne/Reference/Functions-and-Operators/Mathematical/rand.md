@@ -1,8 +1,9 @@
 ---
 title: "RAND()"
 doc_type: reference
-mysql_compat: full
-differs_from_mysql: []
+mysql_compat: partial
+differs_from_mysql:
+  - "RAND(seed) is not supported; calling RAND(N) with an integer argument produces ERROR 20203"
 mo_only: []
 since: unknown
 last_updated: 2026-05-08

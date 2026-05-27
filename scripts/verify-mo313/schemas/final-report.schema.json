@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "final-report",
+  "type": "object",
+  "required": ["meta", "summary", "by_severity", "by_bucket", "findings"],
+  "properties": {
+    "meta": {
+      "type": "object",
+      "required": ["mo_version", "generated_at", "total_files", "total_buckets", "static_agents", "live_agents"],
+      "properties": {
+        "mo_version": { "type": "string" },
+        "generated_at": { "type": "string", "format": "date-time" },
+        "total_files": { "type": "integer" },
+        "total_buckets": { "type": "integer" },
+        "static_agents": { "type": "integer" },
+        "live_agents": { "type": "integer" },
+        "missing_buckets": { "type": "array", "items": { "type": "string" }, "description": "Buckets where an agent failed to produce a report" }
+      }
+    },
+    "summary": {
+      "type": "object",
+      "required": ["total_claims_checked", "pass", "confirmed_fail", "conflict", "live_only", "static_only", "needs_human_review"],
+      "properties": {
+        "total_claims_checked": { "type": "integer" },
+        "pass": { "type": "integer" },
+        "confirmed_fail": { "type": "integer" },
+        "conflict": { "type": "integer" },
+        "live_only": { "type": "integer" },
+        "static_only": { "type": "integer" },
+        "needs_human_review": { "type": "integer" }
+      }
+    },
+    "by_severity": {
+      "type": "object",
+      "properties": {
+        "critical": { "type": "integer" },
+        "high": { "type": "integer" },
+        "medium": { "type": "integer" },
+        "low": { "type": "integer" }
+      }
+    },
+    "by_bucket": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "pass": { "type": "integer" },
+          "confirmed_fail": { "type": "integer" },
+          "conflict": { "type": "integer" }
+        }
+      }
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["file", "merge_verdict", "severity", "description"],
+        "properties": {
+          "file": { "type": "string" },
+          "merge_verdict": { "enum": ["PASS", "CONFIRMED FAIL", "CONFLICT", "LIVE_ONLY", "STATIC_ONLY"] },
+          "severity": { "enum": ["CRITICAL", "HIGH", "MEDIUM", "LOW"] },
+          "description": { "type": "string" },
+          "static_evidence": { "type": "object" },
+          "live_evidence": { "type": "object" },
+          "auto_resolved": { "type": "boolean" },
+          "needs_human_review": { "type": "boolean" },
+          "suggested_action": { "type": "string" }
+        }
+      }
+    }
+  }
+}

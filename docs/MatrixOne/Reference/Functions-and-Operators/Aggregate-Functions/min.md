@@ -6,17 +6,17 @@ differs_from_mysql: []
 mo_only: []
 since: unknown
 last_updated: 2026-05-08
-llms_summary: "Aggregate function. The MAX() function calculates the maximum value across a group of values."
+llms_summary: "Aggregate function. The MIN() function calculates the minimum value across a group of values."
 ---
 # **MIN**
 
-> Aggregate function. The MAX() function calculates the maximum value across a group of values.
+> Aggregate function. The MIN() function calculates the minimum value across a group of values.
 
 ## **Description**
 
 Aggregate function.
 
-The MAX() function calculates the maximum value across a group of values.
+The MIN() function calculates the minimum value across a group of values.
 
 ## **Syntax**
 

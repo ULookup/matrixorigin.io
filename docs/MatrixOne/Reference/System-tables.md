@@ -1,6 +1,17 @@
+---
+title: "MatrixOne System Databases and Tables"
+doc_type: reference
+mysql_compat: mo_only
+differs_from_mysql: []
+mo_only:
+  - "MatrixOne-specific system databases (mo_catalog, mo_task) and tables with a unique schema distinct from MySQL's information_schema/mysql databases"
+since: unknown
+last_updated: 2026-05-21
+llms_summary: "Describes MatrixOne's system databases and tables where system metadata is stored, including mo_catalog, information_schema, system_metrics, and mo_task."
+---
 # MatrixOne System Databases and Tables
 
-MatrixOne system databases and tables are where MatrixOne stores the system information that you can access through them.MatrixOne creates six system databases at initialization: `mo_catalog`, `information_schema`, `system_metrcis`, `system`, `mysql`, and `mo_task`. system`,`mysql`and`mo_task`.`mo_task` is currently under development and will not have a direct impact on the operations you perform for the time being. Other system database and table functions are described in this document.
+MatrixOne system databases and tables are where MatrixOne stores the system information that you can access through them. MatrixOne creates six system databases at initialization: `mo_catalog`, `information_schema`, `system_metrics`, `system`, `mysql`, and `mo_task`. `mo_task` is currently under development and will not have a direct impact on the operations you perform for the time being. Other system database and table functions are described in this document.
 
 The system can only modify system databases and tables; you can only read from them.
 
@@ -19,7 +30,6 @@ The concept of multi-tenancy was introduced with MatrixOne version 0.6, and the 
 | database_id | BIGINT UNSIGNED(64) | ID of the database where the index resides |
 | name | VARCHAR(64) | name of the index |
 | type | VARCHAR(11) | The type of index, including primary key index (PRIMARY), unique index (UNIQUE), secondary index (MULTIPLE) |
-| algo_table_type | VARCHAR(11) | Algorithm for creating indexes |
 | algo_table_type | VARCHAR(11) | Hidden table types for multi-table indexes |
 | | algo_params | VARCHAR(2048) | Parameters for indexing algorithms |
 | is_visible | TINYINT(8) | Whether the index is visible, 1 means visible, 0 means invisible (currently all MatrixOne indexes are visible indexes) |
@@ -155,7 +165,7 @@ The concept of multi-tenancy was introduced with MatrixOne version 0.6, and the 
 | collation_connection | VARCHAR(64) | Connection sort: utf8mb4_0900_ai_ci |
 | database_collation | VARCHAR(64) | Database connection collation: utf8mb4_0900_ai_ci |
 
-### mo_mysql_compatbility_mode table
+### mo_mysql_compatibility_mode table
 
 | column            | type            | comments                            |
 | -----------------| --------------- | ----------------- |
@@ -164,7 +174,6 @@ The concept of multi-tenancy was introduced with MatrixOne version 0.6, and the 
 | account_name | VARCHAR(300) | The name of the tenant where the configuration is located |
 | dat_name | VARCHAR(5000) | The name of the database where the configuration resides |
 | variable_name | VARCHAR(300) | The name of the variable |
-| variable_value | VARCHAR(5000) | The name of the database where the configuration resides. |
 | variable_value | VARCHAR(5000) | The value of the variable |
 | system_variables | BOOL(0) | if it is a system variable (compatibility variables are added in addition to system variables) |
 
@@ -261,25 +270,6 @@ The concept of multi-tenancy was introduced with MatrixOne version 0.6, and the 
 ### `mo_transactions` view
 
 | column            | type            | comments                            |
-| ------------- | --------------- | ------------------------------------ |
-| cn_id        | VARCHAR(65535) | ID that uniquely identifies the CN (Compute Node).    |
-| txn_id       | VARCHAR(65535) | The ID that uniquely identifies the transaction.                  |
-| create_ts    | VARCHAR(65535) | Record the transaction creation timestamp, following the RFC3339Nano format ("2006-01-02T15:04:05.99999999999Z07:00").   |
-| snapshot_ts  | VARCHAR(65535) | Represents the snapshot timestamp of the transaction, expressed in both physical and logical time.   |
-| prepared_ts  | VARCHAR(65535) | Indicates the prepared timestamp of the transaction, in the form of physical and logical time.  |
-| commit_ts    | VARCHAR(65535) | Indicates the commit timestamp of the transaction, in both physical and logical time.|
-| txn_mode     | VARCHAR(65535) | Identifies the transaction mode, which can be either pessimistic or optimistic.   |
-| isolation    | VARCHAR(65535) | Indicates the isolation level of the transaction, either SI (Snapshot Isolation) or RC (Read Committed).  |
-| user_txn     | VARCHAR(65535) | Indicates a user transaction, i.e., a transaction created by a SQL operation performed by a user connecting to MatrixOne via a client.   |
-| txn_status   | VARCHAR(65535) | Indicates the current state of the transaction, with possible values including active, committed, aborting, aborted. In the distributed transaction 2PC model, this would also include prepared and committing.  |
-| table_id     | VARCHAR(65535) | Indicates the ID of the table involved in the transaction.  |
-| lock_key     | VARCHAR(65535) | Indicates the type of lock, either range or point.   |
-| lock_content | VARCHAR(65535) | Point locks represent individual values, range locks represent ranges, usually in the form of "low - high". Note that transactions may involve multiple locks, but only the first lock is shown here.|
-| lock_mode    | VARCHAR(65535) | Indicates the mode of the lock, either exclusive or shared.   |
-
-### `mo_transactions` 视图
-
-| column           | type     | comments                                                |
 | ------------- | --------------- | ------------------------------------ |
 | cn_id        | VARCHAR(65535) | ID that uniquely identifies the CN (Compute Node).    |
 | txn_id       | VARCHAR(65535) | The ID that uniquely identifies the transaction.                  |
@@ -422,11 +412,7 @@ It records user and system SQL statement with detailed information.
 | exec_plan             | JSON          | statement execution plan                                     |
 | rows_read             | BIGINT        | rows read total                                              |
 | bytes_scan            | BIGINT        | bytes scan total                                             |
-| stats                 | JSON          | global stats info in |
-|exec_plan             | JSON           | statement execution plan                            |
-| rows_read             | BIGINT        | Read the total number of rows               |
-| bytes_scan            | BIGINT        | Total bytes scanned                                           |
-| stats                 | JSON          | Global statistics in exec_plan         |
+| stats                 | JSON          | global stats info in exec_plan |
 | statement_type        | VARCHAR(1024) | statement type, val in [Insert, Delete, Update, Drop Table, Drop User, ...] |
 | query_type            | VARCHAR(1024) | query type, val in [DQL, DDL, DML, DCL, TCL]           |
 | role_id               | BIGINT        | role id         |
@@ -589,7 +575,7 @@ Fields in the `PROCESSLIST` view are described as follows:
 - `TXN_ID`: transaction ID
 - `STATEMENT_ID`: Statement ID
 - `STATEMENT_TYPE`: type of statement, Select/Update/Delete, etc.
-- `QUERY_TYPR`: query type, DQL/DDL/DML etc.
+- `QUERY_TYPE`: query type, DQL/DDL/DML etc.
 - `SQL_SOURCE_TYPE`: SQL statement source type, external or internal SQL: external_sql/internal_sql
 - `QUERY_START`: Query start time.
 - `CLIENT_HOST`: client address

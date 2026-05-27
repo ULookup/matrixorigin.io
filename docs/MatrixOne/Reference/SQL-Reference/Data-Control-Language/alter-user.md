@@ -4,6 +4,11 @@ doc_type: reference
 mysql_compat: partial
 differs_from_mysql:
   - "Only ALTER USER can change passwords; account-limit clauses not honoured"
+  - "Password management options (PASSWORD EXPIRE, PASSWORD HISTORY, PASSWORD REUSE INTERVAL, PASSWORD REQUIRE CURRENT, FAILED_LOGIN_ATTEMPTS, PASSWORD_LOCK_TIME) not supported"
+  - "Account locking (ACCOUNT LOCK/UNLOCK) not supported"
+  - "REQUIRE clause (TLS/SSL enforcement) not supported"
+  - "COMMENT and ATTRIBUTE modification not supported"
+  - "Multiple users per statement not supported (MySQL 8.0 allows user [, user] ...)"
 mo_only: []
 since: unknown
 last_updated: 2026-05-08

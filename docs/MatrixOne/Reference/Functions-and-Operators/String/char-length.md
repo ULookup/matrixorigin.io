@@ -14,7 +14,7 @@ llms_summary: "The CHAR_LENGTH function returns the length of the string str, me
 
 ## **Description**
 
-The `CHAR_LENGTH` function returns the length of the string str, measured in code points. A multibyte character counts as a single code point. This means that, for a string containing two 3-byte characters, `CHAR_LENGTH` returns 6, whereas `CHAR_LENGTH` returns 2.  
+The `CHAR_LENGTH` function returns the length of the string str, measured in code points. A multibyte character counts as a single code point. This means that, for a string containing two 3-byte characters, `LENGTH()` returns 6, whereas `CHAR_LENGTH()` returns 2.  
 
 ## **Syntax**
 

@@ -3,7 +3,9 @@ title: "EXPLAIN Output Format"
 doc_type: reference
 mysql_compat: partial
 differs_from_mysql:
-  - "Output format mirrors PostgreSQL; JSON output not supported"
+  - "Output is a single QUERY PLAN column with tree-structured text; MySQL uses multi-column tabular EXPLAIN format"
+  - "JSON output not supported"
+  - "Node types (Sink, Sink Scan, PreInsert, Fuzzy Filter, etc.) are MO-specific and have no MySQL equivalent"
 mo_only: []
 since: unknown
 last_updated: 2026-05-08

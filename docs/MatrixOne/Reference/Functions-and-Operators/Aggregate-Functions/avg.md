@@ -1,8 +1,9 @@
 ---
 title: "AVG"
 doc_type: reference
-mysql_compat: full
-differs_from_mysql: []
+mysql_compat: partial
+differs_from_mysql:
+  - "AVG() returns DOUBLE for all input types (MySQL returns DECIMAL for exact-value types)"
 mo_only: []
 since: unknown
 last_updated: 2026-05-08
@@ -34,7 +35,7 @@ The AVG() function calculates the average value of the argument.
 
 The arithmetic mean, always as Double.
 
-NaN if the input parameter is empty.
+NULL if the input parameter is empty.
 
 ## **Examples**
 
@@ -53,26 +54,26 @@ drop table if exists tbl2;
 +-------------+
 | avg(col_1c) |
 +-------------+
-|      3.5000 |
+|      3.5    |
 +-------------+
 
 > select sum(col_1d) as s1,avg(col_1d) as a3 from tbl1 group by col_1e order by s1 desc;
 +------+---------+
 | s1   | a3      |
 +------+---------+
-|   21 | 10.5000 |
-|   18 |  9.0000 |
-|   10 | 10.0000 |
-|    8 |  8.0000 |
+|   21 | 10.5    |
+|   18 |  9      |
+|   10 | 10      |
+|    8 |  8      |
 +------+---------+
 
 > select avg(col_1d) as a1 from tbl1 where col_1d < 13 group by col_1e order by a1;
 +---------+
 | a1      |
 +---------+
-|  8.0000 |
-|  9.0000 |
-| 10.0000 |
-| 10.5000 |
+|  8      |
+|  9      |
+| 10      |
+| 10.5    |
 +---------+
 ```

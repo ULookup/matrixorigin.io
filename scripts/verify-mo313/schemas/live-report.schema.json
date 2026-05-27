@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "live-report",
+  "type": "object",
+  "required": ["agent", "bucket", "mo_version", "generated_at", "files"],
+  "properties": {
+    "agent": { "const": "live" },
+    "bucket": { "type": "string" },
+    "mo_version": { "type": "string" },
+    "generated_at": { "type": "string", "format": "date-time" },
+    "summary": {
+      "type": "object",
+      "properties": {
+        "total_files": { "type": "integer" },
+        "total_claims": { "type": "integer" },
+        "pass": { "type": "integer" },
+        "fail": { "type": "integer" },
+        "warn": { "type": "integer" },
+        "skipped": { "type": "integer" },
+        "errors": { "type": "integer" }
+      }
+    },
+    "files": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["file", "current_compat", "findings"],
+        "properties": {
+          "file": { "type": "string" },
+          "current_compat": { "enum": ["full", "partial", "mo_only", "none", "unknown"] },
+          "findings": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["verdict", "severity", "description", "evidence"],
+              "properties": {
+                "verdict": { "enum": ["PASS", "FAIL", "WARN", "SKIPPED", "ERROR"] },
+                "severity": { "enum": ["CRITICAL", "HIGH", "MEDIUM", "LOW"] },
+                "field_checked": { "type": "string" },
+                "description": { "type": "string" },
+                "evidence": {
+                  "type": "object",
+                  "required": ["sql_executed", "actual_output"],
+                  "properties": {
+                    "sql_executed": { "type": "string" },
+                    "actual_output": { "type": "string" },
+                    "expected_behavior": { "type": "string" },
+                    "matches_doc": { "type": "boolean" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "incomplete": { "type": "boolean" }
+  }
+}

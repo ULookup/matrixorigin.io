@@ -1,22 +1,22 @@
 {
-  "generated_at": "2026-05-27T10:51:12.013Z",
+  "generated_at": "2026-05-28T07:04:51.639Z",
   "summary": {
-    "total": 370,
-    "full": 142,
-    "partial": 62,
-    "none": 0,
-    "mo_only": 93,
-    "unknown": 73
+    "total": 373,
+    "full": 131,
+    "partial": 97,
+    "none": 1,
+    "mo_only": 96,
+    "unknown": 48
   },
   "sections": [
     {
       "id": "sql-reference",
       "label": "SQL Statements",
       "summary": {
-        "full": 30,
-        "partial": 43,
-        "none": 0,
-        "mo_only": 57,
+        "full": 21,
+        "partial": 58,
+        "none": 1,
+        "mo_only": 53,
         "unknown": 0
       },
       "categories": [
@@ -54,7 +54,12 @@
               "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Control-Language/alter-user.md",
               "compat": "partial",
               "notes": [
-                "Only ALTER USER can change passwords; account-limit clauses not honoured"
+                "Only ALTER USER can change passwords; account-limit clauses not honoured",
+                "Password management options (PASSWORD EXPIRE, PASSWORD HISTORY, PASSWORD REUSE INTERVAL, PASSWORD REQUIRE CURRENT, FAILED_LOGIN_ATTEMPTS, PASSWORD_LOCK_TIME) not supported",
+                "Account locking (ACCOUNT LOCK/UNLOCK) not supported",
+                "REQUIRE clause (TLS/SSL enforcement) not supported",
+                "COMMENT and ATTRIBUTE modification not supported",
+                "Multiple users per statement not supported (MySQL 8.0 allows user [, user] ...)"
               ]
             },
             {
@@ -83,8 +88,11 @@
               "notes": [
                 "IDENTIFIED BY is the only supported password form; IDENTIFIED WITH plugins not supported",
                 "Connection-IP whitelists and connection-limit clauses not supported",
-                "COMMENT and ATTRIBUTE clauses are accepted syntactically but not honoured",
-                "User identifier is a bare username scoped to the current account; MySQL uses 'user'@'host' tuples"
+                "COMMENT and ATTRIBUTE clauses not supported",
+                "'user'@'host' syntax is accepted and host is stored in mo_catalog.mo_user.user_host but may not restrict connections; users are scoped to the current account, not server-global as in MySQL",
+                "Password management options (PASSWORD EXPIRE, PASSWORD HISTORY, PASSWORD REUSE INTERVAL, PASSWORD REQUIRE CURRENT) not supported",
+                "Account locking (ACCOUNT LOCK/UNLOCK) not supported",
+                "REQUIRE clause (TLS/SSL enforcement) not supported"
               ]
             },
             {
@@ -122,8 +130,12 @@
               "notes": [
                 "Authorization logic differs from MySQL — MatrixOne evaluates via its role/account model",
                 "User identifier is a bare username scoped to the current account; MySQL uses 'user'@'host' tuples",
+                "AS user [WITH ROLE ...] clause (MySQL 8.0 privilege restriction) not supported",
+                "GRANT privilege ... TO only accepts roles; users receive privileges indirectly through role membership (GRANT role TO user)",
+                "WITH ADMIN OPTION for role grants is not supported",
                 "[MO-only] `GRANT ... ON ACCOUNT *` — account-level privileges have no MySQL counterpart",
-                "[MO-only] `GRANT ... ON DATABASE *` — MatrixOne-specific database-level grant target"
+                "[MO-only] `GRANT ... ON DATABASE *` — MatrixOne-specific database-level grant target",
+                "[MO-only] GRANT ... ON VIEW db_name.view_name (separate VIEW object_type; MySQL 8.0 only supports TABLE, FUNCTION, PROCEDURE)"
               ]
             },
             {
@@ -134,8 +146,10 @@
               "notes": [
                 "Recovery logic differs from MySQL — privileges return to the role/account graph",
                 "User identifier is a bare username scoped to the current account; MySQL uses 'user'@'host' tuples",
+                "IGNORE UNKNOWN USER clause (MySQL 8.0.30+) not supported",
                 "[MO-only] `REVOKE ... ON ACCOUNT *` — account-level privileges have no MySQL counterpart",
-                "[MO-only] `REVOKE ... ON DATABASE *` — MatrixOne-specific database-level revoke target"
+                "[MO-only] `REVOKE ... ON DATABASE *` — MatrixOne-specific database-level revoke target",
+                "[MO-only] REVOKE ... ON VIEW db_name.view_name (separate VIEW object_type)"
               ]
             },
             {
@@ -202,9 +216,8 @@
               "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Definition-Language/alter-table.md",
               "compat": "partial",
               "notes": [
-                "CHANGE [COLUMN], MODIFY [COLUMN], RENAME COLUMN, ADD/DROP PRIMARY KEY, ALTER COLUMN ORDER BY cannot be combined with other clauses in the same ALTER TABLE",
+                "Multiple ALTER TABLE operations can be combined in one statement, with limitation: DROP PRIMARY KEY cannot be combined with RENAME COLUMN, CHANGE COLUMN, or DROP COLUMN (causes server panic); DROP PK + ADD COLUMN and DROP PK + MODIFY COLUMN work correctly",
                 "Temporary tables cannot be altered",
-                "Tables created with CLUSTER BY cannot be altered",
                 "ALTER TABLE does not support PARTITION operations"
               ]
             },
@@ -214,7 +227,7 @@
               "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Definition-Language/alter-view.md",
               "compat": "partial",
               "notes": [
-                "Inherits CREATE VIEW limitations: no WITH CHECK OPTION, no DEFINER = user clause"
+                "WITH CHECK OPTION is accepted in CREATE VIEW (syntax only, views are read-only) but rejected as a syntax error in ALTER VIEW"
               ]
             },
             {
@@ -248,8 +261,7 @@
               "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Definition-Language/create-database.md",
               "compat": "partial",
               "notes": [
-                "Chinese database names not supported",
-                "Only utf8mb4 / utf8mb4_bin are supported and cannot be changed",
+                "Only utf8mb4 / utf8mb4_bin are functional; other charsets/collations are syntactically accepted but have no effect",
                 "ENCRYPTION clause accepted but inert"
               ]
             },
@@ -295,7 +307,8 @@
               "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Definition-Language/create-function-sql.md",
               "compat": "partial",
               "notes": [
-                "Only LANGUAGE SQL and LANGUAGE PYTHON are supported; usage differs significantly from MySQL stored functions"
+                "Only LANGUAGE SQL and LANGUAGE PYTHON are supported; usage differs significantly from MySQL stored functions",
+                "CREATE OR REPLACE FUNCTION is supported; MySQL 8.0 does not support OR REPLACE for functions (only IF NOT EXISTS since 8.0.29)"
               ]
             },
             {
@@ -304,8 +317,7 @@
               "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Definition-Language/create-index.md",
               "compat": "partial",
               "notes": [
-                "Secondary indexes are syntactically accepted but do not yet provide query speed-up",
-                "Foreign keys do not support ON CASCADE DELETE",
+                "Secondary indexes are supported and participate in query optimization (as of MO 3.0.12, EXPLAIN shows Index Table Scan for secondary index queries). Does not support index hints (USE INDEX, FORCE INDEX, IGNORE INDEX), function-based indexes, or FULLTEXT index via CREATE INDEX syntax (use CREATE FULLTEXT INDEX instead).",
                 "[MO-only] USING IVFFLAT — vector index for approximate nearest neighbour",
                 "[MO-only] USING HNSW — vector index for approximate nearest neighbour",
                 "[MO-only] USING MASTER — composite master index"
@@ -389,12 +401,14 @@
               "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Definition-Language/create-table.md",
               "compat": "partial",
               "notes": [
-                "ENGINE= clause in table definition not supported (MatrixOne has a single TAE engine)",
-                "Spatial and SET types not supported; MEDIUMINT not supported",
+                "ENGINE= clause is syntactically accepted but ignored; MatrixOne uses TAE exclusively",
+                "Spatial type names (GEOMETRY, POINT, etc.) are syntactically accepted but non-functional; MEDIUMINT is syntactically accepted but treated as INT",
                 "BOOL is a native boolean type, not an INT alias as in MySQL",
-                "AUTO_INCREMENT step is always 1; @@auto_increment_increment / @@auto_increment_offset are syntactically accepted but inert",
-                "Partitioning accepts syntax but only HASH and KEY participate in partition pruning (RANGE/LIST/RANGE COLUMNS/LIST COLUMNS are syntax-only); subpartitioning is syntax-only; ADD/DROP/TRUNCATE PARTITION not supported",
-                "[MO-only] CLUSTER BY (col, …) — pre-sort columns to accelerate queries"
+                "AUTO_INCREMENT step is always 1; @@auto_increment_increment is syntactically accepted but inert",
+                "Partitioning accepts syntax but only HASH and KEY participate in partition pruning (RANGE/LIST/RANGE COLUMNS/LIST COLUMNS are syntax-only); subpartitioning causes an internal error; ADD/DROP/TRUNCATE PARTITION not supported",
+                "CHECK constraints are syntactically accepted but not enforced; MySQL 8.0.16+ enforces them",
+                "[MO-only] CLUSTER BY (col, …) — pre-sort columns to accelerate queries",
+                "[MO-only] START TRANSACTION table option — non-standard table option with no MySQL 8.0 equivalent"
               ]
             },
             {
@@ -416,7 +430,9 @@
               "title": "CREATE TASK (SQL Task)",
               "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Definition-Language/sql-task.md",
               "compat": "mo_only",
-              "notes": []
+              "notes": [
+                "[MO-only] CREATE TASK / ALTER TASK / DROP TASK / EXECUTE TASK / SHOW TASKS (MO-specific scheduled SQL tasks; MySQL uses CREATE EVENT instead)"
+              ]
             },
             {
               "id": "sql.data_definition_language.create_view",
@@ -424,9 +440,8 @@
               "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Definition-Language/create-view.md",
               "compat": "partial",
               "notes": [
-                "WITH CHECK OPTION clause not supported",
-                "DEFINER = user clause not supported; SQL SECURITY {DEFINER | INVOKER} is supported",
-                "ALGORITHM = {UNDEFINED | MERGE | TEMPTABLE} clause not supported"
+                "WITH CHECK OPTION is syntactically accepted but not enforced",
+                "Views are read-only; MySQL 8.0 supports INSERT/UPDATE/DELETE through views that meet updatability criteria"
               ]
             },
             {
@@ -479,7 +494,9 @@
               "title": "DATA BRANCH PICK",
               "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Definition-Language/data-branch-pick.md",
               "compat": "mo_only",
-              "notes": []
+              "notes": [
+                "[MO-only] DATA BRANCH PICK (cherry-pick specific rows between branch tables, Git-for-Data feature)"
+              ]
             },
             {
               "id": "sql.data_definition_language.drop_database",
@@ -494,15 +511,18 @@
               "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Definition-Language/drop-function.md",
               "compat": "partial",
               "notes": [
-                "Drops MatrixOne-style SQL / Python functions, not MySQL stored procedures/functions"
+                "Drops MatrixOne-style SQL / Python functions, not MySQL stored procedures/functions",
+                "Requires argument type list on DROP (e.g. DROP FUNCTION py_add(int, int)); MySQL 8.0 accepts only the function name"
               ]
             },
             {
               "id": "sql.data_definition_language.drop_index",
               "title": "DROP INDEX",
               "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Definition-Language/drop-index.md",
-              "compat": "full",
-              "notes": []
+              "compat": "partial",
+              "notes": [
+                "MO accepts DROP INDEX IF EXISTS syntax (MySQL 8.0 does not), but IF EXISTS does not suppress errors for missing indexes; it returns internal error 20101 instead of a silent skip"
+              ]
             },
             {
               "id": "sql.data_definition_language.drop_pitr",
@@ -560,15 +580,19 @@
               "id": "sql.data_definition_language.drop_view",
               "title": "DROP VIEW",
               "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Definition-Language/drop-view.md",
-              "compat": "full",
-              "notes": []
+              "compat": "partial",
+              "notes": [
+                "MO does not support dropping multiple views in a single statement; only a single view per DROP VIEW. MySQL 8.0 supports dropping multiple views (e.g., DROP VIEW v1, v2)."
+              ]
             },
             {
               "id": "sql.data_definition_language.rename_table",
               "title": "Rename Table",
               "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Definition-Language/rename-table.md",
-              "compat": "full",
-              "notes": []
+              "compat": "partial",
+              "notes": [
+                "MO does not support RENAME TABLE across databases; when given cross-database syntax, MO renames the table within its current database instead of raising an error. MySQL 8.0 supports cross-database RENAME TABLE."
+              ]
             },
             {
               "id": "sql.data_definition_language.restore_pitr",
@@ -606,7 +630,9 @@
               "title": "CASE",
               "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/case.md",
               "compat": "full",
-              "notes": []
+              "notes": [
+                "This page describes the CASE operator (expression), not the stored-program CASE statement. MatrixOne does not support stored programs, so the stored-program CASE STATEMENT is unavailable; the CASE OPERATOR behaves compatibly."
+              ]
             },
             {
               "id": "sql.data_manipulation_language.information_functions.current_role",
@@ -623,7 +649,8 @@
               "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/delete.md",
               "compat": "partial",
               "notes": [
-                "LOW_PRIORITY, QUICK, IGNORE modifiers not supported"
+                "LOW_PRIORITY, QUICK, IGNORE modifiers are syntactically accepted but have no effect",
+                "PARTITION clause not supported"
               ]
             },
             {
@@ -632,15 +659,18 @@
               "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/insert.md",
               "compat": "partial",
               "notes": [
-                "Modifiers LOW_PRIORITY / DELAYED / HIGH_PRIORITY not supported"
+                "Modifiers LOW_PRIORITY / DELAYED / HIGH_PRIORITY not supported",
+                "PARTITION clause not supported"
               ]
             },
             {
               "id": "sql.data_manipulation_language.upsert.insert_on_duplicate",
               "title": "INSERT ... ON DUPLICATE KEY UPDATE",
               "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/upsert/insert-on-duplicate.md",
-              "compat": "full",
-              "notes": []
+              "compat": "partial",
+              "notes": [
+                "ON DUPLICATE KEY UPDATE only triggers on PRIMARY KEY conflicts; UNIQUE index conflicts are detected but result in errors (ERROR 1062 or ERROR 20102) rather than triggering ON DUPLICATE KEY UPDATE"
+              ]
             },
             {
               "id": "sql.data_manipulation_language.upsert.insert_ignore",
@@ -650,7 +680,8 @@
               "notes": [
                 "LOW_PRIORITY / DELAYED / HIGH_PRIORITY modifiers not supported",
                 "Duplicates are silently ignored; MySQL emits a warning for each skipped row.",
-                "Does not ignore NULL-into-NOT-NULL, type-conversion, or partition-mismatch errors as MySQL does."
+                "Does not ignore NULL-into-NOT-NULL, type-conversion, or partition-mismatch errors as MySQL does.",
+                "PARTITION clause not supported"
               ]
             },
             {
@@ -684,10 +715,13 @@
               "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/load-data-infile.md",
               "compat": "partial",
               "notes": [
-                "LOAD DATA LOCAL requires --local-infile on the client",
                 "SET clause only accepts columns_name = nullif(expr1, expr2)",
                 "JSONLines import uses MatrixOne-specific syntax",
-                "Object-storage import (S3/URL) uses MatrixOne-specific syntax"
+                "Object-storage import (S3/URL) uses MatrixOne-specific syntax",
+                "LOW_PRIORITY and CONCURRENT modifiers not supported",
+                "REPLACE and IGNORE modifiers not supported",
+                "[MO-only] PARALLEL clause (controls parallel file loading)",
+                "[MO-only] STRICT clause (controls parallel splitting mode)"
               ]
             },
             {
@@ -705,8 +739,10 @@
               "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/replace.md",
               "compat": "partial",
               "notes": [
-                "REPLACE does not support VALUES row_constructor_list",
-                "node-sql-parser rejects REPLACE … WHERE (parser bug, not MatrixOne)"
+                "node-sql-parser rejects REPLACE … WHERE (parser bug, not MatrixOne)",
+                "PARTITION clause not supported",
+                "LOW_PRIORITY and DELAYED modifiers not supported",
+                "REPLACE only detects conflicts on PRIMARY KEY; secondary UNIQUE index conflicts throw ERROR 1062 (MySQL 8.0 handles both). Constraints section incorrectly states UNIQUE index can also trigger REPLACE; this is wrong per actual MO behavior."
               ]
             },
             {
@@ -715,8 +751,10 @@
               "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/upsert/replace.md",
               "compat": "partial",
               "notes": [
-                "REPLACE does not support VALUES row_constructor_list",
-                "node-sql-parser rejects REPLACE … WHERE (parser bug, not MatrixOne)"
+                "node-sql-parser rejects REPLACE … WHERE (parser bug, not MatrixOne)",
+                "PARTITION clause not supported",
+                "LOW_PRIORITY and DELAYED modifiers not supported",
+                "REPLACE only detects conflicts on PRIMARY KEY; secondary UNIQUE index conflicts throw ERROR 1062 (MySQL 8.0 handles both). Constraints section incorrectly states UNIQUE index can also trigger REPLACE; this is wrong per actual MO behavior."
               ]
             },
             {
@@ -725,16 +763,19 @@
               "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/update.md",
               "compat": "partial",
               "notes": [
-                "LOW_PRIORITY and IGNORE modifiers not supported"
+                "LOW_PRIORITY and IGNORE modifiers are syntactically accepted but have no effect",
+                "PARTITION clause not supported"
               ]
             },
             {
               "id": "sql.data_manipulation_language.upsert.upsert",
               "title": "UPSERT",
               "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Manipulation-Language/upsert/upsert.md",
-              "compat": "mo_only",
+              "compat": "partial",
               "notes": [
-                "[MO-only] UPSERT (convenience alias over INSERT … ON DUPLICATE KEY UPDATE)"
+                "INSERT IGNORE does not suppress NOT NULL or type-conversion errors (MySQL 8.0 does)",
+                "INSERT ON DUPLICATE KEY UPDATE only triggers on PRIMARY KEY conflicts; UNIQUE index conflicts are detected but result in errors (ERROR 1062 or ERROR 20102) rather than triggering ON DUPLICATE KEY UPDATE",
+                "REPLACE does not support REPLACE ... WHERE (parser bug)"
               ]
             }
           ]
@@ -756,9 +797,12 @@
               "id": "sql.data_query_language.union_intersect_minus_overview",
               "title": "Combining Queries (UNION, INTERSECT, MINUS)",
               "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Query-Language/union-intersect-minus-overview.md",
-              "compat": "mo_only",
+              "compat": "partial",
               "notes": [
-                "[MO-only] MINUS, INTERSECT set operators"
+                "MINUS keyword is MO-specific; MySQL 8.0.31+ uses EXCEPT for the same set-difference semantics. MINUS ALL is not yet implemented in MO while MySQL 8.0.31+ supports EXCEPT ALL.",
+                "INTERSECT was added in MySQL 8.0.31; both MO and MySQL support INTERSECT and INTERSECT ALL with matching semantics.",
+                "UNION is standard across both, but MO's type coercion in UNION columns is stricter (errors on incompatible types where MySQL silently coerces).",
+                "[MO-only] MINUS keyword (MO-specific syntax; MySQL 8.0.31+ offers equivalent EXCEPT)"
               ]
             },
             {
@@ -788,16 +832,18 @@
               "id": "sql.data_query_language.subqueries.derived_tables",
               "title": "Derived Tables",
               "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Query-Language/subqueries/derived-tables.md",
-              "compat": "full",
-              "notes": []
+              "compat": "partial",
+              "notes": [
+                "LATERAL derived tables are not supported in MO (MySQL 8.0.14+ supports LATERAL for correlated subqueries in FROM clause)"
+              ]
             },
             {
               "id": "sql.data_query_language.join.full_join",
               "title": "FULL JOIN",
               "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Query-Language/join/full-join.md",
-              "compat": "mo_only",
+              "compat": "none",
               "notes": [
-                "[MO-only] FULL JOIN / FULL OUTER JOIN is not supported in MySQL 8.0 (users must emulate it with LEFT JOIN UNION RIGHT JOIN)."
+                "FULL JOIN with ON clause produces different errors on MO (missing FROM-clause entry) vs MySQL 8.0 (Unknown column in ON clause). FULL JOIN with USING returns INNER JOIN results on both (neither returns unmatched rows). FULL OUTER JOIN produces a syntax error on both. MySQL 8.0 does not natively support either FULL JOIN or FULL OUTER JOIN."
               ]
             },
             {
@@ -811,17 +857,19 @@
               "id": "sql.data_query_language.intersect",
               "title": "INTERSECT",
               "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Query-Language/intersect.md",
-              "compat": "mo_only",
+              "compat": "partial",
               "notes": [
-                "[MO-only] INTERSECT set operator is not available in MySQL 8.0."
+                "INTERSECT was added in MySQL 8.0.31; MO INTERSECT and INTERSECT ALL semantics match MySQL 8.0 (both return identical results for common test cases including duplicate handling)"
               ]
             },
             {
               "id": "sql.data_query_language.join.join",
               "title": "JOIN",
               "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Query-Language/join/join.md",
-              "compat": "full",
-              "notes": []
+              "compat": "partial",
+              "notes": [
+                "FULL JOIN and FULL OUTER JOIN are not fully supported (FULL JOIN with ON produces errors, FULL JOIN with USING returns INNER JOIN results, FULL OUTER JOIN is a syntax error); MySQL 8.0 also does not support FULL JOIN/OUTER JOIN natively"
+              ]
             },
             {
               "id": "sql.data_query_language.join.left_join",
@@ -836,7 +884,9 @@
               "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Query-Language/minus.md",
               "compat": "mo_only",
               "notes": [
-                "[MO-only] MINUS (set-difference query, not in MySQL)"
+                "MINUS keyword is MO-specific; MySQL 8.0.31+ uses EXCEPT for the same set-difference semantics (MINUS is not a recognized keyword in MySQL)",
+                "MINUS ALL is not yet implemented in MO; MySQL 8.0.31+ supports EXCEPT ALL with full duplicate-preserving semantics",
+                "[MO-only] MINUS keyword (MO's set-difference operator; MySQL 8.0.31+ offers equivalent functionality via EXCEPT)"
               ]
             },
             {
@@ -861,7 +911,7 @@
               "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Query-Language/join/outer-join.md",
               "compat": "partial",
               "notes": [
-                "Overview page that includes FULL OUTER JOIN, which MySQL 8.0 does not support."
+                "Overview page that includes FULL OUTER JOIN; neither MO nor MySQL 8.0 natively support FULL OUTER JOIN (MO produces syntax error, same as MySQL)"
               ]
             },
             {
@@ -879,8 +929,11 @@
               "notes": [
                 "SELECT … FOR UPDATE only supports single-table queries",
                 "SELECT INTO OUTFILE is only partially supported",
-                "Unqualified SELECT ... FROM DUAL requires explicit database name (SELECT ... FROM dbname.DUAL)",
-                "[MO-only] { AS OF TIMESTAMP 'YYYY-MM-DD HH:MM:SS' } — time-travel query against snapshot/PITR",
+                "AS OF TIMESTAMP time-travel queries require PITR/snapshot to be enabled on the database; without PITR the syntax produces an error",
+                "SELECT ... FOR SHARE is not supported",
+                "FOR UPDATE NOWAIT and SKIP LOCKED modifiers are not supported",
+                "GROUP BY ... WITH ROLLUP row ordering differs: MO places rollup summary rows at the top of the result set, while MySQL 8.0 places them at the bottom (standard MySQL grouping order)",
+                "[MO-only] { AS OF TIMESTAMP 'YYYY-MM-DD HH:MM:SS' } — time-travel query against enabled snapshot/PITR",
                 "[MO-only] ORDER BY ... NULLS { FIRST | LAST } — PostgreSQL-style NULL ordering not available in MySQL"
               ]
             },
@@ -909,10 +962,8 @@
               "id": "sql.data_query_language.subqueries.subquery_with_in",
               "title": "Subqueries with IN",
               "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Query-Language/subqueries/subquery-with-in.md",
-              "compat": "partial",
-              "notes": [
-                "Multi-level correlated subqueries inside IN() are not supported"
-              ]
+              "compat": "full",
+              "notes": []
             },
             {
               "id": "sql.data_query_language.subqueries.subquery",
@@ -920,22 +971,27 @@
               "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Query-Language/subqueries/subquery.md",
               "compat": "partial",
               "notes": [
-                "Multi-level correlated subqueries inside IN() are not supported"
+                "Multi-column scalar subquery comparisons (e.g., WHERE (a,b) = (SELECT ...)) are not supported; use multi-column IN instead"
               ]
             },
             {
               "id": "sql.data_query_language.union",
               "title": "UNION",
               "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Query-Language/union.md",
-              "compat": "full",
-              "notes": []
+              "compat": "partial",
+              "notes": [
+                "UNION type coercion is strict: MO errors on incompatible types in UNION columns (e.g., INT vs VARCHAR), while MySQL 8.0 silently coerces (e.g., varchar to int converts to 0)",
+                "UNION ALL type coercion is similarly strict compared to MySQL 8.0's lenient coercion"
+              ]
             },
             {
               "id": "sql.data_query_language.with_cte",
               "title": "WITH (Common Table Expressions)",
               "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Query-Language/with-cte.md",
-              "compat": "full",
-              "notes": []
+              "compat": "partial",
+              "notes": [
+                "Outer joins (LEFT JOIN, RIGHT JOIN, OUTER JOIN) are not allowed in recursive CTE members; MySQL 8.0 permits them except when the recursive CTE is on the right side of a LEFT JOIN (MySQL allows LEFT JOIN with CTE on the left side; MO rejects all outer joins in recursive CTEs regardless of position)"
+              ]
             }
           ]
         },
@@ -947,8 +1003,23 @@
               "id": "sql.other.prepared_statements.deallocate",
               "title": "DEALLOCATE PREPARE",
               "path": "docs/MatrixOne/Reference/SQL-Reference/Other/Prepared-Statements/deallocate.md",
-              "compat": "full",
-              "notes": []
+              "compat": "partial",
+              "notes": [
+                "DEALLOCATE PREPARE on a non-existent statement silently succeeds; MySQL returns ERROR 1243 (Unknown prepared statement handler)."
+              ]
+            },
+            {
+              "id": "sql.other.describe",
+              "title": "DESCRIBE / DESC",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Other/describe.md",
+              "compat": "partial",
+              "notes": [
+                "DESCRIBE/DESC output includes an extra `Comment` column (7 columns total vs MySQL's 6).",
+                "Type names are displayed in uppercase with display widths (e.g., `INT(32)`, `FLOAT(0)`, `TIMESTAMP(0)`) instead of MySQL's lowercase without widths (e.g., `int`, `float`, `timestamp`).",
+                "Column name filter (`DESC tbl_name col_name`) is non-functional; all columns are returned.",
+                "Wild pattern (`DESC tbl_name 'pattern'`) not supported; produces syntax error.",
+                "For TIMESTAMP columns with DEFAULT CURRENT_TIMESTAMP, MO does not show `DEFAULT_GENERATED` in the Extra column as MySQL does."
+              ]
             },
             {
               "id": "sql.other.prepared_statements.execute",
@@ -963,8 +1034,11 @@
               "path": "docs/MatrixOne/Reference/SQL-Reference/Other/Explain/explain.md",
               "compat": "partial",
               "notes": [
-                "Output format mirrors PostgreSQL, not MySQL",
-                "JSON output not supported"
+                "Output format is a single QUERY PLAN column with tree-structured text (PostgreSQL-style); MySQL uses a multi-column tabular format with id, select_type, table, partitions, type, possible_keys, key, key_len, ref, rows, filtered, Extra",
+                "JSON output (FORMAT=JSON) not supported; MO returns syntax error",
+                "FORMAT=TREE and FORMAT=TRADITIONAL not supported; FORMAT=TEXT bare keyword also errors; only bare keyword forms (EXPLAIN, EXPLAIN ANALYZE, EXPLAIN VERBOSE) work",
+                "EXPLAIN FOR CONNECTION not supported (returns internal error)",
+                "EXPLAIN (ANALYZE TRUE/FALSE) and EXPLAIN (VERBOSE TRUE/FALSE) parenthesized boolean syntax WORKS in MO 3.0.12, contrary to doc claims; only parenthesized FORMAT syntax is unsupported"
               ]
             },
             {
@@ -973,7 +1047,9 @@
               "path": "docs/MatrixOne/Reference/SQL-Reference/Other/Explain/explain-workflow.md",
               "compat": "partial",
               "notes": [
-                "Output format mirrors PostgreSQL; JSON output not supported"
+                "Output is a single QUERY PLAN column with tree-structured text; MySQL uses multi-column tabular EXPLAIN format",
+                "JSON output not supported",
+                "Node types (Sink, Sink Scan, PreInsert, Fuzzy Filter, etc.) are MO-specific and have no MySQL equivalent"
               ]
             },
             {
@@ -991,7 +1067,9 @@
               "path": "docs/MatrixOne/Reference/SQL-Reference/Other/Explain/explain-analyze.md",
               "compat": "partial",
               "notes": [
-                "Output format mirrors PostgreSQL; JSON output not supported"
+                "Output format mirrors PostgreSQL (QUERY PLAN tree with Analyze sub-lines showing timeConsumed, waitTime, inputRows, outputRows, InputSize, OutputSize, MemorySize); MySQL 8.0 EXPLAIN ANALYZE uses TREE format with cost estimation and actual time in a different structure",
+                "JSON output not supported",
+                "MO EXPLAIN ANALYZE produces one output row per plan tree line; MySQL produces a single row with the full plan"
               ]
             },
             {
@@ -1007,7 +1085,8 @@
               "path": "docs/MatrixOne/Reference/SQL-Reference/Other/Prepared-Statements/prepare.md",
               "compat": "partial",
               "notes": [
-                "MatrixOne cannot PREPARE SET statements"
+                "MatrixOne cannot PREPARE SET, DO, or other TCL/DCL statements",
+                "Repreparation on parameter type change may throw a cast error instead of silently converting the value (e.g., passing a string to an integer parameter)."
               ]
             },
             {
@@ -1035,15 +1114,31 @@
               "path": "docs/MatrixOne/Reference/SQL-Reference/Other/SHOW-Statements/show-collation.md",
               "compat": "partial",
               "notes": [
-                "Only utf8mb4_bin is effective; other collations appear but are inert"
+                "Only utf8mb4_bin is effective; other collations appear but are inert",
+                "MO 3.0.12 returns 11 collations (with `Default` and `Pad_attribute` columns); older doc examples show only 1 row with 5 columns",
+                "Output columns (Collation, Charset, Id, Default, Compiled, Sortlen, Pad_attribute) differ slightly from MySQL which also includes Pad_attribute"
               ]
             },
             {
               "id": "sql.other.show_statements.show_columns",
               "title": "SHOW COLUMNS",
               "path": "docs/MatrixOne/Reference/SQL-Reference/Other/SHOW-Statements/show-columns.md",
-              "compat": "full",
-              "notes": []
+              "compat": "partial",
+              "notes": [
+                "MO SHOW COLUMNS (without FULL) already includes the `Comment` column; MySQL only shows Comment with FULL",
+                "MO SHOW FULL COLUMNS returns Collation and Privileges columns but Collation is always NULL",
+                "MO accepts EXTENDED keyword (SHOW EXTENDED COLUMNS) and FIELDS synonym (SHOW FIELDS), both returning same columns as SHOW COLUMNS",
+                "MO Type column includes display width (e.g. INT(32)) while MySQL shows just int"
+              ]
+            },
+            {
+              "id": "sql.other.show_statements.show_create_database",
+              "title": "SHOW CREATE DATABASE",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Other/SHOW-Statements/show-create-database.md",
+              "compat": "partial",
+              "notes": [
+                "Output omits CHARACTER SET, COLLATE, and ENCRYPTION clauses present in MySQL 8.0 SHOW CREATE DATABASE output"
+              ]
             },
             {
               "id": "sql.other.show_statements.show_create_publication",
@@ -1060,7 +1155,8 @@
               "path": "docs/MatrixOne/Reference/SQL-Reference/Other/SHOW-Statements/show-create-table.md",
               "compat": "partial",
               "notes": [
-                "Output reflects MatrixOne-specific extensions (CLUSTER BY, USING IVFFLAT/HNSW, etc.)"
+                "Output reflects MatrixOne-specific extensions (CLUSTER BY, USING IVFFLAT/HNSW, etc.)",
+                "MO output omits ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci appended by MySQL"
               ]
             },
             {
@@ -1069,7 +1165,11 @@
               "path": "docs/MatrixOne/Reference/SQL-Reference/Other/SHOW-Statements/show-create-view.md",
               "compat": "partial",
               "notes": [
-                "DEFINER = user clause absent from output; SQL SECURITY {DEFINER|INVOKER} is emitted"
+                "DEFINER = user clause absent from output; SQL SECURITY {DEFINER|INVOKER} is emitted",
+                "MO output lacks ALGORITHM=UNDEFINED clause that MySQL always includes",
+                "MO does not fully qualify column references (MySQL outputs db.table.col AS alias)",
+                "MO uses unquoted identifiers; MySQL backtick-quotes database, table, and column names",
+                "The rendered Create View output shows `CREATE SQL SECURITY DEFINER VIEW` (not `CREATE ALGORITHM=UNDEFINED DEFINER=user SQL SECURITY DEFINER VIEW` as MySQL does)"
               ]
             },
             {
@@ -1085,7 +1185,8 @@
               "path": "docs/MatrixOne/Reference/SQL-Reference/Other/SHOW-Statements/show-function-status.md",
               "compat": "partial",
               "notes": [
-                "Lists MatrixOne SQL/Python functions, not MySQL stored routines"
+                "Lists MatrixOne SQL/Python functions; MySQL shows stored routines AND built-in sys schema functions (e.g. extract_schema_from_file_name, format_bytes)",
+                "MO only shows user-defined functions; MySQL shows all functions including built-in ones"
               ]
             },
             {
@@ -1094,7 +1195,10 @@
               "path": "docs/MatrixOne/Reference/SQL-Reference/Other/SHOW-Statements/show-grants.md",
               "compat": "partial",
               "notes": [
-                "Results reflect MatrixOne role/account graph and differ from MySQL significantly"
+                "Grant syntax output is completely different: MO uses MO-specific format (GRANT create account ON account, GRANT table all ON table) instead of MySQL standard format (GRANT SELECT, INSERT, UPDATE, DELETE ON *.*)",
+                "MO output includes backtick-quoted user@host inside grant statements; MySQL uses quoted user@host format with TO clause",
+                "USING role_list clause not supported",
+                "MO does not support SHOW GRANTS FOR CURRENT_USER (or CURRENT_USER()) as a shorthand for the current user"
               ]
             },
             {
@@ -1103,7 +1207,12 @@
               "path": "docs/MatrixOne/Reference/SQL-Reference/Other/SHOW-Statements/show-index.md",
               "compat": "partial",
               "notes": [
-                "Reflects MatrixOne index model — secondary index rows appear but may not accelerate queries"
+                "Reflects MatrixOne index model — secondary index rows appear but may not accelerate queries",
+                "Index_type may be empty (MySQL typically shows BTREE)",
+                "Index_comment column is present (MySQL 8.0 also has Index_comment; difference is minor)",
+                "Index_params column is present (MySQL does not have this column)",
+                "Expression column shows the column name for non-functional key parts; MySQL shows NULL for non-functional key parts",
+                "MO SHOW INDEX returns 16 columns vs MySQL 15 columns (MO adds Index_params, lacks the extra Collation behavior)"
               ]
             },
             {
@@ -1121,7 +1230,9 @@
               "path": "docs/MatrixOne/Reference/SQL-Reference/Other/SHOW-Statements/show-processlist.md",
               "compat": "partial",
               "notes": [
-                "Output differs significantly from MySQL due to different implementation"
+                "MO returns 19 columns (node_id, conn_id, session_id, account, user, host, db, session_start, command, info, txn_id, statement_id, statement_type, query_type, sql_source_type, query_start, client_host, role, proxy_host) vs MySQL 8 columns (Id, User, Host, db, Command, Time, State, Info)",
+                "MO column names differ completely: conn_id vs Id, session_start vs Time, no State column, MO adds txn_id/statement_id/statement_type/query_type/sql_source_type/query_start/client_host/role/proxy_host",
+                "SHOW FULL PROCESSLIST is accepted by MO but returns same columns as SHOW PROCESSLIST (no behavioral difference)"
               ]
             },
             {
@@ -1170,12 +1281,25 @@
               ]
             },
             {
+              "id": "sql.other.show_statements.show_table_status",
+              "title": "SHOW TABLE STATUS",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Other/SHOW-Statements/show-table-status.md",
+              "compat": "partial",
+              "notes": [
+                "Result columns differ from MySQL: MO has 19 cols (adds Role_id, Role_name; omits Version); MySQL has 18 cols (includes Version; no Role_id/Role_name)",
+                "Engine column always shows Tae instead of InnoDB",
+                "MO's Auto_increment defaults to 0 (MySQL shows NULL for tables without auto-increment)",
+                "MO shows views in SHOW TABLE STATUS with Engine=NULL and Comment=VIEW (same as MySQL behavior)"
+              ]
+            },
+            {
               "id": "sql.other.show_statements.show_tables",
               "title": "SHOW TABLES",
               "path": "docs/MatrixOne/Reference/SQL-Reference/Other/SHOW-Statements/show-tables.md",
               "compat": "partial",
               "notes": [
-                "Result column is named 'name' rather than MySQL's 'Tables_in_<dbname>'."
+                "Output column header uses lowercase database name (Tables_in_<db> vs MySQL's Tables_in_<DB>)",
+                "MO does not display a parenthesized LIKE pattern in the column header unlike MySQL"
               ]
             },
             {
@@ -1184,7 +1308,10 @@
               "path": "docs/MatrixOne/Reference/SQL-Reference/Other/SHOW-Statements/show-variables.md",
               "compat": "partial",
               "notes": [
-                "System variables are mostly syntactic stubs; actual behaviour differs from MySQL"
+                "System variables are mostly syntactic stubs; actual behaviour differs from MySQL",
+                "GLOBAL and SESSION scope modifiers are syntactically accepted for both SET and SHOW; SHOW GLOBAL vs SHOW SESSION return different values when SESSION has been overridden, same as MySQL",
+                "MO has a completely different set of variable names (e.g. testbotchvar_nodyn, testbothvar_dyn) alongside MySQL-compatible ones (autocommit, sql_mode)",
+                "Variable values use lowercase ('on'/'off') while MySQL uses uppercase ('ON'/'OFF')"
               ]
             },
             {
@@ -1202,10 +1329,10 @@
       "id": "functions-and-operators",
       "label": "Functions",
       "summary": {
-        "full": 111,
-        "partial": 17,
+        "full": 103,
+        "partial": 26,
         "none": 0,
-        "mo_only": 36,
+        "mo_only": 35,
         "unknown": 0
       },
       "categories": [
@@ -1239,8 +1366,10 @@
               "id": "func.aggregate_functions.avg",
               "title": "AVG",
               "path": "docs/MatrixOne/Reference/Functions-and-Operators/Aggregate-Functions/avg.md",
-              "compat": "full",
-              "notes": []
+              "compat": "partial",
+              "notes": [
+                "AVG() returns DOUBLE for all input types (MySQL returns DECIMAL for exact-value types)"
+              ]
             },
             {
               "id": "func.aggregate_functions.bit_and",
@@ -1320,8 +1449,10 @@
               "id": "func.aggregate_functions.sum",
               "title": "SUM",
               "path": "docs/MatrixOne/Reference/Functions-and-Operators/Aggregate-Functions/sum.md",
-              "compat": "full",
-              "notes": []
+              "compat": "partial",
+              "notes": [
+                "SUM() returns the input integer type rather than DECIMAL for exact-value arguments (MySQL returns DECIMAL)"
+              ]
             },
             {
               "id": "func.aggregate_functions.var_pop",
@@ -1434,10 +1565,8 @@
               "id": "func.datetime.dayofyear",
               "title": "DAYOFYEAR()",
               "path": "docs/MatrixOne/Reference/Functions-and-Operators/Datetime/dayofyear.md",
-              "compat": "partial",
-              "notes": [
-                "Date literals accept only 'yyyy-mm-dd' and 'yyyymmdd' formats; MySQL accepts wider variants."
-              ]
+              "compat": "full",
+              "notes": []
             },
             {
               "id": "func.datetime.extract",
@@ -1540,7 +1669,8 @@
               "path": "docs/MatrixOne/Reference/Functions-and-Operators/Datetime/timestamp.md",
               "compat": "partial",
               "notes": [
-                "MatrixOne TIMESTAMP range is '0001-01-01'–'9999-12-31' vs MySQL '1970-01-01'–'2038-01-19' (compat doc: Data Types)."
+                "MatrixOne TIMESTAMP range is '0001-01-01'–'9999-12-31' vs MySQL '1970-01-01'–'2038-01-19' (compat doc: Data Types).",
+                "Two-argument form TIMESTAMP(expr1, expr2) is not supported; MO only supports single-argument TIMESTAMP(expr)"
               ]
             },
             {
@@ -1666,7 +1796,7 @@
             },
             {
               "id": "func.json.json_extract_string",
-              "title": "JSON_EXTRACT_FLOAT64()",
+              "title": "JSON_EXTRACT_STRING()",
               "path": "docs/MatrixOne/Reference/Functions-and-Operators/Json/json_extract_string.md",
               "compat": "mo_only",
               "notes": [
@@ -1792,8 +1922,11 @@
               "id": "func.mathematical.floor",
               "title": "FLOOR()",
               "path": "docs/MatrixOne/Reference/Functions-and-Operators/Mathematical/floor.md",
-              "compat": "full",
-              "notes": []
+              "compat": "partial",
+              "notes": [
+                "MatrixOne supports an optional second decimals argument (FLOOR(number, decimals)) to specify decimal places; MySQL 8.0 only supports the single-argument form FLOOR(X)",
+                "[MO-only] Two-argument form FLOOR(number, decimals) to specify decimal places"
+              ]
             },
             {
               "id": "func.mathematical.ln",
@@ -1841,8 +1974,10 @@
               "id": "func.mathematical.rand",
               "title": "RAND()",
               "path": "docs/MatrixOne/Reference/Functions-and-Operators/Mathematical/rand.md",
-              "compat": "full",
-              "notes": []
+              "compat": "partial",
+              "notes": [
+                "RAND(seed) is not supported; calling RAND(N) with an integer argument produces ERROR 20203"
+              ]
             },
             {
               "id": "func.mathematical.round",
@@ -1884,9 +2019,9 @@
               "id": "func.other.load_file",
               "title": "LOAD_FILE()",
               "path": "docs/MatrixOne/Reference/Functions-and-Operators/Other/load_file.md",
-              "compat": "mo_only",
+              "compat": "partial",
               "notes": [
-                "[MO-only] LOAD_FILE() takes a DATALINK value (file:// or stage:// URL) rather than MySQL's plain filesystem path argument; semantics differ."
+                "LOAD_FILE() takes a DATALINK value (file:// or stage:// URL) rather than MySQL's plain filesystem path argument"
               ]
             },
             {
@@ -1929,7 +2064,7 @@
               "path": "docs/MatrixOne/Reference/Functions-and-Operators/Other/stage_list.md",
               "compat": "mo_only",
               "notes": [
-                "[MO-only] STAGE_LIST() lists MatrixOne stage contents."
+                "[MO-only] STAGE_LIST() — MO-specific stage management function (currently unimplemented, returns ERROR 20105)"
               ]
             },
             {
@@ -1997,7 +2132,7 @@
               "id": "func.string.concat",
               "title": "CONCAT()",
               "path": "docs/MatrixOne/Reference/Functions-and-Operators/String/concat.md",
-              "compat": "full",
+              "compat": "partial",
               "notes": []
             },
             {
@@ -2050,8 +2185,10 @@
               "id": "func.string.from_base64",
               "title": "FROM_BASE64()",
               "path": "docs/MatrixOne/Reference/Functions-and-Operators/String/from_base64.md",
-              "compat": "full",
-              "notes": []
+              "compat": "partial",
+              "notes": [
+                "FROM_BASE64() may include trailing null bytes in decoded output; MySQL strips them (e.g., FROM_BASE64('YQ==') returns 'a\\\\0\\\\0' instead of 'a')"
+              ]
             },
             {
               "id": "func.string.hex",
@@ -2134,15 +2271,19 @@
               "id": "func.string.oct",
               "title": "OCT(N)",
               "path": "docs/MatrixOne/Reference/Functions-and-Operators/String/oct.md",
-              "compat": "full",
-              "notes": []
+              "compat": "partial",
+              "notes": [
+                "OCT(N) returns a numeric value rather than MySQL's plain string representation"
+              ]
             },
             {
               "id": "func.string.regular_expressions.regexp_instr",
               "title": "REGEXP_INSTR()",
               "path": "docs/MatrixOne/Reference/Functions-and-Operators/String/Regular-Expressions/regexp-instr.md",
-              "compat": "full",
-              "notes": []
+              "compat": "partial",
+              "notes": [
+                "match_type parameter not yet supported; passing it causes ERROR 20203"
+              ]
             },
             {
               "id": "func.string.regular_expressions.regexp_like",
@@ -2162,8 +2303,10 @@
               "id": "func.string.regular_expressions.regexp_substr",
               "title": "REGEXP_SUBSTR()",
               "path": "docs/MatrixOne/Reference/Functions-and-Operators/String/Regular-Expressions/regexp-substr.md",
-              "compat": "full",
-              "notes": []
+              "compat": "partial",
+              "notes": [
+                "match_type parameter not yet supported; passing it causes ERROR 20203"
+              ]
             },
             {
               "id": "func.string.regular_expressions.regular_expression_functions_overview",
@@ -2334,7 +2477,7 @@
               "path": "docs/MatrixOne/Reference/Functions-and-Operators/system-ops/current_user.md",
               "compat": "partial",
               "notes": [
-                "Return format is 'username@0.0.0.0' rather than MySQL's 'username@host' with a resolved client host."
+                "The host part may be returned as 'localhost' or the resolved client host rather than MySQL's explicit 'username@host' format."
               ]
             },
             {
@@ -2398,7 +2541,7 @@
               "path": "docs/MatrixOne/Reference/Functions-and-Operators/Vector/cluster_centers.md",
               "compat": "mo_only",
               "notes": [
-                "[MO-only] Vector type and related distance/norm/clustering functions are MatrixOne extensions (compat doc: Data Types — \\\"MatrixOne supports vector types\\\")."
+                "[MO-only] CLUSTER_CENTERS() — MO-specific vector clustering function (currently unimplemented, returns ERROR 20102)"
               ]
             },
             {
@@ -2540,11 +2683,11 @@
       "id": "operators",
       "label": "Operators",
       "summary": {
-        "full": 1,
-        "partial": 0,
+        "full": 6,
+        "partial": 4,
         "none": 0,
-        "mo_only": 0,
-        "unknown": 61
+        "mo_only": 5,
+        "unknown": 47
       },
       "categories": [
         {
@@ -2553,477 +2696,462 @@
           "entries": [
             {
               "id": "op.interval",
-              "title": "interval",
+              "title": "INTERVAL",
               "path": "docs/MatrixOne/Reference/Operators/interval.md",
-              "compat": "unknown",
-              "notes": []
-            },
-            {
-              "id": "op.operator_precedence",
-              "title": "operator-precedence",
-              "path": "docs/MatrixOne/Reference/Operators/operator-precedence.md",
-              "compat": "unknown",
-              "notes": []
-            },
-            {
-              "id": "op.operators",
-              "title": "operators",
-              "path": "docs/MatrixOne/Reference/Operators/operators.md",
-              "compat": "unknown",
-              "notes": []
+              "compat": "partial",
+              "notes": [
+                "INTERVAL is internally implemented as a two-argument function rather than as a true SQL keyword; documented syntax INTERVAL(expr,unit) differs from MySQL's INTERVAL expr unit keyword-style notation",
+                "Malformed dates in DATE_ADD/DATE_SUB raise errors rather than returning NULL (MySQL 8.0 returns NULL)"
+              ]
             }
           ]
         },
         {
-          "id": "arithmetic_operators",
-          "label": "Arithmetic Operators",
+          "id": "operators",
+          "label": "operators",
           "entries": [
             {
-              "id": "op.arithmetic_operators.addition",
-              "title": "addition",
-              "path": "docs/MatrixOne/Reference/Operators/arithmetic-operators/addition.md",
-              "compat": "unknown",
-              "notes": []
-            },
-            {
-              "id": "op.arithmetic_operators.arithmetic_operators_overview",
-              "title": "arithmetic-operators-overview",
-              "path": "docs/MatrixOne/Reference/Operators/arithmetic-operators/arithmetic-operators-overview.md",
-              "compat": "unknown",
-              "notes": []
-            },
-            {
-              "id": "op.arithmetic_operators.div",
-              "title": "div",
-              "path": "docs/MatrixOne/Reference/Operators/arithmetic-operators/div.md",
-              "compat": "unknown",
-              "notes": []
-            },
-            {
-              "id": "op.arithmetic_operators.division",
-              "title": "division",
-              "path": "docs/MatrixOne/Reference/Operators/arithmetic-operators/division.md",
-              "compat": "unknown",
-              "notes": []
-            },
-            {
-              "id": "op.arithmetic_operators.minus",
-              "title": "minus",
-              "path": "docs/MatrixOne/Reference/Operators/arithmetic-operators/minus.md",
-              "compat": "unknown",
-              "notes": []
-            },
-            {
-              "id": "op.arithmetic_operators.mod",
-              "title": "mod",
-              "path": "docs/MatrixOne/Reference/Operators/arithmetic-operators/mod.md",
-              "compat": "unknown",
-              "notes": []
-            },
-            {
-              "id": "op.arithmetic_operators.multiplication",
-              "title": "multiplication",
-              "path": "docs/MatrixOne/Reference/Operators/arithmetic-operators/multiplication.md",
-              "compat": "unknown",
-              "notes": []
-            },
-            {
-              "id": "op.arithmetic_operators.unary_minus",
-              "title": "unary-minus",
-              "path": "docs/MatrixOne/Reference/Operators/arithmetic-operators/unary-minus.md",
-              "compat": "unknown",
-              "notes": []
-            }
-          ]
-        },
-        {
-          "id": "assignment_operators",
-          "label": "Assignment Operators",
-          "entries": [
-            {
-              "id": "op.assignment_operators.assignment_operators_overview",
-              "title": "assignment-operators-overview",
-              "path": "docs/MatrixOne/Reference/Operators/assignment-operators/assignment-operators-overview.md",
-              "compat": "unknown",
-              "notes": []
-            },
-            {
-              "id": "op.assignment_operators.equal",
-              "title": "equal",
-              "path": "docs/MatrixOne/Reference/Operators/assignment-operators/equal.md",
-              "compat": "unknown",
-              "notes": []
-            }
-          ]
-        },
-        {
-          "id": "bit_functions_and_operators",
-          "label": "Bit Functions and Operators",
-          "entries": [
-            {
-              "id": "op.bit_functions_and_operators.bit_functions_and_operators_overview",
-              "title": "bit-functions-and-operators-overview",
-              "path": "docs/MatrixOne/Reference/Operators/bit-functions-and-operators/bit-functions-and-operators-overview.md",
-              "compat": "unknown",
-              "notes": []
-            },
-            {
-              "id": "op.bit_functions_and_operators.bitwise_and",
-              "title": "bitwise-and",
-              "path": "docs/MatrixOne/Reference/Operators/bit-functions-and-operators/bitwise-and.md",
-              "compat": "unknown",
-              "notes": []
-            },
-            {
-              "id": "op.bit_functions_and_operators.bitwise_inversion",
-              "title": "bitwise-inversion",
-              "path": "docs/MatrixOne/Reference/Operators/bit-functions-and-operators/bitwise-inversion.md",
-              "compat": "unknown",
-              "notes": []
-            },
-            {
-              "id": "op.bit_functions_and_operators.bitwise_or",
-              "title": "bitwise-or",
-              "path": "docs/MatrixOne/Reference/Operators/bit-functions-and-operators/bitwise-or.md",
-              "compat": "unknown",
-              "notes": []
-            },
-            {
-              "id": "op.bit_functions_and_operators.bitwise_xor",
-              "title": "bitwise-xor",
-              "path": "docs/MatrixOne/Reference/Operators/bit-functions-and-operators/bitwise-xor.md",
-              "compat": "unknown",
-              "notes": []
-            },
-            {
-              "id": "op.bit_functions_and_operators.left_shift",
-              "title": "left-shift",
-              "path": "docs/MatrixOne/Reference/Operators/bit-functions-and-operators/left-shift.md",
-              "compat": "unknown",
-              "notes": []
-            },
-            {
-              "id": "op.bit_functions_and_operators.right_shift",
-              "title": "right-shift",
-              "path": "docs/MatrixOne/Reference/Operators/bit-functions-and-operators/right-shift.md",
-              "compat": "unknown",
-              "notes": []
-            }
-          ]
-        },
-        {
-          "id": "cast_functions_and_operators",
-          "label": "Cast Functions and Operators",
-          "entries": [
-            {
-              "id": "op.cast_functions_and_operators.binary",
-              "title": "binary",
-              "path": "docs/MatrixOne/Reference/Operators/cast-functions-and-operators/binary.md",
-              "compat": "unknown",
-              "notes": []
-            },
-            {
-              "id": "op.cast_functions_and_operators.cast",
-              "title": "cast",
-              "path": "docs/MatrixOne/Reference/Operators/cast-functions-and-operators/cast.md",
-              "compat": "unknown",
-              "notes": []
-            },
-            {
-              "id": "op.cast_functions_and_operators.cast_functions_and_operators_overview",
-              "title": "cast-functions-and-operators-overview",
-              "path": "docs/MatrixOne/Reference/Operators/cast-functions-and-operators/cast-functions-and-operators-overview.md",
-              "compat": "unknown",
-              "notes": []
-            },
-            {
-              "id": "op.cast_functions_and_operators.convert",
-              "title": "convert",
-              "path": "docs/MatrixOne/Reference/Operators/cast-functions-and-operators/convert.md",
-              "compat": "unknown",
-              "notes": []
-            },
-            {
-              "id": "op.cast_functions_and_operators.decode",
-              "title": "decode",
-              "path": "docs/MatrixOne/Reference/Operators/cast-functions-and-operators/decode.md",
-              "compat": "unknown",
-              "notes": []
-            },
-            {
-              "id": "op.cast_functions_and_operators.encode",
-              "title": "encode",
-              "path": "docs/MatrixOne/Reference/Operators/cast-functions-and-operators/encode.md",
-              "compat": "unknown",
-              "notes": []
-            },
-            {
-              "id": "op.cast_functions_and_operators.serial",
-              "title": "serial",
-              "path": "docs/MatrixOne/Reference/Operators/cast-functions-and-operators/serial.md",
-              "compat": "unknown",
-              "notes": []
-            },
-            {
-              "id": "op.cast_functions_and_operators.serial_full",
-              "title": "serial_full",
-              "path": "docs/MatrixOne/Reference/Operators/cast-functions-and-operators/serial_full.md",
-              "compat": "unknown",
-              "notes": []
-            }
-          ]
-        },
-        {
-          "id": "comparison_functions_and_operators",
-          "label": "Comparison Functions and Operators",
-          "entries": [
-            {
-              "id": "op.comparison_functions_and_operators.null_safe_equal",
+              "id": "op.operators.comparison_functions_and_operators.null_safe_equal",
               "title": "<=>",
-              "path": "docs/MatrixOne/Reference/Operators/comparison-functions-and-operators/null-safe-equal.md",
+              "path": "docs/MatrixOne/Reference/Operators/operators/comparison-functions-and-operators/null-safe-equal.md",
               "compat": "full",
               "notes": []
             },
             {
-              "id": "op.comparison_functions_and_operators.assign_equal",
-              "title": "assign-equal",
-              "path": "docs/MatrixOne/Reference/Operators/comparison-functions-and-operators/assign-equal.md",
+              "id": "op.operators.arithmetic_operators.addition",
+              "title": "addition",
+              "path": "docs/MatrixOne/Reference/Operators/operators/arithmetic-operators/addition.md",
               "compat": "unknown",
               "notes": []
             },
             {
-              "id": "op.comparison_functions_and_operators.between",
-              "title": "between",
-              "path": "docs/MatrixOne/Reference/Operators/comparison-functions-and-operators/between.md",
-              "compat": "unknown",
-              "notes": []
-            },
-            {
-              "id": "op.comparison_functions_and_operators.coalesce",
-              "title": "coalesce",
-              "path": "docs/MatrixOne/Reference/Operators/comparison-functions-and-operators/coalesce.md",
-              "compat": "unknown",
-              "notes": []
-            },
-            {
-              "id": "op.comparison_functions_and_operators.comparison_functions_and_operators_overview",
-              "title": "comparison-functions-and-operators-overview",
-              "path": "docs/MatrixOne/Reference/Operators/comparison-functions-and-operators/comparison-functions-and-operators-overview.md",
-              "compat": "unknown",
-              "notes": []
-            },
-            {
-              "id": "op.comparison_functions_and_operators.function_interval",
-              "title": "function_interval",
-              "path": "docs/MatrixOne/Reference/Operators/comparison-functions-and-operators/function_interval.md",
-              "compat": "unknown",
-              "notes": []
-            },
-            {
-              "id": "op.comparison_functions_and_operators.function_isnull",
-              "title": "function_isnull",
-              "path": "docs/MatrixOne/Reference/Operators/comparison-functions-and-operators/function_isnull.md",
-              "compat": "unknown",
-              "notes": []
-            },
-            {
-              "id": "op.comparison_functions_and_operators.function_least",
-              "title": "function_least",
-              "path": "docs/MatrixOne/Reference/Operators/comparison-functions-and-operators/function_least.md",
-              "compat": "unknown",
-              "notes": []
-            },
-            {
-              "id": "op.comparison_functions_and_operators.function_strcmp",
-              "title": "function_strcmp",
-              "path": "docs/MatrixOne/Reference/Operators/comparison-functions-and-operators/function_strcmp.md",
-              "compat": "unknown",
-              "notes": []
-            },
-            {
-              "id": "op.comparison_functions_and_operators.greater_than",
-              "title": "greater-than",
-              "path": "docs/MatrixOne/Reference/Operators/comparison-functions-and-operators/greater-than.md",
-              "compat": "unknown",
-              "notes": []
-            },
-            {
-              "id": "op.comparison_functions_and_operators.greater_than_or_equal",
-              "title": "greater-than-or-equal",
-              "path": "docs/MatrixOne/Reference/Operators/comparison-functions-and-operators/greater-than-or-equal.md",
-              "compat": "unknown",
-              "notes": []
-            },
-            {
-              "id": "op.comparison_functions_and_operators.ilike",
-              "title": "ilike",
-              "path": "docs/MatrixOne/Reference/Operators/comparison-functions-and-operators/ilike.md",
-              "compat": "unknown",
-              "notes": []
-            },
-            {
-              "id": "op.comparison_functions_and_operators.in",
-              "title": "in",
-              "path": "docs/MatrixOne/Reference/Operators/comparison-functions-and-operators/in.md",
-              "compat": "unknown",
-              "notes": []
-            },
-            {
-              "id": "op.comparison_functions_and_operators.is",
-              "title": "is",
-              "path": "docs/MatrixOne/Reference/Operators/comparison-functions-and-operators/is.md",
-              "compat": "unknown",
-              "notes": []
-            },
-            {
-              "id": "op.comparison_functions_and_operators.is_not",
-              "title": "is-not",
-              "path": "docs/MatrixOne/Reference/Operators/comparison-functions-and-operators/is-not.md",
-              "compat": "unknown",
-              "notes": []
-            },
-            {
-              "id": "op.comparison_functions_and_operators.is_not_null",
-              "title": "is-not-null",
-              "path": "docs/MatrixOne/Reference/Operators/comparison-functions-and-operators/is-not-null.md",
-              "compat": "unknown",
-              "notes": []
-            },
-            {
-              "id": "op.comparison_functions_and_operators.is_null",
-              "title": "is-null",
-              "path": "docs/MatrixOne/Reference/Operators/comparison-functions-and-operators/is-null.md",
-              "compat": "unknown",
-              "notes": []
-            },
-            {
-              "id": "op.comparison_functions_and_operators.less_than",
-              "title": "less-than",
-              "path": "docs/MatrixOne/Reference/Operators/comparison-functions-and-operators/less-than.md",
-              "compat": "unknown",
-              "notes": []
-            },
-            {
-              "id": "op.comparison_functions_and_operators.less_than_or_equal",
-              "title": "less-than-or-equal",
-              "path": "docs/MatrixOne/Reference/Operators/comparison-functions-and-operators/less-than-or-equal.md",
-              "compat": "unknown",
-              "notes": []
-            },
-            {
-              "id": "op.comparison_functions_and_operators.like",
-              "title": "like",
-              "path": "docs/MatrixOne/Reference/Operators/comparison-functions-and-operators/like.md",
-              "compat": "unknown",
-              "notes": []
-            },
-            {
-              "id": "op.comparison_functions_and_operators.not_between",
-              "title": "not-between",
-              "path": "docs/MatrixOne/Reference/Operators/comparison-functions-and-operators/not-between.md",
-              "compat": "unknown",
-              "notes": []
-            },
-            {
-              "id": "op.comparison_functions_and_operators.not_equal",
-              "title": "not-equal",
-              "path": "docs/MatrixOne/Reference/Operators/comparison-functions-and-operators/not-equal.md",
-              "compat": "unknown",
-              "notes": []
-            },
-            {
-              "id": "op.comparison_functions_and_operators.not_in",
-              "title": "not-in",
-              "path": "docs/MatrixOne/Reference/Operators/comparison-functions-and-operators/not-in.md",
-              "compat": "unknown",
-              "notes": []
-            },
-            {
-              "id": "op.comparison_functions_and_operators.not_like",
-              "title": "not-like",
-              "path": "docs/MatrixOne/Reference/Operators/comparison-functions-and-operators/not-like.md",
-              "compat": "unknown",
-              "notes": []
-            }
-          ]
-        },
-        {
-          "id": "flow_control_functions",
-          "label": "Flow Control Functions",
-          "entries": [
-            {
-              "id": "op.flow_control_functions.case_when",
-              "title": "case-when",
-              "path": "docs/MatrixOne/Reference/Operators/flow-control-functions/case-when.md",
-              "compat": "unknown",
-              "notes": []
-            },
-            {
-              "id": "op.flow_control_functions.flow_control_functions_overview",
-              "title": "flow-control-functions-overview",
-              "path": "docs/MatrixOne/Reference/Operators/flow-control-functions/flow-control-functions-overview.md",
-              "compat": "unknown",
-              "notes": []
-            },
-            {
-              "id": "op.flow_control_functions.function_if",
-              "title": "function_if",
-              "path": "docs/MatrixOne/Reference/Operators/flow-control-functions/function_if.md",
-              "compat": "unknown",
-              "notes": []
-            },
-            {
-              "id": "op.flow_control_functions.function_ifnull",
-              "title": "function_ifnull",
-              "path": "docs/MatrixOne/Reference/Operators/flow-control-functions/function_ifnull.md",
-              "compat": "unknown",
-              "notes": []
-            },
-            {
-              "id": "op.flow_control_functions.function_nullif",
-              "title": "function_nullif",
-              "path": "docs/MatrixOne/Reference/Operators/flow-control-functions/function_nullif.md",
-              "compat": "unknown",
-              "notes": []
-            }
-          ]
-        },
-        {
-          "id": "logical_operators",
-          "label": "Logical Operators",
-          "entries": [
-            {
-              "id": "op.logical_operators.and",
+              "id": "op.operators.logical_operators.and",
               "title": "and",
-              "path": "docs/MatrixOne/Reference/Operators/logical-operators/and.md",
+              "path": "docs/MatrixOne/Reference/Operators/operators/logical-operators/and.md",
               "compat": "unknown",
               "notes": []
             },
             {
-              "id": "op.logical_operators.logical_operators_overview",
+              "id": "op.operators.arithmetic_operators.arithmetic_operators_overview",
+              "title": "arithmetic-operators-overview",
+              "path": "docs/MatrixOne/Reference/Operators/operators/arithmetic-operators/arithmetic-operators-overview.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.operators.comparison_functions_and_operators.assign_equal",
+              "title": "assign-equal",
+              "path": "docs/MatrixOne/Reference/Operators/operators/comparison-functions-and-operators/assign-equal.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.operators.assignment_operators.assignment_operators_overview",
+              "title": "assignment-operators-overview",
+              "path": "docs/MatrixOne/Reference/Operators/operators/assignment-operators/assignment-operators-overview.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.operators.comparison_functions_and_operators.between",
+              "title": "between",
+              "path": "docs/MatrixOne/Reference/Operators/operators/comparison-functions-and-operators/between.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.operators.cast_functions_and_operators.binary",
+              "title": "binary",
+              "path": "docs/MatrixOne/Reference/Operators/operators/cast-functions-and-operators/binary.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.operators.bit_functions_and_operators.bit_functions_and_operators_overview",
+              "title": "bit-functions-and-operators-overview",
+              "path": "docs/MatrixOne/Reference/Operators/operators/bit-functions-and-operators/bit-functions-and-operators-overview.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.operators.bit_functions_and_operators.bitwise_and",
+              "title": "bitwise-and",
+              "path": "docs/MatrixOne/Reference/Operators/operators/bit-functions-and-operators/bitwise-and.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.operators.bit_functions_and_operators.bitwise_inversion",
+              "title": "bitwise-inversion",
+              "path": "docs/MatrixOne/Reference/Operators/operators/bit-functions-and-operators/bitwise-inversion.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.operators.bit_functions_and_operators.bitwise_or",
+              "title": "bitwise-or",
+              "path": "docs/MatrixOne/Reference/Operators/operators/bit-functions-and-operators/bitwise-or.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.operators.bit_functions_and_operators.bitwise_xor",
+              "title": "bitwise-xor",
+              "path": "docs/MatrixOne/Reference/Operators/operators/bit-functions-and-operators/bitwise-xor.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.operators.flow_control_functions.case_when",
+              "title": "CASE WHEN",
+              "path": "docs/MatrixOne/Reference/Operators/operators/flow-control-functions/case-when.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "op.operators.cast_functions_and_operators.cast",
+              "title": "CAST",
+              "path": "docs/MatrixOne/Reference/Operators/operators/cast-functions-and-operators/cast.md",
+              "compat": "partial",
+              "notes": [
+                "CAST('non-numeric' AS SIGNED) raises an error instead of returning 0 or NULL (MySQL 8.0 returns 0 with a warning)",
+                "CAST(datetime_typed_value AS CHAR) may fail in some cases (MySQL 8.0 supports it universally)"
+              ]
+            },
+            {
+              "id": "op.operators.cast_functions_and_operators.cast_functions_and_operators_overview",
+              "title": "cast-functions-and-operators-overview",
+              "path": "docs/MatrixOne/Reference/Operators/operators/cast-functions-and-operators/cast-functions-and-operators-overview.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.operators.comparison_functions_and_operators.coalesce",
+              "title": "coalesce",
+              "path": "docs/MatrixOne/Reference/Operators/operators/comparison-functions-and-operators/coalesce.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.operators.comparison_functions_and_operators.comparison_functions_and_operators_overview",
+              "title": "comparison-functions-and-operators-overview",
+              "path": "docs/MatrixOne/Reference/Operators/operators/comparison-functions-and-operators/comparison-functions-and-operators-overview.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.operators.cast_functions_and_operators.convert",
+              "title": "CONVERT",
+              "path": "docs/MatrixOne/Reference/Operators/operators/cast-functions-and-operators/convert.md",
+              "compat": "partial",
+              "notes": [
+                "CONVERT('non-numeric', SIGNED) raises an error instead of returning 0 or NULL",
+                "CONVERT(datetime_typed_value, CHAR) may fail in some cases (MySQL 8.0 supports it universally)"
+              ]
+            },
+            {
+              "id": "op.operators.cast_functions_and_operators.decode",
+              "title": "DECODE()",
+              "path": "docs/MatrixOne/Reference/Operators/operators/cast-functions-and-operators/decode.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] DECODE() was deprecated in MySQL 5.7 and removed in MySQL 8.0; MatrixOne continues to support it"
+              ]
+            },
+            {
+              "id": "op.operators.arithmetic_operators.div",
+              "title": "div",
+              "path": "docs/MatrixOne/Reference/Operators/operators/arithmetic-operators/div.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.operators.arithmetic_operators.division",
+              "title": "division",
+              "path": "docs/MatrixOne/Reference/Operators/operators/arithmetic-operators/division.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.operators.cast_functions_and_operators.encode",
+              "title": "ENCODE()",
+              "path": "docs/MatrixOne/Reference/Operators/operators/cast-functions-and-operators/encode.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] ENCODE() was deprecated in MySQL 5.7 and removed in MySQL 8.0; MatrixOne continues to support it"
+              ]
+            },
+            {
+              "id": "op.operators.assignment_operators.equal",
+              "title": "equal",
+              "path": "docs/MatrixOne/Reference/Operators/operators/assignment-operators/equal.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.operators.flow_control_functions.flow_control_functions_overview",
+              "title": "flow-control-functions-overview",
+              "path": "docs/MatrixOne/Reference/Operators/operators/flow-control-functions/flow-control-functions-overview.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.operators.flow_control_functions.function_ifnull",
+              "title": "function_ifnull",
+              "path": "docs/MatrixOne/Reference/Operators/operators/flow-control-functions/function_ifnull.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.operators.comparison_functions_and_operators.function_interval",
+              "title": "function_interval",
+              "path": "docs/MatrixOne/Reference/Operators/operators/comparison-functions-and-operators/function_interval.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.operators.comparison_functions_and_operators.function_isnull",
+              "title": "function_isnull",
+              "path": "docs/MatrixOne/Reference/Operators/operators/comparison-functions-and-operators/function_isnull.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.operators.comparison_functions_and_operators.function_least",
+              "title": "function_least",
+              "path": "docs/MatrixOne/Reference/Operators/operators/comparison-functions-and-operators/function_least.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.operators.flow_control_functions.function_nullif",
+              "title": "function_nullif",
+              "path": "docs/MatrixOne/Reference/Operators/operators/flow-control-functions/function_nullif.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.operators.comparison_functions_and_operators.function_strcmp",
+              "title": "function_strcmp",
+              "path": "docs/MatrixOne/Reference/Operators/operators/comparison-functions-and-operators/function_strcmp.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.operators.comparison_functions_and_operators.greater_than",
+              "title": "greater-than",
+              "path": "docs/MatrixOne/Reference/Operators/operators/comparison-functions-and-operators/greater-than.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.operators.comparison_functions_and_operators.greater_than_or_equal",
+              "title": "greater-than-or-equal",
+              "path": "docs/MatrixOne/Reference/Operators/operators/comparison-functions-and-operators/greater-than-or-equal.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.operators.flow_control_functions.function_if",
+              "title": "IF()",
+              "path": "docs/MatrixOne/Reference/Operators/operators/flow-control-functions/function_if.md",
+              "compat": "partial",
+              "notes": [
+                "IF(NULL, expr2, expr3) raises an error instead of returning expr3 (MySQL 8.0 returns expr3)"
+              ]
+            },
+            {
+              "id": "op.operators.comparison_functions_and_operators.ilike",
+              "title": "ILIKE",
+              "path": "docs/MatrixOne/Reference/Operators/operators/comparison-functions-and-operators/ilike.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] ILIKE operator for case-insensitive LIKE matching (PostgreSQL extension)"
+              ]
+            },
+            {
+              "id": "op.operators.comparison_functions_and_operators.in",
+              "title": "IN",
+              "path": "docs/MatrixOne/Reference/Operators/operators/comparison-functions-and-operators/in.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "op.operators.comparison_functions_and_operators.is",
+              "title": "is",
+              "path": "docs/MatrixOne/Reference/Operators/operators/comparison-functions-and-operators/is.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.operators.comparison_functions_and_operators.is_null",
+              "title": "IS NULL",
+              "path": "docs/MatrixOne/Reference/Operators/operators/comparison-functions-and-operators/is-null.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "op.operators.comparison_functions_and_operators.is_not",
+              "title": "is-not",
+              "path": "docs/MatrixOne/Reference/Operators/operators/comparison-functions-and-operators/is-not.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.operators.comparison_functions_and_operators.is_not_null",
+              "title": "is-not-null",
+              "path": "docs/MatrixOne/Reference/Operators/operators/comparison-functions-and-operators/is-not-null.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.operators.bit_functions_and_operators.left_shift",
+              "title": "left-shift",
+              "path": "docs/MatrixOne/Reference/Operators/operators/bit-functions-and-operators/left-shift.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.operators.comparison_functions_and_operators.less_than",
+              "title": "less-than",
+              "path": "docs/MatrixOne/Reference/Operators/operators/comparison-functions-and-operators/less-than.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.operators.comparison_functions_and_operators.less_than_or_equal",
+              "title": "less-than-or-equal",
+              "path": "docs/MatrixOne/Reference/Operators/operators/comparison-functions-and-operators/less-than-or-equal.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.operators.comparison_functions_and_operators.like",
+              "title": "like",
+              "path": "docs/MatrixOne/Reference/Operators/operators/comparison-functions-and-operators/like.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.operators.logical_operators.logical_operators_overview",
               "title": "logical-operators-overview",
-              "path": "docs/MatrixOne/Reference/Operators/logical-operators/logical-operators-overview.md",
+              "path": "docs/MatrixOne/Reference/Operators/operators/logical-operators/logical-operators-overview.md",
               "compat": "unknown",
               "notes": []
             },
             {
-              "id": "op.logical_operators.not",
-              "title": "not",
-              "path": "docs/MatrixOne/Reference/Operators/logical-operators/not.md",
+              "id": "op.operators.arithmetic_operators.minus",
+              "title": "minus",
+              "path": "docs/MatrixOne/Reference/Operators/operators/arithmetic-operators/minus.md",
               "compat": "unknown",
               "notes": []
             },
             {
-              "id": "op.logical_operators.or",
+              "id": "op.operators.arithmetic_operators.mod",
+              "title": "mod",
+              "path": "docs/MatrixOne/Reference/Operators/operators/arithmetic-operators/mod.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.operators.arithmetic_operators.multiplication",
+              "title": "multiplication",
+              "path": "docs/MatrixOne/Reference/Operators/operators/arithmetic-operators/multiplication.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.operators.logical_operators.not",
+              "title": "NOT / !",
+              "path": "docs/MatrixOne/Reference/Operators/operators/logical-operators/not.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "op.operators.comparison_functions_and_operators.not_in",
+              "title": "NOT IN",
+              "path": "docs/MatrixOne/Reference/Operators/operators/comparison-functions-and-operators/not-in.md",
+              "compat": "full",
+              "notes": []
+            },
+            {
+              "id": "op.operators.comparison_functions_and_operators.not_between",
+              "title": "not-between",
+              "path": "docs/MatrixOne/Reference/Operators/operators/comparison-functions-and-operators/not-between.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.operators.comparison_functions_and_operators.not_equal",
+              "title": "not-equal",
+              "path": "docs/MatrixOne/Reference/Operators/operators/comparison-functions-and-operators/not-equal.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.operators.comparison_functions_and_operators.not_like",
+              "title": "not-like",
+              "path": "docs/MatrixOne/Reference/Operators/operators/comparison-functions-and-operators/not-like.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.operators.operator_precedence",
+              "title": "operator-precedence",
+              "path": "docs/MatrixOne/Reference/Operators/operators/operator-precedence.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.operators.operators",
+              "title": "operators",
+              "path": "docs/MatrixOne/Reference/Operators/operators/operators.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.operators.logical_operators.or",
               "title": "or",
-              "path": "docs/MatrixOne/Reference/Operators/logical-operators/or.md",
+              "path": "docs/MatrixOne/Reference/Operators/operators/logical-operators/or.md",
               "compat": "unknown",
               "notes": []
             },
             {
-              "id": "op.logical_operators.xor",
+              "id": "op.operators.bit_functions_and_operators.right_shift",
+              "title": "right-shift",
+              "path": "docs/MatrixOne/Reference/Operators/operators/bit-functions-and-operators/right-shift.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.operators.cast_functions_and_operators.serial_full",
+              "title": "SERIAL_FULL()",
+              "path": "docs/MatrixOne/Reference/Operators/operators/cast-functions-and-operators/serial_full.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] SERIAL_FULL() is a MO-specific serialization function variant with NULL preservation, no MySQL 8.0 counterpart"
+              ]
+            },
+            {
+              "id": "op.operators.cast_functions_and_operators.serial",
+              "title": "SERIAL()",
+              "path": "docs/MatrixOne/Reference/Operators/operators/cast-functions-and-operators/serial.md",
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] SERIAL() is a MO-specific serialization function with no MySQL 8.0 counterpart"
+              ]
+            },
+            {
+              "id": "op.operators.arithmetic_operators.unary_minus",
+              "title": "unary-minus",
+              "path": "docs/MatrixOne/Reference/Operators/operators/arithmetic-operators/unary-minus.md",
+              "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "op.operators.logical_operators.xor",
               "title": "xor",
-              "path": "docs/MatrixOne/Reference/Operators/logical-operators/xor.md",
+              "path": "docs/MatrixOne/Reference/Operators/operators/logical-operators/xor.md",
               "compat": "unknown",
               "notes": []
             }
@@ -3035,11 +3163,11 @@
       "id": "data-types",
       "label": "Data Types",
       "summary": {
-        "full": 0,
-        "partial": 2,
+        "full": 1,
+        "partial": 7,
         "none": 0,
-        "mo_only": 0,
-        "unknown": 10
+        "mo_only": 3,
+        "unknown": 1
       },
       "categories": [
         {
@@ -3055,24 +3183,33 @@
             },
             {
               "id": "dtype.data_type_conversion",
-              "title": "data-type-conversion",
+              "title": "Data Type Conversion",
               "path": "docs/MatrixOne/Reference/Data-Types/data-type-conversion.md",
-              "compat": "unknown",
-              "notes": []
+              "compat": "partial",
+              "notes": [
+                "BOOLEAN → DECIMAL cast is not supported; other common conversions are supported"
+              ]
             },
             {
               "id": "dtype.data_types",
-              "title": "data-types",
+              "title": "Data Types Overview",
               "path": "docs/MatrixOne/Reference/Data-Types/data-types.md",
-              "compat": "unknown",
-              "notes": []
+              "compat": "partial",
+              "notes": [
+                "TIMESTAMP range is 0001-01-01 to 9999-12-31 (MySQL: 1970-01-01 to 2038-01-19)",
+                "DATETIME lower bound is 0001-01-01 (MySQL: 1000-01-01)",
+                "Non-standard type names FLOAT32/FLOAT64 in addition to MySQL's FLOAT/DOUBLE"
+              ]
             },
             {
               "id": "dtype.datalink_type",
-              "title": "datalink-type",
+              "title": "DATALINK Type",
               "path": "docs/MatrixOne/Reference/Data-Types/datalink-type.md",
-              "compat": "unknown",
-              "notes": []
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] DATALINK data type with STAGE integration, file:// and stage:// URL schemes",
+                "[MO-only] load_file() integration for reading DATALINK values"
+              ]
             },
             {
               "id": "dtype.enum_type",
@@ -3083,16 +3220,18 @@
             },
             {
               "id": "dtype.fixed_point_types",
-              "title": "fixed-point-types",
+              "title": "Fixed-Point Types (Exact Value) - DECIMAL",
               "path": "docs/MatrixOne/Reference/Data-Types/fixed-point-types.md",
-              "compat": "unknown",
-              "notes": []
+              "compat": "partial",
+              "notes": [
+                "DECIMAL precision supports up to 65 digits via DECIMAL256"
+              ]
             },
             {
               "id": "dtype.json_type",
-              "title": "json-type",
+              "title": "JSON Type",
               "path": "docs/MatrixOne/Reference/Data-Types/json-type.md",
-              "compat": "unknown",
+              "compat": "full",
               "notes": []
             },
             {
@@ -3104,17 +3243,24 @@
             },
             {
               "id": "dtype.uuid_type",
-              "title": "uuid-type",
+              "title": "UUID Type",
               "path": "docs/MatrixOne/Reference/Data-Types/uuid-type.md",
-              "compat": "unknown",
-              "notes": []
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] UUID as a native column type (MySQL 8.0 has UUID() function only, no UUID column type)",
+                "[MO-only] DEFAULT uuid() on UUID columns"
+              ]
             },
             {
               "id": "dtype.vector_type",
-              "title": "vector-type",
+              "title": "Vector Type",
               "path": "docs/MatrixOne/Reference/Data-Types/vector-type.md",
-              "compat": "unknown",
-              "notes": []
+              "compat": "mo_only",
+              "notes": [
+                "[MO-only] vecf32 and vecf64 vector data types for embedding storage and similarity search",
+                "[MO-only] Binary vector insert via hex encoding",
+                "[MO-only] Dimension specification syntax in column definition"
+              ]
             }
           ]
         },
@@ -3124,16 +3270,21 @@
           "entries": [
             {
               "id": "dtype.date_time_data_types.timestamp_initialization",
-              "title": "timestamp-initialization",
+              "title": "TIMESTAMP Initialization",
               "path": "docs/MatrixOne/Reference/Data-Types/date-time-data-types/timestamp-initialization.md",
-              "compat": "unknown",
-              "notes": []
+              "compat": "partial",
+              "notes": [
+                "TIMESTAMP range is 0001-9999 (MySQL 8.0: 1970-2038); auto-initialization behavior near range boundaries may differ",
+                "DATETIME DEFAULT 0 is not supported (MySQL 8.0 supports it)",
+                "TIMESTAMP ON UPDATE CURRENT_TIMESTAMP without explicit DEFAULT defaults to NULL (MySQL 8.0 defaults to 0)",
+                "DATETIME NOT NULL ON UPDATE CURRENT_TIMESTAMP without explicit DEFAULT rejects NULL insert (MySQL 8.0 defaults to 0)"
+              ]
             },
             {
               "id": "dtype.date_time_data_types.year_type",
-              "title": "year-type",
+              "title": "YEAR Type",
               "path": "docs/MatrixOne/Reference/Data-Types/date-time-data-types/year-type.md",
-              "compat": "unknown",
+              "compat": "partial",
               "notes": []
             }
           ]
@@ -3145,10 +3296,10 @@
       "label": "Language Structure",
       "summary": {
         "full": 0,
-        "partial": 0,
+        "partial": 2,
         "none": 0,
         "mo_only": 0,
-        "unknown": 2
+        "unknown": 0
       },
       "categories": [
         {
@@ -3157,17 +3308,22 @@
           "entries": [
             {
               "id": "lang.comment",
-              "title": "comment",
+              "title": "Comments",
               "path": "docs/MatrixOne/Reference/Language-Structure/comment.md",
-              "compat": "unknown",
-              "notes": []
+              "compat": "partial",
+              "notes": [
+                "Supports // single-line comments (C++ style); MySQL 8.0 does not support // comments",
+                "Does not support /*!...*/ conditional/executable comments (MySQL 8.0 does)"
+              ]
             },
             {
               "id": "lang.keywords",
-              "title": "keywords",
+              "title": "Keywords",
               "path": "docs/MatrixOne/Reference/Language-Structure/keywords.md",
-              "compat": "unknown",
-              "notes": []
+              "compat": "partial",
+              "notes": [
+                "MatrixOne-specific keywords marked with (M) in the keyword list"
+              ]
             }
           ]
         }

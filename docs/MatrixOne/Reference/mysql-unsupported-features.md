@@ -415,32 +415,6 @@ Each row links to the relevant MatrixOne documentation page for full details.
 | [SHOW VARIABLES](./SQL-Reference/Other/SHOW-Statements/show-variables.md) | MO has a completely different set of variable names (e.g. testbotchvar_nodyn, testbothvar_dyn) alongside MySQL-compatible ones (autocommit, sql_mode) |
 | [SHOW VARIABLES](./SQL-Reference/Other/SHOW-Statements/show-variables.md) | Variable values use lowercase ('on'/'off') while MySQL uses uppercase ('ON'/'OFF') |
 
-### Language Structure
-
-| Statement | Difference from MySQL |
-|---|---|
-| [Comments](./Language-Structure/comment.md) | Supports // single-line comments (C++ style); MySQL 8.0 does not support // comments |
-| [Comments](./Language-Structure/comment.md) | Does not support /*!...*/ conditional/executable comments (MySQL 8.0 does) |
-| [Keywords](./Language-Structure/keywords.md) | MatrixOne-specific keywords marked with (M) in the keyword list |
-
-### Limitations
-
-| Statement | Difference from MySQL |
-|---|---|
-| [Partition Support](./Limitations/mo-partition-support.md) | All partition types (KEY, HASH, RANGE, LIST) are accepted syntactically but not enforced at storage or plan level; tables are created without actual partitioning |
-
-### Operators
-
-| Statement | Difference from MySQL |
-|---|---|
-| [CAST](./Operators/operators/cast-functions-and-operators/cast.md) | CAST('non-numeric' AS SIGNED) raises an error instead of returning 0 or NULL (MySQL 8.0 returns 0 with a warning) |
-| [CAST](./Operators/operators/cast-functions-and-operators/cast.md) | CAST(datetime_typed_value AS CHAR) may fail in some cases (MySQL 8.0 supports it universally) |
-| [CONVERT](./Operators/operators/cast-functions-and-operators/convert.md) | CONVERT('non-numeric', SIGNED) raises an error instead of returning 0 or NULL |
-| [CONVERT](./Operators/operators/cast-functions-and-operators/convert.md) | CONVERT(datetime_typed_value, CHAR) may fail in some cases (MySQL 8.0 supports it universally) |
-| [IF()](./Operators/operators/flow-control-functions/function_if.md) | IF(NULL, expr2, expr3) raises an error instead of returning expr3 (MySQL 8.0 returns expr3) |
-| [INTERVAL](./Operators/interval.md) | INTERVAL is internally implemented as a two-argument function rather than as a true SQL keyword; documented syntax INTERVAL(expr,unit) differs from MySQL's INTERVAL expr unit keyword-style notation |
-| [INTERVAL](./Operators/interval.md) | Malformed dates in DATE_ADD/DATE_SUB raise errors rather than returning NULL (MySQL 8.0 returns NULL) |
-
 ### Data Types
 
 | Statement | Difference from MySQL |
@@ -454,6 +428,32 @@ Each row links to the relevant MatrixOne documentation page for full details.
 | [TIMESTAMP Initialization](./Data-Types/date-time-data-types/timestamp-initialization.md) | DATETIME DEFAULT 0 is not supported (MySQL 8.0 supports it) |
 | [TIMESTAMP Initialization](./Data-Types/date-time-data-types/timestamp-initialization.md) | TIMESTAMP ON UPDATE CURRENT_TIMESTAMP without explicit DEFAULT defaults to NULL (MySQL 8.0 defaults to 0) |
 | [TIMESTAMP Initialization](./Data-Types/date-time-data-types/timestamp-initialization.md) | DATETIME NOT NULL ON UPDATE CURRENT_TIMESTAMP without explicit DEFAULT rejects NULL insert (MySQL 8.0 defaults to 0) |
+
+### Operators
+
+| Statement | Difference from MySQL |
+|---|---|
+| [CAST](./Operators/operators/cast-functions-and-operators/cast.md) | CAST('non-numeric' AS SIGNED) raises an error instead of returning 0 or NULL (MySQL 8.0 returns 0 with a warning) |
+| [CAST](./Operators/operators/cast-functions-and-operators/cast.md) | CAST(datetime_typed_value AS CHAR) may fail in some cases (MySQL 8.0 supports it universally) |
+| [CONVERT](./Operators/operators/cast-functions-and-operators/convert.md) | CONVERT('non-numeric', SIGNED) raises an error instead of returning 0 or NULL |
+| [CONVERT](./Operators/operators/cast-functions-and-operators/convert.md) | CONVERT(datetime_typed_value, CHAR) may fail in some cases (MySQL 8.0 supports it universally) |
+| [IF()](./Operators/operators/flow-control-functions/function_if.md) | IF(NULL, expr2, expr3) raises an error instead of returning expr3 (MySQL 8.0 returns expr3) |
+| [INTERVAL](./Operators/interval.md) | INTERVAL is internally implemented as a two-argument function rather than as a true SQL keyword; documented syntax INTERVAL(expr,unit) differs from MySQL's INTERVAL expr unit keyword-style notation |
+| [INTERVAL](./Operators/interval.md) | Malformed dates in DATE_ADD/DATE_SUB raise errors rather than returning NULL (MySQL 8.0 returns NULL) |
+
+### Language Structure
+
+| Statement | Difference from MySQL |
+|---|---|
+| [Comments](./Language-Structure/comment.md) | Supports // single-line comments (C++ style); MySQL 8.0 does not support // comments |
+| [Comments](./Language-Structure/comment.md) | Does not support /*!...*/ conditional/executable comments (MySQL 8.0 does) |
+| [Keywords](./Language-Structure/keywords.md) | MatrixOne-specific keywords marked with (M) in the keyword list |
+
+### Limitations
+
+| Statement | Difference from MySQL |
+|---|---|
+| [Partition Support](./Limitations/mo-partition-support.md) | All partition types (KEY, HASH, RANGE, LIST) are accepted syntactically but not enforced at storage or plan level; tables are created without actual partitioning |
 
 ### Functions & Operators
 

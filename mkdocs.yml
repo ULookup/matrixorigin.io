@@ -345,7 +345,6 @@ nav:
           - SQL Statements:
               - Type of SQL Statements: MatrixOne/Reference/SQL-Reference/SQL-Type.md
               - MySQL Compatibility Matrix: MatrixOne/Reference/mysql-compatibility-matrix.md
-              - MySQL Unsupported Features: MatrixOne/Reference/mysql-unsupported-features.md
               - Data Definition Language:
                   - CREATE DATABASE: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/create-database.md
                   - CREATE INDEX: MatrixOne/Reference/SQL-Reference/Data-Definition-Language/create-index.md
@@ -772,7 +771,6 @@ nav:
           - SQL FAQs: MatrixOne/FAQs/sql-faqs.md
       - Release Notes:
           - Release Timeline: MatrixOne/Release-Notes/release-timeline.md
-          - v26.3.0.13: MatrixOne/Release-Notes/v26.3.0.13.md
           - v26.3.0.12: MatrixOne/Release-Notes/v26.3.0.12.md
           - v26.3.0.11: MatrixOne/Release-Notes/v26.3.0.11.md
           - v25.3.0.4: MatrixOne/Release-Notes/v25.3.0.4.md

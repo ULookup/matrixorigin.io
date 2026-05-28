@@ -14,12 +14,12 @@ mysql_compat: full
 
 | Status | Count |
 |---|---|
-| ✅ Full | 141 |
-| ⚠️ Partial | 60 |
+| ✅ Full | 142 |
+| ⚠️ Partial | 62 |
 | ❌ None | 0 |
-| 🟣 MatrixOne-only | 92 |
-| ❓ Unknown | 74 |
-| **Total** | **367** |
+| 🟣 MatrixOne-only | 93 |
+| ❓ Unknown | 73 |
+| **Total** | **370** |
 
 ## SQL Statements
 
@@ -27,8 +27,8 @@ mysql_compat: full
 |---|---|
 | ✅ Full | 30 |
 | ⚠️ Partial | 43 |
-| 🟣 MatrixOne-only | 56 |
-| **Total** | **129** |
+| 🟣 MatrixOne-only | 57 |
+| **Total** | **130** |
 
 ### SQL Statements
 
@@ -63,6 +63,7 @@ mysql_compat: full
 | [ALTER STAGE](./SQL-Reference/Data-Definition-Language/alter-stage.md) | 🟣 MatrixOne-only | [MO-only] ALTER STAGE |
 | [ALTER TABLE](./SQL-Reference/Data-Definition-Language/alter-table.md) | ⚠️ Partial | CHANGE [COLUMN], MODIFY [COLUMN], RENAME COLUMN, ADD/DROP PRIMARY KEY, ALTER COLUMN ORDER BY cannot be combined with other clauses in the same ALTER TABLE<br/>Temporary tables cannot be altered<br/>Tables created with CLUSTER BY cannot be altered<br/>ALTER TABLE does not support PARTITION operations |
 | [ALTER VIEW](./SQL-Reference/Data-Definition-Language/alter-view.md) | ⚠️ Partial | Inherits CREATE VIEW limitations: no WITH CHECK OPTION, no DEFINER = user clause |
+| [Branch Protect Snapshots](./SQL-Reference/Data-Definition-Language/branch-protect-snapshots.md) | 🟣 MatrixOne-only | — |
 | [CREATE CLONE](./SQL-Reference/Data-Definition-Language/create-clone.md) | 🟣 MatrixOne-only | [MO-only] CREATE TABLE … CLONE db.table [TO ACCOUNT …] |
 | [CREATE CLUSTER TABLE](./SQL-Reference/Data-Definition-Language/create-cluster-table.md) | 🟣 MatrixOne-only | [MO-only] CREATE CLUSTER TABLE |
 | [CREATE DATABASE](./SQL-Reference/Data-Definition-Language/create-database.md) | ⚠️ Partial | Chinese database names not supported<br/>Only utf8mb4 / utf8mb4_bin are supported and cannot be changed<br/>ENCRYPTION clause accepted but inert |
@@ -193,10 +194,10 @@ mysql_compat: full
 
 | Status | Count |
 |---|---|
-| ✅ Full | 110 |
+| ✅ Full | 111 |
 | ⚠️ Partial | 17 |
 | 🟣 MatrixOne-only | 36 |
-| **Total** | **163** |
+| **Total** | **164** |
 
 ### Functions
 
@@ -264,6 +265,7 @@ mysql_compat: full
 | [WEEK()](./Functions-and-Operators/Datetime/week.md) | ✅ Full | — |
 | [WEEKDAY()](./Functions-and-Operators/Datetime/weekday.md) | ✅ Full | — |
 | [YEAR()](./Functions-and-Operators/Datetime/year.md) | ⚠️ Partial | Date literals accept only 'yyyy-mm-dd' and 'yyyymmdd' formats; MySQL accepts wider variants.<br/>[MO-only] TOYEAR() is a MatrixOne alias for YEAR() with no MySQL counterpart. |
+| [YEARWEEK()](./Functions-and-Operators/Datetime/yearweek.md) | ✅ Full | — |
 
 ### Json
 
@@ -530,8 +532,9 @@ mysql_compat: full
 
 | Status | Count |
 |---|---|
-| ❓ Unknown | 11 |
-| **Total** | **11** |
+| ⚠️ Partial | 2 |
+| ❓ Unknown | 10 |
+| **Total** | **12** |
 
 ### Data Types
 
@@ -541,9 +544,10 @@ mysql_compat: full
 | [data-type-conversion](./Data-Types/data-type-conversion.md) | ❓ Unknown | — |
 | [data-types](./Data-Types/data-types.md) | ❓ Unknown | — |
 | [datalink-type](./Data-Types/datalink-type.md) | ❓ Unknown | — |
-| [enum-type](./Data-Types/enum-type.md) | ❓ Unknown | — |
+| [ENUM Type](./Data-Types/enum-type.md) | ⚠️ Partial | — |
 | [fixed-point-types](./Data-Types/fixed-point-types.md) | ❓ Unknown | — |
 | [json-type](./Data-Types/json-type.md) | ❓ Unknown | — |
+| [SET Type](./Data-Types/set-type.md) | ⚠️ Partial | — |
 | [uuid-type](./Data-Types/uuid-type.md) | ❓ Unknown | — |
 | [vector-type](./Data-Types/vector-type.md) | ❓ Unknown | — |
 

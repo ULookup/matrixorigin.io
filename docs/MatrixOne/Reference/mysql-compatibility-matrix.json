@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-05-27T10:50:42.176Z",
+  "generated_at": "2026-05-27T10:51:12.013Z",
   "summary": {
-    "total": 367,
-    "full": 141,
-    "partial": 60,
+    "total": 370,
+    "full": 142,
+    "partial": 62,
     "none": 0,
-    "mo_only": 92,
-    "unknown": 74
+    "mo_only": 93,
+    "unknown": 73
   },
   "sections": [
     {
@@ -16,7 +16,7 @@
         "full": 30,
         "partial": 43,
         "none": 0,
-        "mo_only": 56,
+        "mo_only": 57,
         "unknown": 0
       },
       "categories": [
@@ -216,6 +216,13 @@
               "notes": [
                 "Inherits CREATE VIEW limitations: no WITH CHECK OPTION, no DEFINER = user clause"
               ]
+            },
+            {
+              "id": "sql.data_definition_language.branch_protect_snapshots",
+              "title": "Branch Protect Snapshots",
+              "path": "docs/MatrixOne/Reference/SQL-Reference/Data-Definition-Language/branch-protect-snapshots.md",
+              "compat": "mo_only",
+              "notes": []
             },
             {
               "id": "sql.data_definition_language.create_clone",
@@ -1195,7 +1202,7 @@
       "id": "functions-and-operators",
       "label": "Functions",
       "summary": {
-        "full": 110,
+        "full": 111,
         "partial": 17,
         "none": 0,
         "mo_only": 36,
@@ -1618,6 +1625,13 @@
                 "Date literals accept only 'yyyy-mm-dd' and 'yyyymmdd' formats; MySQL accepts wider variants.",
                 "[MO-only] TOYEAR() is a MatrixOne alias for YEAR() with no MySQL counterpart."
               ]
+            },
+            {
+              "id": "func.datetime.yearweek",
+              "title": "YEARWEEK()",
+              "path": "docs/MatrixOne/Reference/Functions-and-Operators/Datetime/yearweek.md",
+              "compat": "full",
+              "notes": []
             }
           ]
         },
@@ -3022,10 +3036,10 @@
       "label": "Data Types",
       "summary": {
         "full": 0,
-        "partial": 0,
+        "partial": 2,
         "none": 0,
         "mo_only": 0,
-        "unknown": 11
+        "unknown": 10
       },
       "categories": [
         {
@@ -3062,9 +3076,9 @@
             },
             {
               "id": "dtype.enum_type",
-              "title": "enum-type",
+              "title": "ENUM Type",
               "path": "docs/MatrixOne/Reference/Data-Types/enum-type.md",
-              "compat": "unknown",
+              "compat": "partial",
               "notes": []
             },
             {
@@ -3079,6 +3093,13 @@
               "title": "json-type",
               "path": "docs/MatrixOne/Reference/Data-Types/json-type.md",
               "compat": "unknown",
+              "notes": []
+            },
+            {
+              "id": "dtype.set_type",
+              "title": "SET Type",
+              "path": "docs/MatrixOne/Reference/Data-Types/set-type.md",
+              "compat": "partial",
               "notes": []
             },
             {

@@ -4,7 +4,7 @@ doc_type: reference
 mysql_compat: partial
 differs_from_mysql:
   - "SUM() returns the input integer type rather than DECIMAL for exact-value arguments (MySQL returns DECIMAL)"
-mo_only: false
+mo_only: []
 since: unknown
 last_updated: 2026-06-02
 llms_summary: "Aggregate function. The SUM() function calculates the sum of a set of values; supports boolean expressions as of v3.0.14."

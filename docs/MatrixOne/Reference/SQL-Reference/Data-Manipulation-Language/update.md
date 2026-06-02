@@ -5,14 +5,14 @@ mysql_compat: partial
 differs_from_mysql:
   - "LOW_PRIORITY and IGNORE modifiers are syntactically accepted but have no effect"
   - "PARTITION clause not supported"
-mo_only: []
+mo_only: false
 since: unknown
-last_updated: 2026-05-08
-llms_summary: "The UPDATE statement is used to modify the existing records in a table."
+last_updated: 2026-06-02
+llms_summary: "The UPDATE statement is used to modify the existing records in a table, including PostgreSQL-style UPDATE ... FROM syntax."
 ---
 # **UPDATE**
 
-> The UPDATE statement is used to modify the existing records in a table.
+> The UPDATE statement is used to modify the existing records in a table. Supports single-table, multi-table, and PostgreSQL-style `UPDATE ... SET ... FROM ... WHERE` syntax.
 
 ## **Description**
 
@@ -30,6 +30,15 @@ UPDATE table_reference
     [LIMIT row_count]
 ```
 
+### **PostgreSQL-style UPDATE FROM Syntax**
+
+```
+UPDATE table_reference [ [AS] alias ]
+    SET assignment_list
+    FROM table_references
+    [WHERE where_condition]
+```
+
 #### Explanations
 
 + The `UPDATE` statement updates columns of existing rows in the named table with new values.  
@@ -37,6 +46,7 @@ UPDATE table_reference
 + The `WHERE` clause, if given, specifies the conditions that identify which rows to update. With no `WHERE` clause, all rows are updated.
 + If the `ORDER BY` clause is specified, the rows are updated in the order that is specified.
 + The `LIMIT` clause places a limit on the number of rows that can be updated.
++ The PostgreSQL-style `FROM` clause introduces additional read-only join sources. The target table is updated; `FROM`-clause tables are used as join sources and are not modified. `ORDER BY` and `LIMIT` are not supported with the `FROM` syntax.
 
 ## **Examples**
 
@@ -129,4 +139,42 @@ mysql> select * from t2;
 |    7 |  666 |  333 |
 +------+------+------+
 3 rows in set (0.00 sec)
+```
+
+- **PostgreSQL-style UPDATE FROM Examples**
+
+```sql
+DROP DATABASE IF EXISTS update_from_tests;
+CREATE DATABASE update_from_tests;
+USE update_from_tests;
+
+CREATE TABLE company (id INT PRIMARY KEY, province VARCHAR(50));
+INSERT INTO company VALUES (101, 'BJ'), (102, 'SH'), (103, 'GZ');
+
+CREATE TABLE vec_join_case (id INT PRIMARY KEY, company_id INT, remark VARCHAR(100));
+INSERT INTO vec_join_case VALUES (10, 101, 'init'), (20, 102, 'init'), (30, 103, 'init');
+
+-- Basic PostgreSQL-style UPDATE FROM
+UPDATE vec_join_case t
+SET remark = CONCAT('hot-', c.province)
+FROM company c
+WHERE c.id = t.company_id;
+SELECT id, company_id, remark FROM vec_join_case ORDER BY id;
+
+-- UPDATE FROM with CTE
+WITH cc AS (SELECT id, province FROM company)
+UPDATE vec_join_case t
+SET remark = c.province
+FROM cc c
+WHERE c.id = t.company_id;
+SELECT id, company_id, remark FROM vec_join_case ORDER BY id;
+
+-- UPDATE FROM with LEFT JOIN
+UPDATE vec_join_case t
+SET remark = COALESCE(c.province, 'unknown')
+FROM company c
+WHERE c.id = t.company_id;
+SELECT id, company_id, remark FROM vec_join_case ORDER BY id;
+
+DROP DATABASE update_from_tests;
 ```

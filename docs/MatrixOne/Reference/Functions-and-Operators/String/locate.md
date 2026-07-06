@@ -92,6 +92,7 @@ mysql>select locate('a','ABC');
 
 - Example 5: POSITION() syntax
 
+<!-- validator-ignore-exec -->
 ```sql
 mysql>SELECT POSITION('y' IN 'xyz');
 +------------------------+

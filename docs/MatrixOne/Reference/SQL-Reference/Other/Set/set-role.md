@@ -7,7 +7,7 @@ differs_from_mysql:
 mo_only:
   - "SET SECONDARY ROLE {NONE | ALL} — MatrixOne-only primary/secondary role model."
 since: unknown
-last_updated: 2026-05-08
+last_updated: 2026-07-06
 llms_summary: "Specifies the active/current primary role or secondary role for the session."
 ---
 # **SET ROLE**
@@ -59,7 +59,7 @@ The two statements are explained as follows:
 
 #### SET SECONDARY ROLE ALL
 
-The union of all roles of the user.
+Activates all secondary roles granted to the user, in addition to the current primary role. The primary role is **not** changed — only secondary roles are activated. To switch the primary role, use `SET ROLE role`.
 
 #### SET SECONDARY ROLE NONE
 

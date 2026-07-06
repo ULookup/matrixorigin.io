@@ -1,0 +1,33 @@
+tag: v3.0.15
+docs_added:
+  - path: docs/MatrixOne/Reference/Functions-and-Operators/String/right.md
+    doc_type: reference
+    mysql_compat: full
+    llms_summary: "Returns the rightmost len characters from the string str, or empty string if len is negative and NULL if str is NULL."
+  - path: docs/MatrixOne/Reference/Functions-and-Operators/String/quote.md
+    doc_type: reference
+    mysql_compat: full
+    llms_summary: "Quotes a string to produce a result that can be used as a properly escaped data value in an SQL statement, returning NULL if the argument is NULL."
+  - path: docs/MatrixOne/Reference/Functions-and-Operators/Datetime/dayname.md
+    doc_type: reference
+    mysql_compat: full
+    llms_summary: "Returns the weekday name for a DATE, DATETIME, or TIMESTAMP value, such as 'Monday' or 'Saturday'."
+  - path: docs/MatrixOne/Reference/Functions-and-Operators/Datetime/maketime.md
+    doc_type: reference
+    mysql_compat: full
+    llms_summary: "Returns a TIME value constructed from the given hour, minute, and second arguments, up to a maximum of 838:59:59."
+  - path: docs/MatrixOne/Reference/Functions-and-Operators/Datetime/monthname.md
+    doc_type: reference
+    mysql_compat: full
+    llms_summary: "Returns the full month name for a date value, such as 'January' or 'December', or NULL if the argument is NULL."
+  - path: docs/MatrixOne/Reference/Functions-and-Operators/Datetime/quarter.md
+    doc_type: reference
+    mysql_compat: full
+    llms_summary: "Returns the quarter of the year for a given date as an integer from 1 to 4, or NULL if the argument is NULL."
+  - path: docs/MatrixOne/Reference/Functions-and-Operators/Datetime/time-format.md
+    doc_type: reference
+    mysql_compat: full
+    llms_summary: "Formats a TIME value according to a format string, using the same specifiers as DATE_FORMAT() but limited to time-related components."
+docs_updated:
+  - path: docs/MatrixOne/Reference/Functions-and-Operators/String/locate.md
+    change_summary: "Added POSITION(substr IN str) syntax as a synonym for LOCATE(substr, str)."

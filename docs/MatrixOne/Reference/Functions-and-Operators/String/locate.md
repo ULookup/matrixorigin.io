@@ -5,14 +5,14 @@ mysql_compat: full
 differs_from_mysql: []
 mo_only: []
 since: unknown
-last_updated: 2026-05-08
-llms_summary: "The LOCATE() function is a function used to find the location of a substring in a string."
+last_updated: 2026-07-06
+llms_summary: "The LOCATE() function finds the location of a substring in a string. POSITION(substr IN str) is a synonym that does not support a start position argument."
 ---
-# **LOCATE()**
+# LOCATE()
 
 > The LOCATE() function is a function used to find the location of a substring in a string.
 
-## **Function Description**
+## Function Description
 
 The `LOCATE()` function is a function used to find the location of a substring in a string. It returns the position of the substring in the string or 0 if not found.
 
@@ -20,13 +20,19 @@ Because the `LOCATE()` function returns an integer value, it can be nested and u
 
 Regarding case, the `LOCATE()` function is case-insensitive.
 
-## **Function syntax**
+## Syntax
 
 ```
 > LOCATE(subtr,str,pos)
 ```
 
-## **Parameter interpretation**
+`POSITION(substr IN str)` is a synonym for `LOCATE(substr, str)`. The `POSITION` form does not support a start position argument.
+
+```
+> POSITION(substr IN str)
+```
+
+## Arguments
 
 | Parameters | Description |
 | ---- | ---- |
@@ -34,7 +40,7 @@ Regarding case, the `LOCATE()` function is case-insensitive.
 | str | Required parameter. `string` is the string to search in. |
 | pos | Unnecessary argument. `position` is the position indicating the start of the query. |
 
-## **Examples**
+## Examples
 
 - Example 1
 
@@ -81,5 +87,18 @@ mysql>select locate('a','ABC');
 +----------------+
 |              1 |
 +----------------+
+1 row in set (0.00 sec)
+```
+
+- Example 5: POSITION() syntax
+
+<!-- validator-ignore-exec -->
+```sql
+mysql>SELECT POSITION('y' IN 'xyz');
++------------------------+
+| position(y in xyz)     |
++------------------------+
+|                      2 |
++------------------------+
 1 row in set (0.00 sec)
 ```

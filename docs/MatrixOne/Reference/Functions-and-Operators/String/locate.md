@@ -5,8 +5,8 @@ mysql_compat: full
 differs_from_mysql: []
 mo_only: []
 since: unknown
-last_updated: 2026-05-08
-llms_summary: "The LOCATE() function is a function used to find the location of a substring in a string."
+last_updated: 2026-07-06
+llms_summary: "The LOCATE() function finds the location of a substring in a string. POSITION(substr IN str) is a synonym that does not support a start position argument."
 ---
 # LOCATE()
 
